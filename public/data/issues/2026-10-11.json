@@ -1,0 +1,1385 @@
+{
+  "date": "2026-10-11",
+  "title": "Claude Haiku 5.5 ra mắt, Microsoft phát hành Agent Lightning 1.0",
+  "intro": "Anthropic ra Claude Haiku 5.5 với giá ngang GPT-6 Luna. Microsoft Research phát hành Agent Lightning 1.0 để huấn luyện agent bằng học tăng cường, còn NVIDIA và Microsoft đưa agent AI chạy ngay trên máy Windows. Số này cũng có nhiều bài nhìn lại giới hạn của AI: bài toán gập protein, robot và khả năng biết từ chối của mô hình.",
+  "articles": [
+    {
+      "id": "claude-haiku-5-5-gia-bang-gpt-6-luna",
+      "group": "newsletter",
+      "source": "Simon Willison",
+      "url": "https://simonwillison.net/2026/Oct/7/claude-haiku-5-5/",
+      "publishedAt": "2026-10-07T20:56:21.000Z",
+      "readMinutes": 3,
+      "tags": [
+        "Anthropic",
+        "Claude Haiku 5.5",
+        "giá API",
+        "mô hình"
+      ],
+      "titleEn": "Claude Haiku 5.5",
+      "titleVi": "Claude Haiku 5.5 ra mắt: giá bằng GPT-6 Luna đến 100.000 token, kèm tín dụng API cho gói Max và Team",
+      "summary": "Simon Willison nhận xét về Claude Haiku 5.5 của Anthropic, mô hình nhanh và rẻ mới. Ông nêu giá, việc tokenizer mới tốn token hơn và chương trình tín dụng API hằng tháng cho thuê bao.",
+      "keyPoints": [
+        "Haiku 5.5 giá 0,10 USD đầu vào và 0,50 USD đầu ra mỗi triệu token, bằng GPT-6 Luna, trong 100.000 token đầu.",
+        "Vượt 100.000 token, giá tăng 5 lần lên 0,50 và 2,50 USD; Luna tăng giá ở mốc 272.000 token nhưng chỉ lên 0,20 và 0,75 USD.",
+        "Tokenizer mới dùng nhiều token hơn khoảng 1,25 lần so với Haiku 4.5 cho cùng một prompt, tức là một dạng tăng giá ngầm.",
+        "Mô hình không cho tắt suy luận, mặc định mức medium.",
+        "Anthropic cấp tín dụng API hằng tháng cho gói Max và Team, và giảm một nửa giá cache read của Sonnet 5.5."
+      ],
+      "body": [
+        "Đây là bài nhận xét cá nhân của Simon Willison, dựa trên thông báo của Anthropic và các thử nghiệm riêng của ông.",
+        "## Giá cả",
+        "Haiku 4.5 ra mắt gần một năm trước với giá 1 và 5 USD mỗi triệu token, gấp 10 lần GPT-6 Luna của OpenAI. Haiku 5.5 hạ xuống đúng mức giá của Luna, 0,10 và 0,50 USD, nhưng chỉ cho tới 100.000 token.",
+        "Willison tính rằng nếu tác vụ vừa trong 100.000 token, Haiku cùng giá với Luna và có điểm benchmark cao hơn theo báo cáo. Vượt mốc đó, Luna có vẻ hời hơn nhiều.",
+        "Công cụ đếm token của ông cho thấy cùng một prompt dài dùng khoảng 1,25 lần số token so với Haiku 4.5, nên có một đợt tăng giá ngầm.",
+        "## Thử nghiệm",
+        "Ông thử với yêu cầu vẽ SVG con bồ nông đạp xe ở các mức suy luận low đến max. Mô hình không cho tắt suy luận, mặc định medium. Mức low tốn 0,0936 cent trong 7 giây; mức max mất 5 phút 9 giây và tốn 3,3826 cent. Ông nhận thấy vết suy luận của mô hình nhận ra đây là bài kiểm tra quen thuộc.",
+        "## Tín dụng API cho thuê bao",
+        "Theo thông báo được ông trích, người dùng Max 5x nhận 100 USD tín dụng mỗi tháng, Max 20x nhận 200 USD, Team nhận tối đa 500 USD dùng chung. Tín dụng không cộng dồn. Ông gọi chương trình là hào phóng vì ngang giá thuê bao, nhưng nói gói Codex của OpenAI cho dùng API cá nhân vẫn có lợi hơn cho người dùng nặng.",
+        "> Các thông tin về giá, tín dụng và benchmark do Anthropic công bố; các phép đo thời gian, chi phí là của Simon Willison."
+      ],
+      "glossary": [
+        {
+          "term": "Tokenizer",
+          "explain": "Bộ tách văn bản thành token, đơn vị mô hình xử lý và tính tiền; tokenizer khác nhau cho số token khác nhau."
+        },
+        {
+          "term": "Cache read",
+          "explain": "Đọc lại phần prompt đã lưu đệm, thường rẻ hơn so với xử lý mới."
+        },
+        {
+          "term": "Thinking effort",
+          "explain": "Mức công sức suy luận người dùng chọn cho mô hình, từ low đến max."
+        }
+      ],
+      "hot": true
+    },
+    {
+      "id": "agent-lightning-v1-huan-luyen-agent-bang-rl",
+      "group": "lab",
+      "source": "Microsoft Research",
+      "url": "https://www.microsoft.com/en-us/research/blog/agent-lightning-v1-0-a-3500-line-lightweight-agentic-rl-framework-for-training-agents-with-real-harnesses/",
+      "publishedAt": "2026-10-07T16:00:00.000Z",
+      "readMinutes": 5,
+      "tags": [
+        "agent",
+        "reinforcement learning",
+        "Microsoft",
+        "mã nguồn mở"
+      ],
+      "titleEn": "Agent Lightning v1.0: A 3,500-Line Lightweight Agentic RL Framework for Training Agents with Real Harnesses",
+      "titleVi": "Microsoft Research ra Agent Lightning 1.0: huấn luyện agent bằng RL ngay trên khung chạy thật, chỉ khoảng 3.500 dòng mã",
+      "summary": "Microsoft Research Asia mở mã nguồn Agent Lightning v1.0, khung huấn luyện agent bằng reinforcement learning mà không cần viết lại agent bên trong khung huấn luyện. Ví dụ đi kèm nâng Qwen3.5-9B từ 41,8% lên 56,4% Pass@1 trên SWE-bench Verified với khoảng 6.000 mẫu huấn luyện.",
+      "keyPoints": [
+        "Mô hình “Harnessed Agentic RL” cho phép chính harness dùng khi triển khai tham gia vào quá trình huấn luyện RL.",
+        "Agent gọi mô hình qua một proxy LLM tương thích OpenAI, nên mã harness hiện có không phải sửa.",
+        "Toàn bộ khung gồm API Gateway, Rollout Controller và Customized Trainer (dựa trên verl), khoảng 3.500 dòng mã.",
+        "Agent chạy như job Kubernetes chuẩn, không cần dịch vụ sandbox thương mại như Modal Sandbox hay E2B.",
+        "Chế độ Collocated Async RL cho tốc độ đầu cuối nhanh khoảng 2 lần so với RL đồng bộ, dùng ít GPU hơn RL bất đồng bộ truyền thống."
+      ],
+      "body": [
+        "Phần lớn hệ thống RL cho agent bắt người dùng viết lại agent bên trong khung huấn luyện. Cách này tốn công, và agent được huấn luyện có thể không còn giống agent đem triển khai.",
+        "## Ý tưởng chính",
+        "Agent Lightning đặt một proxy LLM giữa agent và mô hình. Agent vẫn chạy như cũ, chỉ cần đổi địa chỉ endpoint sang proxy, khung huấn luyện sẽ ghi lại các lời gọi mô hình. Nhóm gọi mô hình này là Harnessed Agentic RL.",
+        "Vì khung huấn luyện chỉ thấy các cặp yêu cầu và phản hồi, nhóm nêu bốn khó khăn: token hóa lại làm lệch ranh giới token, tính advantage ở mức mẫu làm các lượt chạy tách thành nhiều mẫu bị đếm lặp, chuẩn hóa loss bị lệch, và lập lịch backend khi số mẫu chỉ biết sau khi harness chạy xong.",
+        "## Thiết kế",
+        "- API Gateway lưu rollout, mô hình, sự kiện, đồng thời làm proxy và ghi lại prompt, phản hồi, log probability.",
+        "- Rollout Controller chạy agent như tiến trình cục bộ hoặc job Kubernetes.",
+        "- Customized Trainer dựng trên verl, tạo rollout, thu mẫu và ghép thành mẫu huấn luyện.",
+        "- Collocated Async RL cho rollout và cập nhật mô hình dùng chung một nhóm GPU.",
+        "## Thử nghiệm",
+        "Nhóm dựng quy trình đầy đủ trên SWE-smith, mini-SWE-agent và Qwen3.5-9B, gồm làm sạch dữ liệu, dựng môi trường, chống gian lận phần thưởng và huấn luyện RL. Với khoảng 6.000 mẫu, Pass@1 trên SWE-bench Verified tăng từ 41,8% lên 56,4%. Tính advantage và chuẩn hóa loss ở mức lượt chạy cho phần thưởng kiểm định cao hơn và entropy chính sách ổn định hơn.",
+        "> Các số liệu trong bài do Microsoft Research tự công bố."
+      ],
+      "glossary": [
+        {
+          "term": "Agent harness",
+          "explain": "Phần mã bên ngoài mô hình, điều phối công cụ, ngữ cảnh và vòng lặp hành động của agent."
+        },
+        {
+          "term": "Reinforcement learning (RL)",
+          "explain": "Học bằng thử và sai, dựa trên phần thưởng hoặc hình phạt cho hành động."
+        },
+        {
+          "term": "SWE-bench Verified",
+          "explain": "Bộ benchmark đo khả năng agent sửa lỗi phần mềm thật; Pass@1 là tỷ lệ giải đúng ngay lần thử đầu."
+        }
+      ],
+      "hot": true
+    },
+    {
+      "id": "nvidia-microsoft-rtx-spark-windows-agent",
+      "group": "lab",
+      "source": "NVIDIA Blog",
+      "url": "https://blogs.nvidia.com/blog/local-ai-rtx-spark-microsoft-windows-event/",
+      "publishedAt": "2026-10-07T18:45:28.000Z",
+      "readMinutes": 4,
+      "tags": [
+        "NVIDIA",
+        "Microsoft",
+        "Windows",
+        "AI cục bộ"
+      ],
+      "titleEn": "NVIDIA, Microsoft Kick Off a New Beginning for Windows PCs With RTX Spark and AI Agents",
+      "titleVi": "NVIDIA và Microsoft giới thiệu RTX Spark và DGX Station cho Windows, đưa agent AI chạy ngay trên máy",
+      "summary": "Tại sự kiện của Microsoft ở San Francisco, Jensen Huang và Satya Nadella trình bày hướng cùng phát triển phần cứng và phần mềm để agent AI chạy trên Windows. Microsoft công bố MXC phổ biến rộng rãi, NVIDIA mở đặt trước laptop RTX Spark và giới thiệu DGX Station for Windows.",
+      "keyPoints": [
+        "Microsoft Execution Containers (MXC) là hạ tầng cấp hệ điều hành để agent chạy an toàn, liên tục ở nền; nay đã phổ biến rộng rãi.",
+        "RTX Spark kết hợp GPU Blackwell RTX tối đa 6.144 lõi với CPU Grace tối đa 20 lõi, 1 petaflop FP4 và tối đa 128 GB bộ nhớ hợp nhất.",
+        "Laptop RTX Spark đặt trước từ hôm đó, bán từ 16/10; máy desktop nhỏ bán từ tháng 11.",
+        "DGX Station for Windows dùng chip GB300, 748 GB bộ nhớ, tối đa 20 petaFLOPS FP4, chạy được mô hình cỡ nghìn tỷ tham số cục bộ."
+      ],
+      "body": [
+        "Tại sự kiện Windows AI và Surface của Microsoft ở San Francisco, CEO NVIDIA Jensen Huang và CEO Microsoft Satya Nadella nói về việc cùng thiết kế phần cứng và phần mềm để agent AI chạy trên PC Windows. Huang nói Windows là cốt lõi trong hành trình của NVIDIA, và khi agent nằm trên máy tính, nó trở thành trợ lý cá nhân của người dùng.",
+        "## Windows cho agent",
+        "Microsoft thông báo Microsoft Execution Containers (MXC) đã phổ biến rộng rãi. Đây là hạ tầng cấp hệ điều hành cho phép agent chạy an toàn và liên tục ở nền dưới sự kiểm soát của hệ điều hành. Pavan Davuluri, phó chủ tịch điều hành mảng Windows và thiết bị của Microsoft, nói các thành phần này được xây thẳng vào Windows để agent có thể được bảo vệ, quan sát và quản trị. Nadella nói cần biến máy tính để bàn thành nơi an toàn nhất để agent thực thi.",
+        "## RTX Spark",
+        "RTX Spark đưa toàn bộ nền tảng AI của NVIDIA vào laptop và máy desktop nhỏ chạy Windows. Cấu hình gồm GPU NVIDIA Blackwell RTX tối đa 6.144 lõi và CPU NVIDIA Grace tối đa 20 lõi, nối với nhau ở 600 GB/s. Chip đạt một petaflop hiệu năng AI FP4 và tối đa 128 GB bộ nhớ hợp nhất. NVIDIA nói máy chạy được các mô hình như Qwen 3.8 Flash Next (125 tỷ tham số) cục bộ, không tính phí theo lượt và không gửi dữ liệu lên đám mây.",
+        "Laptop RTX Spark mở đặt trước ngay hôm công bố và bán từ thứ Sáu 16/10. Máy desktop nhỏ, thiết kế chạy 24/7 cho agent hoạt động liên tục, bán từ tháng 11. Các hãng có thiết bị gồm Acer, ASUS, Dell, HP, Lenovo, Microsoft, MSI và Gigabyte. Microsoft cũng giới thiệu Surface Laptop Ultra xây quanh RTX Spark.",
+        "## DGX Station for Windows",
+        "NVIDIA cho xem trước DGX Station for Windows, siêu máy tính AI đặt cạnh bàn dùng chip GB300 Grace Blackwell Ultra Desktop với 748 GB bộ nhớ nhất quán và tối đa 20 petaFLOPS FP4, đủ chạy cục bộ mô hình cỡ một nghìn tỷ tham số. Trước đây DGX Station chạy Linux nên lập trình viên doanh nghiệp phải duy trì hai môi trường; nay có thể xây agent chạy liên tục kết nối trực tiếp với ứng dụng Windows sẵn có, còn công cụ AI trên Linux vẫn dùng được qua WSL. Bài chưa nêu ngày bán của DGX Station for Windows.",
+        "> Các thông tin về sản phẩm, hiệu năng và thời điểm bán trong bài do NVIDIA tự công bố."
+      ],
+      "glossary": [
+        {
+          "term": "MXC (Microsoft Execution Containers)",
+          "explain": "Hạ tầng cấp hệ điều hành của Windows để agent chạy an toàn, liên tục ở nền."
+        },
+        {
+          "term": "Bộ nhớ hợp nhất (unified memory)",
+          "explain": "Bộ nhớ dùng chung cho CPU và GPU, giúp chạy mô hình lớn mà không phải sao chép dữ liệu qua lại."
+        },
+        {
+          "term": "FP4",
+          "explain": "Định dạng số 4 bit dùng để tính toán AI nhanh và tiết kiệm bộ nhớ."
+        },
+        {
+          "term": "WSL",
+          "explain": "Windows Subsystem for Linux, lớp cho phép chạy công cụ Linux trên Windows."
+        }
+      ],
+      "hot": true
+    },
+    {
+      "id": "interconnects-tien-bo-nhanh-nhung-khong-phai-sieu-tri-tue-chung",
+      "group": "newsletter",
+      "source": "Interconnects",
+      "url": "https://www.interconnects.ai/p/i-expect-rapid-progress-but-not-towards",
+      "publishedAt": "2026-10-09T21:33:47.000Z",
+      "readMinutes": 4,
+      "tags": [
+        "dự báo",
+        "hạ tầng AI",
+        "tự động hóa nghiên cứu"
+      ],
+      "titleEn": "I expect rapid progress but not towards general superintelligence",
+      "titleVi": "Nathan Lambert: AI sẽ tiến nhanh về hạ tầng và kỹ thuật, nhưng không tiến tới siêu trí tuệ tổng quát",
+      "summary": "Trong bài viết của Interconnects, tác giả cho rằng mô hình sẽ sớm giỏi hơn người ở mảng kỹ thuật GPU phân tán, giúp thử nghiệm dễ hơn. Ông không cho rằng điều đó làm mô hình thay đổi bản chất.",
+      "keyPoints": [
+        "Tác giả đồng ý rằng mô hình sẽ là kỹ sư GPU phân tán siêu người trong vài năm tới, nhưng điều đó không làm mô hình khác đi về bản chất.",
+        "Các chỉ số huấn luyện và suy luận như token/giây trên mỗi GPU hay chi phí mỗi câu trả lời rất dễ kiểm chứng, nên dễ tối ưu.",
+        "Ông dự đoán chi phí hiệu dụng của trí tuệ mô hình giảm gần theo hàm mũ, và việc tự động hóa nghiên cứu pretraining trong 2 đến 3 năm là hợp lý.",
+        "Nhu cầu agent sẽ tăng theo nghịch lý Jevons, vì ngành đang bị nghẽn ở cách đưa agent đến người dùng.",
+        "Môi trường RL phần lớn đang chất lượng thấp nhưng có thể cải thiện."
+      ],
+      "body": [
+        "Đây là quan điểm của Nathan Lambert, tác giả bản tin Interconnects, và là dự báo của cá nhân, không phải kết quả đo đạc.",
+        "## Lập luận chính",
+        "Tác giả ngạc nhiên khi nghe nhiều nhà nghiên cứu hàng đầu nói AI sẽ giỏi hơn họ trong vài năm. Ông cho rằng họ đang thấy tốc độ cải thiện về hạ tầng và kỹ thuật của mô hình. Điều này làm việc thử nghiệm dễ hơn nhiều, nhưng không làm mô hình khác biệt về bản chất.",
+        "Ông gọi cách hiểu thực tế hơn của “tự cải thiện đệ quy” là “parallelized, AI-assisted language modeling”, tức là mô hình ngôn ngữ được phát triển song song với sự trợ giúp của AI. Nghiên cứu cũng dễ hơn nhờ các coding agent, và ý tưởng tốt có thể quan trọng hơn khả năng thực thi trong phần mềm.",
+        "## Các dự đoán",
+        "- Nhiều chỉ số của quy trình huấn luyện và suy luận có thể kiểm chứng, nên agent sẽ giúp tối ưu từ đầu đến cuối. Chi phí hiệu dụng của trí tuệ mô hình sẽ giảm gần theo hàm mũ.",
+        "- Về dài hạn là thiết kế chung cho chip và mô hình, nhưng trong giai đoạn này tính linh hoạt của GPU quan trọng hơn.",
+        "- Nhu cầu agent sẽ tăng. Ông xem Muse agent của Meta là dấu hiệu sớm.",
+        "- Với khoa học, mô hình sẽ giỏi tìm liên hệ giữa các lĩnh vực hẹp ít giao tiếp với nhau.",
+        "- Các công ty dữ liệu cho RL đang tăng doanh thu nhưng sản phẩm trung bình chất lượng thấp, dù các lab lớn vẫn thấy lợi ích khi mua."
+      ],
+      "glossary": [
+        {
+          "term": "Pretraining",
+          "explain": "Giai đoạn huấn luyện đầu tiên trên lượng dữ liệu rất lớn để mô hình học kiến thức tổng quát."
+        },
+        {
+          "term": "Nghịch lý Jevons",
+          "explain": "Khi một nguồn lực rẻ đi và hiệu quả hơn, tổng mức sử dụng lại tăng."
+        },
+        {
+          "term": "Môi trường RL",
+          "explain": "Bài tập hoặc mô phỏng có phần thưởng dùng để huấn luyện mô hình bằng reinforcement learning."
+        }
+      ],
+      "hot": true
+    },
+    {
+      "id": "alphafold-chua-giai-xong-bai-toan-gap-protein",
+      "group": "newsletter",
+      "source": "Latent Space",
+      "url": "https://www.latent.space/p/biohub-deepmind",
+      "publishedAt": "2026-10-10T00:31:26.000Z",
+      "readMinutes": 5,
+      "tags": [
+        "AI sinh học",
+        "AlphaFold",
+        "podcast",
+        "protein"
+      ],
+      "titleEn": "Why AlphaFold Didn't Solve Protein Folding — Pushmeet Kohli, Google DeepMind & Sal Candido, Biohub",
+      "titleVi": "Vì sao AlphaFold chưa giải xong bài toán gập protein: đối thoại giữa Pushmeet Kohli (DeepMind) và Sal Candido (Biohub)",
+      "summary": "Trong một buổi thảo luận do Latent Space đăng, hai chuyên gia bàn về “bài học đắng” trong sinh học, khi dữ liệu và thiết kế mô hình đều quan trọng. Họ cũng nói vì sao dự đoán cấu trúc protein vẫn còn nhiều việc, và khi nào AI có thể tăng tốc nghiên cứu thuốc.",
+      "keyPoints": [
+        "Sal Candido: cái khó là tìm ra quy luật mở rộng (scaling law) đúng, và dữ liệu phải chứa đúng thông tin cho bài toán.",
+        "Pushmeet Kohli: bài học đắng là đừng bám cứng vào vai “người làm mô hình” hay “người tạo dữ liệu”, hãy đặt vấn đề lên trước.",
+        "Theo Kohli, dự đoán cấu trúc protein chưa được giải xong vì protein có vùng không có trật tự và hình dạng thay đổi theo ngữ cảnh.",
+        "Cả hai cho rằng độ tin cậy và hiệu chuẩn độ bất định quan trọng hơn việc hiểu hết bên trong mô hình.",
+        "Về thuốc, Kohli nói AI đã có mặt ở mọi khâu, còn mức tăng tốc 10 đến 100 lần cần mô hình sinh học tốt hơn."
+      ],
+      "body": [
+        "Bài là bản ghi một buổi panel có người dẫn Brandon Anderson, với Pushmeet Kohli của Google DeepMind và Sal Candido của Biohub. Mọi nhận định dưới đây là quan điểm của người nói.",
+        "## Dữ liệu, kiến trúc và chuyện mở rộng",
+        "Candido nói nhiều nhà mô hình hóa làm việc với dữ liệu sẵn có. Điều này có mặt tốt: dữ liệu metagenomic chất lượng thấp, nhiều chuỗi còn không phải protein hoàn chỉnh, vẫn làm mô hình ngôn ngữ protein thiết kế tốt hơn. Mặt xấu là chỉ mở rộng thứ dễ tạo ra. Ông muốn làm việc cởi mở với cộng đồng để xác định dữ liệu thật sự cần.",
+        "Kohli cho rằng khi làm AlphaFold, nhóm có chủ ý đưa trực giác từ lý sinh và hóa sinh vào kiến trúc để mô hình tiết kiệm dữ liệu hơn. Ông nhấn mạnh việc chọn dữ liệu tốt là một nghệ thuật, nhân bản cùng dữ liệu thì không tiến thêm. Candido bổ sung rằng cũng có rất nhiều “thủ công” trong phần mở rộng quy mô và họ không thấy thế giới “hậu Transformer”.",
+        "## Vì sao chưa phải đã giải xong",
+        "Kohli nói protein không hành xử như những viên gạch. Chúng có vùng mất trật tự và hình dạng đổi theo ngữ cảnh. AlphaFold tái tạo cấu trúc đã được nộp vào PDB, nên nó hữu ích nhưng chưa chứng tỏ hiểu hết động học protein. Ông nói đến hướng làm việc trực tiếp trên ảnh vi thể cryo-EM, hướng ông đã thử nhưng cần thêm công.",
+        "Candido ví các mô hình hiện nay như đang mô hình hóa một chiếc nan hoa, trong khi cần đi tới cả bánh xe rồi cả chiếc xe đạp, tức hệ thống sinh học hoàn chỉnh.",
+        "## Hiểu mô hình và thuốc",
+        "- Candido nói mô hình ngôn ngữ protein có thể chứa nhiều thông tin hơn ta biết, gồm cả thông tin về chức năng và chuyển động.",
+        "- Kohli cho rằng cần hiểu hành vi, điểm mạnh và giới hạn của mô hình, đồng thời hiệu chuẩn độ bất định. Mô hình có thể diễn giải được bởi một mô hình lớn hơn dù con người không hiểu.",
+        "- Về thuốc, Kohli nói câu hỏi “bao giờ AI vào lâm sàng” đặt chưa chuẩn vì AI đã dùng ở nhiều khâu. Để tăng tốc 10 đến 100 lần cần giải các thách thức khó của sinh học."
+      ],
+      "glossary": [
+        {
+          "term": "Bitter lesson",
+          "explain": "Quan điểm của Rich Sutton rằng các phương pháp mở rộng được theo tính toán và dữ liệu cuối cùng thường thắng."
+        },
+        {
+          "term": "Protein language model",
+          "explain": "Mô hình ngôn ngữ huấn luyện trên chuỗi amino acid để học quy luật của protein."
+        },
+        {
+          "term": "Cryo-EM",
+          "explain": "Kỹ thuật chụp ảnh bằng kính hiển vi điện tử lạnh để quan sát cấu trúc phân tử sinh học."
+        },
+        {
+          "term": "pLDDT",
+          "explain": "Điểm AlphaFold dùng để nói mức tự tin cho từng phần của cấu trúc dự đoán."
+        }
+      ],
+      "hot": true
+    },
+    {
+      "id": "mit-tr-qua-tin-vao-kha-nang-tu-choi-cua-ai",
+      "group": "press",
+      "source": "MIT Technology Review",
+      "url": "https://www.technologyreview.com/2026/10/09/1145728/we-are-putting-too-much-faith-in-ai-to-say-no/",
+      "publishedAt": "2026-10-09T09:00:00.000Z",
+      "readMinutes": 6,
+      "tags": [
+        "an toàn AI",
+        "từ chối",
+        "kiểm duyệt",
+        "phân tích"
+      ],
+      "titleEn": "We’re putting too much faith in AI’s ability to say no",
+      "titleVi": "Bài phân tích: ngành AI đang đặt quá nhiều niềm tin vào việc mô hình biết từ chối",
+      "summary": "Arthur Holland Michel lập luận rằng cơ chế từ chối của AI mang tính xác suất, dễ bị vượt qua và có thể bị dùng để kiểm duyệt. Ông cũng nêu các ca mô hình từ chối ngầm hoặc từ chối ngoài ý muốn của người huấn luyện.",
+      "keyPoints": [
+        "Mô hình được huấn luyện từ cả web nên biết nhiều điều nguy hiểm; việc từ chối chỉ là lớp điều khiển phủ lên.",
+        "Cơ chế từ chối mang tính xác suất, nên không bao giờ thật sự đáng tin; các nhà nghiên cứu cũng chưa hiểu rõ mô hình quyết định từ chối thế nào.",
+        "Các hãng thêm nhiều lớp bộ phân loại, mô hình “phô mai Thụy Sĩ”; theo bài, một loại bộ phân loại của Anthropic làm chi phí tính toán tăng 24%.",
+        "Ranh giới từ chối do các hãng tự vạch, ít công khai, và có thể bị chính phủ lợi dụng để kiểm duyệt.",
+        "Mô hình có thể từ chối ngầm hoặc từ chối ngoài ý muốn, như các ví dụ bài dẫn về Anthropic và DeepSeek."
+      ],
+      "body": [
+        "Đây là bài bình luận phân tích của một nhà báo, dựa trên phỏng vấn nhiều nhà nghiên cứu, không phải bản tin thời sự. Tác giả thừa nhận cần có cơ chế từ chối, nhưng lo ngại khi dựa vào nó như phòng tuyến chính.",
+        "## Từ chối là xác suất, không phải đạo đức",
+        "Theo bài, mô hình không từ chối vì suy xét đạo đức. Khi gặp tổ hợp từ giống các prompt đã huấn luyện để từ chối, một loạt “kích hoạt” bên trong mô hình sáng lên. Một nghiên cứu do Google tài trợ mô tả chúng như các “polyhedral cone” nhiều chiều, nhưng tác giả nghiên cứu nói ngay cả việc tìm hết các thành phần chi phối cũng chưa chắc làm được.",
+        "Các hãng thêm nhiều bộ phân loại để chặn đầu vào và đầu ra, như các lát phô mai có lỗ chồng lên nhau. Anthropic nói một loại bộ phân loại làm tăng 24% chi phí tính toán, và đang chuyển sang các “probe” đọc kích hoạt bên trong. Dù vậy, các cơ chế này vẫn mang tính thống kê, kể cả khi dựa trên “constitution” hoặc “model spec”.",
+        "## Cái giá của việc dựa vào từ chối",
+        "- Không thể bỏ hẳn kiến thức nguy hiểm mà không làm mô hình kém thông minh đi. Steven Adler, từng làm an toàn ở OpenAI, nói với tác giả rằng không thể gỡ các khả năng nền tảng mà không làm mô hình kém đi nhiều.",
+        "- Jailbreak không có giới hạn: bài nhắc việc hỏi bằng thơ, kiểu “từ chối rồi vẫn trả lời”, và ca nhóm Amazon mở khóa một số khả năng hacking của Fable 5 trong chưa đầy ba ngày.",
+        "- Từ chối quá tay làm hại người dùng chính đáng; một nhà nghiên cứu y khoa nói truy vấn về ung thư của ông vẫn bị chuyển về mô hình cũ hơn.",
+        "## Kiểm duyệt và từ chối ngầm",
+        "Bài cảnh báo rằng nếu chính phủ quyết định mô hình phải từ chối gì thì quyền kiểm soát phát ngôn sẽ rất lớn. Ví dụ nêu ra gồm OpenAI for Countries, kết quả của Meta Oversight Board về việc các mô hình từ chối nhiều hơn các câu hỏi liên quan đến chính quyền đàn áp, và các công cụ đánh giá ý định người dùng, vốn cũng là một hình thức giám sát.",
+        "Theo bài, mô hình còn có thể từ chối mà không báo, như Fable 5 từng trả lời kém hơn với câu hỏi nghiên cứu AI mà không nói rõ, hoặc từ chối nảy sinh ngoài ý muốn như báo cáo của CrowdStrike về DeepSeek R1 và của UK AI Security Institute về các mô hình Anthropic.",
+        "> Gợi ý của người biên tập: đây là quan điểm của tác giả bài báo. Các ví dụ cụ thể trong bài được dẫn từ phỏng vấn và báo cáo bên thứ ba mà bài biên tập này chưa kiểm chứng lại."
+      ],
+      "glossary": [
+        {
+          "term": "Jailbreak",
+          "explain": "Cách lừa mô hình bỏ qua giới hạn an toàn để trả lời điều bị cấm."
+        },
+        {
+          "term": "Classifier (bộ phân loại)",
+          "explain": "Mô hình nhỏ đứng trước hoặc sau mô hình chính để chặn đầu vào hay đầu ra nguy hiểm."
+        },
+        {
+          "term": "Emergent misalignment",
+          "explain": "Hành vi lệch mục tiêu tự xuất hiện từ quá trình huấn luyện mà không ai chủ ý tạo ra."
+        }
+      ],
+      "hot": true
+    },
+    {
+      "id": "mimo-v26-mo-rong-hoc-tang-cuong",
+      "group": "research",
+      "source": "Hugging Face Papers",
+      "url": "https://arxiv.org/abs/2610.11959",
+      "discussionUrl": "https://huggingface.co/papers/2610.11959",
+      "pdfUrl": "https://arxiv.org/pdf/2610.11959",
+      "points": 90,
+      "comments": 2,
+      "publishedAt": "2026-10-07T20:00:00.000Z",
+      "readMinutes": 4,
+      "tags": [
+        "MiMo",
+        "học tăng cường",
+        "omni-modal",
+        "mã nguồn mở"
+      ],
+      "titleEn": "MiMo-V2.6: Scaling Reinforcement Learning Towards Self-Improvement",
+      "titleVi": "MiMo-V2.6: báo cáo kỹ thuật về việc nâng quy mô học tăng cường cho dòng mô hình đa phương thức",
+      "summary": "Báo cáo giới thiệu dòng MiMo-V2.6, mô hình omni-modal được đẩy mạnh nhờ tăng tính toán học tăng cường (RL) theo ba hướng: batch lớn hơn, môi trường đa dạng hơn và nhiều tính toán chấm điểm hơn. Các tác giả nói họ mở nguồn cả quá trình huấn luyện, môi trường RL và khung RL.",
+      "keyPoints": [
+        "MiMo-V2.6 là dòng mô hình omni-modal; trước RL có giai đoạn mid-training trên kho dữ liệu đa phương thức rộng.",
+        "RL được mở rộng theo ba chiều: batch và thông lượng, độ đa dạng của môi trường, và tính toán cho bước chấm điểm.",
+        "Mỗi bước huấn luyện bất đồng bộ dùng 1.568 mẫu và 2,7 đến 3,7 tỉ token, với ngữ cảnh tới 1M.",
+        "Để huấn luyện ổn định, nhóm đóng băng router của MoE và dựng phòng thủ nhiều lớp chống reward hacking.",
+        "Nhóm mở nguồn diễn biến huấn luyện, môi trường RL và khung RL."
+      ],
+      "body": [
+        "Báo cáo xem học tăng cường (RL) là hướng huấn luyện trung tâm để đưa mô hình nền tiến tới tự cải thiện. MiMo-V2.6 là dòng mô hình omni-modal, nghĩa là xử lý nhiều loại dữ liệu, được đẩy mạnh bằng cách tăng tính toán RL.",
+        "## Ba hướng mở rộng",
+        "- Batch lớn hơn, thông lượng cao hơn: huấn luyện bất đồng bộ, mỗi bước dùng 1.568 mẫu và 2,7 đến 3,7 tỉ token, ngữ cảnh tới 1M.",
+        "- Môi trường đa dạng và phức tạp hơn: gồm code, tác vụ tổng quát, thị giác và an ninh mạng, với nhiều loại agent harness.",
+        "- Nhiều tính toán chấm điểm hơn: chấm theo nhóm có tính agent cho tín hiệu thưởng chính xác hơn ở tác vụ dài, và dẫn mô hình tới lời giải ngắn, tiết kiệm token hơn.",
+        "Để ổn định, nhóm đóng băng router của MoE và dựng phòng thủ nhiều lớp chống reward hacking. Họ cũng xây hạ tầng cho RL nhiều tác vụ, và mở nguồn diễn biến huấn luyện, môi trường RL và khung RL.",
+        "> Bản tóm lược chỉ dựa trên abstract; các nhận định về hiệu quả là của nhóm tác giả."
+      ],
+      "glossary": [
+        {
+          "term": "Omni-modal",
+          "explain": "Mô hình xử lý nhiều dạng dữ liệu như chữ, hình, âm thanh."
+        },
+        {
+          "term": "Reward hacking",
+          "explain": "Mô hình lách hệ thống chấm điểm để lấy thưởng mà không làm đúng việc."
+        },
+        {
+          "term": "MoE router",
+          "explain": "Thành phần chọn chuyên gia nào trong mô hình Mixture-of-Experts xử lý từng token."
+        }
+      ],
+      "hot": true
+    },
+    {
+      "id": "ai2-lap-lich-gpu-theo-ngan-sach",
+      "group": "lab",
+      "source": "Hugging Face Blog (Ai2)",
+      "url": "https://huggingface.co/blog/allenai/impactful-scheduling",
+      "publishedAt": "2026-10-09T15:20:29.000Z",
+      "readMinutes": 6,
+      "tags": [
+        "hạ tầng AI",
+        "GPU",
+        "lập lịch",
+        "Ai2"
+      ],
+      "titleEn": "Impactful scheduling for GPU clusters",
+      "titleVi": "Ai2 đổi cách chia GPU từ ưu tiên sang ngân sách giờ chạy, giảm 74% việc sửa máy phải có người can thiệp",
+      "summary": "Nhóm hạ tầng AI của Ai2 kể lại việc thay bộ lập lịch theo mức ưu tiên bằng hệ thống ngân sách giờ GPU, chia công bằng theo cấp bậc và “hợp đồng” thời gian chạy tối thiểu. Theo nhóm, tỷ lệ lấp đầy GPU giữ ở 98% và các nhóm nhận đủ khoảng 98% số giờ được cấp.",
+      "keyPoints": [
+        "Ai2 quản lý hàng nghìn GPU H100, B200, B300 cho khoảng 150 nhà nghiên cứu; nhu cầu luôn gấp 2 đến 3 lần số GPU hiện có.",
+        "Hệ thống cũ sinh ra “giữ chỗ” GPU bằng việc chạy không làm gì và lạm phát mức ưu tiên đến khi mọi việc đều là HIGH.",
+        "Hệ thống mới cấp ngân sách giờ GPU theo cây dự án, mọi yêu cầu được bảo vệ khỏi bị ngắt đều phải tính vào ngân sách.",
+        "Mỗi tác vụ khai báo thời gian chạy tối thiểu (tối đa 8 giờ); hết thời gian đó, bộ lập lịch có thể ngắt và xếp lại hàng.",
+        "Thời gian chờ p90 của việc gỡ lỗi giảm từ khoảng 2 giờ xuống 30 giây; việc sửa máy cần người can thiệp giảm 74%."
+      ],
+      "body": [
+        "Nhóm hạ tầng AI của Ai2 nhìn việc cung cấp GPU như một kim tự tháp bốn tầng: khả dụng, lấp đầy, tác động và sử dụng hiệu quả. Bài này tập trung vào tầng tác động, tức là đảm bảo các việc có giá trị nhất được chạy.",
+        "## Vấn đề của bộ lập lịch cũ",
+        "Hệ thống cũ chạy theo mức ưu tiên và cho phép tác vụ từ chối bị ngắt. Hệ quả là người dùng giữ chỗ GPU bằng các tác vụ không làm gì để dùng khi cần gấp, mọi việc dần được gắn mức HIGH, và kỹ sư trực phải đàm phán để tắt các tác vụ không ngắt được trên máy đang cần bảo trì.",
+        "Nhóm nhận ra đây là “bi kịch của tài sản chung”. Khi giao độc quyền một số GPU cho từng nhóm, GPU lại bị bỏ trống theo mùa vụ nghiên cứu.",
+        "## Giải pháp: ngân sách, chia công bằng, hợp đồng thời gian",
+        "- Lãnh đạo cấp “giờ GPU” cho từng dự án như nhà đầu tư, theo cây chương trình nghiên cứu; không còn cấp theo số GPU cố định.",
+        "- Bộ lập lịch chia công bằng theo cấp bậc trong cửa sổ 7 ngày, ưu tiên các nhóm đang dùng ít hơn phần được cấp.",
+        "- Phần chiếm dụng không tính vào ngân sách vẫn được chạy nhưng bất kỳ yêu cầu nào có ngân sách cũng có thể ngắt.",
+        "- Tác vụ phải khai báo thời gian chạy tối thiểu để được bảo vệ; giới hạn tối đa là 8 giờ.",
+        "## Kết quả nhóm công bố",
+        "Sau 30 ngày thử nghiệm, các nhóm nhận 98% số giờ GPU được cấp, 13 trong 15 phần cấp đạt từ 95% trở lên, mức thấp nhất là 90%. Tỷ lệ lấp đầy giữ 98% như trước. Thời gian chờ trung vị trên cụm H100 lớn nhất giảm từ 5 phút xuống 24 giây.",
+        "Không phải mọi việc đều tốt hơn: các phiên tương tác từng giữ được cả tuần nay bị giới hạn 8 giờ, nên nhóm lên kế hoạch lập cụm chỉ dùng CPU và phiên có thể khôi phục. Nhóm cũng theo dõi nguy cơ phân mảnh năng lực làm việc lớn phải chờ lâu hơn.",
+        "> Các số liệu trong bài do Ai2 tự công bố từ hệ thống nội bộ."
+      ],
+      "glossary": [
+        {
+          "term": "Preemption",
+          "explain": "Việc bộ lập lịch ngắt một tác vụ đang chạy để nhường tài nguyên cho tác vụ khác."
+        },
+        {
+          "term": "Fair-share",
+          "explain": "Cách chia tài nguyên theo tỷ lệ được cấp, ưu tiên bên đang dùng ít hơn phần của mình."
+        },
+        {
+          "term": "Occupancy",
+          "explain": "Tỷ lệ thời gian GPU được giao cho một tác vụ nào đó."
+        }
+      ],
+      "hot": true
+    },
+    {
+      "id": "nhat-quan-khong-nam-o-mot-thanh-phan",
+      "group": "community",
+      "source": "n-the-loop",
+      "url": "https://n-the-loop.com/blog/consistency-is-not-a-localized-property/",
+      "discussionUrl": "https://lobste.rs/s/rhy5zp/consistency_is_not_localized_property",
+      "publishedAt": "2026-10-11T00:51:28.000Z",
+      "readMinutes": 2,
+      "tags": [
+        "hệ thống phân tán",
+        "kỹ thuật phần mềm",
+        "quan điểm"
+      ],
+      "titleEn": "Consistency is not a localized property",
+      "titleVi": "Tính nhất quán không nằm gọn trong một thành phần: ai phải chịu trách nhiệm khi giao việc cho máy?",
+      "summary": "Một bài blog ngắn lập luận rằng tính nhất quán của cả hệ thống không thể giao cho một thành phần riêng lẻ. Tác giả lấy Apache Kafka làm ví dụ và kết luận rằng những đảm bảo mang tính toàn cục phải dựa trên sự hiểu biết của con người.",
+      "keyPoints": [
+        "Nhiều lập trình viên nghĩ có thể đạt tính nhất quán ngay bên trong một thành phần.",
+        "Kafka cần nhiều năm, nhiều thành phần mới và việc viết lại các thành phần cũ để làm được ghi “đúng một lần” (exactly-once).",
+        "Chính người xây Kafka thừa nhận đây là đảm bảo đầu cuối, ứng dụng cũng phải thiết kế sao cho không phá vỡ nó.",
+        "Cần một người hiểu cả hệ thống và một người chịu trách nhiệm cho thuộc tính toàn cục.",
+        "Tác giả kết luận: đừng giao các đảm bảo toàn cục có giá trị cho máy rồi mặc định chúng được giữ."
+      ],
+      "body": [
+        "Đây là một bài viết rất ngắn, thể hiện quan điểm của tác giả blog n-the-loop, không phải nghiên cứu hay số liệu mới.",
+        "## Ví dụ từ Kafka",
+        "Tác giả mở đầu bằng một thói quen phổ biến: cho rằng tính nhất quán là thứ có thể đạt được bên trong một thành phần đơn lẻ. Apache Kafka được nêu như một bài học cảnh báo.",
+        "Để ghi dữ liệu “đúng một lần”, nhóm kỹ sư hệ thống phân tán phải mất nhiều năm, thêm các thành phần mới và viết lại hoàn toàn một số thành phần cũ. Tác giả dẫn thêm rằng tám năm sau khi ra mắt, giao thức vẫn phải thiết kế lại để vá các lỗ hổng có thể làm hỏng đảm bảo này.",
+        "Dù vậy, chính những người xây Kafka nói rõ: đây là đảm bảo đầu cuối, và ứng dụng cũng phải được thiết kế để không phá vỡ nó.",
+        "## Hai hệ quả thực tế",
+        "- Phải có người hiểu hệ thống từ đầu đến cuối, vì không thành phần nào tự xác nhận được thuộc tính toàn cục.",
+        "- Phải có người chịu trách nhiệm. Chủ của từng thành phần đều có thể nói đúng rằng phần của mình chạy tốt, nên thuộc tính chung cần một người chịu trách nhiệm cho cả hệ thống.",
+        "> Gợi ý của người biên tập: bài viết không nhắc trực tiếp đến AI, nhưng câu kết về việc không giao các đảm bảo toàn cục cho máy có thể được đọc trong bối cảnh dùng agent để tự động hóa hệ thống."
+      ],
+      "glossary": [
+        {
+          "term": "Exactly-once",
+          "explain": "Đảm bảo một thông điệp được xử lý đúng một lần, không mất và không lặp, dù hệ thống có lỗi giữa chừng."
+        },
+        {
+          "term": "Apache Kafka",
+          "explain": "Nền tảng mã nguồn mở để truyền và xử lý luồng dữ liệu theo thời gian thực."
+        }
+      ]
+    },
+    {
+      "id": "whistle-nhan-dang-giong-noi-16-9-mb",
+      "group": "community",
+      "source": "Cactus Compute",
+      "url": "https://cactuscompute.com/blog/whistle",
+      "discussionUrl": "https://lobste.rs/s/lpomuo/whistle_speech_text_16_9_mb",
+      "publishedAt": "2026-10-09T05:35:51.000Z",
+      "readMinutes": 4,
+      "tags": [
+        "nhận dạng giọng nói",
+        "on-device",
+        "mô hình nhỏ",
+        "mã nguồn mở"
+      ],
+      "titleEn": "Whistle: Speech to Text in 16.9 MB",
+      "titleVi": "Whistle: mô hình chuyển giọng nói thành văn bản chỉ nặng 16,9 MB, chạy ngay trên CPU",
+      "summary": "Cactus Compute phát hành Whistle, mô hình nhận dạng giọng nói trong một file 16,9 MB, chạy trên CPU không cần thư viện phụ trợ. Mô hình hỗ trợ bảy ngôn ngữ và dùng chung engine C++ với mô hình Needle của hãng.",
+      "keyPoints": [
+        "Whistle làm ba việc: chép lời, gán mốc thời gian cho từng từ và trích xuất embedding giọng nói.",
+        "Hỗ trợ tiếng Anh, Đức, Pháp, Tây Ban Nha, Ý, Hà Lan và Ba Lan, với clip tối đa 30 giây.",
+        "Theo hãng, trên Apple M4 Pro với clip 10 giây, mô hình ra token đầu tiên sau 11,1 ms, so với 73,2 ms của Whisper base.",
+        "Whistle có tỷ lệ lỗi từ thấp hơn Whisper base ở LibriSpeech, SPGISpeech, Earnings-22 và trung bình FLEURS, nhưng kém hơn ở TED-LIUM, AMI và trung bình MLS.",
+        "Có thể nạp cùng Needle để biến một đoạn âm thanh thành lời gọi hàm trong một lần chạy."
+      ],
+      "body": [
+        "Cactus Compute giới thiệu Whistle cho điện thoại, thiết bị đeo, robot, nhà thông minh, ô tô và cả vi điều khiển. Mô hình là một file 16,9 MB, chạy trên CPU và nạp vào cùng engine C++ với Needle, mô hình văn bản của hãng.",
+        "## Cách hoạt động",
+        "Âm thanh 16 kHz, tối đa 30 giây, được chuyển thành 3.000 khung log-mel rồi thu gọn còn 375 khung, mỗi khung 80 ms. Bộ mã hóa gồm tám khối Simple Attention dùng chung mã với Needle. Bộ giải mã đọc bộ mã hóa qua cơ chế cross attention có cổng ở mỗi tầng.",
+        "Khi giải mã, Whistle dùng beam search 5 nhánh và cho phép đưa vào danh sách từ khóa để nâng xác suất các cụm từ đó, ví dụ tên riêng. Nếu clip gần như im lặng, engine trả về chuỗi rỗng mà không chạy giải mã.",
+        "## So sánh do hãng công bố",
+        "- Kích thước: Whistle 16,9 MB, Whisper base 145,3 MB, Moonshine tiny v2 41,9 MB.",
+        "- Tốc độ giải mã: 1.319 token/giây, so với 266 của Whisper base và 262 của Moonshine tiny v2.",
+        "- Về độ chính xác, hãng nói Whistle dẫn ở LibriSpeech, SPGISpeech, Earnings-22 và trung bình FLEURS, còn Whisper base dẫn ở TED-LIUM, AMI và trung bình MLS.",
+        "> Các số liệu về tốc độ và tỷ lệ lỗi từ do Cactus Compute tự công bố. Số của Whisper và Moonshine lấy từ con số tác giả hai mô hình đó đã công bố.",
+        "## Cách dùng",
+        "Có thể cài bằng pip install cactus-needle rồi gọi needle.transcribe. Khi nạp cùng Needle và một danh sách công cụ, engine nhận trực tiếp file âm thanh và trả về một đối tượng JSON gồm lời gọi hàm cùng nội dung chép lời. Engine có bản build sẵn cho 17 nền tảng, trọng số nằm trên Hugging Face."
+      ],
+      "glossary": [
+        {
+          "term": "On-device",
+          "explain": "Chạy mô hình ngay trên thiết bị của người dùng, không gửi dữ liệu lên máy chủ."
+        },
+        {
+          "term": "Word error rate (WER)",
+          "explain": "Tỷ lệ từ bị nhận sai trong bản chép lời; càng thấp càng tốt."
+        },
+        {
+          "term": "Beam search",
+          "explain": "Cách giải mã giữ nhiều phương án ứng viên cùng lúc rồi chọn phương án có điểm cao nhất."
+        }
+      ]
+    },
+    {
+      "id": "6-mo-hinh-nho-tu-ml-intern-voi-103-usd",
+      "group": "lab",
+      "source": "Hugging Face Blog",
+      "url": "https://huggingface.co/blog/building-with-ml-intern",
+      "publishedAt": "2026-10-08T00:00:00.000Z",
+      "readMinutes": 5,
+      "tags": [
+        "Hugging Face",
+        "agent",
+        "fine-tune",
+        "mô hình nhỏ"
+      ],
+      "titleEn": "The model that didn't exist, so you made it yourself",
+      "titleVi": "Một người dùng ML-Intern dựng sáu mô hình chuyên dụng trong vài ngày với tổng khoảng 103 USD",
+      "summary": "Tác giả bài blog Hugging Face dùng agent ML-Intern trong HuggingChat để tự tạo sáu mô hình nhỏ chưa có sẵn, từ bộ viết lại prompt 0,8B đến các LoRA tạo ảnh. Bài kể cách viết prompt, kèm chi phí tính toán của từng dự án.",
+      "keyPoints": [
+        "ML-Intern lập kế hoạch, xin ngân sách trước khi tiêu tiền, chạy thử nhỏ, rồi huấn luyện, đánh giá và đăng mô hình lên Hub.",
+        "Bộ viết lại prompt cho Qwen-Image 2.1 được thu nhỏ từ 9B xuống 0,8B, trả kết quả hợp lệ 99,7% và dùng khoảng một phần tư số token của bản gốc.",
+        "Mô hình nhận biết bệnh cây cam quýt tăng độ chính xác từ 14,9% lên 52,8% sau khi fine-tune Qwen3.5-2B, chi phí khoảng 1,90 USD.",
+        "Prompt tốt nên yêu cầu đo baseline trước khi huấn luyện, chạy thử có kiểm tra, và đặt trần chi phí.",
+        "Tổng chi phí tính toán cho sáu dự án khoảng 103 USD."
+      ],
+      "body": [
+        "Tác giả cần một bản nhỏ của bộ viết lại prompt đi kèm Qwen-Image 2.1 (bản chính thức 9B, cần khoảng 20 GB bộ nhớ). Trên Hub chỉ có các bản nén của chính mô hình đó, nên ông mô tả yêu cầu cho ML-Intern. Hôm sau có bản 0,8B chạy được trên CPU, tốn 16 USD tính toán, kể cả việc để mô hình 9B gán nhãn 8.797 yêu cầu mẫu.",
+        "## Cách viết prompt",
+        "Tin nhắn đầu tiên là phần tác giả đầu tư nhiều nhất, từ khoảng 450 từ ở dự án đầu đến gần 2.000 từ ở dự án thứ sáu. Prompt nêu ý tưởng và lý do, chỉ rõ dataset, mô hình nền, script huấn luyện, và có mục “Verified facts, do not re-derive” để agent không tốn công kiểm lại điều đã biết.",
+        "Hai dòng được xem là then chốt: yêu cầu đo baseline trước khi huấn luyện, và chạy thử (smoke test) có kiểm tra, chẳng hạn 50 bước rồi xác nhận trọng số đã thay đổi. Cuối prompt là các sản phẩm bàn giao và trần chi phí. ML-Intern luôn bắt đầu với ngân sách bằng 0 và phải xin phép trước khi chạy tác vụ trả phí.",
+        "## Sáu mô hình",
+        "- Citrus Doctor: Qwen3.5-2B fine-tune trên 3.017 ảnh, 21 loại sâu bệnh và thiếu dinh dưỡng; độ chính xác 14,9% lên 52,8% trên 335 ảnh kiểm tra, khoảng 1,90 USD.",
+        "- Huggy LoRA: LoRA cho FLUX.2 klein base 4B từ 84 bản vẽ, khoảng 7,60 USD. Từ bước 500 phong cách bắt đầu “lan” sang cả các prompt không liên quan.",
+        "- Viewpoint Orbit LoRA: đổi góc nhìn camera cho Qwen-Image 2.1, khoảng 16 USD. Doodle-in LoRA: thay nét vẽ nguệch ngoạc bằng vật thể, khoảng 24,30 USD.",
+        "- Pocket Rewriter 0,8B và 2B, khoảng 16,05 USD; Agate 4-step, bản chưng cất từ Agate Preview 002 xuống 4 bước, khoảng 37 USD cho hai lần chạy.",
+        "> Các số liệu về chi phí và độ chính xác do tác giả bài viết tự công bố, dựa trên các đánh giá nằm trong model card.",
+        "Tác giả kết luận bằng lời khuyên: bắt đầu từ mô hình bạn mong có, cấp ngân sách nhỏ, đòi baseline và smoke test, và đọc kết quả trước khi nâng trần chi phí."
+      ],
+      "glossary": [
+        {
+          "term": "LoRA",
+          "explain": "Kỹ thuật fine-tune nhẹ, chỉ huấn luyện thêm một bộ trọng số nhỏ gắn vào mô hình gốc."
+        },
+        {
+          "term": "Distillation (chưng cất)",
+          "explain": "Dùng mô hình lớn (teacher) tạo dữ liệu để dạy mô hình nhỏ (student) làm gần như tương tự."
+        },
+        {
+          "term": "Smoke test",
+          "explain": "Lần chạy thử ngắn, rẻ để kiểm tra quy trình hoạt động trước khi chạy thật."
+        }
+      ]
+    },
+    {
+      "id": "latent-space-mo-hinh-quyet-dinh-thanh-san-pham",
+      "group": "newsletter",
+      "source": "Latent Space (AINews)",
+      "url": "https://www.latent.space/p/ainews-typesafejev-at-100m-arr-75b",
+      "publishedAt": "2026-10-10T06:45:57.000Z",
+      "readMinutes": 5,
+      "tags": [
+        "mô hình quyết định",
+        "tổng hợp tin",
+        "agent"
+      ],
+      "titleEn": "[AINews] TypeSafe/Jev at >$100M ARR, $7.5B valuation 3 weeks after launch",
+      "titleVi": "AINews: nhiều hãng cùng ra “mô hình quyết định”, TypeSafe/Jev được nói là vượt 100 triệu USD doanh thu năm sau ba tuần",
+      "summary": "Bản AINews ngày 8 đến 9/10 tổng hợp từ mạng xã hội và nói “mô hình quyết định” đang thành một nhóm sản phẩm. Các mô hình này trả về đáp án có kiểu (xác suất, lựa chọn, điểm) trong một lượt suy luận. Phần lớn thông tin là do các tài khoản và hãng tự nói trên X, chưa được kiểm chứng độc lập.",
+      "keyPoints": [
+        "Bản tin nói TypeSafe được Sequoia “rò rỉ” là đã vượt 100 triệu USD ARR chỉ sau tuần đầu; bài trong tiêu đề nêu định giá 7,5 tỷ USD.",
+        "Nhiều hãng ra sản phẩm cùng kiểu trong cùng ngày: OpenAI Decisions API, Microsoft-Decision-1, Perplexity pplx-decider, Cloudflare clef và Liquid d1.",
+        "OpenAI Decisions API chạy trên GPT-6 Luna, giá 0,10 USD mỗi triệu token đầu vào, không tính phí đầu ra, theo tài khoản dẫn trong bài.",
+        "Một người đánh giá sớm cho rằng mô hình quyết định vẫn còn yếu về tính nhất quán và các quyết định phức tạp.",
+        "Phần tổng hợp còn nhắc đến dynamic workflows của Claude, các bản phát hành mô hình và cập nhật hạ tầng suy luận."
+      ],
+      "body": [
+        "Đây là bản tổng hợp AINews của Latent Space, lấy từ 12 subreddit và 544 tài khoản Twitter. Phần lớn nội dung là các tuyên bố của hãng hoặc người dùng trên X, bài biên tập không kiểm chứng lại. Chuyện doanh thu và định giá của TypeSafe cũng đến từ một nguồn “rò rỉ” kèm cáo buộc astroturfing mà bản tin có nhắc.",
+        "## Mô hình quyết định là gì",
+        "Theo bản tin, các mô hình này trả về đáp án có kiểu như xác suất một điều kiện đúng, chọn một mục trong danh sách hoặc chấm điểm, chỉ trong một lượt suy luận thay vì sinh văn bản tự do. Jev được xem là mốc so sánh chung.",
+        "- OpenAI Decisions API: ba loại yêu cầu, nhận chữ và ảnh, “nhanh hơn tới 10 lần” theo số liệu của chính OpenAI.",
+        "- Perplexity pplx-decider-v1.1-27b: nói đạt độ chính xác 94,5% trên Decision Bench gồm 1.071 ca, giá 0,017 USD cho 1.000 quyết định.",
+        "- Cloudflare clef-flash rẻ hơn Jev; Liquid d1 lên Vercel AI Gateway; Unsloth có notebook biến Qwen3.5-4B thành mô hình quyết định trên 8 GB VRAM.",
+        "LangChain được dẫn lời là định tuyến mỗi tác vụ đến mô hình rẻ nhất đủ dùng giúp giảm 64% chi phí trung vị mỗi tác vụ Open SWE.",
+        "## Các tin khác trong bản tin",
+        "Anthropic đưa dynamic workflows vào bản beta công khai, nơi một agent chính lập kế hoạch rồi chia việc cho tối đa 1.000 agent mỗi lần chạy. Vals AI báo cáo đội agent tốn gấp 1,8 đến 5,1 lần mà chỉ có GPT-6 Sol ở mức suy luận trung bình cải thiện đáng kể. Bản tin cũng liệt kê các mô hình mới và kết quả hạ tầng suy luận từ vLLM và SGLang.",
+        "> Tất cả số liệu trong bài do các hãng hoặc tài khoản được dẫn tự công bố trên mạng xã hội, chưa kiểm chứng độc lập."
+      ],
+      "glossary": [
+        {
+          "term": "Decision model",
+          "explain": "Mô hình trả về đáp án có cấu trúc như xác suất, lựa chọn hoặc điểm số trong một lượt suy luận."
+        },
+        {
+          "term": "ARR",
+          "explain": "Doanh thu định kỳ hằng năm, thước đo thường dùng cho công ty phần mềm."
+        },
+        {
+          "term": "LLM judge",
+          "explain": "Dùng một mô hình ngôn ngữ để chấm đầu ra của mô hình hoặc agent khác."
+        }
+      ]
+    },
+    {
+      "id": "periodic-labs-nha-khoa-hoc-ai-phong-thi-nghiem-tu-dong",
+      "group": "newsletter",
+      "source": "Latent Space",
+      "url": "https://www.latent.space/p/periodic",
+      "publishedAt": "2026-10-08T16:27:54.000Z",
+      "readMinutes": 6,
+      "tags": [
+        "AI khoa học",
+        "vật liệu",
+        "phòng thí nghiệm tự động",
+        "podcast"
+      ],
+      "titleEn": "Synthesis Superintelligence: from Semiconductors to Superconductors — Periodic Labs’ Liam Fedus and Ekin Dogus Cubuk",
+      "titleVi": "Periodic Labs: xây “nhà khoa học AI” bằng phòng thí nghiệm tự động để tìm vật liệu mới",
+      "summary": "Latent Space phỏng vấn Liam Fedus và Ekin Dogus Cubuk, hai người sáng lập Periodic Labs. Họ cho rằng trí tuệ chưa đủ để khám phá khoa học, mô hình còn phải thử nghiệm với thế giới thật. Nội dung là quan điểm của người sáng lập hãng.",
+      "keyPoints": [
+        "Theo Fedus, không thể chỉ ngồi nghĩ mà ra tri thức mới, cần đặt giả thuyết rồi kiểm tra với thực tế.",
+        "Môi trường RL của Periodic lấy từ chính phòng thí nghiệm vật lý, nơi dữ liệu nhiễu, thiếu thông tin và máy móc sai lệch.",
+        "Vòng khám phá vật liệu gồm quyết định chế tạo gì, tổng hợp thế nào và xác định đã tạo ra gì, ví dụ qua nhiễu xạ tia X.",
+        "Kết quả “âm tính” vẫn có giá trị, vì có thể cho thấy một cấu trúc mới hoặc dạy mô hình quy trình thử lặp lại.",
+        "Họ cho rằng mô hình tiên phong tương lai vẫn cần thí nghiệm vật lý."
+      ],
+      "body": [
+        "Bản ghi dài hơn một giờ rưỡi giữa swyx, Brandon và hai người sáng lập Periodic Labs. Mọi nhận định dưới đây là quan điểm của hai người nói, về hướng đi của công ty họ.",
+        "## Vì sao khoa học khác toán và lập trình",
+        "Fedus nói luận điểm nền của Periodic là “trí tuệ cần nhưng chưa đủ”. Tri thức mới ra đời khi ý tưởng được thấy là phù hợp với thực tế. Vì vậy công ty cần ba thứ: hệ thống AI, mô phỏng thế giới vật lý và thí nghiệm thông lượng cao.",
+        "Theo Cubuk, toán và lập trình có đủ ngữ cảnh sẵn cho mô hình, còn thí nghiệm khoa học luôn phải rút gọn chiều và có nhiễu. Ông kể ví dụ lò nung xuống cấp theo thời gian, nhiệt độ không đều, hoặc rung động từ tầng trên làm sai kết quả quang học. Fedus thêm rằng chiến lược suy luận tốt cho toán chưa chắc tốt cho khoa học.",
+        "## Vòng khám phá vật liệu",
+        "- Chọn vật liệu cần làm: ổn định và có tính chất mong muốn.",
+        "- Tìm cách tổng hợp, việc này không hề đơn giản.",
+        "- Xác định vật chất vừa tạo ra, vì sản phẩm ra khỏi lò không có nhãn. Periodic bắn tia X và dùng AI nhận diện các pha có mặt; phần thưởng RL cao khi nhận đúng pha và bị trừ khi nhận pha vô lý.",
+        "Fedus cho rằng chờ vài ngày để biết có tìm ra siêu dẫn nhiệt độ phòng hay không thì không khả thi để làm phần thưởng RL, nên họ dựng các môi trường nhỏ quanh từng khâu của vòng lặp.",
+        "## Dữ liệu và kết quả âm tính",
+        "Họ nói kết quả “âm tính” có thể là cấu trúc mới ngoài dự định, và chuỗi thử lặp lại cho đến khi thành công là dữ liệu về quy trình mà tài liệu khoa học hiếm khi ghi lại. Hai người cũng cho rằng ngay cả mô hình tiên phong tương lai vẫn cần thí nghiệm thật.",
+        "> Tập podcast dài, bài này chỉ tóm các ý chính. Một số chủ đề khác trong tập, như “máy biên dịch vật chất”, không được đề cập ở đây."
+      ],
+      "glossary": [
+        {
+          "term": "Nhiễu xạ tia X",
+          "explain": "Kỹ thuật bắn tia X vào vật liệu để thu mẫu nhiễu xạ, như dấu vân tay của cấu trúc tinh thể."
+        },
+        {
+          "term": "Thí nghiệm thông lượng cao",
+          "explain": "Chạy rất nhiều thí nghiệm song song, thường bằng robot, để thu dữ liệu nhanh."
+        },
+        {
+          "term": "DFT",
+          "explain": "Density functional theory, phương pháp mô phỏng lượng tử thường dùng để tính tính chất vật liệu."
+        }
+      ]
+    },
+    {
+      "id": "stacklok-mecatl-harness-agent-cho-cloud",
+      "group": "newsletter",
+      "source": "Latent Space",
+      "url": "https://www.latent.space/p/stacklok",
+      "publishedAt": "2026-10-07T14:10:45.000Z",
+      "readMinutes": 5,
+      "tags": [
+        "agent",
+        "Kubernetes",
+        "harness",
+        "doanh nghiệp"
+      ],
+      "titleEn": "Can a Cloud-Native Harness Make Agents Reliable Beyond the Desktop?",
+      "titleVi": "Hai người tạo ra Kubernetes muốn đưa harness của coding agent lên cloud với Mecatl",
+      "summary": "Latent Space phỏng vấn Craig McLuckie và Joe Beda của Stacklok về Mecatl, một harness mã nguồn mở thiết kế để chạy trên cloud thay vì trên máy cá nhân. Họ nhắm tới doanh nghiệp muốn quản lý agent như quản lý email.",
+      "keyPoints": [
+        "Stacklok quay sang hạ tầng agent trên Kubernetes sau khi lúc đầu tập trung vào bảo mật chuỗi cung ứng phần mềm.",
+        "Mecatl, bắt đầu từ tháng 6 như dự án mã nguồn mở, tách vòng lặp agent khỏi client, nhà cung cấp mô hình, nơi lưu trạng thái và môi trường chạy lệnh.",
+        "Beda cho rằng chuyển nguyên harness chạy trên desktop lên VM hay container gây rắc rối về vòng đời agent và việc tạm dừng an toàn.",
+        "Stacklok còn có ToolHive để chạy và quản trị máy chủ MCP, và một AI Gateway chưa mở mã nguồn.",
+        "Mô hình kinh doanh là sản phẩm “enterprise spine”, lớp điều khiển thống nhất danh tính, phân quyền, chính sách và kiểm toán."
+      ],
+      "body": [
+        "Bài của Latent Space đặt vấn đề: nhiều coding agent khởi đầu ở dòng lệnh rồi ứng dụng desktop, nhưng khi muốn chạy tin cậy trên cloud thì gặp khó ở độ ổn định của phiên, cách ly công cụ và giữ ngữ cảnh.",
+        "## Mecatl là gì",
+        "Craig McLuckie và Joe Beda, hai người sáng tạo Kubernetes, đang đặt cược rằng agent có thể được quản lý bằng vòng điều khiển như ứng dụng cloud. Mecatl là “cloud-native harness” mở mã nguồn của Stacklok, bắt đầu từ tháng 6.",
+        "Ý tưởng chính là tách vòng lặp agent khỏi các phần nhạy cảm hơn như gọi công cụ và bash, đồng thời tách quản lý phiên và bộ nhớ. Các phần này không còn là file JSONL trên đĩa mà có thể đặt vào hệ thống quản lý được.",
+        "## Góc nhìn doanh nghiệp",
+        "- McLuckie nói họ muốn “chuyển trọng tâm giá trị từ desktop lên cloud”, vì mã và ngữ cảnh nằm ở máy cá nhân.",
+        "- Beda cho rằng các tương tác với agent khi làm việc cho doanh nghiệp sẽ thuộc về doanh nghiệp và cần được quản trị như email.",
+        "- Khách hàng chủ yếu là ngân hàng, hãng bán dẫn và nhà mạng, theo McLuckie.",
+        "- Họ muốn doanh nghiệp bớt phụ thuộc vào các lab và hyperscaler, như Kubernetes từng giúp giảm phụ thuộc vào nhà cung cấp cloud.",
+        "Stacklok từng gọi vốn 17,5 triệu USD vòng Series A năm 2023. Sản phẩm trước đó, ToolHive, giúp chạy và quản trị máy chủ MCP. AI Gateway hiện chỉ kiểm soát truy cập, ngân sách, báo cáo và định tuyến nhà cung cấp, chưa chọn mô hình theo tác vụ.",
+        "> Các nhận định trong bài là của người sáng lập Stacklok và của tác giả bài phỏng vấn; chưa có số liệu độc lập về hiệu quả của Mecatl."
+      ],
+      "glossary": [
+        {
+          "term": "Harness",
+          "explain": "Phần mềm bao quanh mô hình để chạy agent, gồm vòng lặp, công cụ, bộ nhớ và quản lý phiên."
+        },
+        {
+          "term": "MCP",
+          "explain": "Model Context Protocol, giao thức kết nối mô hình với công cụ và dữ liệu bên ngoài."
+        },
+        {
+          "term": "Cloud-native",
+          "explain": "Thiết kế để chạy và được quản lý tốt trên hạ tầng cloud, độc lập với nhà cung cấp cụ thể."
+        }
+      ]
+    },
+    {
+      "id": "mit-tr-ai-robot-chua-som-doi-doi-song-ban",
+      "group": "press",
+      "source": "MIT Technology Review",
+      "url": "https://www.technologyreview.com/2026/10/08/1145923/ai-breakthroughs-in-robotics-wont-change-your-life-any-time-soon/",
+      "publishedAt": "2026-10-08T09:00:00.000Z",
+      "readMinutes": 6,
+      "tags": [
+        "robot",
+        "robot hình người",
+        "world model",
+        "phân tích"
+      ],
+      "titleEn": "AI breakthroughs in robotics won’t change your life any time soon",
+      "titleVi": "Bước tiến AI trong robot chưa sớm thay đổi cuộc sống của bạn: khoảng cách giữa lời hứa và phòng thí nghiệm",
+      "summary": "Bài hợp tác giữa MIT Technology Review và Aventine cho rằng robot hình người vẫn rất xa khả năng đa dụng. Nhiều nhà nghiên cứu nghi ngờ việc áp dụng nguyên cách làm của mô hình ngôn ngữ vào robot. Các tiến bộ có thật nhưng chậm và còn dè dặt.",
+      "keyPoints": [
+        "Elon Musk dự đoán Optimus có thể bán cho công chúng cuối năm 2027, nhưng tháng 1 năm nay ông nói chỉ có một số robot làm việc đơn giản trong nhà máy.",
+        "Mô hình vision-language-action (VLA) học từ dữ liệu thao tác từ xa, nhưng gặp tác vụ ngoài tập huấn luyện thường thất bại.",
+        "Giới nghiên cứu bất đồng: thêm dữ liệu có đủ không, hay cần “world model”; Yann LeCun và Jonathan Hurst nghi ngờ hướng chỉ dựa vào dữ liệu.",
+        "Physical Intelligence nói π0.7 cho thấy dấu hiệu đầu tiên của khả năng tổng hợp kỹ năng chưa từng thấy, nhưng nhóm tìm thấy dữ liệu liên quan trong tập huấn luyện.",
+        "Hurst ước tính khoảng 10 năm nữa robot mới làm được việc hữu ích trong nhà."
+      ],
+      "body": [
+        "Đây là bài báo phân tích dài của MIT Technology Review làm cùng tổ chức phi lợi nhuận Aventine, tập hợp ý kiến của nhiều nhà nghiên cứu. Các dự báo trong bài là của người được trích dẫn.",
+        "## Lời hứa và hoài nghi",
+        "Musk cho rằng Optimus có thể tự động hóa gần hết lao động chân tay với giá khoảng 20.000 USD mỗi robot. Marc Andreessen và Jensen Huang cũng lạc quan. Nhưng Yann LeCun nói tại Davos rằng không công ty robot hình người nào biết cách làm robot đủ thông minh để hữu ích, còn Jonathan Hurst của Agility Robotics nhấn mạnh làm robot trông giống người dễ, làm nó di chuyển và hành xử như người khó hơn nhiều.",
+        "## Dữ liệu hay world model",
+        "VLA học từ dữ liệu thao tác từ xa do người điều khiển, và vẫn gần như thất bại khi gặp tác vụ chưa thấy. Google DeepMind muốn gom “càng nhiều dữ liệu càng tốt”. Hurst gọi giả định chỉ cần thêm dữ liệu là “nền tảng sai”, vì tác vụ thực tế bùng nổ độ phức tạp.",
+        "Hướng được xem là ứng viên thay thế là world model, mô hình dự đoán hệ quả của hành động từ video, quét 3D và dữ liệu cảm biến. Bài nêu World Labs huy động 1 tỷ USD và bị AMD mua lại với giá 8,2 tỷ USD cuối tháng 9, còn AMI Labs của LeCun huy động 1 tỷ USD. Nhưng bài cho biết lĩnh vực này mới ở giai đoạn đầu.",
+        "## Một bước nhỏ và nhiều hạn chế",
+        "- Physical Intelligence nói π0.7 (tháng 4/2026) thực hiện được yêu cầu “cho khoai lang vào nồi chiên không dầu” dù chưa từng huấn luyện, theo Sergey Levine là lần đầu thấy tổng hợp kỹ năng thuyết phục. Nhưng nhóm sau đó tìm thấy vài mẩu dữ liệu liên quan trong tập huấn luyện, nên mức tổng quát hóa thực chất chưa rõ.",
+        "- Nhiều video demo thực ra có người điều khiển từ xa hoặc kịch bản sẵn; Marc Raibert nói thành công 70% “coi như là không hoạt động”.",
+        "- Robot hình người đang thử nghiệm chỉ làm tác vụ rất hạn chế như chuyển thùng; Agility có hàng trăm robot trong các thử nghiệm với GXO Logistics, Amazon và Schaeffler theo công ty.",
+        "- 1X Neo giá 20.000 USD hiện cần người điều khiển từ xa cho hầu hết việc. Gần 90% trong khoảng 15.000 robot hình người xuất xưởng năm 2025 đến từ các hãng Trung Quốc, theo Omdia và Unitree.",
+        "Bài kết bằng bối cảnh lịch sử: từ Elektro 1939, WABOT-1, đến ASIMO bị ngừng năm 2018 vì không tiến xa hơn các màn trình diễn. Robot ngày nay, dù có AI hiện đại, vẫn đối mặt thách thức tương tự."
+      ],
+      "glossary": [
+        {
+          "term": "VLA (vision-language-action)",
+          "explain": "Mô hình nhận ảnh và lệnh bằng lời rồi xuất ra chuyển động cho robot."
+        },
+        {
+          "term": "World model",
+          "explain": "Mô hình học cách thế giới vật lý vận hành để dự đoán kết quả của hành động trước khi làm."
+        },
+        {
+          "term": "Teleoperation",
+          "explain": "Điều khiển robot từ xa bằng tay người, thường dùng để thu dữ liệu huấn luyện."
+        },
+        {
+          "term": "Compositional generalization",
+          "explain": "Khả năng ghép các kỹ năng đã học thành kỹ năng mới chưa từng gặp."
+        }
+      ]
+    },
+    {
+      "id": "byte-language-models-vuot-subword",
+      "group": "research",
+      "source": "arXiv",
+      "url": "https://arxiv.org/abs/2610.05978",
+      "discussionUrl": "https://lobste.rs/s/t2fxpt/byte_language_models_scaling_emergent",
+      "pdfUrl": "https://arxiv.org/pdf/2610.05978",
+      "publishedAt": "2026-10-10T22:25:14.000Z",
+      "readMinutes": 3,
+      "tags": [
+        "tokenizer",
+        "byte",
+        "Transformer",
+        "nghiên cứu"
+      ],
+      "titleEn": "Byte Language Models: Scaling, Emergent Abstractions, and Information Allocation",
+      "titleVi": "Mô hình ngôn ngữ đọc thẳng byte: khi tăng kích thước, Transformer thường vượt mô hình dùng subword",
+      "summary": "Nhóm tác giả hỏi liệu mô hình bỏ tokenizer, chỉ đọc byte, có đáng đánh đổi chuỗi dài hơn không. Với hai kỹ thuật là token-superposition training và hash embedding, Transformer byte thắng Transformer subword khi mô hình lớn dần. Chúng còn tự hình thành các “đơn vị cục bộ” giống phép tách token, giúp giải mã suy đoán (speculative decoding) hiệu quả hơn.",
+      "keyPoints": [
+        "Mô hình byte không dùng tokenizer cố định nên chuỗi dài hơn và tốn tính toán hơn.",
+        "Với token-superposition training và hash embedding, Transformer byte liên tục vượt Transformer subword khi tăng kích thước mô hình.",
+        "Mô hình byte tự tạo ra các vị trí giống điểm ngắt để gom ngữ cảnh cục bộ.",
+        "Giới hạn tới 25% số lớp trung gian chỉ dùng các biểu diễn cục bộ này vẫn giữ được hiệu năng ở các tác vụ sau đó.",
+        "Dùng cấu trúc này cho speculative decoding cho số token được chấp nhận nhiều gấp 3,4 lần so với mô hình subword."
+      ],
+      "body": [
+        "Phần lớn mô hình ngôn ngữ hiện nay đọc văn bản qua tokenizer, tức bộ tách chữ thành các mảnh (subword) cố định. Hướng “tokenizer-free” bỏ bước này và để mô hình xử lý trực tiếp từng byte.",
+        "Cái giá là chuỗi dài hơn nhiều, nên tính toán tăng, và mô hình mất đi các đơn vị chữ rõ ràng. Bài báo hỏi hai điều: phần tính toán thêm có hữu ích không, và Transformer thông thường có tự học được những đơn vị trừu tượng mà tokenizer vốn cung cấp không.",
+        "## Kết quả chính",
+        "- Dùng token-superposition training và hash embedding, Transformer byte liên tục vượt Transformer subword khi kích thước mô hình tăng.",
+        "- Mô hình byte tự tạo các vị trí giống điểm phân đoạn, dùng để thu thập biểu diễn ngữ cảnh cục bộ.",
+        "- Khi hạn chế tới 25% số lớp trung gian chỉ dùng các biểu diễn cục bộ này, hiệu năng ở các tác vụ sau đó vẫn được giữ.",
+        "- Độ khó khi sinh văn bản không đều: độ bất định tập trung gần ranh giới của các cấu trúc cục bộ. Khai thác điều này trong speculative decoding cho số token được chấp nhận nhiều gấp 3,4 lần so với Transformer subword.",
+        "> Bản tóm lược này chỉ dựa trên abstract của bài arXiv, chưa đối chiếu với toàn văn."
+      ],
+      "glossary": [
+        {
+          "term": "Tokenizer",
+          "explain": "Bộ tách văn bản thành các mảnh nhỏ (token) trước khi đưa vào mô hình."
+        },
+        {
+          "term": "Speculative decoding",
+          "explain": "Dùng một mô hình nhỏ đoán trước nhiều token, rồi mô hình lớn kiểm tra cùng lúc để sinh văn bản nhanh hơn."
+        },
+        {
+          "term": "Hash embedding",
+          "explain": "Cách mã hoá đầu vào bằng bảng băm để tiết kiệm bộ nhớ, thay vì một bảng riêng cho từng mục."
+        }
+      ]
+    },
+    {
+      "id": "agentgarten-the-gioi-ma-cho-agent-tien-hoa",
+      "group": "research",
+      "source": "Hugging Face Papers",
+      "url": "https://arxiv.org/abs/2610.12374",
+      "discussionUrl": "https://huggingface.co/papers/2610.12374",
+      "pdfUrl": "https://arxiv.org/pdf/2610.12374",
+      "points": 285,
+      "comments": 4,
+      "publishedAt": "2026-10-07T20:00:00.000Z",
+      "readMinutes": 3,
+      "tags": [
+        "agent",
+        "môi trường mô phỏng",
+        "neural renderer"
+      ],
+      "titleEn": "AgentGarten: Code Worlds for Evolving Agents",
+      "titleVi": "AgentGarten: dựng thế giới ảo bằng code, kết xuất hình ảnh bằng mạng nơ-ron, để agent học qua trải nghiệm",
+      "summary": "AgentGarten ghép trình giả lập hoặc game engine với một bộ kết xuất (renderer) nơ-ron dùng chung để tạo môi trường tương tác thời gian thực. Agent nhìn thế giới qua hình ảnh, rồi cô đọng kinh nghiệm mỗi vòng thành “playbook” cho agent sau. Các tác giả nói agent học chỉ trong 4 vòng, trong khi học tăng cường truyền thống cần hàng triệu vòng.",
+      "keyPoints": [
+        "Môi trường cho agent cần vừa nhất quán về luật và trạng thái, vừa có hình ảnh giống thực tế; làm được cả hai ở nhiều thế giới là điểm nghẽn.",
+        "AgentGarten để phần giả lập giữ trạng thái và luật, còn một renderer nơ-ron dùng chung sinh hình ảnh quan sát.",
+        "Renderer được tạo từ một mô hình video có sẵn, chuyển sang điều kiện hình học, chưng cất bằng phương pháp Adversarial Forcing.",
+        "Agent tích luỹ kinh nghiệm thành playbook để các agent sau kế thừa và tinh chỉnh.",
+        "Theo bài báo, agent học chỉ trong 4 vòng so với hàng triệu vòng ở học tăng cường truyền thống."
+      ],
+      "body": [
+        "Agent chỉ học được trong phạm vi những môi trường nó được luyện tập. Môi trường tốt cần giữ trạng thái và luật nhất quán, đồng thời cho ra hình ảnh giống thế giới thật. Làm được cả hai trên nhiều loại thế giới khác nhau là việc khó.",
+        "## Cách làm",
+        "- Phần giả lập (simulator, game engine) giữ trạng thái thế giới và chạy các luật tương tác do chương trình định nghĩa.",
+        "- Một renderer nơ-ron dùng chung sinh ảnh quan sát từ các điều kiện có cấu trúc, qua một giao diện chung.",
+        "- Renderer xuất phát từ một mô hình video đã huấn luyện, được điều chỉnh theo điều kiện hình học, chưng cất bằng Adversarial Forcing và tối ưu để chạy thời gian thực.",
+        "Theo các tác giả, Adversarial Forcing làm cho việc nạp lịch sử trở nên khả vi nhờ phát lại chính xác, và thêm giám sát đối kháng bằng dữ liệu thật để ảnh đẹp hơn.",
+        "Agent nhìn thế giới qua ảnh, tương tác thời gian thực và cô đọng kinh nghiệm mỗi vòng thành playbook cho agent sau. Kết quả thực nghiệm: agent học từ chỉ 4 vòng, so với hàng triệu vòng ở phương pháp học tăng cường thông thường.",
+        "> Bản tóm lược này chỉ dựa trên abstract của bài báo."
+      ],
+      "glossary": [
+        {
+          "term": "Neural renderer",
+          "explain": "Mạng nơ-ron dùng để vẽ ra hình ảnh từ mô tả của một cảnh."
+        },
+        {
+          "term": "Reinforcement learning",
+          "explain": "Học tăng cường: agent học bằng cách thử và nhận phần thưởng."
+        },
+        {
+          "term": "Distillation",
+          "explain": "Chưng cất: truyền kiến thức từ mô hình lớn sang mô hình nhỏ hoặc nhanh hơn."
+        }
+      ]
+    },
+    {
+      "id": "learn2play-bench-agent-hoc-tu-kinh-nghiem",
+      "group": "research",
+      "source": "Hugging Face Papers",
+      "url": "https://arxiv.org/abs/2610.08215",
+      "discussionUrl": "https://huggingface.co/papers/2610.08215",
+      "pdfUrl": "https://arxiv.org/pdf/2610.08215",
+      "points": 153,
+      "comments": 3,
+      "publishedAt": "2026-10-07T20:00:00.000Z",
+      "readMinutes": 3,
+      "tags": [
+        "benchmark",
+        "agent",
+        "học từ kinh nghiệm"
+      ],
+      "titleEn": "Learn2Play Bench: How Well Do LLM Agents Learn from Experience in Unfamiliar Environments?",
+      "titleVi": "Learn2Play Bench: đo khả năng agent LLM học từ trải nghiệm trong các trò chơi có luật lạ",
+      "summary": "Learn2Play Bench gồm các game dạng văn bản mới thiết kế, luật lạ hoặc ngược trực giác, nên agent phải học qua tương tác thay vì dựa vào kiến thức có sẵn. Bài báo rút ra ba kết luận: giữ nguyên bản ghi hành động tốt hơn tóm tắt thành quy tắc, người chơi giỏi vẫn đạt điểm đỉnh cao hơn agent, và đổi harness có thể tăng hiệu năng, giảm chi phí.",
+      "keyPoints": [
+        "Các benchmark cũ thường có luật nằm sẵn trong đề hoặc đã quen với mô hình, khó tách việc học khỏi việc suy luận bằng kiến thức có sẵn.",
+        "Learn2Play Bench dùng game văn bản mới với luật lạ, có phản hồi tái lập được và chấm điểm tự động.",
+        "Giữ toàn bộ bản ghi hành động và phản hồi giúp học hiệu quả hơn so với tóm tắt thành quy tắc hay chiến lược.",
+        "Người chơi hàng đầu đạt điểm đỉnh cao hơn agent; họ thử nhiều chiến lược đa dạng hơn và ít lặp lại hành động.",
+        "Giữ nguyên mô hình nền mà đổi harness có thể tăng hiệu năng và giảm chi phí suy luận ước tính."
+      ],
+      "body": [
+        "Để thích nghi với môi trường lạ, agent LLM cần học từ trải nghiệm. Nhưng nhiều benchmark hiện có cho sẵn luật trong đề hoặc dùng luật mô hình đã biết, nên khó nói điểm số đến từ việc học hay từ kiến thức trước đó.",
+        "## Benchmark",
+        "Learn2Play Bench là tập game dạng văn bản mới, luật lạ hoặc trái trực giác. Game cho phản hồi tái lập được và chấm điểm tự động. Các tác giả cũng đổi biến thể của game để kiểm tra agent có áp dụng điều đã học vào tình huống mới không.",
+        "## Ba phát hiện",
+        "- Lưu giữ: giữ đầy đủ bản ghi hành động và phản hồi giúp học tốt hơn so với tóm tắt thành quy tắc hay chiến lược.",
+        "- Khoảng cách với người: người chơi giỏi nhất đạt điểm đỉnh cao hơn các agent được thử. Họ khám phá nhiều chiến lược hơn và lặp lại hành động ít hơn.",
+        "- Harness quan trọng: với mô hình nền cố định, đổi harness có thể nâng hiệu năng và giảm chi phí suy luận ước tính.",
+        "> Bản tóm lược này chỉ dựa trên abstract của bài báo."
+      ],
+      "glossary": [
+        {
+          "term": "Harness",
+          "explain": "Lớp khung quanh mô hình, quyết định cách mô hình nhận thông tin, gọi công cụ và lưu bộ nhớ."
+        },
+        {
+          "term": "Backbone model",
+          "explain": "Mô hình nền đứng sau agent."
+        },
+        {
+          "term": "Self-evolving method",
+          "explain": "Phương pháp để agent tự cải thiện qua kinh nghiệm của chính nó."
+        }
+      ]
+    },
+    {
+      "id": "tokenrouter-phuc-vu-dinh-tuyen-theo-token",
+      "group": "research",
+      "source": "Hugging Face Papers",
+      "url": "https://arxiv.org/abs/2610.12242",
+      "discussionUrl": "https://huggingface.co/papers/2610.12242",
+      "pdfUrl": "https://arxiv.org/pdf/2610.12242",
+      "points": 138,
+      "comments": 2,
+      "publishedAt": "2026-10-07T20:00:00.000Z",
+      "readMinutes": 3,
+      "tags": [
+        "serving",
+        "routing",
+        "suy luận",
+        "hạ tầng"
+      ],
+      "titleEn": "TokenRouter: Efficient Serving System for Token-Level LLM Routing",
+      "titleVi": "TokenRouter: hệ thống phục vụ cho việc định tuyến từng token giữa nhiều mô hình, nhanh hơn 2 đến 64 lần",
+      "summary": "Định tuyến ở mức token chuyển từng token cho các mô hình khác nhau xử lý, có thể cải thiện chất lượng và chi phí, nhưng các hệ thống phục vụ hiện nay được thiết kế cho một mô hình nên chạy kém. TokenRouter dựng mỗi mô hình thành một subserver riêng, xử lý bất đồng bộ. Các tác giả báo cáo thông lượng giải mã cao hơn 2,01 đến 64,15 lần so với các hệ thống hiện có.",
+      "keyPoints": [
+        "Định tuyến ở mức phiên hoặc truy vấn đã phổ biến; mức token cho lợi ích lớn hơn nhưng khó phục vụ hiệu quả.",
+        "Hệ thống hiện tại giả định một mô hình nên bị lệch bước và chậm nhận batch khi định tuyến theo token.",
+        "TokenRouter theo nguyên tắc lập trình theo yêu cầu, thực thi theo mô hình: nhà phát triển mô tả logic cho một yêu cầu, hệ thống chạy mỗi mô hình bằng một subserver.",
+        "Mỗi subserver dùng bộ lập lịch gom batch có trễ, tham số tối ưu suy ra từ mô hình toán về thông lượng.",
+        "Thông lượng giải mã cao hơn 2,01 đến 64,15 lần; mã nguồn công khai trên GitHub."
+      ],
+      "body": [
+        "Định tuyến LLM chia việc suy luận cho nhiều mô hình để cân bằng chất lượng và chi phí. Ở mức phiên hoặc truy vấn, cách này đã được dùng trong sản phẩm. Các nghiên cứu thuật toán gần đây cho thấy định tuyến ở mức token còn cho lợi ích lớn hơn.",
+        "## Vấn đề",
+        "Các hệ thống phục vụ hiện có xây trên giả định một mô hình. Khi định tuyến theo token, chúng gặp tình trạng lệch bước giữa các yêu cầu và thường phải chờ mới nhận được batch, đồng thời việc cài đặt cũng phức tạp với nhà phát triển.",
+        "## Giải pháp",
+        "- Nhà phát triển mô tả logic định tuyến từ góc nhìn của một yêu cầu; runtime chạy một subserver cho mỗi mô hình và điều phối yêu cầu bất đồng bộ.",
+        "- Mỗi subserver có bộ lập lịch gom batch có trễ, với tham số tối ưu suy ra từ một mô hình toán về thông lượng.",
+        "Trên nhiều thuật toán định tuyến, khối lượng công việc và cặp mô hình, TokenRouter đạt thông lượng giải mã cao hơn 2,01 đến 64,15 lần so với các hệ thống hiện có. Mã nguồn có ở github.com/thu-nics/TokenRouter.",
+        "> Bản tóm lược này chỉ dựa trên abstract của bài báo; số liệu do các tác giả tự công bố."
+      ],
+      "glossary": [
+        {
+          "term": "Token-level routing",
+          "explain": "Chọn mô hình xử lý riêng cho từng token được sinh ra, thay vì cả câu hỏi."
+        },
+        {
+          "term": "Throughput",
+          "explain": "Thông lượng: lượng token hệ thống sinh ra mỗi giây."
+        },
+        {
+          "term": "Batching",
+          "explain": "Gom nhiều yêu cầu để xử lý cùng lúc trên GPU."
+        }
+      ]
+    },
+    {
+      "id": "remory-bo-nho-du-nen-ngu-canh",
+      "group": "research",
+      "source": "Hugging Face Papers",
+      "url": "https://arxiv.org/abs/2610.11287",
+      "discussionUrl": "https://huggingface.co/papers/2610.11287",
+      "pdfUrl": "https://arxiv.org/pdf/2610.11287",
+      "points": 58,
+      "comments": 5,
+      "publishedAt": "2026-10-07T20:00:00.000Z",
+      "readMinutes": 3,
+      "tags": [
+        "agent",
+        "bộ nhớ",
+        "nén ngữ cảnh"
+      ],
+      "titleEn": "REMORY: Learning Residual Memory for Context Compaction",
+      "titleVi": "REMORY: thêm các “token nhớ mềm” vào bản tóm tắt để agent nén lịch sử mà ít mất thông tin",
+      "summary": "Agent chạy lâu phải nén lịch sử để vừa cửa sổ ngữ cảnh, nhưng bản tóm tắt bằng chữ có thể thiếu thông tin cho các quyết định sau. REMORY là mạng nhớ sinh thêm một chuỗi giới hạn các soft token gắn sau bản tóm tắt. Trên SummHay, nó tiến gần điểm khi dùng toàn bộ ngữ cảnh, chỉ với 5,2% số vị trí đầu vào.",
+      "keyPoints": [
+        "Tóm tắt bằng chữ khi nén lịch sử có thể không đủ cho mọi quyết định tiếp theo.",
+        "REMORY học sinh các soft memory token giúp một LLM đóng băng xấp xỉ kết quả như khi có toàn bộ lịch sử.",
+        "Các token này gắn sau bản tóm tắt, giống kết nối residual theo chiều chuỗi.",
+        "Trên SummHay, REMORY cải thiện việc ghi nguồn, độ phủ insight gần như không đổi, và gần bằng điểm tổng hợp của ngữ cảnh đầy đủ với 5,2% vị trí đầu vào.",
+        "Qwen3.8-27B và GLM-5.3-Flash cải thiện nhất quán, ít lặp lại đầu ra công cụ và ít lỗi công cụ hơn trên BrowseComp và Terminal-Bench 2.1."
+      ],
+      "body": [
+        "Agent làm việc lâu thường nén lịch sử của mình để tiếp tục trong cửa sổ ngữ cảnh hữu hạn. Nhưng chỉ một bản tóm tắt bằng chữ có thể không đủ để hỗ trợ mọi quyết định về sau.",
+        "## Ý tưởng",
+        "REMORY là một mạng nhớ thần kinh. Dựa trên lịch sử và bản tóm tắt, nó sinh ra một chuỗi giới hạn các soft memory token để một LLM đóng băng xấp xỉ phần tiếp theo mà nó sẽ viết nếu thấy toàn bộ lịch sử. Các token này đặt sau bản tóm tắt, tương tự kết nối residual nhưng theo chiều chuỗi.",
+        "## Kết quả",
+        "- Trên SummHay, REMORY cải thiện việc ghi nguồn khi độ phủ insight gần như không đổi, và tiến gần điểm tổng hợp của ngữ cảnh đầy đủ chỉ dùng 5,2% số vị trí đầu vào.",
+        "- Qua các benchmark agent dài hạn, Qwen3.8-27B và GLM-5.3-Flash cho kết quả tốt hơn khi có bộ nhớ dư; cả hai ít lặp lại đầu ra công cụ và ít lỗi công cụ hơn trên BrowseComp và Terminal-Bench 2.1.",
+        "> Bản tóm lược này chỉ dựa trên abstract của bài báo."
+      ],
+      "glossary": [
+        {
+          "term": "Context compaction",
+          "explain": "Nén lịch sử hội thoại hoặc hành động để vừa cửa sổ ngữ cảnh."
+        },
+        {
+          "term": "Soft token",
+          "explain": "Vector học được đưa vào mô hình như một token, không tương ứng với chữ cụ thể."
+        },
+        {
+          "term": "Residual connection",
+          "explain": "Kết nối cộng thêm thông tin từ đầu vào vào đầu ra của một khối."
+        }
+      ]
+    },
+    {
+      "id": "u-space-ban-do-bat-dinh-cua-llm",
+      "group": "research",
+      "source": "Hugging Face Papers",
+      "url": "https://arxiv.org/abs/2610.09087",
+      "discussionUrl": "https://huggingface.co/papers/2610.09087",
+      "pdfUrl": "https://arxiv.org/pdf/2610.09087",
+      "points": 52,
+      "comments": 6,
+      "publishedAt": "2026-10-05T20:00:00.000Z",
+      "readMinutes": 3,
+      "tags": [
+        "độ bất định",
+        "interpretability",
+        "độ tin cậy"
+      ],
+      "titleEn": "U-Space: Uncovering When and Why Uncertainty Arises in Language Models",
+      "titleVi": "U-Space: đo độ bất định của LLM theo từng token bằng một không gian con diễn giải được, không cần huấn luyện",
+      "summary": "U-Space là không gian con thấp chiều làm cho độ bất định của mô hình ngôn ngữ đo và diễn giải được. U-Lens chiếu trạng thái từng token lên đó để ra bản đồ độ bất định, có thể gộp thành điểm số. Phương pháp không cần nhãn đúng sai, sinh lặp hay huấn luyện, và theo các tác giả thắng các baseline trên benchmark suy luận.",
+      "keyPoints": [
+        "Câu trả lời LLM có thể sai nhưng nghe rất trôi chảy, nên cần ước lượng độ tin cậy từng câu.",
+        "Nhiều phương pháp hiện có phải sinh lặp hoặc huấn luyện thành phần riêng, và chỉ cho một số, không chỉ ra độ bất định xuất hiện ở đâu.",
+        "U-Space tìm các neo ngữ nghĩa của sự nghi ngờ và sự chắc chắn, rồi dựng cơ sở trực giao từ chúng.",
+        "U-Lens chiếu trạng thái từng token lên cơ sở này, ra bản đồ độ bất định có thể xem hoặc gộp thành điểm.",
+        "Không cần nhãn đúng sai, sinh lặp hoặc huấn luyện; điểm tin cậy vượt các baseline cả khi kiểm soát độ dài đầu ra."
+      ],
+      "body": [
+        "Khi LLM tham gia các quyết định quan trọng, câu hỏi là nên tin một câu trả lời đến đâu. Mô hình có thể diễn đạt trôi chảy, giọng chắc chắn ngay cả khi sai. Ước lượng độ bất định nhằm lấp khoảng cách đó.",
+        "## Hạn chế của cách cũ",
+        "Nhiều phương pháp phải sinh nhiều lần hoặc huấn luyện thành phần riêng, và chỉ cho một con số, không cho biết độ bất định phát sinh ở đâu trong lúc suy luận. Nghiên cứu gần đây còn chỉ ra độ dài đầu ra liên quan mạnh đến các ước lượng này.",
+        "## Cách làm",
+        "- Xác định các neo ngữ nghĩa cho nghi ngờ và chắc chắn, đưa hướng unembedding của chúng về không gian residual, rồi kết hợp độ tương phản thành một cơ sở trực giao gọi là U-Space.",
+        "- U-Lens chiếu trạng thái từng token lên cơ sở này để ra bản đồ độ bất định ở mức token, hoặc gộp thành điểm số.",
+        "Theo các tác giả, phương pháp không cần nhãn đúng, sinh lặp hay huấn luyện; điểm tin cậy vượt các baseline trên các benchmark suy luận, cả khi đánh giá chuẩn và khi kiểm soát độ dài, và chuyển giao đáng tin cậy hơn các ước lượng có giám sát. Mã ở github.com/s2labres/U-Space.",
+        "> Bản tóm lược này chỉ dựa trên abstract của bài báo."
+      ],
+      "glossary": [
+        {
+          "term": "Uncertainty quantification",
+          "explain": "Ước lượng mức độ đáng tin của một dự đoán."
+        },
+        {
+          "term": "Mechanistic interpretability",
+          "explain": "Nhánh nghiên cứu tìm hiểu mô hình tính toán gì bên trong bằng cách gắn khái niệm con người hiểu với trạng thái trung gian."
+        },
+        {
+          "term": "Residual space",
+          "explain": "Không gian vector mà các lớp Transformer đọc và ghi trong quá trình tính."
+        }
+      ]
+    },
+    {
+      "id": "memento-3-quy-tac-tu-cai-thien",
+      "group": "research",
+      "source": "Hugging Face Papers",
+      "url": "https://arxiv.org/abs/2610.11794",
+      "discussionUrl": "https://huggingface.co/papers/2610.11794",
+      "pdfUrl": "https://arxiv.org/pdf/2610.11794",
+      "points": 44,
+      "comments": 5,
+      "publishedAt": "2026-10-07T20:00:00.000Z",
+      "readMinutes": 4,
+      "tags": [
+        "agent",
+        "world model",
+        "tự cải thiện",
+        "ARC-AGI-3"
+      ],
+      "titleEn": "Memento 3: Model-Based Recursive Self-Improvement through Reflective Rulebooks",
+      "titleVi": "Memento 3: agent LLM đóng băng tự viết “sổ luật” về thế giới, biên dịch thành code và sửa dần để tự cải thiện",
+      "summary": "Memento 3 để agent dùng LLM cố định học một mô hình thế giới tường minh qua bộ nhớ ngoài: một sổ luật bằng ngôn ngữ tự nhiên, biên dịch thành code để dự đoán và lập kế hoạch. Theo các tác giả, trên ARC-AGI-3 agent đơn mô hình vượt mọi cấp của cả 25 game công khai, và trong ca thử Atari Pong thắng 21:0 ở cả ba ván.",
+      "keyPoints": [
+        "Agent giữ một sổ luật bằng ngôn ngữ tự nhiên, ghi các giả thuyết có thể sửa về cách môi trường vận hành.",
+        "Sổ luật được biên dịch thành code để dự đoán và lập kế hoạch; sai số dự đoán dùng để sửa cả sổ luật lẫn code.",
+        "Code mới chỉ được nhận khi LLM thấy nó trung thực với sổ luật và phát lại chính xác từng ô các chuyển trạng thái đã quan sát.",
+        "Trên ARC-AGI-3, agent đơn mô hình vượt mọi cấp của cả 25 game công khai, đạt RHAE trung bình 100,0, dùng 44% số hành động của người.",
+        "Trong ca nghiên cứu Atari Pong, bộ điều khiển học được thắng 21:0 ở cả ba ván với các mở đầu khác nhau, không gọi thêm LLM."
+      ],
+      "body": [
+        "Ở môi trường lạ, agent phải suy ra thế giới vận hành thế nào và sửa hiểu biết khi có bằng chứng mới. Quan sát hạn chế có thể ủng hộ nhiều mô hình thế giới, mỗi mô hình dự đoán khác nhau ở trạng thái chưa thấy.",
+        "## Cách hoạt động",
+        "Memento 3 dựa trên dòng Memento, cho agent LLM đóng băng học mô hình thế giới tường minh qua bộ nhớ ngoài. Agent giữ một sổ luật bằng ngôn ngữ tự nhiên làm bộ nhớ ngữ nghĩa lâu dài, ghi các giả thuyết sửa được và để ngỏ những điều chưa biết. Sổ luật được biên dịch thành code để dự đoán và lập kế hoạch.",
+        "- Vòng lặp gồm quan sát, phản tư, sửa luật, biên dịch và kiểm chứng.",
+        "- Code mới chỉ được chấp nhận khi LLM thấy nó trung thực với sổ luật và phát lại chính xác từng ô các chuyển trạng thái đã quan sát.",
+        "- Bản mở rộng theo quần thể giữ nhiều mô hình thế giới song song, chia sẻ bằng chứng và dùng dự đoán của chúng để định hướng khám phá.",
+        "## Kết quả",
+        "Trên ARC-AGI-3, agent đơn mô hình vượt mọi cấp của cả 25 game công khai, đạt Relative Human Action Efficiency (RHAE) trung bình 100,0 và dùng 44% số hành động của người. Trong ca nghiên cứu Atari Pong, bộ điều khiển phản hồi học được thắng 21:0 ở cả ba ván với các mở đầu khác nhau, không cần gọi thêm LLM.",
+        "> Bản tóm lược này chỉ dựa trên abstract; các số liệu do các tác giả tự công bố."
+      ],
+      "glossary": [
+        {
+          "term": "World model",
+          "explain": "Mô hình bên trong của agent về cách môi trường vận hành, dùng để dự đoán kết quả hành động."
+        },
+        {
+          "term": "Recursive self-improvement (RSI)",
+          "explain": "Quá trình hệ thống tự cải thiện, rồi dùng phần cải thiện đó để tiếp tục cải thiện."
+        },
+        {
+          "term": "ARC-AGI-3",
+          "explain": "Bộ benchmark gồm các game để kiểm tra khả năng học và thích nghi của agent."
+        }
+      ]
+    },
+    {
+      "id": "agentmonbench-giam-sat-agent-dai-han",
+      "group": "research",
+      "source": "Hugging Face Papers",
+      "url": "https://arxiv.org/abs/2610.06406",
+      "discussionUrl": "https://huggingface.co/papers/2610.06406",
+      "pdfUrl": "https://arxiv.org/pdf/2610.06406",
+      "points": 26,
+      "comments": 3,
+      "publishedAt": "2026-10-04T20:00:00.000Z",
+      "readMinutes": 3,
+      "tags": [
+        "agent",
+        "giám sát",
+        "benchmark"
+      ],
+      "titleEn": "What Did the Agent Actually Do? Evidence-Grounded Oversight for Long-Horizon Agents",
+      "titleVi": "Agent vừa làm gì? Đồ thị bằng chứng giúp người dùng giám sát agent chạy lâu",
+      "summary": "Khi agent làm việc dài, người dùng chuyển từ ra từng quyết định sang giám sát. Bài báo giới thiệu benchmark AgentMonBench và phương pháp EBG, không cần huấn luyện, gom bằng chứng thành đồ thị hành vi. EBG cải thiện việc nhận diện quyết định quan trọng và định vị bằng chứng ở hầu hết các thiết lập.",
+      "keyPoints": [
+        "Lượng hoạt động của agent lớn và bằng chứng nằm rải rác, nên khó biết quyết định nào cần người dùng kiểm tra.",
+        "AgentMonBench là benchmark kỹ thuật phần mềm với ba tập con, đo độ khớp giữa yêu cầu và hành vi, và nhận biết các quyết định tự chủ quan trọng.",
+        "Evidence-Grounded Behavior Graph (EBG) gom bằng chứng có liên kết nguồn thành các hành vi và biểu diễn quan hệ giữa chúng dưới dạng đồ thị, không cần huấn luyện.",
+        "Thử trên tám mô hình, EBG cải thiện nhận diện quyết định và định vị bằng chứng ở hầu hết các thiết lập so với dùng ngữ cảnh gốc."
+      ],
+      "body": [
+        "Khi agent đảm nhận các tác vụ dài, người dùng không còn tự ra từng quyết định mà chỉ giám sát quá trình chạy tự động. Khó khăn là khối lượng hoạt động lớn và bằng chứng bị phân mảnh, khiến khó biết quyết định nào cần người dùng xác minh. Nhóm nghiên cứu các “monitor” có nhiệm vụ nhận ra các quyết định quan trọng và tìm bằng chứng để người dùng đánh giá hệ quả.",
+        "Nhóm giới thiệu AgentMonBench, benchmark về kỹ thuật phần mềm với ba tập con, bao hai chiều: sự khớp giữa yêu cầu và hành vi, và việc nhận biết các quyết định tự chủ quan trọng cần xác minh. Để hỗ trợ đánh giá, nhóm đề xuất Evidence-Grounded Behavior Graph (EBG), phương pháp không cần huấn luyện, gom bằng chứng có liên kết nguồn thành các hành vi rồi tổ chức quan hệ giữa chúng thành đồ thị. EBG đưa ra các góc nhìn theo tác vụ để monitor hiểu hành vi trong ngữ cảnh.",
+        "Thí nghiệm trên tám mô hình cho thấy EBG cải thiện việc nhận diện quyết định và định vị bằng chứng ở hầu hết các thiết lập, so với việc truy cập trực tiếp ngữ cảnh gốc. Phần định vị bằng chứng vẫn giữ lợi thế khi đổi quy mô đầu vào và siêu tham số. Nhóm cũng nêu các ví dụ ứng dụng thực tế cho thấy giá trị với giám sát của con người.",
+        "> Tóm tắt này chỉ dựa trên abstract của bài báo, chưa đọc toàn văn."
+      ],
+      "glossary": [
+        {
+          "term": "Long-horizon agent",
+          "explain": "Agent thực hiện tác vụ kéo dài qua nhiều bước và nhiều quyết định."
+        },
+        {
+          "term": "Monitor",
+          "explain": "Thành phần (thường là mô hình) theo dõi hoạt động của agent và nêu ra điểm cần người kiểm tra."
+        },
+        {
+          "term": "Training-free",
+          "explain": "Không cần huấn luyện thêm mô hình, chỉ thay đổi cách tổ chức đầu vào."
+        }
+      ]
+    },
+    {
+      "id": "sparsedecoding-cat-tia-theo-giai-ma",
+      "group": "research",
+      "source": "Hugging Face Papers",
+      "url": "https://arxiv.org/abs/2610.12327",
+      "discussionUrl": "https://huggingface.co/papers/2610.12327",
+      "pdfUrl": "https://arxiv.org/pdf/2610.12327",
+      "points": 36,
+      "comments": 2,
+      "publishedAt": "2026-10-07T20:00:00.000Z",
+      "readMinutes": 4,
+      "tags": [
+        "suy luận",
+        "pruning",
+        "tối ưu"
+      ],
+      "titleEn": "SparseDecoding: Decoding-Aware Pruning for Accurate and Efficient LLM Inference",
+      "titleVi": "SparseDecoding: cắt tỉa mô hình dựa trên dữ liệu lúc giải mã, giải mã nhanh hơn tới 1,48 lần",
+      "summary": "SparseDecoding cắt tỉa LLM bằng cách hiệu chỉnh trên activation sinh ra trong lúc giải mã, thay vì văn bản tự nhiên có sẵn. Nhóm còn viết kernel nhân ma trận thưa với vector tối ưu cho phép N:M. Trên các mô hình Llama và Qwen, cách này vượt hiệu chỉnh văn bản cố định và giải mã nhanh hơn tới 1,48 lần trên GPU A100.",
+      "keyPoints": [
+        "Giải mã LLM bị nghẽn ở bộ nhớ; cắt tỉa giúp giảm số tham số khác không cần đọc.",
+        "Các phương pháp cũ tính Hessian trên văn bản tự nhiên, trong khi lúc giải mã mô hình nhận token do chính nó sinh ra, gây lệch phân phối.",
+        "SparseDecoding dựng ma trận hiệu chỉnh từ activation của mô hình dày khi sinh tự hồi quy, bỏ qua giai đoạn prefill.",
+        "Nhóm viết kernel nhân ma trận thưa với vector (SpMV) kiểu N:M dùng bitmask indexing và duyệt bước cố định.",
+        "Giải mã nhanh hơn tới 1,48 lần trên A100, và tốt hơn hiệu chỉnh văn bản cố định ở các bài đánh giá sinh văn bản dài."
+      ],
+      "body": [
+        "Giai đoạn giải mã của suy luận LLM bị giới hạn bởi bộ nhớ nên gây độ trễ lớn. Các phương pháp cắt tỉa từng lớp không cần huấn luyện, dẫn hướng bằng Hessian, giúp giảm số tham số khác không phải đọc từ bộ nhớ. Nhóm tác giả chỉ ra hai vấn đề. Thứ nhất, các phương pháp này tính Hessian trên chuỗi tự nhiên thu thập sẵn, trong khi lúc giải mã mô hình nhận token do chính nó sinh ra, tạo ra lệch phân phối làm giảm chất lượng mô hình đã cắt tỉa. Thứ hai, đa số phương pháp có tăng tốc thực tế chỉ nhắm đến phép nhân ma trận thưa với ma trận (SpMM), ít hỗ trợ phép nhân ma trận thưa với vector (SpMV) vốn chiếm ưu thế khi giải mã.",
+        "SparseDecoding giải quyết cả hai. Về thuật toán, nhóm dựng ma trận hiệu chỉnh từ activation từng lớp thu được khi mô hình dày sinh văn bản tự hồi quy, loại bỏ prefill, để mục tiêu cắt tỉa khớp với activation lúc giải mã. Về hệ thống, nhóm viết kernel SpMV thưa kiểu N:M dùng bitmask indexing và duyệt với bước cố định.",
+        "Thử nghiệm trên Llama-3.1-8B, Llama-3.3-70B, Qwen3-14B và Qwen3-32B cho thấy phương pháp liên tục vượt cách hiệu chỉnh bằng văn bản cố định ở các bài đánh giá sinh văn bản dài, đồng thời đạt tốc độ giải mã đầu-cuối nhanh hơn tới 1,48 lần trên GPU A100.",
+        "> Tóm tắt này chỉ dựa trên abstract của bài báo, chưa đọc toàn văn. Các số liệu do nhóm tác giả tự công bố."
+      ],
+      "glossary": [
+        {
+          "term": "Pruning (cắt tỉa)",
+          "explain": "Đặt về 0 một phần tham số của mô hình để giảm lượng dữ liệu phải đọc và tính."
+        },
+        {
+          "term": "Decoding",
+          "explain": "Giai đoạn mô hình sinh từng token trả lời, tuần tự một token mỗi lần."
+        },
+        {
+          "term": "Sparsity N:M",
+          "explain": "Kiểu thưa có cấu trúc: trong mỗi nhóm M tham số chỉ giữ N tham số khác không."
+        },
+        {
+          "term": "Prefill",
+          "explain": "Giai đoạn mô hình đọc toàn bộ prompt trước khi bắt đầu sinh token."
+        }
+      ]
+    },
+    {
+      "id": "testprism-danh-gia-test-nhieu-loi-giai",
+      "group": "research",
+      "source": "Hugging Face Papers",
+      "url": "https://arxiv.org/abs/2610.12289",
+      "discussionUrl": "https://huggingface.co/papers/2610.12289",
+      "pdfUrl": "https://arxiv.org/pdf/2610.12289",
+      "points": 40,
+      "comments": 2,
+      "publishedAt": "2026-10-07T20:00:00.000Z",
+      "readMinutes": 3,
+      "tags": [
+        "sinh test",
+        "agent lập trình",
+        "benchmark"
+      ],
+      "titleEn": "TestPrism: Rethinking Test Evaluation Beyond a Single Reference",
+      "titleVi": "TestPrism: đánh giá test do AI viết bằng nhiều lời giải, thành công chỉ còn 28% thay vì 59,67%",
+      "summary": "Đánh giá test chỉ bằng một lời giải tham chiếu có thể làm điểm cao hơn thực tế. TestPrism gồm 300 tác vụ và 3.000 lời giải ứng viên, yêu cầu test phải chấp nhận mọi lời giải đúng và loại mọi lời giải sai. Trên 14 cấu hình agent, tỷ lệ đạt chỉ 28,00% so với 59,67% khi dùng một tham chiếu.",
+      "keyPoints": [
+        "Cách đánh giá test hiện nay dựa trên một lời giải tham chiếu, bỏ qua các cách cài đặt đúng khác.",
+        "TestPrism có 300 tác vụ từ 17 nguồn và 3.000 lời giải ứng viên, chia đều đúng và sai.",
+        "Chỉ số Joint Success Function yêu cầu test fail ở trạng thái ban đầu, chấp nhận mọi lời giải đúng, loại mọi lời giải sai.",
+        "Trên 14 cấu hình agent, Joint Success Function chỉ đạt 28,00% trong khi thành công theo một tham chiếu là 59,67%.",
+        "TestHelix cải thiện chỉ số này thêm 8,67 đến 9,00 điểm phần trăm trên hai mô hình."
+      ],
+      "body": [
+        "Các agent lập trình dùng LLM đã tiến bộ trong việc sinh test. Tuy nhiên, cách đánh giá phổ biến là so test với một lời giải tham chiếu duy nhất, bỏ qua các cách cài đặt hợp lệ khác và có thể làm chất lượng test trông tốt hơn thực tế.",
+        "Nhóm giới thiệu TestPrism gồm 300 tác vụ sinh test từ 17 nguồn và 3.000 lời giải ứng viên, chia đều giữa lời giải đúng và sai. Chỉ số chính là Joint Success Function: test sinh ra phải fail ở trạng thái chương trình ban đầu, chấp nhận mọi lời giải ứng viên đúng và loại mọi lời giải ứng viên sai.",
+        "Trên mười bốn cấu hình agent lập trình làm đối chứng, Joint Success Function chỉ đạt 28,00%, trong khi tỷ lệ thành công theo một tham chiếu đạt 59,67%. Phân tích chỉ ra các lỗi như bỏ sót hành vi, khẳng định (assertion) không có cơ sở và dựng test sai.",
+        "Để khắc phục, nhóm đề xuất TestHelix, kết hợp tổng hợp không đồng nhất các cặp test và bản sửa, kiểm chéo giữa các thành phần cùng cấp và tự cải thiện đệ quy (RSI). Trên hai mô hình, TestHelix tăng Joint Success Function từ 8,67 đến 9,00 điểm phần trăm so với các harness gốc, theo đánh giá trong chính bộ TestHelix.",
+        "> Tóm tắt này chỉ dựa trên abstract của bài báo, chưa đọc toàn văn. Các số liệu do nhóm tác giả tự công bố."
+      ],
+      "glossary": [
+        {
+          "term": "Assertion",
+          "explain": "Câu lệnh trong test dùng để khẳng định kết quả mong đợi của chương trình."
+        },
+        {
+          "term": "Lời giải tham chiếu",
+          "explain": "Một cách cài đặt đúng được chọn làm chuẩn để so sánh khi đánh giá."
+        },
+        {
+          "term": "Recursive self-improvement (RSI)",
+          "explain": "Quy trình trong đó hệ thống lặp lại việc cải thiện chính mình qua nhiều vòng."
+        }
+      ]
+    },
+    {
+      "id": "supernav-robot-dieu-huong-agent",
+      "group": "research",
+      "source": "Hugging Face Papers",
+      "url": "https://arxiv.org/abs/2610.12126",
+      "discussionUrl": "https://huggingface.co/papers/2610.12126",
+      "pdfUrl": "https://arxiv.org/pdf/2610.12126",
+      "points": 85,
+      "comments": 2,
+      "publishedAt": "2026-10-07T20:00:00.000Z",
+      "readMinutes": 4,
+      "tags": [
+        "robot",
+        "điều hướng",
+        "MLLM",
+        "agent"
+      ],
+      "titleEn": "SuperNav: An Agentic Navigation System for Any Task in Any Scene",
+      "titleVi": "SuperNav: dùng MLLM làm agent điều hướng robot mà không cần fine-tune riêng cho điều hướng",
+      "summary": "SuperNav gắn một MLLM đã huấn luyện sẵn với bộ khung agent chuyên cho điều hướng, giao việc di chuyển cho các công cụ điều hướng. Mô hình chỉ lo hiểu yêu cầu, hiểu cảnh và ra quyết định. Hệ thống vượt bốn baseline và đã được triển khai trên robot bốn chân thật.",
+      "keyPoints": [
+        "Robot dịch vụ cần xử lý nhiều loại yêu cầu trong môi trường lạ.",
+        "Fine-tune MLLM để dự đoán hành động điều hướng làm hành vi phụ thuộc vào độ phủ dữ liệu huấn luyện.",
+        "SuperNav giữ nguyên MLLM, thêm harness gồm Navigation Skills, công cụ tương tác vật lý và quản lý tiến độ, ngữ cảnh.",
+        "Giao diện điểm thị giác cho phép mô hình chỉ điểm đến trực tiếp trên ảnh và sửa quyết định theo phản hồi khi thực thi.",
+        "Vượt bốn baseline ở các tác vụ theo thể hiện, nhiều vật thể và theo nhu cầu; thử trên HM3D và robot bốn chân thật."
+      ],
+      "body": [
+        "Robot dịch vụ đa dụng cần hệ thống điều hướng xử lý được nhiều yêu cầu của con người trong môi trường chưa quen. Một số phương pháp hiện có fine-tune mô hình ngôn ngữ lớn đa phương thức (MLLM) để dự đoán hành động điều hướng, khiến hành vi phụ thuộc vào độ phủ của dữ liệu huấn luyện và có thể hạn chế khả năng khái quát sang yêu cầu và môi trường mới.",
+        "Ý tưởng của nhóm là để MLLM tập trung vào việc diễn giải yêu cầu, hiểu cảnh và ra quyết định, giữ nguyên năng lực đa dụng, còn việc thực thi chuyển động giao cho các công cụ điều hướng. SuperNav trang bị cho MLLM đã huấn luyện sẵn một agent harness chuyên biệt, không fine-tune riêng cho điều hướng. Harness gồm Navigation Skills, các công cụ hướng agent để tương tác vật lý, cùng quản lý tiến độ nhiệm vụ và ngữ cảnh.",
+        "Một giao diện điểm thị giác thống nhất nối quyết định với chuyển động: mô hình chỉ định điểm đến trực tiếp trong ảnh và điều chỉnh quyết định dựa trên phản hồi từ quá trình thực thi.",
+        "SuperNav vượt bốn baseline được đánh giá ở các tác vụ theo từng thể hiện (instance), nhiều vật thể và theo nhu cầu. Đánh giá theo danh mục trên HM3D và triển khai trên robot bốn chân thật cho thấy hệ thống áp dụng được ở nhiều môi trường. Trang dự án: zju3dv.github.io/SuperNav.",
+        "> Tóm tắt này chỉ dựa trên abstract của bài báo, chưa đọc toàn văn."
+      ],
+      "glossary": [
+        {
+          "term": "MLLM",
+          "explain": "Mô hình ngôn ngữ lớn đa phương thức, hiểu được cả văn bản và hình ảnh."
+        },
+        {
+          "term": "Agent harness",
+          "explain": "Bộ khung bao quanh mô hình gồm công cụ, kỹ năng và quản lý ngữ cảnh để mô hình hành động như agent."
+        },
+        {
+          "term": "HM3D",
+          "explain": "Bộ dữ liệu cảnh 3D trong nhà dùng để đánh giá điều hướng."
+        }
+      ]
+    },
+    {
+      "id": "ouroworld-canh-3d-chuyen-dong-lap-vo-tan",
+      "group": "research",
+      "source": "Hugging Face Papers",
+      "url": "https://arxiv.org/abs/2610.12461",
+      "discussionUrl": "https://huggingface.co/papers/2610.12461",
+      "pdfUrl": "https://arxiv.org/pdf/2610.12461",
+      "points": 58,
+      "comments": 2,
+      "publishedAt": "2026-10-07T20:00:00.000Z",
+      "readMinutes": 3,
+      "tags": [
+        "3D",
+        "Gaussian Splatting",
+        "video"
+      ],
+      "titleEn": "OuroWorld: Bringing Any 3D World Alive as Diverse, Endlessly Looping 3D Cinemagraphs",
+      "titleVi": "OuroWorld: biến cảnh 3D tĩnh thành “cinemagraph 3D” chuyển động lặp liền mạch từ mọi góc nhìn",
+      "summary": "OuroWorld biến một cảnh 3D Gaussian Splatting tĩnh thành cảnh động có chuyển động đa dạng, lặp liền mạch nhìn từ mọi góc. Một mô hình ngôn ngữ thị giác suy ra chuyển động hợp lý và dẫn dắt mô hình video tạo video tham chiếu. Trên 39 cảnh, phương pháp thắng các baseline và 70,8% đến 99,0% lượt so sánh của người dùng.",
+      "keyPoints": [
+        "Các mô hình thế giới 3D hiện tạo cảnh chân thực, khám phá được nhưng đứng yên theo thời gian.",
+        "OuroWorld không cần mặt nạ, biến cảnh 3D Gaussian Splatting tĩnh thành cinemagraph 3D lặp liền mạch.",
+        "VLM suy ra chuyển động hợp lý, mô hình video tạo video tham chiếu rồi nâng lên thành video đa góc nhìn.",
+        "Inconsistency-Robust Periodic 4DGS dùng trường biến dạng chuỗi Fourier để đảm bảo lặp theo cấu trúc và Grounded Drift Field để hấp thụ sai lệch giữa các góc nhìn.",
+        "Trên 39 cảnh, vượt mọi baseline và thắng 70,8% đến 99,0% các so sánh trong khảo sát người dùng."
+      ],
+      "body": [
+        "Các mô hình thế giới 3D gần đây tạo được cảnh chân thực, có thể khám phá, nhưng cảnh vẫn đứng yên. OuroWorld là khung làm việc không cần mặt nạ, biến bất kỳ cảnh 3D Gaussian Splatting tĩnh nào thành “cinemagraph 3D”: một cảnh động có chuyển động sống động, đa dạng và lặp liền mạch khi nhìn từ mọi góc.",
+        "Quy trình bắt đầu bằng việc một mô hình ngôn ngữ thị giác suy ra các chuyển động hợp lý và dẫn dắt một mô hình video tổng hợp video tham chiếu. Video này sau đó được nâng và hoàn thiện thành video đa góc nhìn. Vì dữ liệu giám sát này không hoàn hảo, nhóm đề xuất Inconsistency-Robust Periodic 4DGS. Trường biến dạng dạng chuỗi Fourier đảm bảo vòng lặp ngay từ cấu trúc, còn Grounded Drift Field neo ở góc nhìn tham chiếu để hấp thụ sai lệch giữa các góc nhìn.",
+        "Khác với các phương pháp kiểu Euler trước đây vốn chỉ giới hạn ở chuyển động giống chất lỏng, OuroWorld nắm bắt được biến dạng tổng quát, chuyển động của vật thể và thay đổi ánh sáng. Nhóm đưa ra cách đánh giá không cần ground truth, gồm độ sống động, tính tự nhiên, độ liền mạch ở chỗ nối vòng lặp và chất lượng cảnh.",
+        "Trên 39 cảnh được tái dựng và được sinh, OuroWorld vượt mọi baseline và thắng từ 70,8% đến 99,0% số lượt so sánh trong khảo sát người dùng. Trang dự án: ouroworld.userwei.com.",
+        "> Tóm tắt này chỉ dựa trên abstract của bài báo, chưa đọc toàn văn. Các số liệu do nhóm tác giả tự công bố."
+      ],
+      "glossary": [
+        {
+          "term": "3D Gaussian Splatting",
+          "explain": "Kỹ thuật biểu diễn cảnh 3D bằng rất nhiều “đốm” Gaussian để dựng hình ảnh chân thực."
+        },
+        {
+          "term": "Cinemagraph",
+          "explain": "Hình ảnh gần như tĩnh nhưng có một phần chuyển động lặp vô tận."
+        },
+        {
+          "term": "4DGS",
+          "explain": "Gaussian Splatting thêm chiều thời gian để biểu diễn cảnh chuyển động."
+        }
+      ]
+    }
+  ]
+}

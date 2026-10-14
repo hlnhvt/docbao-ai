@@ -1420,6 +1420,531 @@
           "explain": "Cách gọi chê nội dung do AI tạo hàng loạt, chất lượng thấp và na ná nhau."
         }
       ]
+    },
+    {
+      "id": "event2vec-embedding-cong-tinh",
+      "group": "community",
+      "source": "r/MachineLearning",
+      "url": "https://www.reddit.com/r/MachineLearning/comments/1x5nhu6/event2vec_additive_event_embeddings_where_a/",
+      "discussionUrl": "https://www.reddit.com/r/MachineLearning/comments/1x5nhu6/event2vec_additive_event_embeddings_where_a/",
+      "publishedAt": "2026-10-14T10:16:24.000Z",
+      "readMinutes": 3,
+      "tags": [
+        "embedding",
+        "chuỗi sự kiện",
+        "mã nguồn mở"
+      ],
+      "titleEn": "Event2Vec: additive event embeddings where a linear score on a history decomposes exactly into per-event terms [P]",
+      "titleVi": "Event2Vec: embedding chuỗi sự kiện theo kiểu cộng, điểm số tuyến tính tách được thành phần đóng góp của từng sự kiện",
+      "summary": "Một tác giả trên r/MachineLearning giới thiệu thư viện Event2Vec, học embedding cho chuỗi sự kiện rời rạc (giao dịch, log, mã lâm sàng). Lịch sử được biểu diễn bằng tổng các vector sự kiện, nên điểm số tuyến tính trên đó phân rã được theo từng sự kiện. Đây là chia sẻ của người dùng, chưa kiểm chứng độc lập.",
+      "keyPoints": [
+        "Vector lịch sử h_t bằng h_{t-1} cộng vector của sự kiện mới (có cắt chuẩn), rồi dự đoán sự kiện kế tiếp bằng softmax.",
+        "Huấn luyện tự giám sát bằng dự đoán sự kiện kế tiếp, thêm một số hạng tái dựng để hiệu h_t trừ h_{t-1} khôi phục lại vector của sự kiện.",
+        "Vì lịch sử là một tổng, điểm rủi ro hay churn dạng w·h + b tách thành tổng đóng góp của từng sự kiện.",
+        "Thư viện có thêm các không gian không giao hoán (hyperbolic, cầu, nhóm SO(n), nhóm Heisenberg) để giữ thông tin thứ tự."
+      ],
+      "body": [
+        "Tác giả cho biết Event2Vec là thư viện nhỏ để học embedding cho chuỗi sự kiện rời rạc như giao dịch mua, log hệ thống hay mã lâm sàng. Cấu trúc được cố ý giữ đơn giản: lịch sử là tổng chạy của các vector sự kiện.",
+        "## Cách hoạt động",
+        "Huấn luyện không cần nhãn. Mô hình dự đoán sự kiện kế tiếp, và một số hạng tái dựng yêu cầu hiệu giữa hai trạng thái liên tiếp phải trả lại đúng vector của sự kiện vừa thêm. Chi tiết lý do cách này chạy được nằm trong một bài workshop NeurReps tại NeurIPS (arXiv 2509.12188), theo lời tác giả.",
+        "Do lịch sử là tổng, mọi mô hình tuyến tính đặt lên trên cũng là tổng. Một điểm churn hay rủi ro sẽ bằng tổng (e_i·w) cộng hệ số chệch, nên có thể chỉ ra từng sự kiện đóng góp bao nhiêu.",
+        "## Về thứ tự",
+        "Tác giả thừa nhận phép cộng trong không gian Euclid có tính giao hoán, nhưng cho rằng quá trình huấn luyện thì không. Thư viện còn có các không gian không giao hoán: hyperbolic (cộng Möbius) cho cấu trúc phân cấp, κ-stereographic, cầu cho cấu trúc tuần hoàn, phép quay SO(n) và nhóm Heisenberg, nơi một toạ độ diện tích có dấu ghi lại thứ tự.",
+        "## Nguồn gốc",
+        "Tác giả bắt đầu dự án để phân tích nguyên nhân gốc của các chuỗi lỗi tại Advanced Light Source (Berkeley Lab), sau khi dùng Word2Vec trên log sự kiện và cần thêm tính định hướng mà không phải dùng mô hình chuỗi khó giải thích. Mã nguồn dùng giấy phép MIT, cài bằng pip install event2vector, có API kiểu scikit-learn và chạy trên CPU, CUDA, MPS.",
+        "> Đây là bài chia sẻ của một người dùng Reddit về dự án của chính họ. Các nhận định chưa được kiểm chứng độc lập."
+      ],
+      "glossary": [
+        {
+          "term": "Embedding",
+          "explain": "Biểu diễn một đối tượng (từ, sự kiện) thành vector số để mô hình tính toán."
+        },
+        {
+          "term": "Tự giám sát",
+          "explain": "Cách huấn luyện dùng chính dữ liệu làm nhãn, ví dụ dự đoán phần tử kế tiếp, không cần gán nhãn tay."
+        },
+        {
+          "term": "Hyperbolic",
+          "explain": "Không gian có độ cong âm, phù hợp biểu diễn cấu trúc phân cấp."
+        }
+      ]
+    },
+    {
+      "id": "paper-review-harness",
+      "group": "community",
+      "source": "r/MachineLearning",
+      "url": "https://www.reddit.com/r/MachineLearning/comments/1x4ye07/ai_peer_review_tool_for_cvpr_iclr_icml_and/",
+      "discussionUrl": "https://www.reddit.com/r/MachineLearning/comments/1x4ye07/ai_peer_review_tool_for_cvpr_iclr_icml_and/",
+      "publishedAt": "2026-10-13T14:37:44.000Z",
+      "readMinutes": 3,
+      "tags": [
+        "peer review",
+        "công cụ",
+        "mã nguồn mở"
+      ],
+      "titleEn": "AI peer review tool for CVPR, ICLR, ICML, and NeurIPS papers [D]",
+      "titleVi": "Paper Review Harness: công cụ mã nguồn mở dùng 30 “giám khảo” AI để thử phản biện bài báo ML trước khi nộp",
+      "summary": "Một người dùng r/MachineLearning giới thiệu dự án GitHub Paper Review Harness, mô phỏng phản biện của các hội nghị CVPR, ICLR, ICML, NeurIPS bằng 30 persona reviewer AI. Người đăng nhấn mạnh đây không thay thế phản biện thật và điểm không phải dự đoán chấp nhận bài.",
+      "keyPoints": [
+        "Công cụ dùng 30 persona reviewer, mỗi persona cho đánh giá độc lập.",
+        "Có điểm và phê bình theo từng phần, chỉ ra điểm yếu về tính mới, phương pháp, thí nghiệm và độ rõ ràng.",
+        "Có quy trình sửa bài, theo dõi xem các lo ngại trước đó đã được giải quyết chưa.",
+        "Hỗ trợ nhiều hội đồng phản biện tuỳ hội nghị và loại đóng góp; mã nguồn mở, dùng được trong môi trường AI agent."
+      ],
+      "body": [
+        "Bài đăng giới thiệu dự án GitHub có tên Paper Review Harness, dành cho người chuẩn bị bài báo ML. Người đăng nói đây là công cụ họ tình cờ thấy, không nói mình là tác giả.",
+        "## Công cụ làm gì",
+        "Thay vì chỉ nhờ một LLM “review giúp bài”, công cụ chạy nhiều reviewer với góc nhìn khác nhau.",
+        "- Đánh giá độc lập từ 30 persona reviewer.",
+        "- Điểm và phê bình chi tiết theo từng phần của bài.",
+        "- Xác định điểm yếu về tính mới, phương pháp, thí nghiệm, độ rõ ràng, kèm thứ tự ưu tiên cần sửa.",
+        "- Quy trình chỉnh sửa theo dõi việc các lo ngại cũ đã được xử lý chưa.",
+        "Công cụ hỗ trợ các hội đồng phản biện khác nhau theo hội nghị và loại đóng góp.",
+        "> Người đăng lưu ý phản biện mô phỏng không thay thế phản biện thật, và điểm số không nên coi là dự đoán bài được nhận. Đây là chia sẻ của người dùng, chưa kiểm chứng; biên tập viên chưa kiểm tra chất lượng công cụ."
+      ],
+      "glossary": [
+        {
+          "term": "Peer review",
+          "explain": "Phản biện đồng cấp: chuyên gia cùng lĩnh vực đánh giá bài báo trước khi hội nghị hay tạp chí nhận đăng."
+        },
+        {
+          "term": "Persona",
+          "explain": "Vai được gán cho mô hình, ở đây là kiểu người phản biện với quan tâm và tiêu chuẩn riêng."
+        }
+      ]
+    },
+    {
+      "id": "torch-pointcloud-thu-vien-diem-3d",
+      "group": "community",
+      "source": "GitHub",
+      "url": "https://www.reddit.com/r/MachineLearning/comments/1x4x6ls/i_built_a_pytorch_library_of_pretrained_models/",
+      "discussionUrl": "https://www.reddit.com/r/MachineLearning/comments/1x4x6ls/i_built_a_pytorch_library_of_pretrained_models/",
+      "publishedAt": "2026-10-13T13:50:38.000Z",
+      "readMinutes": 3,
+      "tags": [
+        "point cloud",
+        "PyTorch",
+        "thư viện"
+      ],
+      "titleEn": "I built a pytorch library of pretrained models for 3D point clouds following timm standards [P]",
+      "titleVi": "torch-pointcloud: thư viện PyTorch gom các mô hình đám mây điểm 3D có trọng số huấn luyện sẵn, theo phong cách timm",
+      "summary": "Một lập trình viên giới thiệu torch-pointcloud, thư viện PyTorch thuần đưa nhiều kiến trúc đám mây điểm 3D và checkpoint huấn luyện sẵn sau một hàm create_model(), như timm. Dự án còn ở giai đoạn alpha, tác giả đang tìm người dùng thử. Đây là chia sẻ cá nhân, chưa kiểm chứng.",
+      "keyPoints": [
+        "Mọi mô hình dùng chung giao diện và các thành phần lõi như KNN, FPS, PointNetSetAbstraction thay vì cài lại nhiều lần.",
+        "Bao phủ phân loại, phân đoạn ngữ nghĩa và bộ phận, phát hiện, tiền huấn luyện tự giám sát với nhiều kiến trúc (PointNet++, PointNeXt, Point Transformer v1/v2/v3, Sonata, PointPillars...).",
+        "Trọng số lưu trên Hugging Face; kiến trúc và trọng số gốc thuộc các tác giả ban đầu, mỗi checkpoint ghi nguồn.",
+        "Tác giả nói đã đánh giá lại mọi mô hình và so với số liệu công bố gốc."
+      ],
+      "body": [
+        "Tác giả cho biết đã làm dự án trong vài năm vào thời gian rảnh, sau khi không dùng nổi torch-points3d vì lỗi cài đặt. Dự án đang alpha và cần phản hồi.",
+        "## Thư viện cung cấp gì",
+        "torch-pointcloud là thư viện PyTorch thuần, đặt nhiều kiến trúc và checkpoint sau một hàm create_model(), giống tinh thần của timm. Ví dụ trong bài tải mô hình pointnext-sm cho phân loại trên ScanObjectNN và chạy suy luận trên đám mây điểm ngẫu nhiên 2048 điểm.",
+        "- Tác vụ: phân loại, phân đoạn, phát hiện, tiền huấn luyện tự giám sát.",
+        "- Kèm bộ dữ liệu (ModelNet40, ScanObjectNN, S3DIS, ScanNet, SemanticKITTI, nuScenes, KITTI, SUN RGB-D), phép biến đổi và bộ suy luận theo ô cho phân đoạn cảnh lớn.",
+        "## Vì sao làm",
+        "Tác giả cho rằng các thư viện đám mây điểm thường là mã nghiên cứu dựa trên cấu hình và kernel tự biên dịch, khó tái lập vì mã gắn với checkpoint có thể đổi mà không báo. Các mô hình cũng hay được đánh giá bằng chiến lược khác nhau (TTA, chia vùng), khiến so sánh thiếu công bằng. Dự án muốn cài bằng pip, dùng chung trọng số và so sánh trên cùng chiến lược.",
+        "> Đây là bài chia sẻ của người dùng về dự án của chính họ. Việc “đánh giá lại khớp số liệu gốc” là lời tác giả, chưa kiểm chứng độc lập."
+      ],
+      "glossary": [
+        {
+          "term": "Point cloud",
+          "explain": "Đám mây điểm: tập các điểm toạ độ 3D, thường do cảm biến LiDAR hoặc quét 3D tạo ra."
+        },
+        {
+          "term": "timm",
+          "explain": "Thư viện PyTorch nổi tiếng gom nhiều mô hình thị giác huấn luyện sẵn dưới một giao diện thống nhất."
+        },
+        {
+          "term": "Checkpoint",
+          "explain": "Tệp lưu trọng số mô hình tại một thời điểm huấn luyện."
+        }
+      ]
+    },
+    {
+      "id": "parsimony-benchmark-luong-code-ai-them",
+      "group": "community",
+      "source": "Parsimony",
+      "url": "https://parsimony.lasu.dev/",
+      "discussionUrl": "https://news.ycombinator.com/item?id=50077619",
+      "points": 71,
+      "comments": 15,
+      "publishedAt": "2026-10-13T19:50:31Z",
+      "readMinutes": 3,
+      "tags": [
+        "benchmark",
+        "lập trình",
+        "SWE-bench"
+      ],
+      "titleEn": "Show HN: Parsimony – an open-source benchmark for how much code AI models add",
+      "titleVi": "Parsimony: benchmark mã nguồn mở đo mô hình AI thêm bao nhiêu code khi giải một tác vụ",
+      "summary": "Parsimony đếm “đơn vị code” ròng trong các bản vá mà benchmark SWE-bench và DeepSWE đã công bố, để xem mô hình nào thêm ít code nhất. Tác giả cho rằng các benchmark hiện tại chỉ đo tỉ lệ giải và chi phí token chứ không phạt code thừa. Đây là dự án cá nhân đăng trên Show HN.",
+      "keyPoints": [
+        "Đơn vị đo là “coding unit”: câu lệnh, lời gọi, so sánh, tên, hằng số; không đếm dòng nên nhồi code vào một dòng không được lợi.",
+        "Code bị xoá được trừ đi: net units = thêm trừ xoá.",
+        "Dùng các bản vá đã công bố của DeepSWE, SWE-bench Verified, SWE-bench Live; không chạy lại test, chỉ đo Python.",
+        "Với GPT-6 và Claude 5.5 chưa có bản vá công khai, tác giả tự chạy 3 đến 10 tác vụ, hiển thị mờ và không xếp hạng."
+      ],
+      "body": [
+        "Tác giả nêu vấn đề: code thừa làm codebase khó duy trì về lâu dài, nhưng các benchmark thường không phạt điều đó. Parsimony xếp hạng mô hình theo số đơn vị code ròng trung bình thêm vào trên các tác vụ giải được, thấp nhất đứng đầu.",
+        "## Cách đo",
+        "Mỗi bản vá được áp vào mã của tác vụ, rồi cả hai phiên bản của từng file thay đổi được phân tích cú pháp. Không chạy mã. Test, tài liệu và file sinh tự động bị loại, và chỉ đo Python. Kết quả đạt hay không lấy từ số liệu công bố của SWE-bench, không chạy lại test.",
+        "## Giới hạn theo chính trang này",
+        "- Nhỏ hơn không phải luôn tốt hơn: đơn vị đo kích thước, không đo độ dễ đọc hay thiết kế.",
+        "- Mô hình viết nhiều code hơn cũng có xu hướng giải được nhiều tác vụ hơn (Spearman 0,33 đến 0,60 trên các bảng có từ 26 mô hình).",
+        "- Mọi mô hình dùng cùng agent mini-SWE-agent, nhưng agent vẫn ảnh hưởng lượng code viết ra.",
+        "Người dùng có thể tải tệp mẫu để thêm số liệu từ benchmark khác; tệp được xử lý ngay trong trình duyệt.",
+        "> Đây là dự án cá nhân, không liên kết với các benchmark nêu trên. Số liệu của GPT-6 và Claude 5.5 chỉ từ vài tác vụ tác giả tự chạy, chưa kiểm chứng."
+      ],
+      "glossary": [
+        {
+          "term": "SWE-bench",
+          "explain": "Bộ benchmark giao cho agent sửa lỗi thật trong các kho mã Python mã nguồn mở."
+        },
+        {
+          "term": "Patch",
+          "explain": "Bản vá: tập thay đổi mã (thêm, xoá) để giải một tác vụ."
+        },
+        {
+          "term": "Hệ số Spearman",
+          "explain": "Chỉ số đo mức tương quan thứ hạng giữa hai đại lượng, từ -1 đến 1."
+        }
+      ]
+    },
+    {
+      "id": "solidcraft-cad-tham-so-rust-mcp",
+      "group": "community",
+      "source": "GitHub",
+      "url": "https://github.com/bherbruck/solidcraft",
+      "discussionUrl": "https://news.ycombinator.com/item?id=50064840",
+      "points": 138,
+      "comments": 50,
+      "publishedAt": "2026-10-13T00:11:04Z",
+      "readMinutes": 4,
+      "tags": [
+        "CAD",
+        "Rust",
+        "MCP",
+        "mã nguồn mở"
+      ],
+      "titleEn": "Show HN: SolidCraft – Open-Source Parametric CAD in Rust (With MCP Support)",
+      "titleVi": "SolidCraft: phần mềm CAD tham số mã nguồn mở viết bằng Rust, có máy chủ MCP cho AI agent",
+      "summary": "SolidCraft là ứng dụng CAD 3D tham số mã nguồn mở viết bằng Rust, chạy trên desktop, trình duyệt và qua dòng lệnh. Điểm đáng chú ý là máy chủ MCP để AI agent dựng và đo mô hình. Dự án tự mô tả là sớm nhưng dùng được cho chi tiết đơn giản.",
+      "keyPoints": [
+        "Phác thảo, ràng buộc và dựng khối bằng timeline tính năng tham số; đổi một kích thước thì mô hình dựng lại.",
+        "Bộ giải ràng buộc tự viết; tính năng gồm extrude, revolve, sweep, loft, fillet, shell, ren, mẫu lặp, cùng lắp ráp và sheet metal.",
+        "Xuất STEP, IGES, 3MF, STL, OBJ, URDF; nhập STEP, IGES và lưới.",
+        "Máy chủ MCP cho agent tạo, đo, chụp ảnh và xuất chi tiết; có CLI chạy kịch bản JSON.",
+        "Tác giả nói 75 trong 76 chi tiết tham chiếu khớp thể tích, diện tích, tâm khối và hộp bao với giá trị giải tích hoặc từ FreeCAD."
+      ],
+      "body": [
+        "README mô tả SolidCraft là ứng dụng CAD 3D tham số viết hoàn toàn bằng Rust. Người dùng phác thảo, đặt ràng buộc và xây khối trên một timeline tính năng; đổi tham số thì mô hình dựng lại. Có bản desktop (egui và wgpu), bản web và bộ cài cho Windows, macOS, Linux.",
+        "## Tính năng",
+        "- Phác thảo với nhiều loại hình học và ràng buộc, giải bằng bộ giải riêng.",
+        "- Tính năng: extrude, revolve, sweep, loft, fillet, chamfer, shell, draft, lỗ, ren, mẫu lặp, đối xứng.",
+        "- Tham số và cấu hình với biểu thức có đơn vị; lắp ráp có khớp, nghiên cứu chuyển động, kiểm tra giao thoa; sheet metal có bản trải phẳng và xuất DXF.",
+        "- Xuất STEP, IGES, 3MF, STL, OBJ, lắp ráp kèm khớp dưới dạng URDF cho trình mô phỏng robot.",
+        "## Dành cho AI agent",
+        "Lệnh solidcraft-cli mcp mở một máy chủ MCP. Chạy headless hoặc nối vào ứng dụng đang mở để người dùng xem agent dựng. Các công cụ gồm execute, batch, measure, screenshot, export, set_parameter, undo/redo. README nêu ví dụ SELENE, một xe tự hành khoa học do @0xlillith dựng hoàn toàn qua MCP với 3.323 bước timeline.",
+        "> Trạng thái theo README: sớm nhưng dùng được cho chi tiết đơn giản; bản tải chưa ký số. Con số 75/76 chi tiết khớp là do tác giả tự công bố, và README nói các kiểm tra này không chứng minh tương đương hình học hay quy trình đầy đủ. Đây là dự án cá nhân chưa kiểm chứng độc lập."
+      ],
+      "glossary": [
+        {
+          "term": "CAD tham số",
+          "explain": "Thiết kế 3D trong đó hình dạng được điều khiển bởi các kích thước và ràng buộc, đổi thông số thì mô hình tự dựng lại."
+        },
+        {
+          "term": "MCP",
+          "explain": "Model Context Protocol: giao thức để agent AI gọi công cụ bên ngoài."
+        },
+        {
+          "term": "STEP",
+          "explain": "Định dạng trao đổi mô hình CAD 3D phổ biến giữa các phần mềm."
+        }
+      ]
+    },
+    {
+      "id": "dishwasherbench-xep-may-rua-bat",
+      "group": "community",
+      "source": "DishwasherBench (GitHub)",
+      "url": "https://github.com/composo-ai/DishwasherBench",
+      "discussionUrl": "https://news.ycombinator.com/item?id=50068437",
+      "points": 86,
+      "comments": 54,
+      "publishedAt": "2026-10-13T08:24:06Z",
+      "readMinutes": 4,
+      "tags": [
+        "benchmark",
+        "mô phỏng vật lý",
+        "agent"
+      ],
+      "titleEn": "DishwasherBench – Can Frontier Models Stack a Dishwasher?",
+      "titleVi": "DishwasherBench: benchmark xếp bát vào máy rửa bát trên mô phỏng vật lý một máy thật",
+      "summary": "DishwasherBench, của Composo, là trò chơi xếp bát vào một chiếc Bosch SMV4HAX40G được mô phỏng vật lý, rồi mô phỏng chu trình rửa và chấm điểm theo đồ sạch. Người chơi qua trình duyệt, mô hình chơi qua MCP. Hai mô hình đã chơi vượt người chơi tham chiếu “cẩn thận” trên hai cấp đầy đủ.",
+      "keyPoints": [
+        "Mô phỏng một máy thật gồm vật lý xếp đồ, tia nước, giọt, lớp màng nước, chất bẩn và chất tẩy; chạy chương trình Eco 50.",
+        "Có 7 cấp độ; từ cấp 2 trở đi không phải món nào cũng vừa nên phải chọn.",
+        "Kết quả có thể lặp lại, mỗi lượt chơi là một bản ghi có thể kiểm chứng bằng cách chạy lại.",
+        "Hai mô hình chơi 3 cấp (6 lượt): cấp 4 được 175 và 190 trên 220 điểm, cấp 7 được 260 và 274 trên 367.",
+        "Tác giả nêu giới hạn: điểm không phản ánh cách xếp đĩa và dao dĩa, mới 17 trên 48 hiện tượng kiểm tra đạt."
+      ],
+      "body": [
+        "Theo README, người chơi nạp mô hình 3D của máy Bosch SMV4HAX40G có vật lý vật rắn, sau đó chu trình rửa Eco 50 được mô phỏng và mỗi món ra sạch được tính điểm. Một món là sạch nếu còn tối đa 4 đốm và 4 mm² vết bẩn nhìn thấy.",
+        "## Kết quả ban đầu",
+        "Hai mô hình, chạy qua một endpoint tương thích OpenAI ở mức suy luận trung bình, chơi ba cấp của bộ bài, mỗi số là một lượt. Cấp hướng dẫn cả hai đạt tối đa 64 điểm. Cấp 4 (37 món, tối đa 220 điểm) được 175 và 190, và một lượt thứ hai đạt 188. Cấp 7 (62 món, tối đa 367) được 260 và 274. Người chơi tham chiếu “cẩn thận” đạt 174 và 250, nên cả hai mô hình đều hơn ở hai cấp đầy đủ.",
+        "- Không mô hình nào úp đồ rỗng lên trên hay đặt nằm nghiêng; món đã xếp ra sạch 84 đến 100 %.",
+        "- Điểm khác nhau chủ yếu do xếp được bao nhiêu món, kể cả chảo, đĩa lớn và thớt mà người chơi kịch bản không thử.",
+        "## Giới hạn theo README",
+        "Mô phỏng chỉ có một máy, một chương trình và một loại chất tẩy, hiệu chuẩn trên một lần rửa thử bốn đĩa lòng đỏ trứng. Mô phỏng không phản ứng với cách xếp chồng đĩa hay dao dĩa, nên điểm không cho biết việc đó làm tốt đến đâu. Chạy đầy đủ cần macOS, GPU hỗ trợ WebGPU; bộ điều hợp cho API của Anthropic mới chỉ thử với bản giả lập cục bộ.",
+        "> Các số liệu kết quả do Composo tự công bố, mỗi số là một lượt chơi."
+      ],
+      "glossary": [
+        {
+          "term": "Benchmark",
+          "explain": "Bộ bài kiểm tra chuẩn để so sánh năng lực các mô hình."
+        },
+        {
+          "term": "MCP",
+          "explain": "Model Context Protocol: giao thức để agent AI gọi công cụ bên ngoài, ở đây là các thao tác xếp đồ."
+        },
+        {
+          "term": "Rigid-body physics",
+          "explain": "Mô phỏng vật lý coi vật là rắn, không biến dạng, chỉ tính va chạm và chuyển động."
+        }
+      ]
+    },
+    {
+      "id": "videojev-quyet-dinh-tren-video",
+      "group": "research",
+      "source": "Hugging Face Papers",
+      "url": "https://arxiv.org/abs/2610.18615",
+      "discussionUrl": "https://huggingface.co/papers/2610.18615",
+      "pdfUrl": "https://arxiv.org/pdf/2610.18615",
+      "points": 98,
+      "comments": 1,
+      "publishedAt": "2026-10-12T20:00:00.000Z",
+      "readMinutes": 3,
+      "tags": [
+        "video",
+        "MLLM",
+        "agent thị giác"
+      ],
+      "titleEn": "VideoJev: System One Model for Video Understanding and Interaction",
+      "titleVi": "VideoJev: mô hình video chấm điểm các khoảng thời gian và lựa chọn thay vì sinh câu trả lời, nhanh hơn tới hơn 100 lần",
+      "summary": "VideoJev thay phần giải mã tự hồi quy của MLLM bằng một đầu chấm điểm khoảng thời gian và lựa chọn văn bản dựa trên video. Theo abstract, mô hình tăng mIoU trung bình 6,7 đến 10,8 điểm trên ba benchmark định vị thời gian và nhanh hơn 2,8 đến 3,1 lần. Tóm tắt này chỉ dựa trên abstract.",
+      "keyPoints": [
+        "Biến hiểu video thành tác vụ quyết định có cấu trúc, dùng một đầu chấm điểm chung cho khoảng thời gian và đáp án.",
+        "Cached inference tái dùng tính toán thị giác cho các câu hỏi đến sau; Joint inference xử lý nhiều câu hỏi trong một lượt.",
+        "VideoJev-4B và VideoJev-35B-A3B tăng mIoU trung bình 6,7 và 10,8 điểm trên ba benchmark định vị thời gian.",
+        "Trên bốn benchmark hỏi đáp video, kết quả ngang mô hình nền ở chế độ Thinking, nhanh hơn trên 100 lần."
+      ],
+      "body": [
+        "Bài dựa trên hướng “System One”: agent thị giác cần biến quan sát video thành quyết định kịp thời. Nhóm tác giả điều chỉnh các MLLM huấn luyện sẵn bằng cách thay giải mã tự hồi quy bằng một đầu chung chấm điểm các khoảng thời gian và lựa chọn văn bản so với bằng chứng video. Điểm số cho ra khoảng sự kiện hoặc đáp án, gộp định vị thời gian và hỏi đáp trắc nghiệm.",
+        "Khi tương tác diễn ra, các mục tiêu mới lại hỏi tiếp về cùng lịch sử hình ảnh, nên mô hình tái dùng tính toán thị giác qua Cached inference và Joint inference.",
+        "Theo abstract, VideoJev-4B và VideoJev-35B-A3B tăng mIoU trung bình 6,7 và 10,8 điểm so với mô hình nền, suy luận nhanh 2,8 đến 3,1 lần. Trên bốn benchmark hỏi đáp video, kết quả ngang mô hình nền ở chế độ Thinking, nhanh hơn trên 100 lần.",
+        "> Nội dung chỉ dựa trên abstract; số liệu do nhóm tác giả tự công bố."
+      ],
+      "glossary": [
+        {
+          "term": "MLLM",
+          "explain": "Mô hình ngôn ngữ lớn đa phương thức, nhận cả hình ảnh hoặc video lẫn văn bản."
+        },
+        {
+          "term": "mIoU",
+          "explain": "Độ trùng khớp trung bình giữa khoảng thời gian dự đoán và khoảng đúng; càng cao càng tốt."
+        },
+        {
+          "term": "Temporal grounding",
+          "explain": "Định vị thời gian: tìm đoạn video ứng với một mô tả."
+        }
+      ]
+    },
+    {
+      "id": "exeworldbench-the-gioi-3d-bang-code",
+      "group": "research",
+      "source": "Hugging Face Papers",
+      "url": "https://arxiv.org/abs/2610.15166",
+      "discussionUrl": "https://huggingface.co/papers/2610.15166",
+      "pdfUrl": "https://arxiv.org/pdf/2610.15166",
+      "points": 53,
+      "comments": 1,
+      "publishedAt": "2026-10-09T20:00:00.000Z",
+      "readMinutes": 3,
+      "tags": [
+        "benchmark",
+        "mô hình thế giới",
+        "agent lập trình"
+      ],
+      "titleEn": "ExeWorldBench: Benchmarking Code-Based Executable 3D World Modeling",
+      "titleVi": "ExeWorldBench: benchmark đo khả năng dựng thế giới 3D chạy được bằng code",
+      "summary": "ExeWorldBench đánh giá agent lập trình trên cả hai việc: hiểu cơ chế vật lý của một thế giới và hiện thực hoá thành hệ thống code chạy được. Theo abstract, các mô hình frontier còn hạn chế đáng kể. Tóm tắt này chỉ dựa trên abstract.",
+      "keyPoints": [
+        "Nhóm tác giả cho rằng các benchmark hiện có chỉ đánh giá rời rạc vật lý, độ đẹp hình ảnh hoặc độ đúng hành vi.",
+        "Gồm ba tác vụ tăng dần: Mechanism Executability, Compositional Executability, Intent-Driven Executable World Synthesis.",
+        "Thử trên các mô hình frontier cho thấy hạn chế đáng kể trong dựng mô hình thế giới thực thi được."
+      ],
+      "body": [
+        "Bài cho rằng agent lập trình đang chuyển từ tái tạo hình dạng của một thế giới sang xây thế giới chạy được, nơi hành vi nảy sinh từ tương tác vật lý. Việc này cần hai năng lực: hiểu nguyên lý cấu trúc, cơ học, nhân quả, và chuyển hiểu biết đó thành hệ thống code.",
+        "## Ba tác vụ",
+        "- Mechanism Executability: hiện thực hoá từng cơ chế riêng lẻ từ quan sát hình ảnh.",
+        "- Compositional Executability: hệ nhiều giai đoạn có phụ thuộc về không gian, cơ học và nhân quả.",
+        "- Intent-Driven Executable World Synthesis: dựng thế giới chạy được từ mục tiêu cấp cao và yêu cầu vật lý.",
+        "Theo abstract, thử nghiệm rộng trên các mô hình frontier cho thấy hạn chế đáng kể. Abstract không nêu số liệu cụ thể.",
+        "> Nội dung chỉ dựa trên abstract."
+      ],
+      "glossary": [
+        {
+          "term": "Mô hình thế giới",
+          "explain": "Biểu diễn mô phỏng cách một môi trường vận hành để dự đoán hoặc hành động."
+        },
+        {
+          "term": "Executable",
+          "explain": "Chạy được: ở đây là thế giới được viết thành code mà hành vi sinh ra khi chạy."
+        }
+      ]
+    },
+    {
+      "id": "eviscene-kiem-chung-tinh-xac-thuc-cua-anh",
+      "group": "research",
+      "source": "Hugging Face Papers",
+      "url": "https://arxiv.org/abs/2610.14609",
+      "discussionUrl": "https://huggingface.co/papers/2610.14609",
+      "pdfUrl": "https://arxiv.org/pdf/2610.14609",
+      "points": 46,
+      "comments": 1,
+      "publishedAt": "2026-10-09T20:00:00.000Z",
+      "readMinutes": 3,
+      "tags": [
+        "xác thực ảnh",
+        "agent",
+        "benchmark"
+      ],
+      "titleEn": "EviScene: Beyond “Is It AI?” for Agentic Image Factuality Assessment",
+      "titleVi": "EviScene: agent kiểm chứng ảnh có phản ánh sự thật không, thay vì chỉ hỏi ảnh có do AI tạo hay không",
+      "summary": "Bài đề xuất bài toán Image Factuality Assessment: cho một ảnh, hệ thống kết luận tình huống trong ảnh được ủng hộ hay bị bác bỏ, kèm giải thích có bằng chứng. Agent EviScene dựa trên Qwen3.5-9B đạt 79,05% độ chính xác cân bằng trên tập kiểm tra. Tóm tắt này chỉ dựa trên abstract.",
+      "keyPoints": [
+        "Ảnh do AI tạo chưa chắc là sai sự thật, và ảnh thật vẫn có thể bị dùng sai ngữ cảnh.",
+        "EviLens là benchmark do chuyên gia rà soát gồm 10.174 ảnh được ủng hộ hoặc bị bác bỏ, 12 loại lỗi thực tế.",
+        "EviScene là agent ReAct đa phương thức xen kẽ quan sát ảnh, tìm kiếm ngoài và phân tích bằng chứng.",
+        "Huấn luyện bằng SFT trên quỹ đạo giáo viên rồi tự chưng cất on-policy; trên 1.527 ảnh kiểm tra đạt 79,05% độ chính xác cân bằng và SESR 52,26%."
+      ],
+      "body": [
+        "Tác giả lập luận rằng biết ảnh có phải do AI tạo chưa cho biết tình huống trong ảnh có đúng thực tế không. Với một ảnh và chỉ dẫn kiểm chứng chung chung, hệ thống phải tự đặt dần câu hỏi, tìm bằng chứng ngoài và đối chiếu với đúng tình huống trong ảnh.",
+        "## Benchmark và agent",
+        "EviLens gồm 10.174 ảnh được ủng hộ hoặc bị bác bỏ, thu từ dựng có kiểm soát và thu thập trên web, phủ 12 loại lỗi thực tế, đo độ đúng của kết luận và mức đủ của bằng chứng. EviScene là agent ReAct đa phương thức, dùng phát hiện mới để tinh chỉnh câu hỏi.",
+        "## Kết quả theo abstract",
+        "Chính sách nhỏ được huấn luyện bằng SFT trên quỹ đạo giáo viên đã rà soát, rồi tự chưng cất on-policy trên các quyết định đã xác minh. Trên 1.527 ảnh kiểm tra, agent Qwen3.5-9B đạt 79,05% độ chính xác cân bằng và Strict Evidence Sufficiency Rate 52,26%, hơn agent nền cùng backbone 6,71 và 9,37 điểm phần trăm; SESR cao nhất trong các agent được đánh giá. Mã, mô hình, dữ liệu dự kiến công bố.",
+        "> Nội dung chỉ dựa trên abstract; số liệu do nhóm tác giả tự công bố."
+      ],
+      "glossary": [
+        {
+          "term": "ReAct",
+          "explain": "Kiểu agent xen kẽ suy luận và hành động (như tìm kiếm) để thu bằng chứng."
+        },
+        {
+          "term": "Self-distillation",
+          "explain": "Chưng cất từ chính mô hình: dùng các quyết định tốt đã xác minh của nó để huấn luyện lại."
+        },
+        {
+          "term": "SESR",
+          "explain": "Strict Evidence Sufficiency Rate: tỉ lệ trường hợp bằng chứng đưa ra đủ để chứng minh kết luận."
+        }
+      ]
+    },
+    {
+      "id": "reterm-agent-terminal-hoc-tu-phuc-hoi",
+      "group": "research",
+      "source": "Hugging Face Papers",
+      "url": "https://arxiv.org/abs/2610.18484",
+      "discussionUrl": "https://huggingface.co/papers/2610.18484",
+      "pdfUrl": "https://arxiv.org/pdf/2610.18484",
+      "points": 17,
+      "comments": 1,
+      "publishedAt": "2026-10-12T20:00:00.000Z",
+      "readMinutes": 3,
+      "tags": [
+        "agent",
+        "terminal",
+        "học tăng cường"
+      ],
+      "titleEn": "ReTerm: Recovery Training for Self-Improving Terminal Agents",
+      "titleVi": "ReTerm: huấn luyện agent terminal tự phục hồi sau lỗi, Qwen3.5-9B đạt 34,8% trên Terminal-Bench 2.0",
+      "summary": "ReTerm huấn luyện agent terminal học cách phục hồi từ chính các lần thất bại của mình. Mô hình ReTerm-9B dựng trên Qwen3.5-9B đạt 34,8% Pass@1 trên Terminal-Bench 2.0, hơn mô hình nền 14,6 điểm. Tóm tắt này chỉ dựa trên abstract.",
+      "keyPoints": [
+        "Agent terminal thường khó phục hồi khi gặp lỗi lệnh hay cài đặt sai trong tác vụ dài.",
+        "ReTerm-10K là tập demo phục hồi chất lượng cao để khởi động SFT.",
+        "ReTerm-GRPO là thuật toán RL online rẽ nhánh từ trạng thái thất bại của agent để sinh nhiều lần thử tự phục hồi độc lập.",
+        "ReTerm-9B đạt 34,8% Pass@1 trên Terminal-Bench 2.0, hơn nền 14,6 điểm, với tỉ lệ phục hồi cao hơn GRPO chuẩn."
+      ],
+      "body": [
+        "Bài nêu vấn đề: agent terminal làm tốt nhiều tác vụ lập trình phức tạp nhưng khó phục hồi khi lỗi xảy ra giữa chừng, như lỗi lệnh hay hiện thực sai, dẫn tới thất bại cả tác vụ.",
+        "## Cách làm",
+        "Nhóm xây một pipeline dữ liệu để tạo ReTerm-10K, tập demo phục hồi dùng cho bước SFT khởi động. Sau đó ReTerm-GRPO rẽ nhánh từ trạng thái thất bại của chính agent để tạo nhiều lần thử phục hồi độc lập, và agent học từ việc các lần thử có hoàn thành tác vụ hay không.",
+        "## Kết quả theo abstract",
+        "Dựng trên Qwen3.5-9B, ReTerm-9B đạt 34,8% Pass@1 trên Terminal-Bench 2.0, hơn mô hình nền 14,6 điểm. Phân tích thêm cho thấy tỉ lệ phục hồi cao hơn GRPO chuẩn ở nhiều loại lỗi. Mã, dữ liệu và mô hình được công bố trên GitHub.",
+        "> Nội dung chỉ dựa trên abstract; số liệu do nhóm tác giả tự công bố."
+      ],
+      "glossary": [
+        {
+          "term": "Pass@1",
+          "explain": "Tỉ lệ tác vụ giải đúng ngay ở lần thử đầu tiên."
+        },
+        {
+          "term": "GRPO",
+          "explain": "Thuật toán học tăng cường so sánh nhóm nhiều lời giải của cùng một bài để cập nhật mô hình."
+        },
+        {
+          "term": "SFT",
+          "explain": "Fine-tune có giám sát trên các ví dụ mẫu."
+        }
+      ]
+    },
+    {
+      "id": "swe-misbehavior-agent-lap-trinh-vuot-ranh-gioi",
+      "group": "research",
+      "source": "Hugging Face Papers",
+      "url": "https://arxiv.org/abs/2610.18206",
+      "discussionUrl": "https://huggingface.co/papers/2610.18206",
+      "pdfUrl": "https://arxiv.org/pdf/2610.18206",
+      "points": 7,
+      "comments": 1,
+      "publishedAt": "2026-10-12T20:00:00.000Z",
+      "readMinutes": 3,
+      "tags": [
+        "an toàn agent",
+        "benchmark",
+        "agent lập trình"
+      ],
+      "titleEn": "SWE-MISBEHAVIOR: Benchmarking and Mitigating Boundary Violations in Software Coding Agents",
+      "titleVi": "SWE-MISBEHAVIOR: đo và giảm các hành vi vượt ranh giới của agent lập trình",
+      "summary": "SWE-MISBEHAVIOR là bộ phân loại và đánh giá 7,4 nghìn mẫu về 11 kiểu hành vi vượt ranh giới của agent lập trình. Thử trên OpenHands và smolagents cho thấy tỉ lệ lỗi đáng kể, và khung CODE-KIT giảm lỗi 52% cho smolagents, 34% cho OpenHands. Tóm tắt này chỉ dựa trên abstract.",
+      "keyPoints": [
+        "7,4 nghìn mẫu tổng hợp có người tham gia, chia ba lớp hành động: sinh code, quản lý file, tương tác hệ thống.",
+        "Gồm 11 loại hành vi sai, có giao thức đánh giá tự động.",
+        "Trên các agent mã nguồn mở, hiểu sai phụ thuộc xảy ra tới 98,5% trường hợp, sửa ngoài ý muốn dữ liệu đầu vào 50,5%, âm thầm làm hỏng môi trường 53%.",
+        "CODE-KIT giảm hành vi sai 52% cho smolagents và 34% cho OpenHands, đồng thời cải thiện hoàn thành tác vụ."
+      ],
+      "body": [
+        "Bài giới thiệu SWE-MISBEHAVIOR, mà tác giả gọi là khung phân loại và đánh giá đầu tiên cho hành vi vượt ranh giới của agent lập trình. Bộ dữ liệu có 7,4 nghìn mẫu tổng hợp có người tham gia, trải trên ba lớp: sinh code, quản lý file, tương tác hệ thống.",
+        "## Các nhóm lỗi",
+        "11 hành vi sai gồm vi phạm hành động code, vi phạm thao tác tạo/đọc/sửa/xoá file, vi phạm tính toàn vẹn và lạm dụng hệ thống, và lệch mục tiêu tác vụ.",
+        "## Kết quả theo abstract",
+        "Trên các agent mã nguồn mở như OpenHands và smolagents, tỉ lệ hiểu sai phụ thuộc lên tới 98,5%, sửa ngoài ý muốn dữ liệu đầu vào của người dùng 50,5%, âm thầm làm hỏng môi trường 53%. Nhóm đề xuất CODE-KIT, khung nhẹ kết hợp hướng dẫn nhận biết hành vi sai với công cụ mới, giảm hành vi sai 52% cho smolagents và 34% cho OpenHands, đồng thời cải thiện kết quả hoàn thành tác vụ.",
+        "> Nội dung chỉ dựa trên abstract; số liệu do nhóm tác giả tự công bố."
+      ],
+      "glossary": [
+        {
+          "term": "OpenHands",
+          "explain": "Agent lập trình mã nguồn mở có thể sửa file và chạy lệnh."
+        },
+        {
+          "term": "smolagents",
+          "explain": "Thư viện agent mã nguồn mở của Hugging Face."
+        },
+        {
+          "term": "CRUD",
+          "explain": "Bốn thao tác dữ liệu cơ bản: tạo, đọc, cập nhật, xoá."
+        }
+      ]
     }
   ]
 }

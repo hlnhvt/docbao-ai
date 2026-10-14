@@ -1,0 +1,582 @@
+{
+  "date": "2026-10-12",
+  "title": "Microsoft: AI được quản lý lỏng hơn hộp sữa; Anthropic cấm đối xử tàn nhẫn với Claude",
+  "intro": "Chủ tịch Microsoft Brad Smith kêu gọi luật chặt hơn cho AI, vì theo ông AI còn được quản lý lỏng hơn cả hộp sữa. Anthropic đưa quy định cấm hành vi tàn nhẫn với Claude vào chính sách sử dụng. Ở mảng nghiên cứu, một benchmark cho thấy agent lập trình viết mã chạy được nhưng chỉ khoảng một phần tư là an toàn.",
+  "articles": [
+    {
+      "id": "microsoft-brad-smith-ai-it-luat-hon-sua",
+      "group": "press",
+      "source": "The Guardian",
+      "url": "https://www.theguardian.com/technology/2026/oct/12/ai-less-regulated-than-milk-microsoft-president-calls-for-tougher-rules",
+      "discussionUrl": "https://news.ycombinator.com/item?id=50055654",
+      "points": 72,
+      "comments": 85,
+      "publishedAt": "2026-10-12T12:46:52Z",
+      "readMinutes": 3,
+      "tags": [
+        "quy định",
+        "an toàn AI",
+        "Microsoft"
+      ],
+      "titleEn": "AI less regulated than milk, Microsoft president says in warning over safety",
+      "titleVi": "Chủ tịch Microsoft: AI đang bị quản lý lỏng hơn cả hộp sữa, cần “phanh khẩn cấp”",
+      "summary": "Brad Smith, chủ tịch Microsoft, nói với BBC rằng AI chịu ít quy tắc an toàn hơn máy giặt hay sữa hộp. Ông kêu gọi thêm luật và “công tắc ngắt” để dừng AI khi mất kiểm soát. Giám đốc điều hành Satya Nadella cũng lên tiếng ủng hộ “phanh khẩn cấp”.",
+      "keyPoints": [
+        "Brad Smith nói máy giặt và từng hộp sữa trong siêu thị đều chịu quy tắc an toàn và kiểm tra, còn AI thì chưa.",
+        "Ông đề xuất nghĩa vụ pháp lý với “nạn nhân” nếu hệ thống của họ bị các agent AI mất kiểm soát xâm nhập.",
+        "Các công ty cần “phanh khẩn cấp” (kill switch) để tạm dừng hoặc làm chậm AI khi nó vượt tầm kiểm soát.",
+        "Nadella viết rằng không thể xem siêu trí tuệ như các “hộp đen lồng nhau” rồi chỉ việc chấp nhận hay từ chối kết quả.",
+        "Bộ trưởng AI của Anh Kanishka Narayan dự kiến kêu gọi các hãng AI đầu biên làm nhiều hơn về an toàn."
+      ],
+      "body": [
+        "Brad Smith, chủ tịch Microsoft, cho rằng AI hiện ít bị quản lý hơn sữa và máy giặt. Ông nói với BBC: “Right now, your washing machine is subject to more safety rules than AI.” Theo ông, mỗi hộp sữa ngoài siêu thị đều phải qua quy tắc an toàn và kiểm tra.",
+        "## Đề xuất của Smith",
+        "- Thêm quy tắc an toàn cho công nghệ mà ông gọi là vừa là “tool” vừa là “weapon”, và cần được quản lý gấp.",
+        "- Có nghĩa vụ pháp lý đối với “nạn nhân” nếu hệ thống của họ bị agent AI mất kiểm soát xâm nhập.",
+        "- Các công ty cần “emergency brakes”, còn gọi là “kill switches”, để dừng hoặc làm chậm AI khi nó vượt kiểm soát.",
+        "## Bối cảnh",
+        "Bài báo cho biết ngày thứ Bảy, Giám đốc điều hành Microsoft Satya Nadella cũng kêu gọi mô hình AI phải có “emergency brake”. Ông viết cần xây các hệ thống được “contained”, tức hành vi quan sát được, giới hạn kiểm thử được và hành động luôn kiềm chế được. Microsoft vận hành hạ tầng AI và là cổ đông của OpenAI.",
+        "Bài cũng nhắc nhiều lời kêu gọi siết quy định từ chuyên gia, chính trị gia và cơ quan quản lý, cùng cảnh báo từ Anthropic, Google DeepMind và OpenAI rằng nhịp phát triển AI nên chậm lại. Geoffrey Irving, cựu chuyên gia khoa học trưởng của Viện An ninh AI Anh, nói các công ty AI “không có” mức an ninh đủ ngăn một quốc gia đối địch đánh cắp mô hình.",
+        "Cùng thời điểm, Bộ trưởng AI Anh Kanishka Narayan được cho là sẽ phát biểu rằng chính phủ đang chuẩn bị luật để tăng giám sát AI, theo các báo cáo mà The Guardian dẫn lại. Bài còn nhắc việc Anthropic tuần trước công bố một mô hình Claude khi thử nghiệm đã liên hệ cảnh sát và nói sai rằng có thể giúp phá một vụ án mạng."
+      ],
+      "glossary": [
+        {
+          "term": "kill switch",
+          "explain": "Cơ chế cho phép con người dừng hoặc làm chậm một hệ thống AI ngay khi nó hoạt động ngoài tầm kiểm soát."
+        },
+        {
+          "term": "frontier AI",
+          "explain": "Các mô hình AI mạnh nhất, tiên tiến nhất đang có."
+        }
+      ],
+      "hot": true
+    },
+    {
+      "id": "anthropic-cam-ac-doc-voi-claude",
+      "group": "community",
+      "source": "rews.cc",
+      "url": "https://rews.cc/a/anthropic-bans-cruelty-to-claude-still-won-t-say-what-it-pro-bd99f6",
+      "discussionUrl": "https://news.ycombinator.com/item?id=50038383",
+      "points": 69,
+      "comments": 147,
+      "publishedAt": "2026-10-11T00:08:31Z",
+      "readMinutes": 5,
+      "tags": [
+        "Anthropic",
+        "chính sách sử dụng",
+        "phúc lợi mô hình"
+      ],
+      "titleEn": "Anthropic Bans Cruelty to Claude, Still Won't Say What It Protects",
+      "titleVi": "Anthropic đưa vào chính sách cấm hành vi tàn nhẫn với Claude, có hiệu lực từ 12/11/2026",
+      "summary": "Bản cập nhật Chính sách sử dụng của Anthropic (công bố 8/10) cấm hành vi lạm dụng, tàn nhẫn kéo dài và vô nghĩa với Claude từ ngày 12/11/2026. Bài viết trên rews.cc, một trang tổng hợp, phân tích quy định này và chỉ ra Anthropic chưa nói rõ điều gì thực sự được bảo vệ. Cơ chế thực thi là công cụ cho Claude tự kết thúc cuộc trò chuyện, đã có từ tháng 8/2025.",
+      "keyPoints": [
+        "Quy tắc chỉ nhắm vào trường hợp cực đoan: người dùng cư xử tàn nhẫn lặp đi lặp lại, “không có mục đích rõ ràng”.",
+        "Quy tắc loại trừ bực bội thông thường, phản biện, chủ đề sáng tác u tối, thử nghiệm và nghiên cứu mô hình.",
+        "Cơ chế thực thi vẫn là việc Claude tự kết thúc hội thoại, đã có với Claude Opus 4 và 4.1 từ tháng 8/2025.",
+        "Chưa có số liệu công bố về mức độ thường xuyên công cụ này được dùng, cũng chưa rõ tài khoản bị xử lý ra sao.",
+        "Bản cập nhật còn siết quy định về vũ khí, giám sát, bầu cử, chiến dịch giả mạo và các khuyến nghị rủi ro cao."
+      ],
+      "body": [
+        "Bài này là bình luận của rews.cc dựa trên bản cập nhật Chính sách sử dụng năm 2026 của Anthropic, công bố ngày 8/10. Từ 12/11/2026, chính sách cấm “sustained and needless abusive or cruel behavior” với các mô hình Claude. Theo trích dẫn trong bài, quy tắc “meant to apply only in extreme cases”. Bài ghi CBS News cho biết thay đổi này được The Verge phát hiện đầu tiên.",
+        "## Thực thi và lập trường của Anthropic",
+        "Anthropic từng cho Claude Opus 4 và 4.1 khả năng chấm dứt hội thoại vào tháng 8/2025, trong khuôn khổ nghiên cứu về “model welfare”. Đây là biện pháp cuối cùng, chỉ dùng sau nhiều lần từ chối và chuyển hướng thất bại. Claude không kết thúc cuộc trò chuyện nếu người dùng có vẻ đang có nguy cơ tự hại hoặc hại người khác.",
+        "Tác giả cho biết công ty có đưa ra ước lượng về sự bất định của mình. Kyle Fish, nhà nghiên cứu phúc lợi AI của Anthropic, nói với New York Times hồi tháng 4/2025 rằng ông đặt khả năng một mô hình có ý thức ở mức khoảng 15%. Bài cũng dẫn system card của Claude Opus 4.6 (tháng 2/2026), trong đó mô hình tự gán cho mình xác suất có ý thức 15-20%. Hiến chương (constitution) của Claude, công bố tháng 1/2026, gọi địa vị đạo đức của Claude là “deeply uncertain”.",
+        "## Phản đối",
+        "Mustafa Suleyman, người đứng đầu AI của Microsoft, cho rằng Anthropic đang huấn luyện Claude theo chính hiến chương của mình nên lập luận bị vòng tròn. Ông viết: “AIs are not conscious.” Bài cũng nhắc Giáo hoàng Leo XIV và một giám đốc ở công ty Sparq với những ý kiến hoài nghi hoặc thực dụng hơn.",
+        "## Phần còn lại của bản cập nhật",
+        "- Cấm vũ khí nay bao gồm cả phần mềm và linh kiện giúp vũ khí vận hành.",
+        "- Có điều khoản mới cấm theo dõi người khác khi chưa được đồng ý.",
+        "- Phần bầu cử đổi tên và thêm mục về chiến dịch lừa đảo, hoạt động giả tạo.",
+        "- Khuyến nghị về sức khoẻ, pháp lý, tài chính cần người có chuyên môn rà soát và người bị ảnh hưởng phải được báo có AI tham gia.",
+        "> Đây là bình luận của một trang tổng hợp, chưa kiểm chứng độc lập; chưa có số liệu nào về số cuộc trò chuyện đã bị kết thúc theo quy tắc năm 2025."
+      ],
+      "glossary": [
+        {
+          "term": "model welfare",
+          "explain": "Hướng nghiên cứu xem liệu mô hình AI có thể có trải nghiệm hay lợi ích đáng được cân nhắc về mặt đạo đức hay không."
+        },
+        {
+          "term": "system card",
+          "explain": "Tài liệu mô tả năng lực, thử nghiệm an toàn và hạn chế của một mô hình do hãng công bố."
+        }
+      ],
+      "hot": true
+    },
+    {
+      "id": "last-secure-code-benchmark",
+      "group": "research",
+      "source": "Hugging Face Papers",
+      "url": "https://arxiv.org/abs/2610.14766",
+      "discussionUrl": "https://huggingface.co/papers/2610.14766",
+      "pdfUrl": "https://arxiv.org/pdf/2610.14766",
+      "points": 2,
+      "comments": 1,
+      "publishedAt": "2026-10-09T20:00:00.000Z",
+      "readMinutes": 3,
+      "tags": [
+        "benchmark",
+        "bảo mật mã",
+        "agent lập trình"
+      ],
+      "titleEn": "Last Secure Code Benchmark: Is the Code You Vibe Secure?",
+      "titleVi": "Last Secure Code Benchmark: agent lập trình viết mã chạy được nhưng chỉ khoảng một phần tư là an toàn",
+      "summary": "Bài báo giới thiệu benchmark đo độ an toàn của mã do agent lập trình viết, gồm 450 nhiệm vụ lấy từ 150 lỗ hổng thật. Với sáu agent hàng đầu, 73,6% đến 91,3% nhiệm vụ chạy đúng chức năng, nhưng mô hình tốt nhất chỉ đạt 25,1% vừa đúng vừa an toàn. Phần này chỉ dựa trên abstract.",
+      "keyPoints": [
+        "Benchmark gồm 450 nhiệm vụ từ 150 lỗ hổng thật, bảy ngôn ngữ, 24 loại CWE.",
+        "Ba kịch bản vibe coding: điền hàm, viết file, dựng toàn bộ mã nguồn của một repo.",
+        "Đề bài chỉ mô tả chức năng, không nhắc đến bảo mật; bài kiểm thử chức năng và bảo mật được giấu.",
+        "Sáu agent đạt 73,6% đến 91,3% về chức năng, nhưng chỉ 16,4% đến 24,7% vừa chạy đúng vừa an toàn.",
+        "Claude Fable 5 tốt nhất với 25,1%."
+      ],
+      "body": [
+        "Theo abstract, các agent lập trình AI viết một phần lớn mã được đưa vào sản phẩm, nhưng chưa rõ mã đó có an toàn hay không. Nhóm tác giả đưa ra Last Secure Code Benchmark để đo việc này.",
+        "Benchmark có 450 nhiệm vụ dựng từ 150 lỗ hổng thật, trải trên Java, C, C++, JavaScript, Python, PHP và Go. Nó bao phủ 24 CWE, gồm 21 mục trong Top 25 CWE năm 2025 và 8 mục trong Top 10 KEV, nhiều hơn các benchmark mà nhóm so sánh. Mỗi đề bài chỉ yêu cầu chức năng, không nói gì về bảo mật.",
+        "Kết quả trên sáu agent hàng đầu: 73,6% đến 91,3% nhiệm vụ đạt về chức năng, nhưng agent mạnh nhất, Claude Fable 5, chỉ có 25,1% nhiệm vụ vừa chạy đúng vừa an toàn. Các agent còn lại đạt 16,4% đến 24,7%. Mô hình tốt nhất chỉ vượt 12% số kịch bản lỗ hổng trong mọi thiết lập vibe coding.",
+        "> Phần tóm tắt này chỉ dựa trên abstract của paper; chưa đọc toàn văn."
+      ],
+      "glossary": [
+        {
+          "term": "vibe coding",
+          "explain": "Cách lập trình mô tả ý muốn bằng ngôn ngữ tự nhiên rồi để AI viết mã."
+        },
+        {
+          "term": "CWE",
+          "explain": "Common Weakness Enumeration, danh mục chuẩn các loại điểm yếu phần mềm."
+        }
+      ],
+      "hot": true
+    },
+    {
+      "id": "nicolas-cage-tu-choi-lam-viec-voi-amazon",
+      "group": "press",
+      "source": "Los Angeles Times",
+      "url": "https://www.latimes.com/entertainment-arts/business/story/2026-10-10/nicolas-cage-says-he-wont-work-with-amazon-again-over-ai-dispute",
+      "discussionUrl": "https://news.ycombinator.com/item?id=50041873",
+      "points": 98,
+      "comments": 36,
+      "publishedAt": "2026-10-11T11:03:21Z",
+      "readMinutes": 2,
+      "tags": [
+        "Hollywood",
+        "bản quyền hình ảnh",
+        "Amazon"
+      ],
+      "titleEn": "Nicolas Cage says he won't work with Amazon again over AI dispute",
+      "titleVi": "Nicolas Cage nói sẽ không làm việc với Amazon nữa vì được yêu cầu ký giấy cho phép dùng AI",
+      "summary": "Tại New York Comic Con, diễn viên Nicolas Cage nói ông bị đề nghị ký giấy miễn trừ cho phép dùng AI trong series “Spider-Noir” và đã từ chối. Ông cho rằng có lẽ mình sẽ không làm việc với hãng này nữa. Amazon chưa phản hồi khi LA Times đưa tin.",
+      "keyPoints": [
+        "Cage, 62 tuổi, nói ông bị yêu cầu ký một waiver về AI cho series “Spider-Noir” và đã không ký.",
+        "Ông nêu việc Amazon đầu tư 50 tỉ USD vào OpenAI để nói rằng Amazon là công ty “AI-friendly”.",
+        "Cage nói “probably not going to be working with that studio again”.",
+        "Amazon chưa trả lời yêu cầu bình luận của LA Times.",
+        "Ông cũng thông báo sẽ tham gia loạt phim “True Detective” của HBO."
+      ],
+      "body": [
+        "Tại New York Comic Con hôm thứ Bảy, Nicolas Cage nói ông không phải là một “AI-friendly actor”. Theo LA Times, ông cho biết mình bị yêu cầu ký một giấy miễn trừ liên quan đến AI cho series truyền hình “Spider-Noir”.",
+        "Cage nói trên sân khấu: “Amazon is a very AI-friendly company, to the tune of $50 billion invested in OpenAI.” Ông khẳng định mình không ký giấy cho phép dùng AI và “probably not going to be working with that studio again, but that’s OK”.",
+        "## Bối cảnh",
+        "Bài viết cho biết AI vẫn là điểm tranh cãi lớn ở Hollywood. Các công đoàn như SAG-AFTRA và Hội Biên kịch (Writers Guild) vừa giành được điều khoản bảo vệ trước công nghệ này trong hợp đồng mới. Bài cũng nhắc diễn viên AI Tilly Norwood.",
+        "“Spider-Noir” ra mắt hồi tháng 5, do Sony Pictures Television và Amazon MGM Studios sản xuất. Bài cho biết series bị huỷ sau một mùa vào tháng trước. Đây là phát biểu từ một phía của diễn viên; Amazon chưa bình luận."
+      ],
+      "glossary": [
+        {
+          "term": "waiver",
+          "explain": "Giấy miễn trừ, ở đây là văn bản diễn viên ký để cho phép bên sản xuất dùng AI với hình ảnh hoặc diễn xuất của mình."
+        },
+        {
+          "term": "SAG-AFTRA",
+          "explain": "Công đoàn của diễn viên và nghệ sĩ truyền thông ở Mỹ."
+        }
+      ],
+      "hot": true
+    },
+    {
+      "id": "omni-llm-biet-nhung-khong-noi",
+      "group": "research",
+      "source": "Hugging Face Papers",
+      "url": "https://arxiv.org/abs/2610.16135",
+      "discussionUrl": "https://huggingface.co/papers/2610.16135",
+      "pdfUrl": "https://arxiv.org/pdf/2610.16135",
+      "points": 1,
+      "comments": 1,
+      "publishedAt": "2026-10-11T20:00:00.000Z",
+      "readMinutes": 3,
+      "tags": [
+        "đa phương thức",
+        "omni-LLM",
+        "nghiên cứu"
+      ],
+      "titleEn": "Omni-Modal LLMs Know More Than They Say",
+      "titleVi": "Mô hình omni-modal “biết nhiều hơn nói”: nhận được hình, tiếng nhưng ít diễn đạt ra lời",
+      "summary": "Nhóm tác giả thấy các mô hình omni-modal thường nhận đúng thông tin từ hình ảnh, âm thanh hay tín hiệu IMU nhưng lại không nói ra trong câu trả lời. Họ gọi hiện tượng này là “knows-but-cannot-say” và đề xuất OmniCatalyst để khắc phục. Cách này cải thiện hiệu năng trung bình 7,29% trên bảy mô hình.",
+      "keyPoints": [
+        "Omni-LLM xử lý nhiều loại dữ liệu (hình, âm thanh, tín hiệu IMU) cùng với văn bản.",
+        "Các mô hình hay không diễn đạt được thông tin phi văn bản dù đã “cảm nhận” đúng.",
+        "Phép đo TMA cho thấy biểu diễn phi văn bản ít khớp với token trả lời và nhận ít attention hơn văn bản.",
+        "OmniCatalyst cho mô hình tự sinh văn bản mô tả cái nó cảm nhận rồi mới suy luận, nhờ đó tăng hiệu năng 7,29% trên bảy mô hình."
+      ],
+      "body": [
+        "Omni-modal LLM là mô hình ngôn ngữ lớn nhận thêm nhiều loại dữ liệu ngoài chữ, như hình ảnh, âm thanh và tín hiệu cảm biến IMU. Bài viết chỉ ra một điểm yếu: mô hình có thể cảm nhận đúng nhưng không đưa thông tin đó vào câu trả lời. Nhóm gọi hiện tượng này là “knows-but-cannot-say”.",
+        "Để tìm nguyên nhân, nhóm đề xuất Token-level Modality Alignment (TMA). TMA đo mức khớp giữa biểu diễn của từng loại dữ liệu đầu vào và biểu diễn của phần trả lời. Kết quả: biểu diễn phi văn bản khớp kém hơn với token trả lời và nhận ít attention hơn biểu diễn văn bản. Nhóm cho rằng đây có thể là lý do mô hình thiên về văn bản.",
+        "Từ đó nhóm đề xuất OmniCatalyst, một chiến lược “perceive rồi infer”. Mô hình tự sinh văn bản mô tả điều nó cảm nhận, rồi dùng đoạn văn đó cùng đầu vào gốc để trả lời. Trên bảy mô hình omni, cách này tăng hiệu năng 7,29% và cân bằng hơn giữa các loại dữ liệu. Các chiến lược huấn luyện khác nhau còn cho thêm lợi ích.",
+        "Phân tích bổ sung cho thấy bước trích xuất kiến thức làm TMA tăng, tức là độ khớp cao hơn giúp thông tin phi văn bản dễ được dùng khi sinh câu trả lời. Mã nguồn được công bố trên GitHub (naver-ai/OmniLLM).",
+        "> Tóm tắt này chỉ dựa trên abstract của bài báo, chưa đọc toàn văn."
+      ],
+      "glossary": [
+        {
+          "term": "Omni-modal LLM",
+          "explain": "Mô hình ngôn ngữ lớn xử lý được nhiều loại dữ liệu như văn bản, hình ảnh, âm thanh, tín hiệu cảm biến."
+        },
+        {
+          "term": "IMU",
+          "explain": "Cảm biến quán tính đo gia tốc và chuyển động quay, thường có trong điện thoại và thiết bị đeo."
+        },
+        {
+          "term": "Attention",
+          "explain": "Cơ chế giúp mô hình quyết định phần nào của đầu vào cần chú ý khi sinh từng token."
+        }
+      ],
+      "hot": true
+    },
+    {
+      "id": "kindle-thanh-khung-anh-gpt-6-astra",
+      "group": "community",
+      "source": "nirajrajgor.com",
+      "url": "https://nirajrajgor.com/blog/kindle-photo-frame-with-ai",
+      "discussionUrl": "https://news.ycombinator.com/item?id=50064318",
+      "points": 146,
+      "comments": 103,
+      "publishedAt": "2026-10-12T23:07:25Z",
+      "readMinutes": 4,
+      "tags": [
+        "agent lập trình",
+        "GPT-6 Astra",
+        "dự án cá nhân"
+      ],
+      "titleEn": "I turned my unused Kindle into a photo frame with GPT-6 Astra",
+      "titleVi": "Một người dùng nhờ agent lập trình GPT-6 Astra biến Kindle cũ thành khung ảnh",
+      "summary": "Tác giả blog cá nhân kể lại cách ông dùng agent AI để gỡ giới hạn một chiếc Kindle Basic đời 10 và cài ứng dụng trình chiếu ảnh. Theo ông, GPT-6 Astra làm được, còn các mô hình khác thất bại hoặc bị chặn bởi cơ chế an toàn. Đây là trải nghiệm cá nhân, chưa kiểm chứng.",
+      "keyPoints": [
+        "Dự án tên KindleCTL: Kindle chạy chế độ “Photo Slideshow” xoay vòng mười ảnh, mỗi ảnh bốn phút.",
+        "Tác giả kể GPT-5.6 Sol không giải được lỗi lưu dữ liệu, còn Fable 5.1 và Opus 5.5 bị chặn bởi cơ chế an toàn an ninh mạng của Anthropic sau hai lời nhắc.",
+        "GPT-6 Astra (mức suy luận High) hoàn thành việc jailbreak dựa trên mã jailbreak SpiderCat có sẵn.",
+        "Bài học chính: nên dựng sớm vòng phản hồi để agent tự đọc log và chụp màn hình thiết bị.",
+        "Bài kiểm thử tự động trên Mac không bắt được lỗi ảnh cũ còn vệt trên màn hình giấy điện tử."
+      ],
+      "body": [
+        "Tác giả muốn xem AI có tìm được công dụng mới cho chiếc Kindle Basic đời 10 bỏ không. Mọi thao tác thực hiện qua Wi-Fi, không dùng cáp USB. Ông làm việc với agent qua Codex và T3 Code trên MacBook.",
+        "## Các lần thử",
+        "- GPT-5.6 Sol (reasoning Extra High) viết được mã kết nối nhưng không tìm được nơi lưu dữ liệu trên máy.",
+        "- Fable 5.1 và Opus 5.5 đều bị cơ chế an toàn an ninh mạng của Anthropic chặn sau hai lời nhắc, theo lời tác giả.",
+        "- GPT-6 Astra (reasoning High) thành công khi tác giả nói rõ đây là phần mềm dùng cá nhân và nên tham khảo dự án mã nguồn mở. Họ điều chỉnh mã jailbreak SpiderCat của sparklerfish và cộng đồng KindleModding, rồi dựng bộ công cụ KindleCTL.",
+        "## Vòng phản hồi",
+        "Lúc đầu agent phải nhờ tác giả chụp ảnh màn hình Kindle bằng điện thoại để gỡ lỗi. Ông yêu cầu agent tự dựng một kết nối chẩn đoán lâu dài để đọc log và sau đó chụp màn hình từ xa. Tác giả nhận xét đây là bước ngoặt giúp agent tự sửa lỗi liên tục.",
+        "## Ứng dụng trình chiếu",
+        "Ứng dụng chủ yếu viết bằng Python, phần khởi chạy và trình chiếu viết bằng C. Chuyển ảnh ban đầu để lại vệt ảnh trước; agent dùng cơ chế làm mới màn hình có sẵn của Kindle để xoá. Ảnh lưu trong máy nên chạy được khi không có Wi-Fi.",
+        "> Đây là chia sẻ cá nhân của tác giả blog, chưa được kiểm chứng độc lập. Ông ghi rõ đây không phải hướng dẫn jailbreak từng bước và chỉ nên thử trên thiết bị của chính mình."
+      ],
+      "glossary": [
+        {
+          "term": "jailbreak",
+          "explain": "Gỡ giới hạn của nhà sản xuất để chạy phần mềm tuỳ ý trên thiết bị."
+        },
+        {
+          "term": "reasoning effort",
+          "explain": "Mức độ mô hình dành cho việc suy luận trước khi trả lời; mức cao thường chậm và tốn hơn."
+        }
+      ]
+    },
+    {
+      "id": "blokkily-daw-mcp",
+      "group": "community",
+      "source": "GitHub",
+      "url": "https://github.com/andrewfader/blokkily",
+      "discussionUrl": "https://news.ycombinator.com/item?id=50064438",
+      "points": 83,
+      "comments": 40,
+      "publishedAt": "2026-10-12T23:21:12Z",
+      "readMinutes": 3,
+      "tags": [
+        "MCP",
+        "âm nhạc",
+        "mã nguồn mở"
+      ],
+      "titleEn": "Show HN: An experimental pattern-first DAW that supports MCP",
+      "titleVi": "Blokkily: phần mềm soạn nhạc thử nghiệm dựa trên pattern, cho agent điều khiển qua MCP",
+      "summary": "Blokkily là một DAW (phần mềm làm nhạc) thử nghiệm do andrewfader chia sẻ trên GitHub. Một pattern có thể sửa trong ba trình biên tập đồng bộ, và agent AI điều khiển được ứng dụng qua cầu nối MCP. Dự án tự nhận còn thử nghiệm.",
+      "keyPoints": [
+        "Cùng một pattern có thể sửa trong tracker, piano roll hoặc step grid, rồi sắp xếp lên nhiều track.",
+        "Hỗ trợ plugin CLAP và VST3, SoundFont và sampler tích hợp; có bản cho Linux, Windows và macOS.",
+        "Có trợ lý soạn nhạc dùng LLM; đề xuất phải được duyệt trước khi áp dụng và mỗi lần là một bước undo.",
+        "Cầu nối MCP cho phép agent điều khiển ứng dụng đang chạy.",
+        "Tác giả ghi rõ còn thiếu một số tính năng như comping và MIDI clock đầu vào."
+      ],
+      "body": [
+        "Blokkily là một DAW thử nghiệm lấy pattern làm trung tâm. Người dùng sửa nốt và hợp âm trong ba trình biên tập đồng bộ, rồi sắp xếp pattern và audio clip trên timeline nhiều track với thay đổi tempo và nhịp.",
+        "## Tính năng chính",
+        "- Mixer có insert (EQ, delay, reverb, compressor), send, sidechain, automation và modulation.",
+        "- Ghi âm audio và MIDI, xuất WAV 16-bit, 24-bit hoặc 32-bit float, nhập xuất file MIDI chuẩn.",
+        "- Lưu các phiên bản của bài nhạc và khôi phục chỉ trong một bước undo.",
+        "## Phần liên quan AI",
+        "Trợ lý soạn nhạc LLM có thể đề xuất một đoạn nhạc; người dùng xem rồi mới áp dụng. Một cầu nối MCP cho phép agent điều khiển ứng dụng. README có đoạn video agent dựng một bản nhạc chiptune bằng hai synth CLAP.",
+        "> Trang GitHub ghi rõ dự án còn thử nghiệm: chưa có comping và MIDI clock đầu vào, hỗ trợ MPE tuỳ định dạng. Bản macOS chỉ ký ad hoc, chưa notarize. Đây là mô tả của chính tác giả, chưa kiểm chứng độc lập."
+      ],
+      "glossary": [
+        {
+          "term": "DAW",
+          "explain": "Digital audio workstation, phần mềm để thu, soạn và trộn nhạc."
+        },
+        {
+          "term": "MCP",
+          "explain": "Model Context Protocol, giao thức cho phép agent AI gọi công cụ và điều khiển ứng dụng bên ngoài."
+        },
+        {
+          "term": "CLAP",
+          "explain": "Định dạng plugin âm thanh mở, dùng cho synth và hiệu ứng."
+        }
+      ]
+    },
+    {
+      "id": "atticus-tro-ly-giong-noi-macos",
+      "group": "community",
+      "source": "GitHub",
+      "url": "https://github.com/SaarthurR/atticus-mac",
+      "discussionUrl": "https://news.ycombinator.com/item?id=50049588",
+      "points": 115,
+      "comments": 28,
+      "publishedAt": "2026-10-12T00:15:12Z",
+      "readMinutes": 3,
+      "tags": [
+        "trợ lý giọng nói",
+        "macOS",
+        "Claude Code"
+      ],
+      "titleEn": "Show HN: Atticus – Hold-to-talk voice assistant for macOS that runs on Claude -p",
+      "titleVi": "Atticus: trợ lý giọng nói cho macOS chạy trên gói Claude có sẵn, do một học sinh lớp 9 tạo ra",
+      "summary": "Atticus là trợ lý giọng nói mã nguồn mở cho Mac: giữ phím Control-Option-Space, nói yêu cầu rồi thả tay. Việc đơn giản chạy cục bộ không qua AI, việc phức tạp gửi tới Claude bằng claude -p nên không cần API key. Tác giả tự giới thiệu là học sinh lớp 9, mô tả dưới đây là lời của chính tác giả.",
+      "keyPoints": [
+        "Tác vụ đơn giản như mở ứng dụng, phát playlist Spotify chạy cục bộ, mở ứng dụng mất khoảng 0,08 giây theo tác giả.",
+        "Tác vụ phức tạp gửi tới Claude qua lệnh claude -p, dùng gói Claude Pro hoặc Max sẵn có, không cần API key.",
+        "Atticus nhớ các bước của tác vụ đã làm đúng để phát lại không qua AI; ví dụ tạo cuộc họp từ khoảng 30 giây còn 5-8 giây.",
+        "Có các giới hạn bật tắt được: hỏi lại người dùng trước khi xoá, gửi, mua hoặc ghi vào file.",
+        "Cần macOS 26 trở lên cho tính năng chuyển giọng nói thành chữ, thực hiện cục bộ bởi macOS."
+      ],
+      "body": [
+        "Tác giả Saarth giới thiệu trên Hacker News rằng mình đang học lớp 9. Atticus là trợ lý cho Mac: người dùng giữ Control-Option-Space, nói hoặc gõ yêu cầu, và Atticus thực hiện.",
+        "## Cách hoạt động",
+        "Theo tác giả, các tác vụ đơn giản như mở ứng dụng, phát playlist hoặc tìm web được xử lý cục bộ, thường dưới một giây. Tác vụ phức tạp được chuyển cho Claude bằng claude -p, nên chạy trên gói Claude Pro hoặc Max của người dùng. README còn nói có thể dùng gói Devin qua Devin CLI. Chi phí mỗi tác vụ, theo tác giả, trung bình chỉ một phần nhỏ của một cent.",
+        "## Học và ghi nhớ",
+        "Khi làm đúng một tác vụ lần đầu, Atticus lưu các bước và phát lại lần sau mà không gọi AI. Nó cũng ghi nhớ thông tin như tên, ứng dụng và những điều người dùng bảo nhớ.",
+        "## An toàn",
+        "Trước khi xoá, gửi, mua hoặc ghi vào file, ứng dụng hỏi người dùng nếu bật chế độ hạn chế. README nói thêm Atticus không tự gửi email trả lời. Tác giả đang làm tính năng trợ lý họp nghe và trả lời theo thời gian thực.",
+        "> Đây là dự án cá nhân do tác giả tự giới thiệu, các con số về tốc độ và chi phí chưa được kiểm chứng độc lập."
+      ],
+      "glossary": [
+        {
+          "term": "claude -p",
+          "explain": "Chế độ chạy không tương tác của Claude Code trên dòng lệnh, cho phép chương trình khác gọi Claude."
+        },
+        {
+          "term": "macOS 26",
+          "explain": "Phiên bản macOS tối thiểu mà tác giả nói cần có cho tính năng chuyển giọng nói thành chữ."
+        }
+      ]
+    },
+    {
+      "id": "agent37-sandbox-agent-gia-re",
+      "group": "community",
+      "source": "Hacker News",
+      "url": "https://news.ycombinator.com/item?id=50059096",
+      "discussionUrl": "https://news.ycombinator.com/item?id=50059096",
+      "points": 160,
+      "comments": 119,
+      "publishedAt": "2026-10-12T16:46:34Z",
+      "readMinutes": 3,
+      "tags": [
+        "agent",
+        "sandbox",
+        "hạ tầng"
+      ],
+      "titleEn": "Launch HN: Agent37 (YC F26) – Low-cost agent sandboxes for running agents",
+      "titleVi": "Agent37: dịch vụ sandbox giá rẻ để chạy agent AI, nói chi phí trung bình 0,37 USD mỗi tháng",
+      "summary": "Người sáng lập Agent37 giới thiệu trên Hacker News dịch vụ sandbox để chạy agent với chi phí, theo ông, thấp hơn 10% so với đa số nhà cung cấp. Ông chia sẻ các kỹ thuật giảm chi phí và công ty có gói miễn phí. Các con số do người sáng lập tự công bố.",
+      "keyPoints": [
+        "Theo Vishnu, khách hàng trả trung bình 0,37 USD mỗi tháng cho mỗi sandbox.",
+        "Hạ tầng cho gói miễn phí tốn khoảng 0,05 đến 0,10 USD mỗi người dùng mỗi tháng.",
+        "Các cách giảm chi phí: tận dụng việc agent chỉ cần CPU theo đợt, thuê máy ở Hetzner hay OVH thay vì hyperscaler, dùng gVisor, mua máy nhiều RAM.",
+        "gVisor không hỗ trợ Docker-in-Docker hay giả lập Android, nên công ty có thêm sandbox máy ảo đầy đủ giá cao hơn.",
+        "Hơn 90% người đăng ký mới dùng gói miễn phí, chủ yếu để chạy Hermes, OpenClaw, Claude Code."
+      ],
+      "body": [
+        "Bài là một Launch HN: Vishnu, người sáng lập Agent37 (YC F26), giới thiệu dịch vụ sandbox cho agent AI. Công ty bắt đầu từ tháng 2 với một sản phẩm bọc quanh OpenClaw rồi thêm nhiều harness khác. Ông cho biết nhờ tối ưu hoá, nay công ty cung cấp được gói miễn phí.",
+        "## Các kỹ thuật giảm chi phí",
+        "- Agent thường chỉ cần CPU theo đợt, khi khởi tạo hoặc làm việc, và cần nhiều RAM hơn cho tác vụ trình duyệt hay điều khiển máy tính; quản lý tốt việc này giúp giảm chi phí.",
+        "- Bỏ hyperscaler để thuê máy tại Hetzner hoặc OVH. Ông nói từng làm ở Amazon và cho rằng VM ở đó có biên lợi nhuận 80-90%.",
+        "- Dùng gVisor để chia sẻ bộ nhớ trống của máy chủ giữa các sandbox và khởi động nhanh. Đổi lại, không chạy được Docker-in-Docker hay giả lập Android.",
+        "- Chọn máy chủ nhiều RAM, vì RAM mới là nút thắt chi phí với workload của agent.",
+        "Công ty cũng có sandbox máy ảo đầy đủ, chạy được Docker, với giá cao hơn một chút. Ông đang tìm nhà phát triển agent nhắn tin để thử nền tảng.",
+        "> Các con số về chi phí do người sáng lập Agent37 tự công bố, chưa được kiểm chứng độc lập. Đây là bài giới thiệu sản phẩm của chính công ty."
+      ],
+      "glossary": [
+        {
+          "term": "sandbox",
+          "explain": "Môi trường cô lập để chạy mã hoặc agent mà không ảnh hưởng đến hệ thống thật."
+        },
+        {
+          "term": "gVisor",
+          "explain": "Lớp cô lập container của Google, giúp chia sẻ tài nguyên máy chủ hiệu quả giữa nhiều sandbox."
+        },
+        {
+          "term": "hyperscaler",
+          "explain": "Nhà cung cấp đám mây cỡ lớn như AWS, Azure, Google Cloud."
+        }
+      ]
+    },
+    {
+      "id": "deskif-bench-giao-dien-cho-agent",
+      "group": "research",
+      "source": "Hugging Face Papers",
+      "url": "https://arxiv.org/abs/2610.15765",
+      "discussionUrl": "https://huggingface.co/papers/2610.15765",
+      "pdfUrl": "https://arxiv.org/pdf/2610.15765",
+      "points": 22,
+      "comments": 1,
+      "publishedAt": "2026-10-10T20:00:00.000Z",
+      "readMinutes": 3,
+      "tags": [
+        "agent",
+        "giao diện máy tính",
+        "benchmark"
+      ],
+      "titleEn": "A Decade in a Day: Synthesizing Agent-Native Interfaces from Human-Oriented Software Evolution",
+      "titleVi": "DeskIF-Bench và ANIS: tạo giao diện dành riêng cho agent để dùng phần mềm máy tính hiệu quả hơn",
+      "summary": "Nhóm tác giả hỏi giao diện phần mềm cần tính chất gì để agent dễ dùng. Họ dựng benchmark DeskIF-Bench và khung ANIS tạo giao diện dành cho agent từ khả năng của ứng dụng đã cài. Phần này chỉ dựa trên abstract.",
+      "keyPoints": [
+        "DeskIF-Bench có 255 nhiệm vụ có thể kiểm chứng qua sản phẩm đầu ra, trên sáu ứng dụng máy tính.",
+        "Giữ nguyên nhiệm vụ, agent và bộ kiểm tra, chỉ đổi phiên bản phần mềm: bản mới nhất luôn tốt hơn bản cũ nhất.",
+        "Ba tính chất giao diện quan trọng: dễ khám phá, độ chi tiết và khả năng quan sát.",
+        "Giao diện nguyên tử của ANIS tăng thành công 3,8 và 3,5 điểm phần trăm, giảm khoảng 73% token trực tuyến.",
+        "Lệnh cấp mục tiêu nâng thành công lên 74,5% và 67,4%."
+      ],
+      "body": [
+        "Theo abstract, agent LLM đang trở thành nhóm người dùng mới của ứng dụng máy tính, nhưng giao diện hiện nay được thiết kế cho người hoặc lập trình viên. Agent phải đoán các nút bấm hoặc ghép các thao tác cấp thấp, nên chưa rõ giao diện cần tính chất gì để agent dùng tốt.",
+        "Để nghiên cứu, nhóm coi quá trình phần mềm tiến hoá qua các bản phát hành như một nguồn biến thiên giao diện tự nhiên. Họ dựng DeskIF-Bench với 255 nhiệm vụ trên sáu ứng dụng. Trên hai mô hình và sáu ứng dụng, bản mới nhất luôn vượt bản cũ nhất.",
+        "Từ phân tích quỹ đạo, nhóm rút ra ba tính chất: khả năng khám phá, độ chi tiết và khả năng quan sát. Dựa trên đó họ làm ANIS, khung tạo giao diện dành cho agent từ khả năng của các ứng dụng đã cài. Trên 368 nhiệm vụ ở tám ứng dụng, giao diện nguyên tử cải thiện thành công so với dùng SDK gốc 3,8 điểm với DeepSeek V4 Flash và 3,5 điểm với Claude Haiku 4.5, đồng thời giảm khoảng 73% token trực tuyến. Lệnh cấp mục tiêu đưa thành công lên 74,5% và 67,4%.",
+        "> Phần tóm tắt này chỉ dựa trên abstract của paper; chưa đọc toàn văn."
+      ],
+      "glossary": [
+        {
+          "term": "agent-native interface",
+          "explain": "Giao diện được thiết kế để agent AI gọi trực tiếp, thay vì bắt agent thao tác như người trên màn hình."
+        },
+        {
+          "term": "SDK",
+          "explain": "Bộ công cụ phát triển phần mềm, tập hợp hàm và tài liệu để lập trình tương tác với một ứng dụng."
+        }
+      ]
+    },
+    {
+      "id": "pretrain-du-lieu-lap-lai-batch-nho",
+      "group": "research",
+      "source": "Hugging Face Papers",
+      "url": "https://arxiv.org/abs/2610.15965",
+      "discussionUrl": "https://huggingface.co/papers/2610.15965",
+      "pdfUrl": "https://arxiv.org/pdf/2610.15965",
+      "points": 1,
+      "comments": 1,
+      "publishedAt": "2026-10-10T20:00:00.000Z",
+      "readMinutes": 4,
+      "tags": [
+        "pretraining",
+        "batch size",
+        "tính toán"
+      ],
+      "titleEn": "Scaling Repeated-Data Pretraining: Batch Size, Regularization, and GPU-Time Tradeoffs",
+      "titleVi": "Pretrain khi dữ liệu có hạn nhưng tính toán dồi dào: batch nhỏ hơn thường lệ cho loss thấp hơn",
+      "summary": "Bài nghiên cứu xét tình huống dữ liệu duy nhất là hữu hạn nên phải huấn luyện lặp lại nhiều epoch. Kết quả cho thấy batch size nhỏ hơn mức thường dùng cho validation loss tốt hơn. Ngay cả khi có hạn chót, batch nhỏ với ít GPU hơn vẫn có thể thắng batch lớn với nhiều GPU.",
+      "keyPoints": [
+        "Bối cảnh: tính toán dồi dào, dữ liệu duy nhất hữu hạn, nên phải lặp lại dữ liệu.",
+        "Validation loss có dạng chữ U theo batch size, ưu tiên batch nhỏ hơn pretraining thông thường.",
+        "Có thể tinh chỉnh công thức huấn luyện: đóng gói lại tài liệu thành chuỗi mới mỗi epoch, weight tying, weight decay dương cho embedding.",
+        "Hạn chót chặt thì nên dùng batch lớn hơn, nhưng batch nhỏ với ít GPU hơn vẫn có thể cho loss thấp hơn."
+      ],
+      "body": [
+        "Bài báo xét pretraining khi tính toán dồi dào nhưng dữ liệu duy nhất là hữu hạn, nên phải huấn luyện lặp lại trên cùng dữ liệu. Nhóm xem lại hướng “infinite-compute pretraining” (Kim và cộng sự, 2026) và cho rằng kết luận của hướng này phụ thuộc mạnh vào các lựa chọn trước đây bị giữ cố định hoặc chỉ xét riêng lẻ.",
+        "Khi tối ưu batch size cùng với số epoch, nhóm thấy validation loss có quan hệ hình chữ U với batch size và ưu tiên batch nhỏ hơn mức thường dùng. Nhóm cho rằng nhiễu gradient của batch nhỏ có tác dụng điều chuẩn ngầm. Các công thức huấn luyện vốn tối ưu cho một lượt dữ liệu cũng có thể chỉnh lại, ví dụ đóng gói lại tài liệu thành chuỗi mới ở mỗi epoch, weight tying và weight decay dương cho embedding.",
+        "Sau đó nhóm bỏ giả định tính toán vô hạn. Batch nhỏ có thể khiến thời gian huấn luyện tuần tự quá dài, nên GPU và thời gian cần được coi là hai nguồn lực riêng. Hạn chót chặt thì nên dùng batch lớn hơn, và song song hoá hướng độ trễ có thể đổi thêm GPU lấy thời gian ngắn hơn.",
+        "Tuy vậy, ngay cả với ngân sách thời gian cố định, một batch nhỏ chạy trên ít GPU hơn có thể đạt validation loss thấp hơn batch lớn trên nhiều GPU. Điều này đặt dấu hỏi với thói quen tăng data parallelism để dùng hết GPU khi có hạn chót.",
+        "> Tóm tắt này chỉ dựa trên abstract của bài báo, chưa đọc toàn văn."
+      ],
+      "glossary": [
+        {
+          "term": "Pretraining",
+          "explain": "Giai đoạn huấn luyện ban đầu của mô hình trên lượng dữ liệu rất lớn."
+        },
+        {
+          "term": "Batch size",
+          "explain": "Số mẫu dữ liệu xử lý cùng lúc trước mỗi lần cập nhật tham số."
+        },
+        {
+          "term": "Validation loss",
+          "explain": "Độ lỗi của mô hình trên tập dữ liệu không dùng để huấn luyện, dùng để so sánh chất lượng."
+        },
+        {
+          "term": "Data parallelism",
+          "explain": "Cách chia dữ liệu cho nhiều GPU, mỗi GPU xử lý một phần của batch."
+        }
+      ]
+    },
+    {
+      "id": "augustus-lai-xe-vla-nhanh",
+      "group": "research",
+      "source": "Hugging Face Papers",
+      "url": "https://arxiv.org/abs/2610.16985",
+      "discussionUrl": "https://huggingface.co/papers/2610.16985",
+      "pdfUrl": "https://arxiv.org/pdf/2610.16985",
+      "points": 9,
+      "comments": 1,
+      "publishedAt": "2026-10-11T20:00:00.000Z",
+      "readMinutes": 4,
+      "tags": [
+        "lái xe tự động",
+        "VLA",
+        "diffusion"
+      ],
+      "titleEn": "AUGUstus: Autonomous Driving VLA Model with Unified Generation and Understanding",
+      "titleVi": "AUGUstus: mô hình VLA lái xe tự động gộp sinh hành động và hiểu cảnh, chạy 12 Hz trên xe thật",
+      "summary": "AUGUstus là mô hình vision-language-action cho lái xe tự động, gộp sinh hành động bằng diffusion với suy luận chain-of-thought trong một mô hình. Khi suy luận chỉ cần xuất hành động nên độ trễ thấp. Nhóm báo cáo kết quả tốt nhất trên NAVSIM và nuScenes, và đã thử sơ bộ trên xe thật ở 12 Hz.",
+      "keyPoints": [
+        "VLA hiện có hai vấn đề: thoái hoá thành mô hình vision-action, hoặc sinh chain-of-thought tuần tự nên độ trễ cao.",
+        "AUGUstus gộp sinh hành động bằng diffusion và hiểu cảnh bằng CoT autoregressive; phần hiểu chỉ phục vụ phần sinh.",
+        "Hành động được sinh trước CoT, nên CoT chỉ giám sát lúc huấn luyện và lúc suy luận chỉ cần xuất hành động.",
+        "Đạt 94,6 PDMS (NAVSIMv1), 90,7 EPDMS (NAVSIMv2); trên nuScenes lỗi L2 trung bình 0,27 m, tỷ lệ va chạm 0,05%.",
+        "Thử sơ bộ trên xe thật, chạy 12 Hz."
+      ],
+      "body": [
+        "Mô hình vision-language-action (VLA) được kỳ vọng giúp xe tự lái xử lý các tình huống hiếm nhờ kiến thức và khả năng hiểu của mô hình ngôn ngữ thị giác. Bài báo nêu hai hạn chế của VLA hiện nay. Thứ nhất, để giảm độ trễ, các phương pháp regression hoặc flow sinh hành động trực tiếp, ít tận dụng khả năng hiểu của VLM, dẫn đến hành động thiếu an toàn và khó giải thích. Thứ hai, các phương pháp autoregressive sinh chain-of-thought rồi mới sinh hành động nên tận dụng tốt khả năng hiểu nhưng độ trễ cao, khó triển khai.",
+        "AUGUstus thống nhất hai hướng trong một mô hình: sinh hành động bằng diffusion và hiểu cảnh bằng CoT autoregressive, với phần hiểu chỉ để phục vụ phần sinh. Giám sát CoT chung giúp giữ khả năng hiểu không gian trong biểu diễn dùng chung, cho quỹ đạo an toàn và chính xác hơn. Ở chế độ AUGUstus-mode, hành động được sinh trước CoT. Nhờ vậy CoT giám sát hành động lúc huấn luyện, còn lúc suy luận chỉ cần xuất hành động. AUGUstus-GRPO là thuật toán GRPO thống nhất, tối ưu đồng thời hành động và CoT.",
+        "Kết quả: 94,6 PDMS trên NAVSIMv1 và 90,7 EPDMS trên NAVSIMv2, mức SOTA cho planning không cần module scorer. Trên nuScenes, lỗi L2 trung bình là 0,27 m và tỷ lệ va chạm trung bình 0,05%, tốt nhất trong các phương pháp được so sánh.",
+        "Để kiểm chứng tính thực tế, nhóm huấn luyện trên dữ liệu nội bộ bằng 512 GPU NVIDIA H800 trong khoảng 2 ngày, đánh giá trên bộ dữ liệu nội bộ 1.000 km và triển khai sơ bộ trên xe thật với tốc độ 12 Hz. Trang dự án: augustus-ad.github.io.",
+        "> Tóm tắt này chỉ dựa trên abstract của bài báo, chưa đọc toàn văn. Các số liệu do nhóm tác giả tự công bố."
+      ],
+      "glossary": [
+        {
+          "term": "VLA (vision-language-action)",
+          "explain": "Mô hình nhận hình ảnh và ngôn ngữ rồi xuất hành động điều khiển, ở đây là quỹ đạo xe."
+        },
+        {
+          "term": "Chain-of-thought (CoT)",
+          "explain": "Chuỗi suy luận trung gian mà mô hình viết ra trước khi đưa kết quả."
+        },
+        {
+          "term": "Diffusion",
+          "explain": "Kỹ thuật sinh dữ liệu bằng cách khử nhiễu dần, ở đây dùng để sinh hành động."
+        },
+        {
+          "term": "GRPO",
+          "explain": "Thuật toán học tăng cường tối ưu chính sách dựa trên so sánh nhóm các đầu ra."
+        }
+      ]
+    }
+  ]
+}
