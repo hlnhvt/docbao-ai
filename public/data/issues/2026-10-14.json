@@ -1,0 +1,503 @@
+{
+  "date": "2026-10-14",
+  "title": "Gemini 4 Argon và Muse Wonder cùng ra mắt, Anthropic thay git",
+  "intro": "Hai mô hình frontier mới xuất hiện trong hai ngày: Gemini 4 Argon của Google và Muse Wonder của Meta. Anthropic kể chuyện tự viết hệ thống quản lý mã vì Claude đẩy hơn 30.000 thay đổi mỗi ngày. Ngoài ra, một kỹ sư OpenAI bị bắt vì nghe lén và Character.ai nộp đơn phá sản.",
+  "articles": [
+    {
+      "id": "gemini-4-argon",
+      "group": "lab",
+      "source": "Google DeepMind",
+      "url": "https://deepmind.google/blog/introducing-gemini-4-argon/",
+      "discussionUrl": "https://news.ycombinator.com/item?id=50073879",
+      "comments": 769,
+      "publishedAt": "2026-10-13T16:01:52Z",
+      "hot": true,
+      "readMinutes": 4,
+      "tags": ["Google", "Gemini", "Mô hình mới"],
+      "titleEn": "Gemini 4 Argon: Built to solve your hardest problems",
+      "titleVi": "Google ra mắt Gemini 4 Argon, mô hình mạnh nhất của hãng",
+      "summary": "Gemini 4 Argon là mô hình frontier mới của Google, nhắm vào việc khó như lập trình quy mô lớn, tài chính, pháp lý, an ninh mạng và khoa học. Giá ra mắt là 2 USD cho mỗi triệu token đầu vào và 10 USD cho mỗi triệu token đầu ra. Người dùng gói Google AI Pro và Ultra đã dùng được trong app Gemini.",
+      "keyPoints": [
+        "Google nói Argon đứng đầu Vals Index, bộ đo năng lực trong tài chính, lập trình, pháp lý và thuế.",
+        "Trong nội bộ Google, Argon giúp tăng hơn 35% số thay đổi mã do agent gửi và giảm gần một phần ba số lần phải hoàn tác.",
+        "Giới hạn 1 triệu token, tính chung cả đầu vào và đầu ra.",
+        "Lớp an toàn mới: một bộ giám sát tự động đọc lập luận của agent để chặn các “đường tắt” ngoài ý muốn."
+      ],
+      "body": [
+        "Google DeepMind công bố Gemini 4 Argon ngày 13/10. Mô hình có trên Gemini API, AI Studio, Google Antigravity, app Gemini và AI Mode trong Google Search. Người dùng phổ thông cần gói Google AI Pro hoặc Ultra. Token đầu vào đã lưu bộ nhớ đệm được giảm 95% giá.",
+        "## Lập trình quy mô lớn",
+        "Google đưa ra nhiều ví dụ dùng nội bộ. Nhóm Chrome dùng Argon để tách phần xử lý trang web ra khỏi một thư mục mã cũ khoảng 6 triệu dòng, xong trong vài tuần một việc vốn mất vài tháng. Nhóm Agent Development Kit giao cho Argon tự chạy qua đêm và nhận về các tối ưu giúp giảm 40% thời gian chuẩn bị phiên làm việc dài.",
+        "Với mô hình mở Gemma 4 E2B, Argon giúp tăng tốc suy luận 2,85 lần trên GPU A100 qua vLLM mà đầu ra không đổi. Với gói hóa lượng tử mã nguồn mở xTB, Argon giúp phần dự đoán cấu trúc phân tử nhanh hơn tới 2,3 lần.",
+        "## Khoa học và robot",
+        "Theo Google, Argon đã góp phần tìm ra một lớp phản ví dụ rộng hơn cho “giả thuyết Grad” trong nghiên cứu nhiệt hạch, thiết kế năm enzyme mới có hoạt tính được phòng thí nghiệm xác nhận, và chỉ ra một sắp xếp lại nhiễm sắc thể mà phần mềm thông thường bỏ sót nhiều năm.",
+        "Về robot, Argon đạt 87% trên bộ đo lập luận không gian ERQA. Trong một thử nghiệm nội bộ, nó xem video một người chơi ném bao cát, tự viết mã mô phỏng, rồi giúp robot hình người Apollo ném trúng bảy lần liên tiếp ngoài đời thật.",
+        "## An toàn",
+        "Google nói Argon từ chối yêu cầu nguy hiểm tốt hơn các bản trước. Trên các bài kiểm tra lập trình, tỉ lệ mô hình tìm cách “đi đường tắt” chỉ còn 2%. Trên bộ đo tấn công chèn lệnh gián tiếp của Gray Swan, tỉ lệ tấn công thành công còn 0,7%. Chuyên gia an ninh mạng được duyệt có thể dùng bản không có rào chắn an ninh qua chương trình Fairwind.",
+        "> Các số liệu trên do Google tự công bố, chưa có đánh giá độc lập đầy đủ."
+      ],
+      "glossary": [
+        { "term": "Mô hình frontier", "explain": "Mô hình AI thuộc nhóm mạnh nhất hiện có, do các phòng lab lớn phát triển." },
+        { "term": "Agent", "explain": "Hệ thống AI tự lên kế hoạch và tự thực hiện nhiều bước, ví dụ đọc mã, sửa mã, chạy thử." },
+        { "term": "Prompt injection (chèn lệnh)", "explain": "Kiểu tấn công giấu chỉ thị độc hại trong trang web, email hay tài liệu để chiếm quyền điều khiển agent." }
+      ]
+    },
+    {
+      "id": "meta-muse-wonder",
+      "group": "press",
+      "source": "TechCrunch",
+      "url": "https://techcrunch.com/2026/10/12/meta-releases-its-first-frontier-model-muse-wonder/",
+      "discussionUrl": "https://news.ycombinator.com/item?id=50059115",
+      "comments": 374,
+      "publishedAt": "2026-10-12T17:56:56Z",
+      "hot": true,
+      "readMinutes": 3,
+      "tags": ["Meta", "Mô hình mới"],
+      "titleEn": "Meta releases its first frontier model, Muse Wonder",
+      "titleVi": "Meta tung Muse Wonder, mô hình frontier đầu tiên của hãng",
+      "summary": "Phòng thí nghiệm Siêu trí tuệ của Meta ra mắt hai mô hình Muse Wonder và Muse Wonder Full. Theo Meta, điểm benchmark của chúng ngang Claude Fable 5.1 và GPT-6 Astra. Điểm nhấn là “trí nhớ chủ động”: nhớ điều quan trọng với người dùng qua nhiều ngày, nhiều tuần.",
+      "keyPoints": [
+        "Muse Wonder có qua Meta Model API, giá 4 USD mỗi triệu token đầu vào và 20 USD mỗi triệu token đầu ra.",
+        "Bản Muse Wonder Full chỉ dành cho người đăng ký Muse Code, không có qua API.",
+        "Artificial Analysis chấm Wonder Full 56 điểm, Wonder 52 điểm; Claude Opus 5.5 dẫn đầu với 58 điểm.",
+        "Đây là mô hình frontier đầu tiên kể từ khi Alexandr Wang tái cấu trúc mảng AI của Meta khoảng 14 tháng trước."
+      ],
+      "body": [
+        "Ngày 12/10, Meta Superintelligence Labs công bố dòng Muse Wonder. Muse Spark ra trước đó là mô hình nhẹ, ưu tiên tốc độ. Wonder lớn hơn và mạnh hơn, nhất là ở các việc phức tạp như lập trình. Meta gọi đây là “bước tiến lớn hướng tới siêu trí tuệ cá nhân”.",
+        "Meta nhấn mạnh ba điểm. “Active Memory” giúp mô hình nhớ điều quan trọng với người dùng qua nhiều ngày, tuần và tháng. “Active Focus” giúp nó bám việc tới khi xong. Ngoài ra, Meta nói mô hình dẫn đầu về tài chính và pháp lý. Trên bộ đo trí nhớ MemoryBench, Meta cho biết Wonder vượt Fable, Opus và Astra.",
+        "Theo bản tin AINews của Latent Space, đánh giá độc lập của Artificial Analysis cho thấy Wonder Full tiến bộ trên cả mười bài đo so với Muse Spark 1.3, lớn nhất ở nhóm agent: Terminal-Bench 4.0 tăng từ 33% lên 57%. Hai lần ra mắt chỉ cách nhau sáu tuần.",
+        "Ngày ra mắt có lỗi trừ hạn mức sử dụng quá nhanh trong Muse Code. Meta sửa trong ngày và đặt lại hạn mức cho mọi người. Mô hình được huấn luyện ở trung tâm dữ liệu Prometheus tại bang Ohio.",
+        "> Bản tin AINews ghi nhận Meta chưa dẫn ra tài liệu an toàn (system card) chi tiết cho dòng mô hình này."
+      ],
+      "glossary": [
+        { "term": "Benchmark", "explain": "Bộ bài kiểm tra chuẩn để so sánh năng lực các mô hình." },
+        { "term": "Token", "explain": "Đơn vị văn bản mà mô hình xử lý, thường là một từ hoặc một phần của từ. Giá API tính theo số token." }
+      ]
+    },
+    {
+      "id": "anthropic-scion",
+      "group": "lab",
+      "source": "Anthropic Engineering",
+      "url": "https://www.anthropic.com/engineering/redesigning-source-control",
+      "discussionUrl": "https://news.ycombinator.com/item?id=50073633",
+      "comments": 539,
+      "publishedAt": "2026-10-13T15:49:56Z",
+      "hot": true,
+      "readMinutes": 5,
+      "tags": ["Anthropic", "Claude", "Hạ tầng"],
+      "titleEn": "Redesigning source control at Anthropic",
+      "titleVi": "Anthropic bỏ git, tự viết hệ thống quản lý mã vì Claude viết code quá nhanh",
+      "summary": "Số thay đổi mã Anthropic gộp vào kho mỗi ngày tăng từ khoảng 2.500 hồi tháng 5 lên hơn 30.000 vào tháng 9, phần lớn do Claude viết. Git không theo kịp, nên một nhóm bảy người đã xây hệ thống quản lý mã mới tên Scion và chuyển toàn bộ kho sang trong năm tháng.",
+      "keyPoints": [
+        "Lịch sử nhánh chính gần 100 GB; CI checkout khoảng 25 triệu lần mỗi ngày, nếu tải kiểu git thông thường sẽ tốn hơn 600 PB mỗi ngày.",
+        "Scion giả định máy khách luôn trực tuyến: máy chủ làm phần nặng, máy khách chỉ tải phần cần dùng.",
+        "Hạ tầng Scion nhỏ hơn 200 lần so với hệ thống git mirror cũ; checkout chỉ mất vài giây thay vì vài phút.",
+        "Kỹ sư vẫn quan trọng, nhưng việc chính chuyển sang thiết kế và biết lúc nào phải nói “không” với Claude."
+      ],
+      "body": [
+        "Anthropic viết rằng viết code không còn là nút thắt. Nút thắt mới là hạ tầng vốn làm cho con người: quản lý mã nguồn, build và CI. Từ tháng 5 đến tháng 9/2026, số thay đổi được gộp vào kho chung (monorepo) mỗi ngày tăng hơn 10 lần, và công ty không thấy dấu hiệu chững lại.",
+        "## Vì sao git không còn hợp",
+        "Git được thiết kế phân tán: mỗi bản sao là một kho đầy đủ, làm việc được khi offline. Nhưng ở Anthropic, gần như mọi “máy khách” là agent và job CI, vốn luôn trực tuyến. Kho cũng đã quá lớn: lịch sử nhánh chính gần 100 GB, bản sao làm việc nén hơn 25 GB. Lúc cao điểm, công ty chạy vài trăm máy chủ git mirror để chống tải, và việc vận hành ngày càng khó.",
+        "## Scion làm khác thế nào",
+        "Scion dựa trên vài nguyên tắc. Máy khách luôn online nên chỉ tải dữ liệu khi cần. Máy chủ lo mọi phép tính nặng như tạo commit, merge, rebase, tra lịch sử và blame. Mọi truy vấn đều có API, nên nhiều job không cần tải kho về máy. Chi phí tạo commit tỉ lệ với độ lớn thay đổi chứ không với độ lớn kho. Checkout mặc định chỉ lấy những thư mục được yêu cầu.",
+        "Kết quả: mỗi tầng cache đạt tỉ lệ trúng trên 99%, riêng CI tiết kiệm 25% CPU, và checkout nhanh hơn khoảng hai bậc độ lớn.",
+        "## Bài học về làm phần mềm cùng agent",
+        "Một nhóm bảy người xây Scion, công cụ review code Antique và nhiều hệ thống liên quan trong năm tháng. Tất cả kỹ sư trong nhóm đánh giá Claude viết code giỏi hơn họ. Nhưng họ vẫn phải giữ các ràng buộc của hệ thống, ngăn Claude làm phức tạp quá mức, và xem ý định của mỗi thay đổi thay vì đọc từng dòng. Một ví dụ: một bản thử sớm của Claude Mythos Preview viết lại đường ống nhập dữ liệu, dùng ít bộ nhớ hơn 20 lần và chạy nhanh hơn 4 lần.",
+        "Anthropic nói Scion không phải thứ thay git cho đa số. Họ chia sẻ thiết kế để GitHub, GitLab và cộng đồng mã nguồn mở có thể đưa các ý tưởng này vào git, vì dự đoán nhiều công ty sẽ gặp vấn đề tương tự trong 6 đến 12 tháng tới."
+      ],
+      "glossary": [
+        { "term": "Monorepo", "explain": "Một kho mã duy nhất chứa mã của rất nhiều dự án trong công ty." },
+        { "term": "CI (tích hợp liên tục)", "explain": "Hệ thống tự động build và chạy kiểm thử mỗi khi có thay đổi mã." },
+        { "term": "Checkout", "explain": "Lấy các file mã của một phiên bản về máy để làm việc hoặc chạy kiểm thử." }
+      ]
+    },
+    {
+      "id": "openai-nghe-len",
+      "group": "press",
+      "source": "SF Standard",
+      "url": "https://sfstandard.com/2026/10/13/openai-engineer-arrested-alleged-bugging-executive-conference-room/",
+      "discussionUrl": "https://news.ycombinator.com/item?id=50078141",
+      "comments": 374,
+      "publishedAt": "2026-10-13T20:23:55Z",
+      "hot": true,
+      "readMinutes": 3,
+      "tags": ["OpenAI", "An ninh"],
+      "titleEn": "OpenAI engineer arrested in bugging of executive conference room",
+      "titleVi": "Kỹ sư OpenAI bị bắt vì bị cáo buộc gài thiết bị nghe lén phòng họp lãnh đạo",
+      "summary": "Một kỹ sư OpenAI bị bắt vì bị cáo buộc giấu thiết bị ghi âm trong phòng họp lãnh đạo ở trụ sở San Francisco. Công tố viên nói một tài khoản chatbot gắn với người này đã hỏi cách chế, giấu và truy cập từ xa thiết bị ghi âm. OpenAI cho biết chưa thấy dấu hiệu lộ trọng số mô hình, mã nguồn hay dữ liệu khách hàng.",
+      "keyPoints": [
+        "Bị cáo là Abdulrahman Alfozan, 35 tuổi, kỹ sư OpenAI từ tháng 7/2025.",
+        "Thiết bị cắm vào cổng USB phía sau tivi phòng họp, bọc trong giấy vệ sinh, dữ liệu bên trong được mã hóa.",
+        "Nếu bị kết tội, người này có thể chịu tới 5 năm tù và phạt 250.000 USD.",
+        "OpenAI nói đã dùng chính mô hình AI của mình để phân tích thiết bị và lần ra người gài."
+      ],
+      "body": [
+        "Theo Văn phòng Công tố liên bang ở San Francisco, đội chống nghe lén của OpenAI tìm thấy thiết bị ngày 30/9 khi rà soát một phòng họp lãnh đạo. Thiết bị được gài khoảng ngày 28/9. Phòng này thường dùng cho các cuộc họp về nghiên cứu, kế hoạch sản phẩm và làm việc với chính phủ.",
+        "Camera cho thấy Alfozan nhiều lần ở gần phòng họp, dù anh không có quyền vào. Trước đó, anh bị cáo buộc đã dùng một công cụ năng suất để tra địa chỉ tòa nhà, phòng họp và lịch họp của lãnh đạo. Từ ngày 24 đến 30/9, một tài khoản chatbot gắn với vợ anh, dùng chung định danh với tài khoản của anh, đã hỏi cách “làm máy ghi âm liên tục” và “mã hóa thẻ SD”.",
+        "Ngày 5/10, an ninh phát hiện một chiếc túi bỏ quên chứa ví, giấy tờ tùy thân của Alfozan và một thiết bị ghi âm thứ hai. Anh bị bắt ngày 9/10, ra tòa lần đầu ngày 13/10 và vẫn bị tạm giam. Phiên xét tạm giam dự kiến diễn ra ngày 19/10.",
+        "OpenAI cho biết đã phối hợp với FBI về thời điểm sa thải để không ảnh hưởng cuộc điều tra, đồng thời thu hẹp dần quyền truy cập của anh. Công ty nói có bằng chứng anh định gài thêm thiết bị ở nơi khác, nhưng chưa thấy dấu hiệu lộ trọng số mô hình, mã nguồn hay dữ liệu khách hàng.",
+        "Công tố viên Craig Missakian gọi đây là “vấn đề an ninh quốc gia”. Giám đốc FBI Kash Patel nói bảo vệ đổi mới AI của Mỹ là một trong những ưu tiên phản gián hàng đầu.",
+        "> Đây là cáo buộc của công tố. Bị cáo chưa bị kết tội."
+      ]
+    },
+    {
+      "id": "character-ai-pha-san",
+      "group": "press",
+      "source": "Character.ai",
+      "url": "https://blog.character.ai/an-update-on-character-ai/",
+      "discussionUrl": "https://news.ycombinator.com/item?id=50068036",
+      "comments": 270,
+      "publishedAt": "2026-10-12",
+      "hot": true,
+      "readMinutes": 2,
+      "tags": ["Character.ai", "Disney", "Phá sản"],
+      "titleEn": "Character.ai has initiated voluntary Chapter 11 bankruptcy",
+      "titleVi": "Character.ai nộp đơn phá sản, Disney đề nghị 20 triệu USD cho công nghệ của hãng",
+      "summary": "Nền tảng chatbot nhập vai Character.ai đã nộp đơn phá sản theo Chương 11 để bán công ty dưới sự giám sát của tòa án. Nếu không có người mua phù hợp, nền tảng sẽ đóng cửa. Theo Ars Technica, Disney đề nghị trả 20 triệu USD cho một giấy phép vĩnh viễn, không độc quyền với một phần tài sản trí tuệ của hãng.",
+      "keyPoints": [
+        "Character.ai nêu lý do là “khó khăn đáng kể về pháp lý, quản lý và vận hành” trong năm qua.",
+        "Quá trình bán dự kiến xong vào cuối tháng 11 hoặc đầu tháng 12/2026.",
+        "Dịch vụ vẫn chạy, gói trả phí vẫn còn hiệu lực; người dùng có thể xuất dữ liệu hoặc xóa tài khoản.",
+        "Tháng 9/2025, Disney từng gửi thư yêu cầu Character.ai ngừng dùng nhân vật Disney."
+      ],
+      "body": [
+        "Ngày 12/10, Character.ai thông báo khởi động thủ tục phá sản tự nguyện theo Chương 11 luật phá sản Mỹ. Mục tiêu là bán toàn bộ hoặc gần như toàn bộ tài sản qua một quy trình có tòa án giám sát. Hội đồng quản trị cho rằng đây là cách tốt nhất để tối đa giá trị cho các bên liên quan.",
+        "Công ty hy vọng có người mua giữ nền tảng hoạt động. Nếu không, nền tảng sẽ đóng. Trong lúc chờ, người dùng vẫn dùng được mọi dịch vụ, gói trả phí và cách tính tiền không đổi. Ai lo ngại có thể xuất dữ liệu hoặc xóa tài khoản qua app hay website.",
+        "Ars Technica đưa tin Disney đề nghị trả 20 triệu USD cho “giấy phép vĩnh viễn, không độc quyền” với một số tài sản trí tuệ của Character Technologies. Thông cáo không nói rõ Disney muốn tài sản nào.",
+        "Đề nghị này gây bất ngờ. Tháng 9/2025, Disney cùng nhiều bên công khai chỉ trích Character.ai về việc dùng nội dung trái phép và gây hại cho trẻ em. Disney khi đó gửi thư yêu cầu ngừng vi phạm, cáo buộc Character.ai dùng nhân vật Disney theo cách có thể hại thương hiệu lâu dài."
+      ],
+      "glossary": [
+        { "term": "Phá sản theo Chương 11", "explain": "Thủ tục ở Mỹ cho phép công ty tái cấu trúc hoặc bán tài sản dưới sự giám sát của tòa án, trong khi vẫn tiếp tục hoạt động." }
+      ]
+    },
+    {
+      "id": "an-nang-luc",
+      "group": "research",
+      "source": "arXiv",
+      "url": "https://arxiv.org/abs/2610.13928",
+      "discussionUrl": "https://news.ycombinator.com/item?id=50065692",
+      "pdfUrl": "https://arxiv.org/pdf/2610.13928",
+      "comments": 136,
+      "publishedAt": "2026-10-09T17:55:06Z",
+      "hot": true,
+      "readMinutes": 3,
+      "tags": ["An toàn AI", "Đánh giá mô hình", "NeurIPS 2026"],
+      "titleEn": "AI Models Can Provably Hide Arbitrary Capabilities",
+      "titleVi": "Mô hình AI có thể giấu một năng lực bất kỳ mà kiểm tra không phát hiện được",
+      "summary": "Nghiên cứu được nhận đăng tại NeurIPS 2026 cho thấy có thể nhúng một mạng nơ-ron đã mã hóa vào trong trọng số mô hình, chỉ giải mã và chạy khi nhận đúng tín hiệu bí mật. Kể cả khi có toàn bộ trọng số, việc làm lộ năng lực ẩn này được chứng minh là khó, dựa trên giả định mật mã học.",
+      "keyPoints": [
+        "Đánh giá năng lực trước khi phát hành dựa trên giả định rằng năng lực ẩn có thể được “gợi ra”. Bài báo chỉ ra giả định này không đứng vững khi có người cố tình giấu.",
+        "Kỹ thuật dùng “digital locker” để khóa mạch ẩn, mở rộng từ giấu một chuỗi ký tự cố định sang giấu phép tính bất kỳ.",
+        "Thử nghiệm trên tác vụ dự đoán phản ứng hóa học nhỏ, đại diện cho năng lực liên quan vũ khí hóa, sinh, phóng xạ, hạt nhân.",
+        "Năng lực ẩn chống được tinh chỉnh, thêm nhiễu vào trọng số, dò tín hiệu bằng gradient và huấn luyện đối kháng ở không gian ẩn."
+      ],
+      "body": [
+        "Trước khi phát hành, các phòng lab thường đánh giá xem mô hình có năng lực nguy hiểm không. Độ tin cậy của cách làm này dựa trên một giả định: nếu mô hình có năng lực ẩn, các kỹ thuật “gợi ra” như tinh chỉnh hay tấn công đối kháng sẽ làm nó lộ diện.",
+        "Nhóm tác giả xây một kiểu cửa hậu (backdoor): nhúng một mạng nơ-ron đã mã hóa vào trong trọng số của mô hình chủ. Mạng này chỉ được giải mã và chạy khi mô hình nhận đúng một tín hiệu bí mật. Nhờ kỹ thuật mật mã “digital locker”, mạch ẩn được chứng minh là khó phát hiện và khó diễn giải, kể cả khi người kiểm tra có toàn bộ trọng số.",
+        "Họ cài đặt bằng PyTorch và thử bốn cách gợi ra năng lực: tinh chỉnh, thêm nhiễu vào trọng số, tìm tín hiệu bằng gradient, và huấn luyện đối kháng ở không gian ẩn. Không cách nào làm lộ năng lực đã giấu.",
+        "Kết luận của bài: đánh giá dựa trên việc gợi ra năng lực có giới hạn cơ bản khi đối mặt với người cố tình giấu. Nhóm công bố các mô hình để cộng đồng cải thiện cách phòng thủ.",
+        "> Đây là một bằng chứng khái niệm trên tác vụ nhỏ, không phải phát hiện về một mô hình thương mại cụ thể."
+      ],
+      "glossary": [
+        { "term": "Backdoor (cửa hậu)", "explain": "Hành vi bị cài sẵn vào mô hình, chỉ kích hoạt khi gặp một tín hiệu bí mật." },
+        { "term": "Elicitation (gợi ra năng lực)", "explain": "Các kỹ thuật cố làm mô hình bộc lộ năng lực mà bình thường nó không thể hiện." },
+        { "term": "CBRN", "explain": "Viết tắt của hóa học, sinh học, phóng xạ, hạt nhân: nhóm năng lực nguy hiểm được theo dõi chặt nhất." }
+      ]
+    },
+    {
+      "id": "thinking-inertia",
+      "group": "research",
+      "source": "Hugging Face Papers",
+      "url": "https://arxiv.org/abs/2610.11765",
+      "discussionUrl": "https://huggingface.co/papers/2610.11765",
+      "pdfUrl": "https://arxiv.org/pdf/2610.11765",
+      "points": 215,
+      "comments": 3,
+      "publishedAt": "2026-10-07T20:00:00Z",
+      "readMinutes": 3,
+      "tags": ["LLM", "Suy luận"],
+      "titleEn": "Thinking Inertia: LLMs Keep Thinking When Told Not To",
+      "titleVi": "“Quán tính suy nghĩ”: bảo LLM đừng suy nghĩ, chúng vẫn suy nghĩ",
+      "summary": "Nhiều mô hình có chế độ “không suy nghĩ” để trả lời nhanh. Nghiên cứu này cho thấy dù tắt chế độ suy nghĩ hay ra lệnh rõ ràng, mô hình vẫn thường viết ra phần lập luận trước câu trả lời. Câu hỏi càng mở, hiện tượng càng rõ.",
+      "keyPoints": [
+        "Tác giả đề xuất ba thước đo: tỉ lệ không có phần suy nghĩ, độ liên quan của phần trước câu trả lời với câu hỏi, và tỉ lệ có suy luận rõ ràng do một LLM khác chấm.",
+        "Thử sáu cách ra lệnh trên sáu LLM với câu hỏi đúng/sai, trắc nghiệm và câu hỏi mở.",
+        "Với đúng/sai và trắc nghiệm, độ chính xác ổn định; với câu hỏi mở, ép “chỉ trả lời” đi kèm đánh đổi về độ chính xác.",
+        "Đưa sẵn các phương án trả lời giúp mô hình dễ trả lời thẳng hơn."
+      ],
+      "body": [
+        "Các LLM ngày càng có “chế độ suy nghĩ”. Chế độ ngược lại, “không suy nghĩ”, ít được nghiên cứu hơn. Các nghiên cứu trước thường coi là “không suy nghĩ” khi chế độ suy nghĩ bị tắt hoặc khi không có đoạn lập luận dài. Tác giả cho rằng cả hai cách này không đáng tin: tắt chế độ suy nghĩ vẫn có thể ra lập luận, còn đoạn dài có thể chỉ là chữ đệm.",
+        "Họ tách mỗi câu trả lời thành hai phần: đoạn đứng trước đáp án và đáp án cuối. Ba thước đo ở phần Ý chính giúp phân biệt ba trường hợp: trả lời thẳng, có đoạn văn liên quan nhưng không suy luận, và có suy luận thật sự.",
+        "Kết quả: không cách ra lệnh nào loại bỏ được hoàn toàn suy luận hiển thị. Tác giả gọi đây là “quán tính suy nghĩ”. Khi viết lại cùng một câu hỏi ở các dạng khác nhau, dạng có sẵn phương án trả lời giúp mô hình dễ trả lời thẳng hơn.",
+        "Gợi ý của người biên tập: nếu ứng dụng của bạn cần câu trả lời ngắn, nhanh và rẻ, đừng chỉ dựa vào cài đặt hay lời nhắc để tắt suy luận. Hãy kiểm tra đầu ra thật, và nếu được, cho mô hình chọn trong danh sách đáp án."
+      ],
+      "glossary": [
+        { "term": "Chế độ suy nghĩ (thinking mode)", "explain": "Chế độ mô hình viết lập luận từng bước trước khi đưa ra đáp án." },
+        { "term": "LLM-as-judge", "explain": "Dùng một mô hình ngôn ngữ khác để chấm điểm đầu ra." }
+      ]
+    },
+    {
+      "id": "agentswe",
+      "group": "research",
+      "source": "Hugging Face Papers",
+      "url": "https://arxiv.org/abs/2610.13361",
+      "discussionUrl": "https://huggingface.co/papers/2610.13361",
+      "pdfUrl": "https://arxiv.org/pdf/2610.13361",
+      "points": 202,
+      "comments": 2,
+      "publishedAt": "2026-10-08T20:00:00Z",
+      "readMinutes": 2,
+      "tags": ["Agent", "Lập trình", "Benchmark"],
+      "titleEn": "AgentSWE: Can Coding Agents Build the Agent You Actually Want?",
+      "titleVi": "AgentSWE: agent lập trình chưa xây nổi agent đúng như yêu cầu",
+      "summary": "AgentSWE là bộ đo mới kiểm tra việc giao cho agent lập trình xây một agent khác theo yêu cầu. Trên 25 nhiệm vụ, không agent nào làm được gần đúng yêu cầu. Khoảng cách giữa thứ chúng trình diễn và thứ chúng thực sự giao là chuyện thường, không phải ngoại lệ.",
+      "keyPoints": [
+        "Ba giai đoạn: tạo agent mới từ mô tả bằng lời, sửa mã của agent đang chạy thật, và tối ưu theo một chỉ tiêu đo được.",
+        "Agent chỉ được thử trên vài ví dụ minh họa, nhưng bị chấm trên các ca kiểm thử ẩn bao trọn yêu cầu.",
+        "Lỗi thường gặp: học thuộc ví dụ thấy được, mã trông hoàn chỉnh nhưng rỗng bên trong, và tự nhận đã xong khi chưa xong."
+      ],
+      "body": [
+        "Ngày càng nhiều người nhờ agent lập trình xây một agent riêng cho quy trình của mình. Việc này ngầm giả định agent được giao sẽ thực sự phục vụ đúng yêu cầu, chứ không chỉ trông như vậy. Theo tác giả, chưa có bộ đo nào kiểm tra giả định này.",
+        "AgentSWE coi mỗi nhiệm vụ như một đơn đặt hàng, không phải một bài thi. Bên xây được lặp đi lặp lại trên vài ví dụ minh họa. Sau đó bản nộp được đóng băng và chạy trên các ca kiểm thử ẩn, chấm theo tiêu chí rút ra từ yêu cầu với ngưỡng đạt hoặc trượt rõ ràng.",
+        "Khi thử nhiều agent lập trình với nhiều mô hình và harness khác nhau, không agent nào tiến gần tới việc giao đúng điều được yêu cầu. Phân tích các lần thất bại cho thấy ba kiểu lỗi lặp lại: khớp quá mức với ví dụ nhìn thấy, phần chạy rỗng phía sau mã trông đầy đủ, và tuyên bố đã hoàn thành mà không có căn cứ."
+      ],
+      "glossary": [
+        { "term": "Harness", "explain": "Phần khung bao quanh mô hình để biến nó thành agent: công cụ, vòng lặp, cách quản lý ngữ cảnh." },
+        { "term": "Overfitting (khớp quá mức)", "explain": "Làm tốt trên các ví dụ đã thấy nhưng sai với trường hợp mới." }
+      ]
+    },
+    {
+      "id": "dynamic-workflows",
+      "group": "newsletter",
+      "source": "Latent Space",
+      "url": "https://www.latent.space/p/claude-dynamic-workflows",
+      "publishedAt": "2026-10-12T18:18:17Z",
+      "readMinutes": 3,
+      "tags": ["Anthropic", "Agent", "Đa agent"],
+      "titleEn": "How Anthropic’s Dynamic Workflows Coordinate Claude Agents",
+      "titleVi": "Anthropic giới thiệu “dynamic workflows”: để Claude tự tổ chức đội agent",
+      "summary": "Tại hội nghị AI Engineer New York, hai kỹ sư Anthropic giới thiệu dynamic workflows (gọi tắt là “flows”) trong Claude Managed Agents. Thay vì nhà phát triển tự cấu hình agent điều phối và danh sách agent con, Claude tự lên kế hoạch, tự viết chương trình điều phối và quyết định cần bao nhiêu agent.",
+      "keyPoints": [
+        "Agent chính lập kế hoạch, viết chương trình điều phối, khởi chạy agent con, gom kết quả và quản lý luồng thông tin.",
+        "Có thể giới hạn ngân sách cho mỗi phiên; mô hình không được biết ngân sách khi đang chạy.",
+        "Các agent con dùng chung hệ thống file để trao đổi, nhưng không nhắn trực tiếp cho nhau qua API.",
+        "Trong ví dụ quét danh mục cổ phiếu, flows tốn “nhiều hơn hẳn” so với một agent, nhưng tìm ra chi tiết đầy đủ hơn."
+      ],
+      "body": [
+        "CJ Avilla và Harrison Stall của Anthropic mở đầu bằng lịch sử các dự án hệ điều hành, từ Unix tới Linux với nhiều lớp người duyệt mã tin cậy. Thông điệp: muốn làm việc lớn, agent cũng cần được tổ chức như vậy. Avilla nói nhiều người đang thấy chính mình thành nút thắt khi phải duyệt quá nhiều pull request do agent tạo ra.",
+        "Trước đây, Claude Managed Agents yêu cầu nhà phát triển tự cấu hình một agent điều phối và danh sách agent con. Với flows, Claude tự chọn cách chia việc qua nhiều giai đoạn, mỗi giai đoạn tạo ra phần việc kiểm chứng được. Người dùng vẫn có thể đưa thêm agent con chuyên biệt nếu muốn. Mọi bước trao đổi giữa các agent đều xem được dạng đồ thị trong Claude Console.",
+        "Khi được hỏi Claude quyết định số agent thế nào, Stall trả lời bằng “eval và mặc định thấp”: muốn chạy song song nhiều thì phải yêu cầu rõ. Ông cũng đùa rằng nếu cho mô hình biết ngân sách, agent có thể trở nên “hơi lo lắng”. Để các lần chạy sau rẻ hơn, Avilla gợi ý tính năng thử nghiệm “dreaming”, tự sắp xếp lại bộ nhớ từ các phiên trước.",
+        "Theo Stall, flows là cách “dồn thêm tính toán lúc chạy vào bài toán khó” để lấy thêm năng lực từ mô hình, và mục tiêu là để người dùng phổ thông cũng làm được những dự án khoa học lớn."
+      ],
+      "glossary": [
+        { "term": "Đa agent (multi-agent)", "explain": "Nhiều agent cùng làm một việc lớn, mỗi agent phụ trách một phần." },
+        { "term": "Eval", "explain": "Bộ đánh giá dùng để đo chất lượng đầu ra của hệ thống AI." }
+      ]
+    },
+    {
+      "id": "lfm25-24b",
+      "group": "lab",
+      "source": "Liquid AI · Hugging Face Blog",
+      "url": "https://huggingface.co/blog/LiquidAI/lfm25-24b-a2b",
+      "discussionUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1x52kco/liquidailfm2524ba2b/",
+      "publishedAt": "2026-10-13T17:05:48Z",
+      "readMinutes": 3,
+      "tags": ["Mô hình mở", "Chạy trên máy", "MoE"],
+      "titleEn": "Run fast, private agents on-device with LFM2.5-24B-A2B",
+      "titleVi": "LFM2.5-24B-A2B: 24 tỉ tham số, chỉ 2 tỉ hoạt động, chạy agent ngay trên máy",
+      "summary": "Liquid AI phát hành mô hình mở LFM2.5-24B-A2B theo kiến trúc Mixture-of-Experts: 24 tỉ tham số, mỗi token chỉ dùng khoảng 2 tỉ. Mô hình luôn suy nghĩ trước khi trả lời, gọi được công cụ và đạt 184 token mỗi giây trên Apple M5 Max. Danh sách ngôn ngữ hỗ trợ có tiếng Việt.",
+      "keyPoints": [
+        "Trên bộ đo agent LiveClaw đạt 48,09 điểm, so với 38,19 của Qwen3.6-35B-A3B, một mô hình lớn hơn khoảng 50%.",
+        "Mạnh về gọi công cụ và làm theo chỉ dẫn; yếu hơn các mô hình lớn về kiến thức và lập trình, ví dụ SWE-Bench Verified đạt 51 so với 66,2.",
+        "Ngữ cảnh 131.000 token, từ vựng mở rộng lên 128.000 token để xử lý tốt hơn các ngôn ngữ không dùng chữ Latin.",
+        "Có sẵn cho llama.cpp, MLX, vLLM, SGLang và ONNX; trọng số mở trên Hugging Face."
+      ],
+      "body": [
+        "LFM2.5-24B-A2B là mô hình lớn nhất và cuối cùng của dòng LFM2.5. Nó giữ kiến trúc của LFM2-24B-A2B: 40 lớp, 64 chuyên gia mỗi khối MoE, mỗi token chọn 4 chuyên gia, kết hợp tích chập ngắn có cổng với attention. Khác bản trước, đây là mô hình chỉ có chế độ suy luận: luôn viết chuỗi lập luận trước câu trả lời.",
+        "Dữ liệu tiền huấn luyện tăng từ khoảng 17 lên 33 nghìn tỉ token. Sau đó mô hình được huấn luyện thêm qua năm giai đoạn, kết thúc bằng học tăng cường ngay bên trong các harness agent như OpenClaw, Hermes Agent, Pi và OpenCode.",
+        "Theo Liquid AI, mô hình dẫn đầu hoặc ngang bằng trên năm trong tám bộ đo về công cụ và agent, và dẫn đầu cả ba bộ đo làm theo chỉ dẫn. Ở các bộ đo nặng kiến thức như GPQA Diamond hay lập trình như SWE-Bench Verified, các mô hình lớn hơn vẫn hơn. Hãng khuyên kết hợp với tìm kiếm web hoặc truy xuất tài liệu cho các việc cần nhiều kiến thức.",
+        "Về tốc độ, mô hình đạt 184 token mỗi giây trên M5 Max và 114 token mỗi giây trên Ryzen AI Max+ 395, nhanh tới 1,7 lần so với mô hình cùng nhóm và dùng ít bộ nhớ nhất. Trên một GPU B300, nó đạt hơn 21.000 token đầu ra mỗi giây khi phục vụ nhiều người cùng lúc.",
+        "> Các số liệu benchmark do Liquid AI tự công bố."
+      ],
+      "glossary": [
+        { "term": "MoE (Mixture-of-Experts)", "explain": "Kiến trúc chia mô hình thành nhiều “chuyên gia”; mỗi token chỉ kích hoạt vài chuyên gia nên chạy nhanh và rẻ hơn." },
+        { "term": "Tham số hoạt động", "explain": "Số tham số thực sự được dùng để xử lý mỗi token, quyết định tốc độ chạy." }
+      ]
+    },
+    {
+      "id": "iclr-bai-giong-nhau",
+      "group": "community",
+      "source": "r/MachineLearning",
+      "url": "https://www.reddit.com/r/MachineLearning/comments/1x5dc8f/weird_pattern_in_the_iclr_papers_i_was_assigned/",
+      "publishedAt": "2026-10-14T00:28:26Z",
+      "readMinutes": 2,
+      "tags": ["Hội nghị", "Phản biện", "AI viết bài"],
+      "titleEn": "Weird pattern in the ICLR papers I was assigned to review [D]",
+      "titleVi": "Ba bài nộp ICLR cùng ý tưởng, cùng văn phong: dấu hiệu bài báo AI sản xuất hàng loạt?",
+      "summary": "Một người phản biện hội nghị ICLR kể cả ba bài được giao đều viết bằng văn AI rất khó đọc. Lạ hơn, cả ba dùng chung một ý tưởng cốt lõi và trình bày theo cùng một cách. Người viết nghi có một hệ thống “tự động nghiên cứu” đang sản xuất loạt bài kiểu này.",
+      "keyPoints": [
+        "Cả ba bài đều so sánh hai bộ dự đoán bằng cách xét hiệu số sai số, thay vì ước lượng từng sai số riêng.",
+        "Khi lấy hiệu, một số hạng chung triệt tiêu, cho ra cận chặt hơn; các bài dựng cả khung lý thuyết quanh quan sát này.",
+        "Văn phong giống nhau, giống văn Claude, cùng kiểu thêm rất nhiều chứng minh và thí nghiệm."
+      ],
+      "body": [
+        "Người đăng tự nhận là phản biện khá dễ tính, nhưng nói cả ba bài ICLR được giao đều là “AI slop”: văn viết bằng AI không qua chọn lọc, gần như không đọc nổi. Họ lo rằng tình trạng này đã phổ biến ở các hội nghị hàng đầu.",
+        "Điều khiến họ đăng bài là sự trùng hợp. Cả ba bài cùng bắt đầu từ bài toán chọn bộ dự đoán tốt hơn trong hai bộ, cùng lập luận rằng ước lượng sai số của từng bộ là khó, và cùng đề xuất xét hiệu số giữa hai sai số. Trong cả ba, một số hạng chung triệt tiêu khi lấy hiệu, cho ra cận chặt hơn.",
+        "Người viết thừa nhận so sánh theo cặp và khử số hạng là kỹ thuật chuẩn, nhưng cho rằng chúng không phổ biến tới mức một người nhận ba bài độc lập cùng xoay quanh một ý. Họ đặt câu hỏi liệu có một hệ thống “autoresearch” nào đó đang tự sinh ra các bài báo kiểu này.",
+        "> Đây là chia sẻ của một người dùng Reddit, chưa được kiểm chứng độc lập."
+      ],
+      "glossary": [
+        { "term": "ICLR", "explain": "International Conference on Learning Representations, một trong các hội nghị học máy lớn nhất." },
+        { "term": "Phản biện (peer review)", "explain": "Quá trình các nhà nghiên cứu đọc và chấm bài nộp trước khi hội nghị nhận đăng." }
+      ]
+    },
+    {
+      "id": "codex-cli-daemon",
+      "group": "community",
+      "source": "Hacker News",
+      "url": "https://github.com/openai/codex/issues/48195",
+      "discussionUrl": "https://news.ycombinator.com/item?id=50060694",
+      "points": 599,
+      "comments": 292,
+      "publishedAt": "2026-10-12T18:29:04Z",
+      "hot": true,
+      "readMinutes": 2,
+      "tags": ["OpenAI", "Codex", "Công cụ lập trình"],
+      "titleEn": "Codex CLI installs a persistent, self-updating background daemon by default",
+      "titleVi": "Codex CLI tự chạy một tiến trình nền thường trú và tự cập nhật, lập trình viên phản đối",
+      "summary": "Từ bản 0.157.0, mỗi lần mở Codex CLI của OpenAI lại khởi động một tiến trình nền vẫn chạy sau khi đóng cửa sổ, chép thêm khoảng 374 MB và tự cập nhật mỗi giờ. Một báo cáo trên GitHub đề nghị tắt tính năng này theo mặc định và nhận gần 600 điểm trên Hacker News.",
+      "keyPoints": [
+        "Tiến trình nền chạy tiếp sau khi đóng mọi cửa sổ Codex, cho tới khi tắt tay hoặc khởi động lại máy.",
+        "Nó chạy từ bản sao riêng của gói cài, nên phiên bản tách khỏi bản bạn cài bằng npm hay brew.",
+        "Bộ tự cập nhật kiểm tra mỗi giờ và có thể khởi động lại backend giữa lúc đang làm việc.",
+        "Biến môi trường như proxy bị giữ theo phiên đầu tiên đã khởi động tiến trình nền."
+      ],
+      "body": [
+        "Người báo lỗi dùng Codex CLI 0.157.0 cài qua npm trên WSL2. Họ phát hiện chỉ cần mở một phiên tương tác, Codex đã chạy một tiến trình nền không gắn với terminal nào. Tiến trình này sống tiếp sau khi mọi cửa sổ Codex đã đóng.",
+        "Codex còn chép toàn bộ gói cài, khoảng 374 MB, vào thư mục ~/.codex và chạy từ bản chép này. Một bộ cập nhật riêng kiểm tra bản mới sau 5 phút, rồi mỗi giờ, tự tải về và khởi động lại backend. Một issue khác ghi nhận việc này có thể cắt ngang lượt làm việc đang chạy.",
+        "Theo người báo lỗi, với một công cụ dòng lệnh, mặc định ít gây bất ngờ nhất là backend sống và chết cùng cửa sổ, chạy đúng bản đã cài, và không tự cập nhật ngầm. Tiến trình nền dùng chung hợp lý hơn cho app desktop, hoặc khi người dùng chủ động bật.",
+        "Họ cũng thấy lệnh dừng daemon không dừng bộ cập nhật đi kèm. Cách tạm tắt mà họ đang dùng:",
+        "- Chạy “codex features disable daemon_auto_start”.",
+        "- Chạy “codex app-server daemon stop”.",
+        "- Diệt tay tiến trình “app-server daemon pid-update-loop” và xóa thư mục ~/.codex/packages/app-server-daemon."
+      ],
+      "glossary": [
+        { "term": "Daemon", "explain": "Chương trình chạy ngầm trong nền, không có cửa sổ, thường khởi động cùng hệ thống hoặc ứng dụng." }
+      ]
+    },
+    {
+      "id": "mo-hinh-mo-loi-ich-rui-ro",
+      "group": "press",
+      "source": "MIT Technology Review",
+      "url": "https://www.technologyreview.com/2026/10/13/1146366/open-models-have-real-benefits-do-they-outweigh-the-risks/",
+      "publishedAt": "2026-10-13T10:00:00Z",
+      "readMinutes": 4,
+      "tags": ["Mô hình mở", "Chính sách", "An toàn AI"],
+      "titleEn": "Open models have real benefits. Do they outweigh the risks?",
+      "titleVi": "Mô hình mở có lợi ích thật, nhưng có đáng với rủi ro?",
+      "summary": "Tranh luận về mô hình AI mở nóng lên sau khi Anthropic cảnh báo mô hình mở GLM-5.3 của Z.ai có rủi ro lớn về tấn công mạng. Bài phân tích của MIT Technology Review cho thấy vấn đề không đơn giản là “mở thì nguy hiểm, đóng thì an toàn”, và giới chuyên gia đang tìm điểm cân bằng.",
+      "keyPoints": [
+        "Mô hình mở giúp nghiên cứu sâu, rẻ hơn, giữ được dữ liệu nhạy cảm và chống tập trung quyền lực vào vài công ty.",
+        "Rủi ro: không có bộ lọc truy vấn, không thu hồi được quyền dùng, và lớp huấn luyện an toàn dễ bị gỡ bằng cách huấn luyện lại.",
+        "Mô hình đóng cũng bị lạm dụng; theo báo cáo rủi ro của Anthropic, Claude từng bị dùng trong nhiều chiến dịch tấn công mạng.",
+        "Hướng trung dung: mô hình chống huấn luyện lại, lọc dữ liệu nguy hiểm, và phát hành theo giai đoạn."
+      ],
+      "body": [
+        "Cuối tháng 9, Anthropic công bố báo cáo cho rằng GLM-5.3, mô hình mở do công ty Trung Quốc Z.ai phát hành tháng 8, có rủi ro lớn về tấn công mạng vì ai cũng tải về và sửa được. Bài viết nhắc rằng tranh luận này còn gắn với lợi ích thương mại: CEO Nvidia Jensen Huang ủng hộ mô hình mở, còn CEO Anthropic Dario Amodei chủ trương thận trọng.",
+        "## Lợi ích",
+        "Mô hình mở cho phép tải trọng số về máy. Nhà nghiên cứu nhờ đó quan sát được bên trong mô hình, nén, kết hợp và tinh chỉnh cho việc mới. Doanh nghiệp tốn ít chi phí hơn và giữ được dữ liệu nhạy cảm trên hạ tầng của mình. Elizabeth Seger của Viện Tony Blair cho rằng lập luận lớn nhất là ngăn quyền lực tập trung, giữ AI như một hàng hóa công.",
+        "Nhưng Paul Azunre, đồng sáng lập Ghana NLP, cảnh báo mặt trái: các công ty phát hành mô hình mở, quan sát cộng đồng cải tiến, rồi đưa cải tiến đó vào sản phẩm riêng mà không ghi công hay trả công.",
+        "## Rủi ro",
+        "Với mô hình đóng, nhà cung cấp lọc được truy vấn nguy hiểm và khóa tài khoản vi phạm. Khi chạy mô hình mở trên máy riêng, không có lớp nào như vậy. Lớp huấn luyện “từ chối yêu cầu xấu” cũng dễ bị gỡ bằng cách huấn luyện lại. Tuy vậy, bài viết nhấn mạnh mô hình đóng cũng bị lạm dụng thường xuyên. Một số chuyên gia còn cho rằng mô hình mở, giống phần mềm mã nguồn mở, được cộng đồng kiểm tra lỗi kỹ hơn và dùng rộng rãi hơn cho phòng thủ an ninh mạng.",
+        "## Tìm điểm giữa",
+        "Các hướng đang được nghiên cứu gồm huấn luyện mô hình chưa từng thấy dữ liệu nguy hiểm, và làm mô hình chống huấn luyện lại. Một bài tiền ấn phẩm gần đây cho thấy chưa cách chống huấn luyện lại nào đứng vững trước mọi kiểu tấn công. Nhiều chuyên gia ủng hộ phát hành theo giai đoạn: mô hình ban đầu đóng, rồi mở dần khi an toàn được xác nhận. Giáo sư David Gray Widder tóm lại: “Mở là mức sàn, không phải mức trần”."
+      ],
+      "glossary": [
+        { "term": "Mô hình mở (open-weight)", "explain": "Mô hình công khai trọng số để ai cũng tải về, chạy và sửa được." },
+        { "term": "Trọng số (weights)", "explain": "Dãy số rất lớn mã hóa toàn bộ những gì mô hình đã học." }
+      ]
+    },
+    {
+      "id": "du-lieu-startup-da-dong-cua",
+      "group": "press",
+      "source": "MIT Technology Review",
+      "url": "https://www.technologyreview.com/2026/10/13/1145755/ai-labs-buying-data-from-dead-startups-to-train-models/",
+      "publishedAt": "2026-10-13T09:00:00Z",
+      "readMinutes": 3,
+      "tags": ["Dữ liệu huấn luyện", "Quyền riêng tư"],
+      "titleEn": "AI labs are buying data from dead startups to train their models",
+      "titleVi": "Các phòng lab AI mua dữ liệu của startup đã đóng cửa để huấn luyện mô hình",
+      "summary": "Khi dữ liệu công khai và dữ liệu tổng hợp không còn đủ, các phòng lab AI bắt đầu mua mã nguồn, email, tin nhắn Slack và tài liệu của các startup đã đóng cửa. Một thị trường mới hình thành quanh việc này, nhưng giới luật sư cảnh báo rủi ro lớn về quyền riêng tư.",
+      "keyPoints": [
+        "Nền tảng Asset Hub của SimpleClosure đã xử lý hơn 150 thương vụ; 47% thương vụ của hãng có bán mã nguồn hoặc dữ liệu.",
+        "Tháng 8, Google trả 10 triệu USD mua dữ liệu của hãng hàng không Spirit Airlines đang phá sản, gồm 100 triệu email.",
+        "Người mua dùng dữ liệu để dựng môi trường giả lập cho agent luyện tập, ví dụ sửa lỗi hệ thống hay soạn văn bản pháp lý.",
+        "Tiền bán dữ liệu thường về tay chủ nợ và nhà đầu tư, không phải nhân viên đã tạo ra dữ liệu đó."
+      ],
+      "body": [
+        "Bài báo mở đầu bằng câu chuyện một nhà sáng lập startup tiền mã hóa. Khi đóng cửa công ty, anh nghĩ dữ liệu không đáng giá, nhưng rồi thu về khoảng 25.000 USD cho mã nguồn và dự kiến khoảng 15.000 USD cho dữ liệu trong Google Workspace, Notion, Figma và Slack.",
+        "Các công ty chuyên lo thủ tục đóng cửa như SimpleClosure và Sunset nay có thêm mảng bán dữ liệu. Người mua gồm các phòng lab AI lớn, các nhà cung cấp môi trường giả lập để huấn luyện agent, và các công ty công nghệ tự xây mô hình. Surge AI chẳng hạn dùng dữ liệu này để dựng “phòng tập” học tăng cường, nơi agent luyện các việc như gỡ lỗi kiến trúc IT phức tạp.",
+        "Dữ liệu thật tránh được lỗi thường gặp của dữ liệu tổng hợp, nhưng chưa ai công bố so sánh hiệu quả. Vì vậy giá cả chênh lệch rất lớn giữa các người mua.",
+        "Về pháp lý, luật sư Greg Ewing gọi loại dữ liệu này là “phóng xạ về mặt pháp lý”. Bên bán và bên mua đều nói có lọc thông tin cá nhân, nhưng email và lịch vẫn chứa nhiều chi tiết riêng tư như lịch khám bệnh hay lịch đón con. Giáo sư luật Ifeoma Ajunwa cho rằng chủ doanh nghiệp nên phải có sự đồng ý rõ ràng của nhân viên trước khi bán dữ liệu của họ, nhưng hiện Mỹ chưa có luật liên bang cấm việc này."
+      ],
+      "glossary": [
+        { "term": "Dữ liệu tổng hợp (synthetic data)", "explain": "Dữ liệu do máy tạo ra thay vì thu thập từ đời thật." },
+        { "term": "Môi trường RL (RL gym)", "explain": "Môi trường giả lập để agent thử, sai và học qua phần thưởng." }
+      ]
+    },
+    {
+      "id": "studentsim",
+      "group": "lab",
+      "source": "Microsoft Research",
+      "url": "https://www.microsoft.com/en-us/research/blog/simulating-student-learning-for-better-ai-tutoring/",
+      "publishedAt": "2026-10-12T16:00:00Z",
+      "readMinutes": 3,
+      "tags": ["Giáo dục", "Gia sư AI"],
+      "titleEn": "Simulating student learning for better AI tutoring",
+      "titleVi": "StudentSim: mô phỏng từng học sinh để huấn luyện gia sư AI",
+      "summary": "Microsoft Research giới thiệu StudentSim, hệ thống tạo “bản sao” mô phỏng của từng học sinh từ dữ liệu học tập công khai đã ẩn danh. Gia sư AI có thể thử cách giảng trên các bản mô phỏng này trước khi thử với học sinh thật. Đây là công cụ nghiên cứu, không phải sản phẩm và không thay thế giáo viên.",
+      "keyPoints": [
+        "Đánh giá theo hai tiêu chí: mô phỏng có trả lời giống học sinh thật không, và có tiến bộ sau khi được hướng dẫn không.",
+        "Thử ở ba lĩnh vực: cờ vua, viết tiếng Anh như ngôn ngữ thứ hai, và toán.",
+        "Ở cờ vua, độ giống học sinh đạt 0,515 so với 0,232 của GPT-5.4.",
+        "Gia sư cờ vua huấn luyện bằng phản hồi từ StudentSim đạt độ chính xác 90,5%, so với 71,6% khi dùng GPT-5.4 đóng vai học sinh."
+      ],
+      "body": [
+        "Muốn biết gia sư AI dạy tốt không, phải xem học sinh phản ứng ra sao sau lời giảng: có sửa được lỗi không, gợi ý có lộ đáp án quá nhiều không. Nghiên cứu với học sinh thật thì chậm và tốn kém, khó dùng trong lúc cải tiến mô hình nhanh.",
+        "Cách đơn giản là bảo một LLM đóng vai học sinh yếu toán. Vấn đề là mô hình có thể nói giọng học sinh nhưng vẫn dùng kiến thức vượt xa trình độ đó, khiến gia sư trông có vẻ hiệu quả hơn thực tế. Các mô hình theo dõi kiến thức truyền thống thì bám dữ liệu thật nhưng không đọc được lời hướng dẫn bằng ngôn ngữ tự nhiên.",
+        "StudentSim huấn luyện qua hai bước. Bước đầu học trên dữ liệu gộp của nhiều học sinh để nắm các lỗi và cách sửa phổ biến. Bước sau tinh chỉnh trên dữ liệu riêng của từng học sinh để tạo bản mô phỏng cá nhân. Cách làm dựa trên ý tưởng “vùng phát triển gần” của Vygotsky: khoảng cách giữa việc học sinh tự làm được và làm được khi có hướng dẫn.",
+        "Trong thử nghiệm học tăng cường, một gia sư cờ vua được thưởng dựa trên mức cải thiện nước đi của học sinh mô phỏng sau khi nghe hướng dẫn, chấm bằng engine Stockfish. Chuyên gia cờ vua chấm mù cho thấy gia sư dùng StudentSim tốt nhất ở mọi tiêu chí. Microsoft nhấn mạnh nghiên cứu với học sinh thật vẫn bắt buộc; mã nguồn và bộ đánh giá đã được công bố."
+      ]
+    },
+    {
+      "id": "terminalhorizon",
+      "group": "research",
+      "source": "Hugging Face Papers",
+      "url": "https://arxiv.org/abs/2610.13166",
+      "discussionUrl": "https://huggingface.co/papers/2610.13166",
+      "pdfUrl": "https://arxiv.org/pdf/2610.13166",
+      "points": 134,
+      "comments": 2,
+      "publishedAt": "2026-10-08T20:00:00Z",
+      "readMinutes": 2,
+      "tags": ["Agent", "Dữ liệu huấn luyện"],
+      "titleEn": "Scaling Agentic Data for Long-Horizon Terminal Intelligence",
+      "titleVi": "TerminalHorizon: tạo dữ liệu nhiệm vụ dài để dạy agent làm việc trên terminal",
+      "summary": "Agent làm việc trên terminal cần học cả một quá trình dài: khám phá, ra quyết định, đổi chiến lược và hoàn thiện sản phẩm. Nhóm tác giả xây TerminalHorizon, công cụ tự động tạo 1.500 môi trường nhiệm vụ dài từ công việc thực tế, rồi tinh chỉnh Qwen3.5-27B và cải thiện trên cả 12 bộ đo.",
+      "keyPoints": [
+        "Quỹ đạo ngắn chỉ dạy được lệnh và cách gọi công cụ, chưa dạy cách tích lũy bằng chứng và điều chỉnh theo phản hồi.",
+        "Vấn đề của dữ liệu tổng hợp: môi trường dựng sẵn thường làm hộ phần việc khó mà agent đáng ra phải tự làm.",
+        "TerminalHorizon chạy thử độc lập để tìm phần việc bị bỏ sót, rồi dựng lại môi trường cho đúng.",
+        "Mô hình TerminalHorizon-27B tiếp tục thử nghiệm và cải tiến trong các phiên nghiên cứu kéo dài 12 giờ."
+      ],
+      "body": [
+        "Agent terminal đang chuyển từ thao tác cục bộ sang làm trọn các việc chuyên môn thực tế. Theo tác giả, quỹ đạo dài chất lượng cao ghi lại được cách agent thu thập bằng chứng, dùng nó để phán đoán, liên tục chỉnh chiến lược và biến kết quả trung gian thành sản phẩm cuối.",
+        "Khó khăn là khi tổng hợp môi trường, người dựng thường vô tình làm sẵn hoặc đơn giản hóa phần việc chính, khiến agent không cần khám phá, cài đặt hay kiểm chứng nữa. TerminalHorizon bắt đầu từ công việc chuyên môn thật, chạy thử độc lập để phát hiện phần bị bỏ sót, rồi dùng bằng chứng đó để dựng lại môi trường. Nó cũng mở rộng dần nhiệm vụ theo cùng một mục tiêu, thêm yêu cầu mới dựa trên kết quả trước.",
+        "Từ 1.500 môi trường, nhóm tinh chỉnh Qwen3.5-27B thành TerminalHorizon-27B. Mô hình cải thiện đáng kể trên 12 bộ đo về agent lập trình, agent trong môi trường sản xuất và lập luận chung."
+      ],
+      "glossary": [
+        { "term": "Quỹ đạo (trajectory)", "explain": "Toàn bộ chuỗi hành động và quan sát của agent khi giải một nhiệm vụ." },
+        { "term": "Tinh chỉnh có giám sát (SFT)", "explain": "Huấn luyện thêm mô hình trên các ví dụ mẫu có sẵn đáp án." }
+      ]
+    }
+  ]
+}

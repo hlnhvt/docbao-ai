@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Đọc Báo AI</title>
+    <meta name="description" content="Điểm tin AI mỗi ngày: bài báo, bài nghiên cứu và thảo luận chuyên sâu từ nguồn tiếng Anh, biên tập bằng tiếng Việt." />
+    <meta name="theme-color" content="#fbfaf7" />
+    <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/icon.svg" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      // Theme before first paint, so a dark reader never sees a white flash
+      try {
+        var s = JSON.parse(localStorage.getItem('dbai:settings') || '{}')
+        var t = s.theme && s.theme !== 'auto' ? s.theme : matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+        document.documentElement.dataset.theme = t
+        if (s.font) document.documentElement.style.setProperty('--fs', s.font + 'px')
+      } catch (e) {}
+    </script>
+  </head>
+  <body class="bg-paper text-ink antialiased">
+    <div id="app" class="min-h-dvh"></div>
+    <dialog id="settings"></dialog>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

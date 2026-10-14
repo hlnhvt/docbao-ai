@@ -1,0 +1,23 @@
+{
+  "name": "docbao-ai-web",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Đọc Báo AI: điểm tin AI hằng ngày từ nguồn tiếng Anh, biên tập bằng tiếng Việt",
+  "scripts": {
+    "dev": "vite --host",
+    "build": "node scripts/publish.mjs && vite build",
+    "preview": "vite preview --host",
+    "collect": "node scripts/collect.mjs",
+    "text": "node scripts/fetch-text.mjs",
+    "check": "node scripts/publish.mjs"
+  },
+  "devDependencies": {
+    "@mozilla/readability": "0.6.0",
+    "@tailwindcss/vite": "4.3.3",
+    "fast-xml-parser": "5.11.2",
+    "linkedom": "0.18.13",
+    "tailwindcss": "4.3.3",
+    "vite": "8.3.1"
+  }
+}
