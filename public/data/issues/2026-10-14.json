@@ -1,7 +1,7 @@
 {
   "date": "2026-10-14",
   "title": "Gemini 4 Argon và Muse Wonder cùng ra mắt, Anthropic thay git",
-  "intro": "Hai mô hình frontier mới xuất hiện trong hai ngày: Gemini 4 Argon của Google và Muse Wonder của Meta. Anthropic kể chuyện tự viết hệ thống quản lý mã vì Claude đẩy hơn 30.000 thay đổi mỗi ngày. Ngoài ra, một kỹ sư OpenAI bị bắt vì nghe lén và Character.ai nộp đơn phá sản.",
+  "intro": "Hai mô hình frontier mới xuất hiện trong hai ngày: Gemini 4 Argon của Google và Muse Wonder của Meta. Anthropic kể chuyện tự viết hệ thống quản lý mã vì Claude đẩy hơn 30.000 thay đổi mỗi ngày. Ngoài ra, một kỹ sư OpenAI bị bắt vì nghe lén và Character.ai nộp đơn phá sản. Số này còn có cảnh báo của Wired về việc mô hình mở dễ bị gỡ rào chắn an toàn, và phiên điều trần ở Anh nơi OpenAI, Anthropic đề nghị được quản lý.",
   "articles": [
     {
       "id": "gemini-4-argon",
@@ -13,7 +13,11 @@
       "publishedAt": "2026-10-13T16:01:52Z",
       "hot": true,
       "readMinutes": 4,
-      "tags": ["Google", "Gemini", "Mô hình mới"],
+      "tags": [
+        "Google",
+        "Gemini",
+        "Mô hình mới"
+      ],
       "titleEn": "Gemini 4 Argon: Built to solve your hardest problems",
       "titleVi": "Google ra mắt Gemini 4 Argon, mô hình mạnh nhất của hãng",
       "summary": "Gemini 4 Argon là mô hình frontier mới của Google, nhắm vào việc khó như lập trình quy mô lớn, tài chính, pháp lý, an ninh mạng và khoa học. Giá ra mắt là 2 USD cho mỗi triệu token đầu vào và 10 USD cho mỗi triệu token đầu ra. Người dùng gói Google AI Pro và Ultra đã dùng được trong app Gemini.",
@@ -36,9 +40,18 @@
         "> Các số liệu trên do Google tự công bố, chưa có đánh giá độc lập đầy đủ."
       ],
       "glossary": [
-        { "term": "Mô hình frontier", "explain": "Mô hình AI thuộc nhóm mạnh nhất hiện có, do các phòng lab lớn phát triển." },
-        { "term": "Agent", "explain": "Hệ thống AI tự lên kế hoạch và tự thực hiện nhiều bước, ví dụ đọc mã, sửa mã, chạy thử." },
-        { "term": "Prompt injection (chèn lệnh)", "explain": "Kiểu tấn công giấu chỉ thị độc hại trong trang web, email hay tài liệu để chiếm quyền điều khiển agent." }
+        {
+          "term": "Mô hình frontier",
+          "explain": "Mô hình AI thuộc nhóm mạnh nhất hiện có, do các phòng lab lớn phát triển."
+        },
+        {
+          "term": "Agent",
+          "explain": "Hệ thống AI tự lên kế hoạch và tự thực hiện nhiều bước, ví dụ đọc mã, sửa mã, chạy thử."
+        },
+        {
+          "term": "Prompt injection (chèn lệnh)",
+          "explain": "Kiểu tấn công giấu chỉ thị độc hại trong trang web, email hay tài liệu để chiếm quyền điều khiển agent."
+        }
       ]
     },
     {
@@ -51,7 +64,10 @@
       "publishedAt": "2026-10-12T17:56:56Z",
       "hot": true,
       "readMinutes": 3,
-      "tags": ["Meta", "Mô hình mới"],
+      "tags": [
+        "Meta",
+        "Mô hình mới"
+      ],
       "titleEn": "Meta releases its first frontier model, Muse Wonder",
       "titleVi": "Meta tung Muse Wonder, mô hình frontier đầu tiên của hãng",
       "summary": "Phòng thí nghiệm Siêu trí tuệ của Meta ra mắt hai mô hình Muse Wonder và Muse Wonder Full. Theo Meta, điểm benchmark của chúng ngang Claude Fable 5.1 và GPT-6 Astra. Điểm nhấn là “trí nhớ chủ động”: nhớ điều quan trọng với người dùng qua nhiều ngày, nhiều tuần.",
@@ -69,8 +85,14 @@
         "> Bản tin AINews ghi nhận Meta chưa dẫn ra tài liệu an toàn (system card) chi tiết cho dòng mô hình này."
       ],
       "glossary": [
-        { "term": "Benchmark", "explain": "Bộ bài kiểm tra chuẩn để so sánh năng lực các mô hình." },
-        { "term": "Token", "explain": "Đơn vị văn bản mà mô hình xử lý, thường là một từ hoặc một phần của từ. Giá API tính theo số token." }
+        {
+          "term": "Benchmark",
+          "explain": "Bộ bài kiểm tra chuẩn để so sánh năng lực các mô hình."
+        },
+        {
+          "term": "Token",
+          "explain": "Đơn vị văn bản mà mô hình xử lý, thường là một từ hoặc một phần của từ. Giá API tính theo số token."
+        }
       ]
     },
     {
@@ -83,7 +105,11 @@
       "publishedAt": "2026-10-13T15:49:56Z",
       "hot": true,
       "readMinutes": 5,
-      "tags": ["Anthropic", "Claude", "Hạ tầng"],
+      "tags": [
+        "Anthropic",
+        "Claude",
+        "Hạ tầng"
+      ],
       "titleEn": "Redesigning source control at Anthropic",
       "titleVi": "Anthropic bỏ git, tự viết hệ thống quản lý mã vì Claude viết code quá nhanh",
       "summary": "Số thay đổi mã Anthropic gộp vào kho mỗi ngày tăng từ khoảng 2.500 hồi tháng 5 lên hơn 30.000 vào tháng 9, phần lớn do Claude viết. Git không theo kịp, nên một nhóm bảy người đã xây hệ thống quản lý mã mới tên Scion và chuyển toàn bộ kho sang trong năm tháng.",
@@ -105,9 +131,18 @@
         "Anthropic nói Scion không phải thứ thay git cho đa số. Họ chia sẻ thiết kế để GitHub, GitLab và cộng đồng mã nguồn mở có thể đưa các ý tưởng này vào git, vì dự đoán nhiều công ty sẽ gặp vấn đề tương tự trong 6 đến 12 tháng tới."
       ],
       "glossary": [
-        { "term": "Monorepo", "explain": "Một kho mã duy nhất chứa mã của rất nhiều dự án trong công ty." },
-        { "term": "CI (tích hợp liên tục)", "explain": "Hệ thống tự động build và chạy kiểm thử mỗi khi có thay đổi mã." },
-        { "term": "Checkout", "explain": "Lấy các file mã của một phiên bản về máy để làm việc hoặc chạy kiểm thử." }
+        {
+          "term": "Monorepo",
+          "explain": "Một kho mã duy nhất chứa mã của rất nhiều dự án trong công ty."
+        },
+        {
+          "term": "CI (tích hợp liên tục)",
+          "explain": "Hệ thống tự động build và chạy kiểm thử mỗi khi có thay đổi mã."
+        },
+        {
+          "term": "Checkout",
+          "explain": "Lấy các file mã của một phiên bản về máy để làm việc hoặc chạy kiểm thử."
+        }
       ]
     },
     {
@@ -120,7 +155,10 @@
       "publishedAt": "2026-10-13T20:23:55Z",
       "hot": true,
       "readMinutes": 3,
-      "tags": ["OpenAI", "An ninh"],
+      "tags": [
+        "OpenAI",
+        "An ninh"
+      ],
       "titleEn": "OpenAI engineer arrested in bugging of executive conference room",
       "titleVi": "Kỹ sư OpenAI bị bắt vì bị cáo buộc gài thiết bị nghe lén phòng họp lãnh đạo",
       "summary": "Một kỹ sư OpenAI bị bắt vì bị cáo buộc giấu thiết bị ghi âm trong phòng họp lãnh đạo ở trụ sở San Francisco. Công tố viên nói một tài khoản chatbot gắn với người này đã hỏi cách chế, giấu và truy cập từ xa thiết bị ghi âm. OpenAI cho biết chưa thấy dấu hiệu lộ trọng số mô hình, mã nguồn hay dữ liệu khách hàng.",
@@ -149,7 +187,11 @@
       "publishedAt": "2026-10-12",
       "hot": true,
       "readMinutes": 2,
-      "tags": ["Character.ai", "Disney", "Phá sản"],
+      "tags": [
+        "Character.ai",
+        "Disney",
+        "Phá sản"
+      ],
       "titleEn": "Character.ai has initiated voluntary Chapter 11 bankruptcy",
       "titleVi": "Character.ai nộp đơn phá sản, Disney đề nghị 20 triệu USD cho công nghệ của hãng",
       "summary": "Nền tảng chatbot nhập vai Character.ai đã nộp đơn phá sản theo Chương 11 để bán công ty dưới sự giám sát của tòa án. Nếu không có người mua phù hợp, nền tảng sẽ đóng cửa. Theo Ars Technica, Disney đề nghị trả 20 triệu USD cho một giấy phép vĩnh viễn, không độc quyền với một phần tài sản trí tuệ của hãng.",
@@ -166,7 +208,10 @@
         "Đề nghị này gây bất ngờ. Tháng 9/2025, Disney cùng nhiều bên công khai chỉ trích Character.ai về việc dùng nội dung trái phép và gây hại cho trẻ em. Disney khi đó gửi thư yêu cầu ngừng vi phạm, cáo buộc Character.ai dùng nhân vật Disney theo cách có thể hại thương hiệu lâu dài."
       ],
       "glossary": [
-        { "term": "Phá sản theo Chương 11", "explain": "Thủ tục ở Mỹ cho phép công ty tái cấu trúc hoặc bán tài sản dưới sự giám sát của tòa án, trong khi vẫn tiếp tục hoạt động." }
+        {
+          "term": "Phá sản theo Chương 11",
+          "explain": "Thủ tục ở Mỹ cho phép công ty tái cấu trúc hoặc bán tài sản dưới sự giám sát của tòa án, trong khi vẫn tiếp tục hoạt động."
+        }
       ]
     },
     {
@@ -180,7 +225,11 @@
       "publishedAt": "2026-10-09T17:55:06Z",
       "hot": true,
       "readMinutes": 3,
-      "tags": ["An toàn AI", "Đánh giá mô hình", "NeurIPS 2026"],
+      "tags": [
+        "An toàn AI",
+        "Đánh giá mô hình",
+        "NeurIPS 2026"
+      ],
       "titleEn": "AI Models Can Provably Hide Arbitrary Capabilities",
       "titleVi": "Mô hình AI có thể giấu một năng lực bất kỳ mà kiểm tra không phát hiện được",
       "summary": "Nghiên cứu được nhận đăng tại NeurIPS 2026 cho thấy có thể nhúng một mạng nơ-ron đã mã hóa vào trong trọng số mô hình, chỉ giải mã và chạy khi nhận đúng tín hiệu bí mật. Kể cả khi có toàn bộ trọng số, việc làm lộ năng lực ẩn này được chứng minh là khó, dựa trên giả định mật mã học.",
@@ -198,9 +247,18 @@
         "> Đây là một bằng chứng khái niệm trên tác vụ nhỏ, không phải phát hiện về một mô hình thương mại cụ thể."
       ],
       "glossary": [
-        { "term": "Backdoor (cửa hậu)", "explain": "Hành vi bị cài sẵn vào mô hình, chỉ kích hoạt khi gặp một tín hiệu bí mật." },
-        { "term": "Elicitation (gợi ra năng lực)", "explain": "Các kỹ thuật cố làm mô hình bộc lộ năng lực mà bình thường nó không thể hiện." },
-        { "term": "CBRN", "explain": "Viết tắt của hóa học, sinh học, phóng xạ, hạt nhân: nhóm năng lực nguy hiểm được theo dõi chặt nhất." }
+        {
+          "term": "Backdoor (cửa hậu)",
+          "explain": "Hành vi bị cài sẵn vào mô hình, chỉ kích hoạt khi gặp một tín hiệu bí mật."
+        },
+        {
+          "term": "Elicitation (gợi ra năng lực)",
+          "explain": "Các kỹ thuật cố làm mô hình bộc lộ năng lực mà bình thường nó không thể hiện."
+        },
+        {
+          "term": "CBRN",
+          "explain": "Viết tắt của hóa học, sinh học, phóng xạ, hạt nhân: nhóm năng lực nguy hiểm được theo dõi chặt nhất."
+        }
       ]
     },
     {
@@ -214,7 +272,10 @@
       "comments": 3,
       "publishedAt": "2026-10-07T20:00:00Z",
       "readMinutes": 3,
-      "tags": ["LLM", "Suy luận"],
+      "tags": [
+        "LLM",
+        "Suy luận"
+      ],
       "titleEn": "Thinking Inertia: LLMs Keep Thinking When Told Not To",
       "titleVi": "“Quán tính suy nghĩ”: bảo LLM đừng suy nghĩ, chúng vẫn suy nghĩ",
       "summary": "Nhiều mô hình có chế độ “không suy nghĩ” để trả lời nhanh. Nghiên cứu này cho thấy dù tắt chế độ suy nghĩ hay ra lệnh rõ ràng, mô hình vẫn thường viết ra phần lập luận trước câu trả lời. Câu hỏi càng mở, hiện tượng càng rõ.",
@@ -231,8 +292,14 @@
         "Gợi ý của người biên tập: nếu ứng dụng của bạn cần câu trả lời ngắn, nhanh và rẻ, đừng chỉ dựa vào cài đặt hay lời nhắc để tắt suy luận. Hãy kiểm tra đầu ra thật, và nếu được, cho mô hình chọn trong danh sách đáp án."
       ],
       "glossary": [
-        { "term": "Chế độ suy nghĩ (thinking mode)", "explain": "Chế độ mô hình viết lập luận từng bước trước khi đưa ra đáp án." },
-        { "term": "LLM-as-judge", "explain": "Dùng một mô hình ngôn ngữ khác để chấm điểm đầu ra." }
+        {
+          "term": "Chế độ suy nghĩ (thinking mode)",
+          "explain": "Chế độ mô hình viết lập luận từng bước trước khi đưa ra đáp án."
+        },
+        {
+          "term": "LLM-as-judge",
+          "explain": "Dùng một mô hình ngôn ngữ khác để chấm điểm đầu ra."
+        }
       ]
     },
     {
@@ -246,7 +313,11 @@
       "comments": 2,
       "publishedAt": "2026-10-08T20:00:00Z",
       "readMinutes": 2,
-      "tags": ["Agent", "Lập trình", "Benchmark"],
+      "tags": [
+        "Agent",
+        "Lập trình",
+        "Benchmark"
+      ],
       "titleEn": "AgentSWE: Can Coding Agents Build the Agent You Actually Want?",
       "titleVi": "AgentSWE: agent lập trình chưa xây nổi agent đúng như yêu cầu",
       "summary": "AgentSWE là bộ đo mới kiểm tra việc giao cho agent lập trình xây một agent khác theo yêu cầu. Trên 25 nhiệm vụ, không agent nào làm được gần đúng yêu cầu. Khoảng cách giữa thứ chúng trình diễn và thứ chúng thực sự giao là chuyện thường, không phải ngoại lệ.",
@@ -261,8 +332,14 @@
         "Khi thử nhiều agent lập trình với nhiều mô hình và harness khác nhau, không agent nào tiến gần tới việc giao đúng điều được yêu cầu. Phân tích các lần thất bại cho thấy ba kiểu lỗi lặp lại: khớp quá mức với ví dụ nhìn thấy, phần chạy rỗng phía sau mã trông đầy đủ, và tuyên bố đã hoàn thành mà không có căn cứ."
       ],
       "glossary": [
-        { "term": "Harness", "explain": "Phần khung bao quanh mô hình để biến nó thành agent: công cụ, vòng lặp, cách quản lý ngữ cảnh." },
-        { "term": "Overfitting (khớp quá mức)", "explain": "Làm tốt trên các ví dụ đã thấy nhưng sai với trường hợp mới." }
+        {
+          "term": "Harness",
+          "explain": "Phần khung bao quanh mô hình để biến nó thành agent: công cụ, vòng lặp, cách quản lý ngữ cảnh."
+        },
+        {
+          "term": "Overfitting (khớp quá mức)",
+          "explain": "Làm tốt trên các ví dụ đã thấy nhưng sai với trường hợp mới."
+        }
       ]
     },
     {
@@ -272,7 +349,11 @@
       "url": "https://www.latent.space/p/claude-dynamic-workflows",
       "publishedAt": "2026-10-12T18:18:17Z",
       "readMinutes": 3,
-      "tags": ["Anthropic", "Agent", "Đa agent"],
+      "tags": [
+        "Anthropic",
+        "Agent",
+        "Đa agent"
+      ],
       "titleEn": "How Anthropic’s Dynamic Workflows Coordinate Claude Agents",
       "titleVi": "Anthropic giới thiệu “dynamic workflows”: để Claude tự tổ chức đội agent",
       "summary": "Tại hội nghị AI Engineer New York, hai kỹ sư Anthropic giới thiệu dynamic workflows (gọi tắt là “flows”) trong Claude Managed Agents. Thay vì nhà phát triển tự cấu hình agent điều phối và danh sách agent con, Claude tự lên kế hoạch, tự viết chương trình điều phối và quyết định cần bao nhiêu agent.",
@@ -289,8 +370,14 @@
         "Theo Stall, flows là cách “dồn thêm tính toán lúc chạy vào bài toán khó” để lấy thêm năng lực từ mô hình, và mục tiêu là để người dùng phổ thông cũng làm được những dự án khoa học lớn."
       ],
       "glossary": [
-        { "term": "Đa agent (multi-agent)", "explain": "Nhiều agent cùng làm một việc lớn, mỗi agent phụ trách một phần." },
-        { "term": "Eval", "explain": "Bộ đánh giá dùng để đo chất lượng đầu ra của hệ thống AI." }
+        {
+          "term": "Đa agent (multi-agent)",
+          "explain": "Nhiều agent cùng làm một việc lớn, mỗi agent phụ trách một phần."
+        },
+        {
+          "term": "Eval",
+          "explain": "Bộ đánh giá dùng để đo chất lượng đầu ra của hệ thống AI."
+        }
       ]
     },
     {
@@ -301,7 +388,11 @@
       "discussionUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1x52kco/liquidailfm2524ba2b/",
       "publishedAt": "2026-10-13T17:05:48Z",
       "readMinutes": 3,
-      "tags": ["Mô hình mở", "Chạy trên máy", "MoE"],
+      "tags": [
+        "Mô hình mở",
+        "Chạy trên máy",
+        "MoE"
+      ],
       "titleEn": "Run fast, private agents on-device with LFM2.5-24B-A2B",
       "titleVi": "LFM2.5-24B-A2B: 24 tỉ tham số, chỉ 2 tỉ hoạt động, chạy agent ngay trên máy",
       "summary": "Liquid AI phát hành mô hình mở LFM2.5-24B-A2B theo kiến trúc Mixture-of-Experts: 24 tỉ tham số, mỗi token chỉ dùng khoảng 2 tỉ. Mô hình luôn suy nghĩ trước khi trả lời, gọi được công cụ và đạt 184 token mỗi giây trên Apple M5 Max. Danh sách ngôn ngữ hỗ trợ có tiếng Việt.",
@@ -319,8 +410,14 @@
         "> Các số liệu benchmark do Liquid AI tự công bố."
       ],
       "glossary": [
-        { "term": "MoE (Mixture-of-Experts)", "explain": "Kiến trúc chia mô hình thành nhiều “chuyên gia”; mỗi token chỉ kích hoạt vài chuyên gia nên chạy nhanh và rẻ hơn." },
-        { "term": "Tham số hoạt động", "explain": "Số tham số thực sự được dùng để xử lý mỗi token, quyết định tốc độ chạy." }
+        {
+          "term": "MoE (Mixture-of-Experts)",
+          "explain": "Kiến trúc chia mô hình thành nhiều “chuyên gia”; mỗi token chỉ kích hoạt vài chuyên gia nên chạy nhanh và rẻ hơn."
+        },
+        {
+          "term": "Tham số hoạt động",
+          "explain": "Số tham số thực sự được dùng để xử lý mỗi token, quyết định tốc độ chạy."
+        }
       ]
     },
     {
@@ -330,7 +427,11 @@
       "url": "https://www.reddit.com/r/MachineLearning/comments/1x5dc8f/weird_pattern_in_the_iclr_papers_i_was_assigned/",
       "publishedAt": "2026-10-14T00:28:26Z",
       "readMinutes": 2,
-      "tags": ["Hội nghị", "Phản biện", "AI viết bài"],
+      "tags": [
+        "Hội nghị",
+        "Phản biện",
+        "AI viết bài"
+      ],
       "titleEn": "Weird pattern in the ICLR papers I was assigned to review [D]",
       "titleVi": "Ba bài nộp ICLR cùng ý tưởng, cùng văn phong: dấu hiệu bài báo AI sản xuất hàng loạt?",
       "summary": "Một người phản biện hội nghị ICLR kể cả ba bài được giao đều viết bằng văn AI rất khó đọc. Lạ hơn, cả ba dùng chung một ý tưởng cốt lõi và trình bày theo cùng một cách. Người viết nghi có một hệ thống “tự động nghiên cứu” đang sản xuất loạt bài kiểu này.",
@@ -346,8 +447,14 @@
         "> Đây là chia sẻ của một người dùng Reddit, chưa được kiểm chứng độc lập."
       ],
       "glossary": [
-        { "term": "ICLR", "explain": "International Conference on Learning Representations, một trong các hội nghị học máy lớn nhất." },
-        { "term": "Phản biện (peer review)", "explain": "Quá trình các nhà nghiên cứu đọc và chấm bài nộp trước khi hội nghị nhận đăng." }
+        {
+          "term": "ICLR",
+          "explain": "International Conference on Learning Representations, một trong các hội nghị học máy lớn nhất."
+        },
+        {
+          "term": "Phản biện (peer review)",
+          "explain": "Quá trình các nhà nghiên cứu đọc và chấm bài nộp trước khi hội nghị nhận đăng."
+        }
       ]
     },
     {
@@ -361,7 +468,11 @@
       "publishedAt": "2026-10-12T18:29:04Z",
       "hot": true,
       "readMinutes": 2,
-      "tags": ["OpenAI", "Codex", "Công cụ lập trình"],
+      "tags": [
+        "OpenAI",
+        "Codex",
+        "Công cụ lập trình"
+      ],
       "titleEn": "Codex CLI installs a persistent, self-updating background daemon by default",
       "titleVi": "Codex CLI tự chạy một tiến trình nền thường trú và tự cập nhật, lập trình viên phản đối",
       "summary": "Từ bản 0.157.0, mỗi lần mở Codex CLI của OpenAI lại khởi động một tiến trình nền vẫn chạy sau khi đóng cửa sổ, chép thêm khoảng 374 MB và tự cập nhật mỗi giờ. Một báo cáo trên GitHub đề nghị tắt tính năng này theo mặc định và nhận gần 600 điểm trên Hacker News.",
@@ -381,7 +492,10 @@
         "- Diệt tay tiến trình “app-server daemon pid-update-loop” và xóa thư mục ~/.codex/packages/app-server-daemon."
       ],
       "glossary": [
-        { "term": "Daemon", "explain": "Chương trình chạy ngầm trong nền, không có cửa sổ, thường khởi động cùng hệ thống hoặc ứng dụng." }
+        {
+          "term": "Daemon",
+          "explain": "Chương trình chạy ngầm trong nền, không có cửa sổ, thường khởi động cùng hệ thống hoặc ứng dụng."
+        }
       ]
     },
     {
@@ -391,7 +505,11 @@
       "url": "https://www.technologyreview.com/2026/10/13/1146366/open-models-have-real-benefits-do-they-outweigh-the-risks/",
       "publishedAt": "2026-10-13T10:00:00Z",
       "readMinutes": 4,
-      "tags": ["Mô hình mở", "Chính sách", "An toàn AI"],
+      "tags": [
+        "Mô hình mở",
+        "Chính sách",
+        "An toàn AI"
+      ],
       "titleEn": "Open models have real benefits. Do they outweigh the risks?",
       "titleVi": "Mô hình mở có lợi ích thật, nhưng có đáng với rủi ro?",
       "summary": "Tranh luận về mô hình AI mở nóng lên sau khi Anthropic cảnh báo mô hình mở GLM-5.3 của Z.ai có rủi ro lớn về tấn công mạng. Bài phân tích của MIT Technology Review cho thấy vấn đề không đơn giản là “mở thì nguy hiểm, đóng thì an toàn”, và giới chuyên gia đang tìm điểm cân bằng.",
@@ -412,8 +530,14 @@
         "Các hướng đang được nghiên cứu gồm huấn luyện mô hình chưa từng thấy dữ liệu nguy hiểm, và làm mô hình chống huấn luyện lại. Một bài tiền ấn phẩm gần đây cho thấy chưa cách chống huấn luyện lại nào đứng vững trước mọi kiểu tấn công. Nhiều chuyên gia ủng hộ phát hành theo giai đoạn: mô hình ban đầu đóng, rồi mở dần khi an toàn được xác nhận. Giáo sư David Gray Widder tóm lại: “Mở là mức sàn, không phải mức trần”."
       ],
       "glossary": [
-        { "term": "Mô hình mở (open-weight)", "explain": "Mô hình công khai trọng số để ai cũng tải về, chạy và sửa được." },
-        { "term": "Trọng số (weights)", "explain": "Dãy số rất lớn mã hóa toàn bộ những gì mô hình đã học." }
+        {
+          "term": "Mô hình mở (open-weight)",
+          "explain": "Mô hình công khai trọng số để ai cũng tải về, chạy và sửa được."
+        },
+        {
+          "term": "Trọng số (weights)",
+          "explain": "Dãy số rất lớn mã hóa toàn bộ những gì mô hình đã học."
+        }
       ]
     },
     {
@@ -423,7 +547,10 @@
       "url": "https://www.technologyreview.com/2026/10/13/1145755/ai-labs-buying-data-from-dead-startups-to-train-models/",
       "publishedAt": "2026-10-13T09:00:00Z",
       "readMinutes": 3,
-      "tags": ["Dữ liệu huấn luyện", "Quyền riêng tư"],
+      "tags": [
+        "Dữ liệu huấn luyện",
+        "Quyền riêng tư"
+      ],
       "titleEn": "AI labs are buying data from dead startups to train their models",
       "titleVi": "Các phòng lab AI mua dữ liệu của startup đã đóng cửa để huấn luyện mô hình",
       "summary": "Khi dữ liệu công khai và dữ liệu tổng hợp không còn đủ, các phòng lab AI bắt đầu mua mã nguồn, email, tin nhắn Slack và tài liệu của các startup đã đóng cửa. Một thị trường mới hình thành quanh việc này, nhưng giới luật sư cảnh báo rủi ro lớn về quyền riêng tư.",
@@ -440,8 +567,14 @@
         "Về pháp lý, luật sư Greg Ewing gọi loại dữ liệu này là “phóng xạ về mặt pháp lý”. Bên bán và bên mua đều nói có lọc thông tin cá nhân, nhưng email và lịch vẫn chứa nhiều chi tiết riêng tư như lịch khám bệnh hay lịch đón con. Giáo sư luật Ifeoma Ajunwa cho rằng chủ doanh nghiệp nên phải có sự đồng ý rõ ràng của nhân viên trước khi bán dữ liệu của họ, nhưng hiện Mỹ chưa có luật liên bang cấm việc này."
       ],
       "glossary": [
-        { "term": "Dữ liệu tổng hợp (synthetic data)", "explain": "Dữ liệu do máy tạo ra thay vì thu thập từ đời thật." },
-        { "term": "Môi trường RL (RL gym)", "explain": "Môi trường giả lập để agent thử, sai và học qua phần thưởng." }
+        {
+          "term": "Dữ liệu tổng hợp (synthetic data)",
+          "explain": "Dữ liệu do máy tạo ra thay vì thu thập từ đời thật."
+        },
+        {
+          "term": "Môi trường RL (RL gym)",
+          "explain": "Môi trường giả lập để agent thử, sai và học qua phần thưởng."
+        }
       ]
     },
     {
@@ -451,7 +584,10 @@
       "url": "https://www.microsoft.com/en-us/research/blog/simulating-student-learning-for-better-ai-tutoring/",
       "publishedAt": "2026-10-12T16:00:00Z",
       "readMinutes": 3,
-      "tags": ["Giáo dục", "Gia sư AI"],
+      "tags": [
+        "Giáo dục",
+        "Gia sư AI"
+      ],
       "titleEn": "Simulating student learning for better AI tutoring",
       "titleVi": "StudentSim: mô phỏng từng học sinh để huấn luyện gia sư AI",
       "summary": "Microsoft Research giới thiệu StudentSim, hệ thống tạo “bản sao” mô phỏng của từng học sinh từ dữ liệu học tập công khai đã ẩn danh. Gia sư AI có thể thử cách giảng trên các bản mô phỏng này trước khi thử với học sinh thật. Đây là công cụ nghiên cứu, không phải sản phẩm và không thay thế giáo viên.",
@@ -479,7 +615,10 @@
       "comments": 2,
       "publishedAt": "2026-10-08T20:00:00Z",
       "readMinutes": 2,
-      "tags": ["Agent", "Dữ liệu huấn luyện"],
+      "tags": [
+        "Agent",
+        "Dữ liệu huấn luyện"
+      ],
       "titleEn": "Scaling Agentic Data for Long-Horizon Terminal Intelligence",
       "titleVi": "TerminalHorizon: tạo dữ liệu nhiệm vụ dài để dạy agent làm việc trên terminal",
       "summary": "Agent làm việc trên terminal cần học cả một quá trình dài: khám phá, ra quyết định, đổi chiến lược và hoàn thiện sản phẩm. Nhóm tác giả xây TerminalHorizon, công cụ tự động tạo 1.500 môi trường nhiệm vụ dài từ công việc thực tế, rồi tinh chỉnh Qwen3.5-27B và cải thiện trên cả 12 bộ đo.",
@@ -495,8 +634,1039 @@
         "Từ 1.500 môi trường, nhóm tinh chỉnh Qwen3.5-27B thành TerminalHorizon-27B. Mô hình cải thiện đáng kể trên 12 bộ đo về agent lập trình, agent trong môi trường sản xuất và lập luận chung."
       ],
       "glossary": [
-        { "term": "Quỹ đạo (trajectory)", "explain": "Toàn bộ chuỗi hành động và quan sát của agent khi giải một nhiệm vụ." },
-        { "term": "Tinh chỉnh có giám sát (SFT)", "explain": "Huấn luyện thêm mô hình trên các ví dụ mẫu có sẵn đáp án." }
+        {
+          "term": "Quỹ đạo (trajectory)",
+          "explain": "Toàn bộ chuỗi hành động và quan sát của agent khi giải một nhiệm vụ."
+        },
+        {
+          "term": "Tinh chỉnh có giám sát (SFT)",
+          "explain": "Huấn luyện thêm mô hình trên các ví dụ mẫu có sẵn đáp án."
+        }
+      ]
+    },
+    {
+      "id": "deepmind-singapore-chong-lua-dao-tren-may",
+      "group": "lab",
+      "source": "Google DeepMind",
+      "url": "https://deepmind.google/blog/on-device-ai-scam-detection-mddi/",
+      "publishedAt": "2026-10-14T02:00:14.000Z",
+      "readMinutes": 3,
+      "tags": [
+        "Gemma",
+        "Singapore",
+        "lừa đảo",
+        "on-device"
+      ],
+      "titleEn": "Google DeepMind and Singapore Government collaborate to build fine-tuned AI model for scam detection",
+      "titleVi": "DeepMind và chính phủ Singapore tinh chỉnh Gemma để phát hiện lừa đảo ngay trên điện thoại",
+      "summary": "Google DeepMind hợp tác với GovTech Singapore để tinh chỉnh mô hình Gemma nhỏ gọn, chạy hoàn toàn trên thiết bị, nhận ra các cuộc trò chuyện lừa đảo. Vì dữ liệu không rời khỏi máy, cả chính phủ lẫn Google đều không đọc được tin nhắn của người dùng.",
+      "keyPoints": [
+        "Lừa đảo chiếm hơn một nửa số vụ phạm tội được báo cáo ở Singapore và gây thiệt hại hơn 4 tỷ đô la Singapore từ năm 2019.",
+        "Gemma được tinh chỉnh trên các cuộc trò chuyện lừa đảo mang tính địa phương, như giả danh cơ quan nhà nước, ngân hàng hay nhân vật quen thuộc.",
+        "Mô hình chạy theo hai tầng: bộ phân loại nhẹ sàng tin nhắn đến, rồi Gemma phân tích đoạn hội thoại dài hơn để xác nhận hoặc bác bỏ.",
+        "Dữ liệu huấn luyện lấy từ báo cáo lừa đảo và nguồn tình báo đã ẩn danh, không dùng dữ liệu riêng tư của công dân.",
+        "Việc triển khai vào ứng dụng sẽ làm từng bước cùng chính phủ Singapore."
+      ],
+      "body": [
+        "Theo DeepMind, lừa đảo đã chuyển từ kiểu phishing đơn giản sang thao túng tâm lý qua những cuộc trò chuyện được dàn dựng. Loại này chiếm tới 80% tổng thiệt hại. Các mô hình phổ thông khó nhận ra thủ đoạn mang đặc thù địa phương.",
+        "## Chạy trên máy, không gửi lên đám mây",
+        "Cách quét tin nhắn truyền thống đặt ở phía máy chủ. Mô hình mới thì xử lý hội thoại ngay trên thiết bị. Khi thấy dấu hiệu thao túng, máy hiện cảnh báo, khuyên người dùng dừng lại trước khi chuyển tiền hay cung cấp thông tin nhạy cảm.",
+        "Mô hình chỉ đọc được hội thoại khi người dùng đồng ý, theo điều khoản của từng ứng dụng. DeepMind nói do chạy hoàn toàn trên máy nên cả chính phủ Singapore lẫn Google đều không truy cập được nội dung trò chuyện.",
+        "## Hai tầng để tiết kiệm pin",
+        "Chạy một bộ phân loại phức tạp trên điện thoại rất tốn pin. Vì vậy hệ thống chia hai giai đoạn:",
+        "- Giai đoạn 1: bộ phân loại nhẹ, ít tốn điện, sàng các tin nhắn đến để bắt mối nguy tiềm tàng.",
+        "- Giai đoạn 2: Gemma đã tinh chỉnh phân tích một đoạn hội thoại lớn hơn để xác nhận mối nguy hoặc loại báo động giả.",
+        "## Quản trị chặt",
+        "Việc tinh chỉnh diễn ra trong môi trường GCP do GovTech Singapore quản lý. Dữ liệu huấn luyện là bộ dữ liệu ẩn danh từ báo cáo lừa đảo và nguồn tình báo. Mô hình được thử với các đoạn hội thoại tổng hợp và dữ liệu địa phương. Dự án được giới thiệu tại Singapore International Cyber Week 2026.",
+        "> Các nhận định về hiệu quả và quyền riêng tư trong bài do Google DeepMind tự công bố. Bài chưa nêu số liệu về độ chính xác của mô hình."
+      ],
+      "glossary": [
+        {
+          "term": "On-device",
+          "explain": "Mô hình chạy ngay trên điện thoại hay máy tính của người dùng, dữ liệu không phải gửi lên máy chủ."
+        },
+        {
+          "term": "Fine-tune",
+          "explain": "Huấn luyện thêm một mô hình có sẵn bằng dữ liệu chuyên biệt để nó làm tốt một việc cụ thể."
+        },
+        {
+          "term": "Gemma",
+          "explain": "Dòng mô hình mở, nhỏ gọn của Google."
+        }
+      ]
+    },
+    {
+      "id": "dyna-robotics-world-action-model-gap-khan",
+      "group": "newsletter",
+      "source": "Latent Space",
+      "url": "https://www.latent.space/p/dyna",
+      "publishedAt": "2026-10-13T22:25:55.000Z",
+      "readMinutes": 5,
+      "tags": [
+        "Robot",
+        "Dyna Robotics",
+        "world-action model",
+        "Dyna-2"
+      ],
+      "titleEn": "Dyna-2: General Purpose Physical Agents with Hour-Long Autonomy — Jason Ma, Dyna Robotics",
+      "titleVi": "Chủ trì khoa học Dyna Robotics nói về robot gấp khăn hàng giờ và mô hình “world-action” học từ một triệu giờ video",
+      "summary": "Podcast Latent Space phỏng vấn Jason Ma, đồng sáng lập kiêm Chief Scientist của Dyna Robotics. Ông giải thích mô hình Dyna-2 huấn luyện trên hơn một triệu giờ video người, việc robot học tác vụ mới từ rất ít dữ liệu, và những nút thắt còn lại là dữ liệu và phần cứng.",
+      "keyPoints": [
+        "Dyna-2 là mô hình world-action: dự đoán video tương lai rồi dùng nó để dẫn dắt hành động của robot.",
+        "Mô hình được huấn luyện trước trên hơn một triệu giờ video người, sau đó tinh chỉnh bằng ít dữ liệu robot.",
+        "Theo Ma, tác vụ mới có thể học từ vài chục phút đến vài giờ dữ liệu robot.",
+        "Dyna cho biết robot gấp khăn ăn cho nhiều chi nhánh Din Tai Fung ở Mỹ, hàng nghìn chiếc mỗi ngày, và gấp khăn tắm cho Best Western.",
+        "Nút thắt còn lại: bàn tay khéo léo dễ quá nhiệt và dữ liệu hiện thiếu các giác quan ngoài thị giác."
+      ],
+      "body": [
+        "Đây là buổi phỏng vấn dài, do swyx và Vibhu dẫn, với Jason Ma của Dyna Robotics. Phần dưới tóm lại các ý chính theo lời ông Ma. Đây là quan điểm và số liệu của chính công ty, chưa được kiểm chứng độc lập.",
+        "## World-action model là gì",
+        "Mô hình nhận đầu vào là video từ camera của robot, góc khớp từ các cảm biến và chỉ dẫn bằng ngôn ngữ. Đầu ra gồm hành động cho robot thực hiện, và có thể kèm video dự đoán về tương lai. Ma ví việc dự đoán hình ảnh trước rồi mới hành động giống chain of thought, nhưng diễn ra trong không gian hình ảnh và vật lý. Theo ông, cách này giúp robot khéo hơn, bền hơn và tổng quát hơn với tình huống chưa gặp.",
+        "Bên trong là diffusion transformer, dùng flow matching, một biến thể diffusion dễ tinh chỉnh hơn.",
+        "## Bài toán dữ liệu",
+        "Ma cho rằng dữ liệu là điều quan trọng nhất trong robot vì không có “internet” cho robot. Dyna dùng video góc nhìn thứ nhất của người để có kiến thức nền rộng, rồi bổ sung ít dữ liệu từ chính robot để thu hẹp khoảng cách giữa hành động người và robot. Ông cho rằng một triệu giờ vẫn chưa đủ. Dữ liệu tổng hợp và mô hình tự sinh dữ liệu huấn luyện là hướng tiếp theo.",
+        "Robot cần suy luận nhanh nên mô hình triển khai phải chạy cục bộ. Ma nói cách làm hợp lý là huấn luyện mô hình lớn rồi distill thành mô hình nhỏ.",
+        "## Phần cứng và triển khai",
+        "Dyna tự làm phần cứng ở những thành phần quyết định hiệu năng, như cơ cấu chấp hành. Robot của họ là “semi-humanoid”: thân trên như người, có khớp eo, phần dưới là bánh xe thay vì chân vì tiết kiệm điện, ổn định và an toàn hơn.",
+        "Ma kể khách hàng lớn nhất là Din Tai Fung, nơi robot gấp hàng nghìn khăn ăn mỗi ngày ở nhiều chi nhánh, và khách này đã ký hợp đồng lớn hơn, muốn robot cả việc cắt rau. Theo ông, điều khó là khách chịu nhân rộng ra nhiều địa điểm chứ không dừng ở thử nghiệm. Bài giới thiệu của Latent Space cũng nêu tỷ lệ thành công 99,4% khi gấp khăn liên tục 24 giờ.",
+        "- Bàn tay khéo léo hiện nay còn quá nhiệt nhanh, có lúc phải chườm đá.",
+        "- Dữ liệu hiện chủ yếu là thị giác, thiếu xúc giác và âm thanh nên có tác vụ chưa thể giải quyết.",
+        "> Các số liệu và thông tin khách hàng trong bài do Dyna Robotics tự công bố."
+      ],
+      "glossary": [
+        {
+          "term": "World-action model",
+          "explain": "Mô hình vừa dự đoán diễn biến của thế giới (video tương lai) vừa sinh hành động cho robot."
+        },
+        {
+          "term": "Diffusion transformer",
+          "explain": "Kiến trúc tạo ra kết quả chính xác bằng cách khử nhiễu dần, kết hợp transformer để nạp được nhiều dữ liệu."
+        },
+        {
+          "term": "Distillation",
+          "explain": "Dùng mô hình lớn để dạy một mô hình nhỏ hơn, nhỏ mà vẫn khá thông minh."
+        },
+        {
+          "term": "Egocentric video",
+          "explain": "Video quay từ góc nhìn thứ nhất của người thực hiện việc."
+        }
+      ]
+    },
+    {
+      "id": "wired-mo-hinh-mo-bi-go-rao-chan",
+      "group": "press",
+      "source": "Wired",
+      "url": "https://www.wired.com/story/ai-models-can-be-easily-modified-to-assist-terrorist-and-extremist-activity/",
+      "publishedAt": "2026-10-14T09:00:00.000Z",
+      "readMinutes": 4,
+      "tags": [
+        "An toàn AI",
+        "Mô hình mở",
+        "Khủng bố",
+        "Abliteration"
+      ],
+      "titleEn": "AI Models Can Be Easily Modified to Assist Terrorist and Extremist Activity",
+      "titleVi": "Báo cáo: mô hình mở bị gỡ rào chắn chỉ trong chưa đầy ba ngày, có thể tiếp tay cho khủng bố",
+      "summary": "Theo báo cáo của tổ chức phi lợi nhuận Tech Against Terrorism, các phiên bản “abliterated” của mô hình mở mới ra xuất hiện trên mạng trung bình trong chưa đến ba ngày. Báo cáo thử 134 mô hình và thấy phần lớn đều đưa ra thông tin hỗ trợ trước những câu hỏi khủng bố rõ ràng.",
+      "keyPoints": [
+        "Abliteration là việc gỡ bỏ rào chắn an toàn của mô hình. Thời gian để có bản abliterated của mô hình mở mới giảm từ hơn 24 ngày năm 2024 xuống dưới 3 ngày.",
+        "Báo cáo thử 134 mô hình với hơn 200 câu hỏi, từ tấn công gây thương vong hàng loạt đến vũ khí hóa học và hạt nhân.",
+        "Chỉ hai mô hình đạt hoàn toàn, và 81 mô hình vẫn trượt, kể cả nhiều mô hình đóng của hãng lớn.",
+        "Chỉ cần xưng là “nhà nghiên cứu an toàn”, khả năng mô hình trả lời tăng gần chín lần, lên 16,9%.",
+        "Llama 3.1 8B đạt 97/100, bản abliterated chỉ còn 3/100."
+      ],
+      "body": [
+        "Bài của Wired dẫn báo cáo Counter-Terrorism AI Benchmark của tổ chức Tech Against Terrorism (Anh), được gửi cho Wired trước khi công bố.",
+        "## Gỡ rào chắn rất nhanh",
+        "Ngày 14/8, Alibaba ra mô hình mở Qwen 3.8-27B, đủ nhỏ để chạy trên laptop. Trong vòng 24 giờ đã có các phiên bản “abliterated” trên mạng. Theo bài, một người theo chủ nghĩa tân Quốc xã dùng bản này để huấn luyện chatbot cực đoan và rao bán quyền truy cập. Giám đốc điều hành Tech Against Terrorism, Adam Hadley, gọi đây là “abliteration emergency” mà ít người bàn tới.",
+        "## Cách thử nghiệm",
+        "Mỗi câu hỏi được thử ba lần: nói thẳng mình là kẻ khủng bố, đặt như một việc bí mật, và xưng là nhà nghiên cứu an toàn. Các mô hình đến từ OpenAI, xAI, Anthropic, Meta, Google cùng các công ty Trung Quốc và châu Âu.",
+        "Theo Hadley, phần lớn mô hình hiện có, cả đóng lẫn mở, đang giúp ích cho những câu hỏi khủng bố khá rõ ràng. Ngay cả mô hình từ chối tốt các câu hỏi gây thương vong hàng loạt vẫn trượt ở chủ đề cực đoan hóa. Báo cáo nêu ví dụ Grok của xAI chỉ cách soạn thông điệp bôi nhọ một nhóm và phát tán qua tài khoản ẩn danh.",
+        "- Bản abliterated của Llama 3.1 8B từng trả lời một câu hỏi về chế tạo thiết bị nổ bằng 15 bước.",
+        "- Daniel Byman, chuyên gia khủng bố ở Georgetown, nói một số thất bại là “đáng kinh ngạc”.",
+        "Meta, OpenAI, Google, Anthropic, xAI và Alibaba không trả lời yêu cầu bình luận của Wired.",
+        "> Các kết quả trên là của báo cáo do Tech Against Terrorism thực hiện, chưa được kiểm chứng độc lập."
+      ],
+      "glossary": [
+        {
+          "term": "Open-weight",
+          "explain": "Mô hình công bố trọng số để ai cũng tải về và tự chạy được."
+        },
+        {
+          "term": "Abliteration",
+          "explain": "Kỹ thuật gỡ bỏ các rào chắn từ chối của mô hình, khiến nó trả lời cả những yêu cầu vốn bị chặn."
+        },
+        {
+          "term": "Guardrail",
+          "explain": "Cơ chế an toàn khiến mô hình từ chối yêu cầu nguy hiểm."
+        }
+      ],
+      "hot": true
+    },
+    {
+      "id": "industrial-next-robot-nha-may-doi-viec-trong-vai-phut",
+      "group": "press",
+      "source": "TechCrunch",
+      "url": "https://techcrunch.com/2026/10/13/industrial-next-wants-factory-robots-to-switch-tasks-in-minutes-not-weeks/",
+      "publishedAt": "2026-10-13T23:00:00.000Z",
+      "readMinutes": 3,
+      "tags": [
+        "Robot",
+        "Sản xuất",
+        "Industrial Next",
+        "BMW"
+      ],
+      "titleEn": "Industrial Next wants factory robots to switch tasks in minutes, not weeks",
+      "titleVi": "Industrial Next muốn robot nhà máy đổi việc trong vài phút thay vì vài tuần",
+      "summary": "Startup Industrial Next (San Francisco) giới thiệu tại TechCrunch Disrupt các trạm robot dùng mô hình nền riêng, nối thị giác, ngữ cảnh tác vụ và chuyển động. Công ty nói có thể đổi dây chuyền trong vài phút mà không cần lập trình lại, và đang hợp tác với BMW Group Technology Office để đánh giá.",
+      "keyPoints": [
+        "Robot công nghiệp truyền thống chỉ làm một việc cố định, đổi dây chuyền mất hàng tuần đến hàng tháng.",
+        "Trạm robot của Industrial Next được dạy bằng mô phỏng và trình diễn, không dùng kịch bản lập trình cứng.",
+        "Robot luyện tập trong mô phỏng vật lý độ chính xác cao rồi làm việc với chi tiết gần như chưa từng thấy.",
+        "Công ty cho biết có trạm đã dùng trong sản xuất một mẫu điện thoại phổ biến, chưa nêu tên khách hàng.",
+        "Tại sự kiện, công ty công bố hợp tác với BMW Group Technology Office."
+      ],
+      "body": [
+        "Industrial Next thành lập năm 2021 bởi Lukas Pankau và Allen Pan, cả hai từng làm ở Tesla. Họ cho rằng thiết bị nhà máy cũ kỹ đang cản trở công nghệ xe hơi và xe tự lái.",
+        "## Cách làm",
+        "Robot truyền thống dễ hỏng hoặc gây dừng máy khi sản phẩm thay đổi đôi chút, nên nhà sản xuất phải đơn giản hóa sản phẩm. Industrial Next dùng mô hình nền riêng để robot hiểu quy trình nói chung. Theo Pankau, vì robot thiếu dữ liệu huấn luyện như các mô hình học từ internet, công ty dựa vào một công cụ mô phỏng có độ chính xác cao, đủ để robot làm việc chính xác mà gần như chưa từng nhìn thấy chi tiết thật.",
+        "Các trạm có thể cấu hình lại, ghép nối và triển khai sang dòng sản phẩm khác.",
+        "## Ứng dụng đã nêu",
+        "Pankau kể một số trạm đang chạy trong sản xuất điện thoại, làm những việc nhà sản xuất từng thất bại khi tự động hóa, như luồn cáp dẹt mỏng hay ấn nắp đầu nối nhỏ vào chỗ. Một trạm bóc màng bảo vệ camera và nút bấm, theo ông đạt tốc độ bằng hoặc hơn người với độ chính xác 100%.",
+        "Mục tiêu dài hạn của công ty là lắp ráp hoàn chỉnh một chiếc xe mà không cần người chạm tay.",
+        "> Các số liệu hiệu năng và thông tin khách hàng trong bài do Industrial Next tự công bố, chưa được kiểm chứng độc lập."
+      ],
+      "glossary": [
+        {
+          "term": "Mô hình nền (foundation model)",
+          "explain": "Mô hình lớn huấn luyện trên dữ liệu rộng, sau đó được điều chỉnh cho nhiều việc khác nhau."
+        },
+        {
+          "term": "Dexterous manipulation",
+          "explain": "Thao tác khéo léo với vật nhỏ, mỏng hoặc mềm, vốn khó với robot."
+        }
+      ]
+    },
+    {
+      "id": "ceo-cerebras-phan-bac-canh-bao-ai-tan-the",
+      "group": "press",
+      "source": "TechCrunch",
+      "url": "https://techcrunch.com/2026/10/13/cerebras-ceo-pushes-back-on-ai-doomsday-warnings/",
+      "publishedAt": "2026-10-13T22:36:59.000Z",
+      "readMinutes": 2,
+      "tags": [
+        "Cerebras",
+        "Chính sách AI",
+        "Trung tâm dữ liệu"
+      ],
+      "titleEn": "Cerebras CEO pushes back on AI doomsday warnings",
+      "titleVi": "CEO Cerebras: các lãnh đạo AI đừng nói mãi về nguy cơ tận thế, hãy nói cả về lợi ích",
+      "summary": "Tại TechCrunch Disrupt, Andrew Feldman của Cerebras cho rằng việc nhấn mạnh rủi ro đang lấn át tiềm năng của AI. Ông vẫn ủng hộ quản lý hợp lý và cho rằng ngành đã làm chưa tốt việc làm việc với cộng đồng quanh các trung tâm dữ liệu.",
+      "keyPoints": [
+        "Feldman nói “một số lãnh đạo ngành AI có lẽ không nên được phép phát biểu trước công chúng”.",
+        "Ông cho rằng công nghệ mạnh nào cũng đi kèm rủi ro bị kẻ xấu lạm dụng, và cần quản lý một cách hợp lý.",
+        "Ông cho rằng ngành chưa làm việc đủ tốt với cộng đồng địa phương ở Mỹ về trung tâm dữ liệu.",
+        "Ông không lo hiệu suất tăng sẽ làm giảm nhu cầu chip, vì phần cứng và mô hình cùng tối ưu để đạt mục tiêu."
+      ],
+      "body": [
+        "Andrew Feldman, CEO và đồng sáng lập Cerebras, phát biểu trong buổi phỏng vấn tại TechCrunch Disrupt 2026. Ông cho rằng những cuộc tranh luận về xác suất AI hủy diệt nhân loại đã trở nên quá phổ biến, tới mức Dario Amodei của Anthropic từng bị chế giễu trong một tiểu phẩm “Saturday Night Live”.",
+        "Theo ông, nên nói nhiều hơn về lợi ích, ví dụ một thế giới nơi cháu chắt chúng ta “không gặp ai chết vì ung thư”, dù vẫn lo về rủi ro.",
+        "## Rủi ro và quản lý",
+        "Feldman nói không có công nghệ mạnh nào mà không đặt ra câu hỏi điều gì xảy ra khi nó nằm trong tay người xấu. Theo ông, cần thận trọng và quản lý một cách hợp lý.",
+        "## Trung tâm dữ liệu và nhu cầu chip",
+        "Ông cho rằng một phần sự tiêu cực đến từ cách ngành xây trung tâm dữ liệu: không làm việc với cộng đồng như ngành điện hay dầu khí từng làm. Ông nêu Brazil, Canada, Phần Lan, Iceland, Na Uy, Mexico và Thụy Điển là nơi khuyến khích xây trung tâm dữ liệu.",
+        "Về cạnh tranh với Nvidia, ông không lo các cải tiến hiệu suất làm giảm nhu cầu chip.",
+        "> Gợi ý của người biên tập: Cerebras có lợi ích thương mại khi AI phát triển, và khách hàng của hãng gồm OpenAI, Block, Figma, GSK, Lovable. Bài báo cũng nêu rõ điều này, nên nên đọc quan điểm trên với bối cảnh đó."
+      ],
+      "glossary": [
+        {
+          "term": "Doomer",
+          "explain": "Cách gọi người cảnh báo AI có thể gây hậu quả thảm khốc cho nhân loại."
+        },
+        {
+          "term": "NIMBY",
+          "explain": "“Not in my backyard”: phản đối một dự án xây gần nơi mình sống."
+        }
+      ]
+    },
+    {
+      "id": "apple-kien-openai-phai-nop-ho-so-tuyen-dung",
+      "group": "press",
+      "source": "TechCrunch",
+      "url": "https://techcrunch.com/2026/10/13/judge-orders-openai-to-turn-over-hiring-records-in-apple-trade-secrets-case/",
+      "publishedAt": "2026-10-13T20:36:44.000Z",
+      "readMinutes": 3,
+      "tags": [
+        "OpenAI",
+        "Apple",
+        "Kiện tụng",
+        "Bí mật thương mại"
+      ],
+      "titleEn": "Judge orders OpenAI to turn over hiring records in Apple trade secrets case",
+      "titleVi": "Thẩm phán buộc OpenAI nộp tài liệu phỏng vấn cựu nhân viên Apple trong vụ kiện bí mật thương mại",
+      "summary": "Trong vụ Apple kiện OpenAI từ tháng 7, thẩm phán cho phép Apple tiếp cận nhanh tài liệu phỏng vấn các cựu nhân viên Apple ứng tuyển vào mảng phần cứng và robot của OpenAI. Tòa cũng cho phép lấy lời khai của ba người, nhưng bác một số yêu cầu rộng hơn.",
+      "keyPoints": [
+        "OpenAI có 5 ngày nộp tài liệu đã thu thập và 14 ngày nộp phần còn lại.",
+        "Apple được xem tài liệu phỏng vấn, tin nhắn LINE riêng giữa các cá nhân trong vụ, trong đó có Chang Liu và Alyssa Peng.",
+        "Tòa cho phép lấy lời khai Liu, Peng và giám đốc phần cứng của OpenAI là Tang Yew Tan.",
+        "Thẩm phán Edward Davila bác yêu cầu đẩy nhanh việc tiếp cận tài liệu nghiên cứu về lớp hoàn thiện kim loại, quản lý điện năng, nhưng cho phép Apple thu hẹp và nộp lại."
+      ],
+      "body": [
+        "Apple đã kiện OpenAI vào tháng 7 với cáo buộc về bí mật thương mại. Đây mới là phán quyết về việc thu thập chứng cứ, chưa phải kết luận về đúng sai của vụ kiện. Các cáo buộc dưới đây là của Apple.",
+        "## Tài liệu OpenAI phải nộp",
+        "Tòa cho Apple xem tài liệu liên quan đến các buổi phỏng vấn cựu nhân viên Apple xin vào nhóm phần cứng tiêu dùng và robot của OpenAI. Có thể gồm danh mục phỏng vấn, hướng dẫn, kịch bản, bài trình bày kỹ thuật và hồ sơ cho thấy cuộc phỏng vấn nhắc tới công nghệ hay linh kiện của Apple.",
+        "## Cáo buộc của Apple",
+        "Apple cáo buộc OpenAI có một mô thức lấy cắp. Cáo buộc gồm việc cựu nhân viên dùng laptop Apple tải tài liệu mật về công nghệ chưa công bố, và việc cựu nhân viên Apple đang ở OpenAI hướng dẫn người khác nên mang thông tin gì đến buổi phỏng vấn.",
+        "## Những yêu cầu bị bác",
+        "Thẩm phán không chấp nhận mọi yêu cầu. Yêu cầu tiếp cận nhanh tài liệu nghiên cứu và phát triển ở các mảng cụ thể bị bác, cùng một số yêu cầu rộng hơn về nghiên cứu phần cứng và sản phẩm các cựu nhân viên làm tại OpenAI. Quyết định này chưa phải cuối cùng vì Apple được thu hẹp yêu cầu và thử lại.",
+        "Vụ kiện diễn ra khi OpenAI phát triển thiết bị phần cứng tiêu dùng đầu tiên, có thể một ngày nào đó cạnh tranh với iPhone."
+      ],
+      "glossary": [
+        {
+          "term": "Trade secret",
+          "explain": "Bí mật thương mại: thông tin kinh doanh hay kỹ thuật được giữ kín và có giá trị cạnh tranh."
+        },
+        {
+          "term": "Discovery",
+          "explain": "Giai đoạn các bên trong vụ kiện trao đổi chứng cứ trước khi xét xử."
+        },
+        {
+          "term": "Deposition",
+          "explain": "Lấy lời khai có tuyên thệ ngoài phiên tòa."
+        }
+      ]
+    },
+    {
+      "id": "shopify-mo-catalog-cho-moi-ai-agent-mua-hang",
+      "group": "press",
+      "source": "The Verge",
+      "url": "https://www.theverge.com/news/1010365/shopify-opens-its-catalog-up-to-more-ai-agents",
+      "publishedAt": "2026-10-13T19:42:42.000Z",
+      "readMinutes": 2,
+      "tags": [
+        "Shopify",
+        "Agentic commerce",
+        "Mua sắm"
+      ],
+      "titleEn": "Shopify opens its catalog up to more AI agents",
+      "titleVi": "Shopify cho phép bất kỳ AI agent nào của người dùng duyệt và mua hàng trong danh mục hơn một tỷ sản phẩm",
+      "summary": "Shopify cho người mua cấu hình AI agent để mua hàng thay mình, mở danh mục hơn một tỷ sản phẩm cho nhiều agent hơn. Người dùng không còn bị giới hạn ở các agent có thỏa thuận hợp tác riêng như Muse của Meta.",
+      "keyPoints": [
+        "Danh mục của Shopify gồm cả hàng trong và ngoài cửa hàng Shopify, hơn một tỷ sản phẩm.",
+        "Khách kết nối agent với tài khoản Shop rồi thanh toán một chạm bằng Shop Pay ngay trong cuộc trò chuyện với agent.",
+        "Người mua có thể đặt quy tắc như ngân sách hay chỉ hiện hàng giao nhanh, và phải duyệt từng lần mua.",
+        "Trước đó, từ tháng 9, Shopify hợp tác với Meta cho agent Muse mua hàng."
+      ],
+      "body": [
+        "Shopify thông báo vào thứ Ba rằng họ mở rộng tham vọng “agentic commerce”, tức việc AI agent mua sắm thay người dùng. Trước đây chỉ có những agent có thỏa thuận hợp tác, như Muse của Meta. Nay người mua có thể dùng bất kỳ agent nào.",
+        "## Cách hoạt động",
+        "Khách kết nối agent với tài khoản trên Shop, nền tảng của Shopify gom đơn hàng, theo dõi gói hàng và gợi ý sản phẩm. Việc thanh toán dùng Shop Pay một chạm trong cuộc trò chuyện. Đơn đặt qua agent được chuyển về ứng dụng Shop.",
+        "Shopify quảng bá đây là “personal shopper” mà người dùng có thể đặt quy tắc, và mỗi lần mua đều cần người dùng chấp thuận.",
+        "## Bối cảnh",
+        "The Verge nhận xét thương mại điện tử là một mặt trận lớn của AI, và nhiều bản demo agent đều kết thúc bằng một giao dịch. Google, Amazon và các hãng khác cũng đầu tư vào công cụ mua sắm do AI dẫn dắt. Bài cũng nhắc cuộc tranh cãi giữa Amazon với các công ty AI như Perplexity, và gần đây là Muse của Meta, về việc agent có được mua sắm thay khách hay không."
+      ],
+      "glossary": [
+        {
+          "term": "Agentic commerce",
+          "explain": "Mua sắm trong đó AI agent tìm, chọn và đặt hàng thay cho người dùng."
+        },
+        {
+          "term": "AI agent",
+          "explain": "Hệ thống AI tự thực hiện chuỗi việc để đạt mục tiêu người dùng giao."
+        }
+      ]
+    },
+    {
+      "id": "xbox-labs-mod-game-bang-ai",
+      "group": "press",
+      "source": "The Verge",
+      "url": "https://www.theverge.com/news/1010406/xbox-labs-game-decompiling-emulation-exploration",
+      "publishedAt": "2026-10-13T19:00:48.000Z",
+      "readMinutes": 3,
+      "tags": [
+        "Xbox",
+        "Microsoft",
+        "Mod game",
+        "Decompile"
+      ],
+      "titleEn": "Xbox is officially embracing the chaos of AI-powered game ports",
+      "titleVi": "Microsoft lập Xbox Labs để khám phá làn sóng port và mod game dịch ngược có AI hỗ trợ",
+      "summary": "Microsoft lập nhóm Xbox Labs để nghiên cứu làn sóng modder dùng AI dịch ngược, chuyển và trộn mã nguồn game. CEO Xbox Asha Sharma coi đây là cơ hội, trong khi The Verge đặt câu hỏi Microsoft sẽ phản ứng thế nào với việc dùng trái phép tài sản trí tuệ.",
+      "keyPoints": [
+        "Xbox Labs là nhóm nhỏ gồm người làm game, kỹ sư và nhà khoa học, làm việc công khai và học từ cộng đồng.",
+        "Các thí nghiệm gần đây gồm đưa bản Windows lên Apple Silicon, chạy game trong trình duyệt qua WebAssembly và WebGPU, và trộn game này vào mã nguồn game khác.",
+        "Sharma nói người chơi dành hơn 72 tỷ giờ mỗi năm cho game Xbox, gấp khoảng năm lần thời gian viết code trên thế giới.",
+        "Microsoft không trả lời The Verge về việc dùng trái phép tài sản trí tuệ."
+      ],
+      "body": [
+        "Theo The Verge, game cũ đang được modder dịch ngược và biên dịch lại để chạy trên thiết bị mới hoặc ghép mã từ hai game. Bài nêu ví dụ trượt ván được mod vào Call of Duty và Halo chạy trong trình duyệt. Nhiều mod trong số này dùng mô hình AI hỗ trợ.",
+        "## Xbox Labs",
+        "CEO Xbox Asha Sharma gửi thư nội bộ, giao Scott lập Xbox Labs. Theo bà, nhóm sẽ “xây dựng công khai”, học từ việc mọi người làm, và đo thành công bằng số người chơi và sáng tạo. Công cụ làm ra sẽ được chia sẻ với các nhà phát triển.",
+        "Sharma cho rằng các thí nghiệm này thách thức những giả định lâu nay: sự gắn kết giữa phần mềm và phần cứng, ranh giới giữa sáng tạo và chơi game. Bà gọi kết quả là tốt cho người chơi, kể cả khi chúng thách thức mô hình kinh doanh hiện tại.",
+        "## Cơ hội cho agent",
+        "Bà lập luận lập trình là khối lượng công việc đầu tiên của AI agent vì agent có thể viết, chạy và kiểm thử phần mềm, còn game cũng có những đặc điểm tương tự.",
+        "## Câu hỏi bản quyền",
+        "The Verge cho rằng câu hỏi lớn là Microsoft phản ứng ra sao khi modder đưa mã nguồn của game chưa được phép ra công khai. Bài viết nêu rằng thư của Sharma cũng khẳng định Microsoft vẫn cam kết làm “người quản lý có trách nhiệm” với tài sản trí tuệ.",
+        "> Gợi ý của người biên tập: bài chưa nói Xbox Labs sẽ xử lý mod trái phép như thế nào, và Microsoft chưa bình luận."
+      ],
+      "glossary": [
+        {
+          "term": "Decompile",
+          "explain": "Dịch ngược chương trình đã biên dịch trở lại dạng gần với mã nguồn."
+        },
+        {
+          "term": "WebAssembly / WebGPU",
+          "explain": "Công nghệ cho phép chạy phần mềm nặng và đồ họa ngay trong trình duyệt."
+        }
+      ]
+    },
+    {
+      "id": "openai-anthropic-keu-goi-quoc-hoi-anh-lap-luat",
+      "group": "press",
+      "source": "Wired",
+      "url": "https://www.wired.com/story/openai-and-anthropic-tell-british-lawmakers-regulate-us/",
+      "publishedAt": "2026-10-13T19:35:29.000Z",
+      "readMinutes": 4,
+      "tags": [
+        "Chính sách AI",
+        "Anh",
+        "OpenAI",
+        "Anthropic"
+      ],
+      "titleEn": "OpenAI and Anthropic Tell British Lawmakers: Regulate Us",
+      "titleVi": "OpenAI và Anthropic nói với quốc hội Anh: cần luật ràng buộc, còn DeepMind và Meta thì không",
+      "summary": "Tại phiên điều trần của ủy ban quốc hội Anh, đại diện OpenAI và Anthropic nói cam kết tự nguyện không còn đủ và ủng hộ khung pháp lý. Google DeepMind và Meta từ chối ủng hộ luật mới. Phiên họp cũng cho thấy viện AISI của Anh chỉ thử mô hình khi các hãng tự nguyện đưa tới.",
+      "keyPoints": [
+        "Liam Booth-Smith của Anthropic: “Các quy tắc nên có tính ràng buộc.”",
+        "Tom Duff Gordon của OpenAI ủng hộ khung pháp lý và một công ước quốc tế, bắt đầu bằng nghĩa vụ báo cáo sự cố.",
+        "Owen Larter của DeepMind nhấn vào tiêu chuẩn, còn Rob Sherman của Meta chỉ ra các cơ quan quản lý hiện có.",
+        "Giám đốc AISI thừa nhận viện không thể ngăn một hãng phát hành mô hình mà viện đánh giá là quá nguy hiểm.",
+        "Giám đốc MI5 Ken McCallum cảnh báo AI có thể thay đổi mức độ rủi ro của vũ khí sinh học."
+      ],
+      "body": [
+        "Ủy ban Kinh doanh, Đổi mới, Khoa học và Thương mại của Quốc hội Anh tổ chức phiên lấy ý kiến vào thứ Ba với bốn hãng AI tiên phong, bốn cựu nhân viên đã tố cáo và các công chức cấp cao.",
+        "## Hai phe",
+        "Anthropic nói họ luôn tin rằng cần quy tắc ràng buộc. OpenAI thận trọng hơn nhưng nói “một số phần nên bắt buộc”. Chủ tịch ủy ban Liam Byrne nói mục đích là phơi bày sự khác biệt giữa các hãng giàu nhất thế giới, và cho thấy không thể dựa vào tự điều chỉnh.",
+        "## Chế độ hiện nay là tự nguyện",
+        "Viện An ninh AI của Anh (AISI) thử nghiệm mô hình trước khi phát hành, nhưng chỉ khi các công ty trao cho. Giám đốc Henry de Zoete nói viện hoàn toàn phụ thuộc vào sự hợp tác và không thể ngăn việc phát hành. Quan chức Cat Little xác nhận chế độ hiện tại là tự nguyện.",
+        "Đại diện Anthropic nói họ chưa thể cho AISI Anh truy cập đầy đủ vào Mythos 5.1 ở thời điểm đó và đó là “câu hỏi dành cho chính phủ Mỹ”, nhưng nay viện đã có quyền truy cập. OpenAI nói họ đưa mô hình cho CAISI của Mỹ trước khi phát hành và sẽ tiếp tục làm vậy với AISI Anh chừng nào còn được phép.",
+        "## Cảnh báo bên ngoài phòng họp",
+        "Cùng ngày, Giám đốc MI5 Ken McCallum nêu nguy cơ AI thay đổi tầm mức của vũ khí sinh học, và Byrne nhận xét đó là điều đáng lo khi chế độ quản lý AI vẫn tự nguyện.",
+        "Các cựu nhân viên như Daniel Kokotajlo và Steven Adler nói họ không tin các công ty tự điều chỉnh được. Byrne muốn dùng nhiệm kỳ chủ tịch G20 sắp tới của Anh để thúc đẩy một công ước quốc tế không phụ thuộc vào Nhà Trắng hiện nay."
+      ],
+      "glossary": [
+        {
+          "term": "AISI",
+          "explain": "Viện An ninh AI của Anh, thử nghiệm các mô hình tiên phong về rủi ro."
+        },
+        {
+          "term": "Statutory framework",
+          "explain": "Khung pháp lý do luật quy định, có tính bắt buộc, khác với cam kết tự nguyện."
+        },
+        {
+          "term": "Frontier AI",
+          "explain": "Các mô hình AI mạnh nhất, ở ranh giới công nghệ."
+        }
+      ],
+      "hot": true
+    },
+    {
+      "id": "laplace-intelligence-red-team-robot-bang-ai",
+      "group": "press",
+      "source": "TechCrunch",
+      "url": "https://techcrunch.com/2026/10/13/laplace-intelligence-red-teams-robots-and-self-driving-cars-before-they-hit-the-real-world/",
+      "publishedAt": "2026-10-13T17:30:00.000Z",
+      "readMinutes": 3,
+      "tags": [
+        "Robot",
+        "Xe tự lái",
+        "Mô phỏng",
+        "Startup"
+      ],
+      "titleEn": "Laplace Intelligence red-teams robots and self-driving cars before they hit the real world",
+      "titleVi": "Laplace Intelligence dùng AI để kiểm thử robot và xe tự lái trong mô phỏng trước khi ra đường",
+      "summary": "Startup Laplace Intelligence (spinout Đại học Michigan) dựng mô phỏng tương tác dựng lại từ thế giới thật, kèm AI agent tự tìm các tình huống hiểm hóc để thử hệ thống AI vật lý. Công ty nói đã có doanh thu, thậm chí lãi nhẹ, chủ yếu từ lái xe tự động.",
+      "keyPoints": [
+        "Red-teaming tự động: AI cố tình tìm cách làm hệ thống AI vật lý thất bại trước khi triển khai.",
+        "Môi trường mô phỏng là bản Nvidia Cosmos được huấn luyện thêm, kết hợp dữ liệu bản đồ và ảnh thực tế.",
+        "Các tác nhân khác trong mô phỏng phản ứng với nhau, ví dụ xe đối diện né khi xe thử lao sang làn ngược chiều.",
+        "AI agent tự thiết kế các tình huống hiếm (corner case) từ tin tức, báo cáo cảnh sát về va chạm.",
+        "Khách hàng gồm Isuzu, Bot Auto và Nvidia, đối thủ chính là Applied Intuition."
+      ],
+      "body": [
+        "CEO Howie Sun cho rằng vụ việc OpenAI và Hugging Face cho thấy AI agent có thể khó đoán, và nếu điều đó xảy ra ở thế giới thật thì rất nguy hiểm. Laplace, có trụ sở ở Ann Arbor, thi đấu tại Startup Battlefield 200 của TechCrunch Disrupt.",
+        "## Cách làm",
+        "Sun và đồng sáng lập Henry Liu, từng là thầy hướng dẫn tiến sĩ của Sun, có bài báo năm 2023 lên trang bìa Nature về thử thách xe tự lái trong mô phỏng. Sản phẩm là một mô phỏng độ chính xác cao dựng lại từ thế giới thật, ghép với AI agent liên tục dò điểm yếu.",
+        "Môi trường là bản Cosmos của Nvidia được huấn luyện thêm. Nhà phát triển dùng câu lệnh ngôn ngữ để đổi bối cảnh theo thời gian thực, như thêm giao thông giờ chiều. Theo Sun, các tác nhân khác trong mô phỏng cũng phản ứng với nhau, khác nhiều mô hình thế giới sinh tạo khiến xe xuyên qua nhau.",
+        "## Kinh doanh",
+        "Sun cho biết công ty đã có doanh thu và lãi khiêm tốn, chủ yếu từ lái xe tự động. Hầu hết hợp đồng theo dự án và công ty muốn chuyển sang doanh thu định kỳ. Laplace cũng bắt đầu làm việc với đối tác robot hình người cho kho hàng. Đối thủ chính là Applied Intuition, đã huy động 1,2 tỷ đô la ở mức định giá 15 tỷ.",
+        "> Các thông tin về doanh thu, lợi nhuận và khách hàng do Laplace Intelligence tự công bố."
+      ],
+      "glossary": [
+        {
+          "term": "Red-teaming",
+          "explain": "Chủ động tấn công hoặc thử làm hỏng một hệ thống để tìm điểm yếu trước khi triển khai."
+        },
+        {
+          "term": "Corner case",
+          "explain": "Tình huống hiếm, hóc búa mà hệ thống dễ xử lý sai."
+        },
+        {
+          "term": "World model",
+          "explain": "Mô hình mô phỏng diễn biến của thế giới."
+        }
+      ]
+    },
+    {
+      "id": "google-play-ung-dung-vibe-code-rieng-tu",
+      "group": "press",
+      "source": "TechCrunch",
+      "url": "https://techcrunch.com/2026/10/13/google-play-now-supports-private-vibe-coded-apps-built-just-for-you/",
+      "publishedAt": "2026-10-13T17:00:00.000Z",
+      "readMinutes": 3,
+      "tags": [
+        "Google Play",
+        "Vibe coding",
+        "Android",
+        "AI Studio"
+      ],
+      "titleEn": "Google Play now lets anyone build private, vibe-coded apps that run on Android",
+      "titleVi": "Google Play cho chạy ứng dụng vibe-coding riêng tư trên Android mà không cần công khai",
+      "summary": "Google cho người dùng Android tạo ứng dụng bằng Google AI Studio rồi chạy riêng trên máy mình qua Google Play, không hiện trong tìm kiếm và không chia sẻ với ai. Giai đoạn đầu chỉ dành cho người dùng Mỹ từ 18 tuổi.",
+      "keyPoints": [
+        "Ứng dụng cá nhân không xuất hiện trong tìm kiếm hay danh sách của Google Play, chỉ người tạo dùng được.",
+        "Ứng dụng vẫn phải tuân thủ chính sách của Google Play.",
+        "Sắp tới người dùng sẽ chia sẻ được cho một nhóm bạn bè tin cậy, và có thể chuyển thành ứng dụng công khai sau khi qua rà soát an toàn.",
+        "Google cũng thêm Game Finder, Ask Play có tính năng so sánh và tích hợp sâu hơn với Gemini."
+      ],
+      "body": [
+        "Trước đây, muốn chạy ứng dụng tự tạo bằng AI trên Android, người dùng phải đăng lên Google Play và mở cho khoảng 3 tỷ người dùng. Vì thế nhiều người chỉ làm ứng dụng web. Nay có thể vibe-code bằng Google AI Studio rồi chạy riêng cho mình.",
+        "Tính năng ban đầu chỉ có ở Mỹ, cho người từ 18 tuổi, dùng tài khoản Google thông thường.",
+        "Sam Bright, phó chủ tịch Google Play, nói Google muốn chuyển từ “có ứng dụng cho việc đó” sang “có ứng dụng cho tôi”.",
+        "## Các bước tiếp theo",
+        "- Trong vài tháng tới: chia sẻ cho nhóm nhỏ như gia đình hoặc đội bóng của con.",
+        "- Khi ứng dụng phổ biến: có thể chuyển sang bản công khai sau khi qua rà soát tin cậy và an toàn.",
+        "## Các cập nhật khác của Play",
+        "Game Finder là công cụ gợi ý game cá nhân hóa, dựa trên sở thích người chơi và dữ liệu từ cộng đồng 1,2 tỷ người chơi. Người dùng cũng có thể tạo danh sách game, hỏi trong mục Community Posts và tham gia thử thách 48 giờ gọi là Sprints. Ask Play được cập nhật để so sánh ứng dụng, và ứng dụng cùng game trên Play được tích hợp sâu hơn vào Gemini. Google cũng hỗ trợ tính năng cho phụ huynh chia sẻ độ tuổi của con với nhà phát triển, không kèm ngày sinh chính xác."
+      ],
+      "glossary": [
+        {
+          "term": "Vibe coding",
+          "explain": "Tạo phần mềm bằng cách mô tả ý muốn bằng ngôn ngữ tự nhiên để AI viết mã."
+        },
+        {
+          "term": "Google AI Studio",
+          "explain": "Công cụ của Google để thử mô hình Gemini và tạo ứng dụng bằng AI."
+        }
+      ]
+    },
+    {
+      "id": "epic-disney-game-ai-first",
+      "group": "press",
+      "source": "The Verge",
+      "url": "https://www.theverge.com/games/1010097/epic-games-disney-project-ai-coding-art",
+      "publishedAt": "2026-10-13T15:12:59.000Z",
+      "readMinutes": 2,
+      "tags": [
+        "Epic Games",
+        "Game",
+        "Claude",
+        "Disney"
+      ],
+      "titleEn": "Epic shifts to ‘AI-accelerated development’ for upcoming Disney game",
+      "titleVi": "Epic Games yêu cầu nhóm làm game Disney chưa công bố dùng AI để viết code và tạo toàn bộ đồ họa",
+      "summary": "Theo Bloomberg do The Verge dẫn lại, Epic Games giao cho nhóm làm một game Disney chưa công bố quy tắc “AI-first”. Game này đã bị lùi so với mốc phát hành tháng 3. CEO Tim Sweeney nói mục tiêu không phải làm cùng việc với ít người hơn.",
+      "keyPoints": [
+        "Bloomberg đưa tin Epic dùng AI để tạo code và hình ảnh cho một game Disney chưa công bố, nay đã trễ so với cửa sổ phát hành tháng 3.",
+        "Nhóm phát triển được yêu cầu dùng nhiều hơn các công cụ như Claude của Anthropic.",
+        "Một giám đốc dự án nhắn nhân viên “No more hand-written code”, và toàn bộ đồ họa sẽ được “generated with full AI workflows”.",
+        "Tim Sweeney cho biết Epic đang chuyển hướng lớn để “tăng tốc bằng AI”, nhằm làm được nhiều và tốt hơn chứ không phải giảm người."
+      ],
+      "body": [
+        "The Verge dẫn báo cáo của Bloomberg: Epic Games định dùng AI để tạo code và đồ họa cho một game Disney chưa công bố. Game này đã bị hoãn khỏi mốc phát hành ban đầu là tháng 3.",
+        "Các nhà phát triển dự án được giao một yêu cầu “AI-first”, tức ưu tiên dùng công cụ AI như Claude của Anthropic để hoàn thiện game. Theo Bloomberg, một giám đốc của game nhắn cho nhân viên rằng sẽ “No more hand-written code”. Nhân viên cũng được báo là toàn bộ đồ họa sẽ “generated with full AI workflows”.",
+        "Phát ngôn viên Epic Jake Jones nói với Bloomberg rằng công ty đang “embracing AI-accelerated development”.",
+        "## Phản hồi của CEO",
+        "CEO Tim Sweeney đăng trên mạng xã hội rằng Epic đang có một cuộc chuyển hướng lớn, điều chuyển lập trình viên để tái trang bị cho việc tăng tốc bằng AI. Ông nói mục tiêu không phải làm cùng khối lượng việc với ít người hơn. Ông muốn mọi người làm được nhiều hơn và tốt hơn, và đưa lợi ích đó đến mọi nhóm dùng Unreal.",
+        "## Bối cảnh",
+        "Game được cho là một tựa bắn súng có nhân vật Marvel và Star Wars, thuộc hợp tác nhiều năm giữa Epic và Disney. Disney đã đầu tư 1,5 tỉ USD vào Epic năm 2024. Epic vốn đã dùng AI trong Fortnite. Đầu năm nay Epic cắt hơn 1.000 nhân viên sau khi lượng tương tác của Fortnite giảm từ 2025. Sweeney cũng từng đề nghị Steam bỏ nhãn “made with AI”.",
+        "> Đây là thông tin từ báo cáo của Bloomberg do The Verge thuật lại. Epic và Disney chưa phản hồi yêu cầu bình luận của The Verge."
+      ],
+      "glossary": [
+        {
+          "term": "AI-first",
+          "explain": "Cách làm đặt công cụ AI lên trước: ưu tiên để AI làm rồi người mới can thiệp."
+        },
+        {
+          "term": "Unreal",
+          "explain": "Unreal Engine, bộ công cụ dựng game của Epic mà nhiều studio khác cũng dùng."
+        }
+      ]
+    },
+    {
+      "id": "amex-khung-y-dinh-mua-hang-ai-agent",
+      "group": "press",
+      "source": "TechCrunch",
+      "url": "https://techcrunch.com/2026/10/13/amex-introduces-a-framework-to-prevent-ai-agents-from-making-unauthorized-purchases/",
+      "publishedAt": "2026-10-13T13:00:00.000Z",
+      "readMinutes": 4,
+      "tags": [
+        "American Express",
+        "AI agent",
+        "Thanh toán"
+      ],
+      "titleEn": "Amex introduces a framework to prevent AI agents from making unauthorized purchases",
+      "titleVi": "American Express ra khung “Intent Intelligence” để AI agent không mua hàng ngoài ý muốn khách",
+      "summary": "American Express giới thiệu khung xác thực ý định mua hàng của khách trước khi AI agent hoàn tất giao dịch. Amex hy vọng nó thành chuẩn chung của ngành. Công ty nói chưa thấy tranh chấp tăng vì agentic commerce, nhưng muốn chuẩn bị sớm.",
+      "keyPoints": [
+        "Khung tên “Intent Intelligence Framework” ghi lại và xác thực yêu cầu mua của khách trước khi agent thanh toán.",
+        "Quy trình bắt đầu bằng Create Intent API, thu lại chỉ dẫn và ràng buộc như tên người bán, ngân sách tối đa, sở thích sản phẩm.",
+        "Khách xác thực danh tính và đồng ý với ý định đó, rồi hệ thống tạo Intent ID và Proof of Intent Token để lấy thông tin thanh toán số dùng thay số thẻ thật.",
+        "Nếu agent mua sai món (ví dụ khách muốn giày Nike trắng cỡ 9 nhưng agent đặt Adidas), Amex có thể chặn giao dịch.",
+        "Khung nằm trong bộ ACE Developer Toolkit ra mắt từ tháng 4."
+      ],
+      "body": [
+        "Các AI agent cá nhân ngày càng thay người dùng giao dịch. Vì mô hình ngôn ngữ lớn không tất định, agent có thể làm điều không được phép, kể cả mua hàng ngoài ý muốn. Amex muốn xử lý chuyện này từ sớm.",
+        "## Cách khung hoạt động",
+        "Create Intent API thu lại chỉ dẫn mua hàng của khách cùng các ràng buộc như tên người bán, ngân sách tối đa và sở thích sản phẩm. Cách thu thập có thể khác nhau tùy mô hình AI, nhưng Amex muốn khung đủ linh hoạt cho mọi kiểu agentic commerce.",
+        "Sau đó khách xác thực danh tính và đồng ý với ý định đã ghi. Hệ thống tạo một Intent ID và một Proof of Intent Token chứa các ràng buộc ở mức cao. Token dùng để lấy một thông tin thanh toán số an toàn mà agent sẽ dùng lúc thanh toán, thay cho số thẻ thật.",
+        "Intent ID và token cũng dùng được ở các khâu khác như chống gian lận và giải quyết tranh chấp. Nhật ký việc agent nào được phép làm gì, vào lúc nào, cũng giúp xử lý gian lận.",
+        "## Điểm khác biệt Amex nêu",
+        "Hannah Bozian, VP phụ trách hợp tác và chiến lược agentic của Amex, nói cách làm của Amex đưa ý định vào sớm hơn trong luồng giao dịch, nên giảm rủi ro trước khi rủi ro xảy ra. Bà cũng cho rằng sau này agent có thể tự chủ hơn, ví dụ tự đặt lại giấy vệ sinh, khi ràng buộc chính chỉ là giá và kích cỡ. Khi đó cần một lớp kiểm tra thêm.",
+        "## Bối cảnh",
+        "Amex nói chưa thấy tranh chấp tăng do agentic commerce. Theo báo cáo Amex Trendex, 66% người tiêu dùng Mỹ được khảo sát có khả năng dùng AI agent để tìm giá tốt nhất và 61% để nhờ gợi ý sản phẩm trong 12 tháng tới. Amex đang trao đổi với các đối tác trong hệ sinh thái thanh toán để triển khai ACE.",
+        "> Các số liệu khảo sát do American Express tự công bố."
+      ],
+      "glossary": [
+        {
+          "term": "agentic commerce",
+          "explain": "Mua sắm do AI agent thực hiện thay người dùng, từ tìm hàng đến thanh toán."
+        },
+        {
+          "term": "Proof of Intent Token",
+          "explain": "Mã chứng minh khách đã đồng ý một ý định mua hàng cụ thể, kèm các ràng buộc cấp cao."
+        },
+        {
+          "term": "nondeterministic",
+          "explain": "Không tất định: cùng một yêu cầu có thể cho kết quả khác nhau mỗi lần."
+        }
+      ]
+    },
+    {
+      "id": "wikipedia-ai-khong-phai-con-bao-thoang-qua",
+      "group": "press",
+      "source": "Wired",
+      "url": "https://www.wired.com/story/book-excerpt-the-last-best-place-on-the-internet-wikipedia-artificial-intelligence/",
+      "publishedAt": "2026-10-13T11:00:00.000Z",
+      "readMinutes": 5,
+      "tags": [
+        "Wikipedia",
+        "AI Overviews",
+        "Nội dung do AI tạo"
+      ],
+      "titleEn": "Wikipedians Believed AI Would Come and Go. They Were Wrong",
+      "titleVi": "Wikipedia và AI: lượng người đọc giảm, cộng đồng biên tập cấm viết bằng LLM",
+      "summary": "Đoạn trích từ sách của Richard Cooke về lịch sử Wikipedia cho thấy cộng đồng từng nghĩ AI chỉ là làn sóng nhất thời. Thực tế, lượng đọc giảm và AI tràn vào nội dung. Tác giả cho rằng thách thức rộng hơn nhiều so với lượng truy cập.",
+      "keyPoints": [
+        "Một nghiên cứu của Đại học Princeton tìm thấy khoảng 5% trong gần 3.000 bài mới trên Wikipedia tiếng Anh tháng 8/2024 có nhiều nội dung do AI tạo.",
+        "Đến tháng 3/2026, việc viết bằng mô hình ngôn ngữ lớn bị cấm hẳn trên Wikipedia, chỉ còn cho dịch thuật và sửa lỗi nhỏ.",
+        "Theo Christophe Henner, từ 2022 Wikipedia mất gần một phần tư lượng đọc, hơn 1,1 tỉ lượt truy cập mỗi tháng.",
+        "Tỉ lệ nhấp vào liên kết từ chatbot AI chỉ khoảng 0,33%, so với gần 9% của Google Search.",
+        "Henner cho rằng AI chỉ là “accelerant”, còn nguyên nhân sâu hơn là thay đổi cách người trẻ tiếp cận tri thức."
+      ],
+      "body": [
+        "Bài là đoạn trích từ sách The Last Best Place on the Internet: A Human History of Wikipedia của Richard Cooke, đăng trên Wired. Đây là góc nhìn của tác giả, không phải bản tin thuần túy.",
+        "## Cộng đồng từng nghĩ AI sẽ qua đi",
+        "Các Wikipedian từng cho rằng mô hình ngôn ngữ lớn có thể giúp việc vặt như định dạng, nguồn, trích dẫn, để người lo phần sáng tạo. Thực tế phức tạp hơn. Nội dung AI xuất hiện, kèm các dấu hiệu như dấu gạch dài và còn sót cả câu lệnh như “Here is your Wikipedia article”. Cộng đồng ban đầu cố định hướng đầu ra của AI, rồi đến tháng 3/2026 cấm viết bằng LLM.",
+        "## Lượng đọc giảm",
+        "Henner, một Wikipedian lâu năm, đã công bố một “wake-up call” trước sinh nhật 25 năm của Wikipedia trong tháng 1/2026. Theo ông, lượng đọc giảm gần 25% từ 2022, và người dùng khó bấm vào nguồn dẫn từ chatbot. Ông cảnh báo Wikipedia có thể thành “footnote in the training data” của các mô hình đã đi tiếp. Dariusz Jemielniak trên Nature cũng gọi quan hệ của AI agent với Wikipedia là “parasitic relationship”.",
+        "Tuy vậy Henner nghi ngờ lời giải thích “AI tóm tắt” là đủ. Ông viết rằng người trẻ không tìm kiếm mà cuộn, và dạng bách khoa toàn thư có thể mất sức hấp dẫn nhanh hơn bất kỳ công nghệ đơn lẻ nào.",
+        "## Lập luận của tác giả",
+        "Cooke đặt chuyện này vào lịch sử dài hơn của ý tưởng bách khoa toàn thư, từ Khai sáng đến H. G. Wells. Ông cho rằng mất mát có thể mang tính hiện sinh, chứ không chỉ là lượt truy cập. Ông cũng lập luận rằng một bách khoa toàn thư do máy viết và máy đọc sẽ thiếu hẳn phần đam mê của con người. Đoạn cuối nhấn mạnh quy trình cộng tác của con người, hơn là nội dung, có thể là giá trị lâu bền của Wikipedia.",
+        "> Gợi ý của người biên tập: các số liệu về lượt đọc trong bài là lời dẫn từ Henner và báo cáo Pew, tác giả không tự đo."
+      ],
+      "glossary": [
+        {
+          "term": "AI Overviews",
+          "explain": "Phần tóm tắt do AI tạo ở đầu kết quả tìm kiếm của Google."
+        },
+        {
+          "term": "click-through rate",
+          "explain": "Tỉ lệ người dùng bấm vào một liên kết trên tổng số người thấy nó."
+        },
+        {
+          "term": "slop",
+          "explain": "Từ chỉ nội dung do AI tạo, đại trà, đơn điệu và kém giá trị."
+        }
+      ]
+    },
+    {
+      "id": "leading-the-future-cong-ty-vo-bo-nevada",
+      "group": "press",
+      "source": "Wired",
+      "url": "https://www.wired.com/story/the-biggest-pro-ai-super-pac-network-has-poured-millions-into-nevada-shell-companies/",
+      "publishedAt": "2026-10-13T10:00:00.000Z",
+      "readMinutes": 4,
+      "tags": [
+        "Chính trị",
+        "Super PAC",
+        "Leading the Future"
+      ],
+      "titleEn": "The Biggest Pro-AI Super PAC Network Has Poured Millions Into Nevada Shell Companies",
+      "titleVi": "Mạng lưới super PAC ủng hộ AI lớn nhất chuyển hàng triệu USD cho các công ty LLC ở Nevada khó xác minh",
+      "summary": "Wired dựa trên hồ sơ tài chính bầu cử liên bang cho biết mạng lưới super PAC của Leading the Future đã trả hàng chục triệu USD cho bốn công ty LLC ở Nevada. Các tổ chức giám sát cho rằng đây là công ty vỏ bọc và đã khiếu nại lên FEC. Leading the Future nói họ tuân thủ pháp luật.",
+      "keyPoints": [
+        "Lantern Production Consultants LLC nhận khoảng 20 triệu USD từ Think Big từ năm ngoái, nhưng dường như chỉ tồn tại ở một hộp thư bưu điện.",
+        "Có bốn LLC ở Nevada nhận tiền từ các super PAC trong mạng lưới, và văn phòng Ngoại trưởng bang Nevada nói không tìm thấy hồ sơ của các công ty này.",
+        "Campaign Legal Center cáo buộc trong đơn khiếu nại gửi FEC hồi tháng 5 rằng Think Big và American Mission vi phạm luật bằng cách không công khai người nhận tiền thật sự.",
+        "Leading the Future bác bỏ, nói họ tuân thủ mọi luật hiện hành.",
+        "FEC chưa có đủ số đại biểu quyết định (quorum) từ tháng 5/2025, nên đơn khó được xem xét sớm."
+      ],
+      "body": [
+        "Theo Wired, một nhà thầu tư vấn mang tên Lantern Production Consultants LLC đã nhận khoảng 20 triệu USD từ Think Big kể từ năm ngoái, cho các dịch vụ như thăm dò dư luận, quảng cáo số, nghiên cứu và chiến lược. Think Big thuộc mạng lưới super PAC do Leading the Future PAC tài trợ. Địa chỉ của công ty chỉ là một hộp thư bưu điện trong một trung tâm thương mại ở Sparks, Nevada.",
+        "Leading the Future được các nhà đầu tư AI lớn hậu thuẫn, trong đó có Marc Andreessen, Ben Horowitz và chủ tịch OpenAI Greg Brockman. Mạng lưới đã huy động hơn 140 triệu USD cho kỳ bầu cử giữa nhiệm kỳ. Think Big chủ yếu tài trợ đảng viên Dân chủ, còn American Mission tài trợ đảng viên Cộng hòa.",
+        "## Bốn LLC ở Nevada",
+        "Ngoài Lantern, Wired nêu Summit Ridge Media Group LLC (khoảng 13 triệu USD từ American Mission trong tháng 12/2025 đến tháng 9/2026), Blue Horizon Compliance Consultants và Prusik Partners LLC. Địa chỉ của họ là trung tâm bưu chính, cửa hàng Staples hay dãy cửa hàng nhỏ. Văn phòng Ngoại trưởng Nevada nói không tìm thấy hồ sơ nào.",
+        "## Cáo buộc và phản hồi",
+        "Các tổ chức giám sát bầu cử cho rằng đây là công ty vỏ bọc nhằm che danh tính những người làm việc cho Leading the Future. Campaign Legal Center đã nộp đơn khiếu nại lên FEC hồi tháng 5, cáo buộc vi phạm Luật Chiến dịch Bầu cử Liên bang. Phát ngôn viên Jesse Hunt của Leading the Future nói họ “comply with all applicable laws”, và gọi đơn này là chiêu trò của nhóm gắn với Public First và Anthropic. Public First và Campaign Legal Center đều bác bỏ việc có liên quan. Anthropic không trả lời Wired.",
+        "FEC không có đủ 4 ủy viên để biểu quyết từ tháng 5/2025, nên Campaign Legal Center không kỳ vọng vụ việc sớm được xử lý.",
+        "> Đây là cáo buộc của tổ chức giám sát, chưa có kết luận của cơ quan có thẩm quyền."
+      ],
+      "glossary": [
+        {
+          "term": "super PAC",
+          "explain": "Quỹ chính trị ở Mỹ được phép huy động và chi tiền không giới hạn để vận động, nhưng không được phối hợp trực tiếp với ứng viên."
+        },
+        {
+          "term": "FEC",
+          "explain": "Ủy ban Bầu cử Liên bang Mỹ, cơ quan thực thi luật tài chính bầu cử."
+        },
+        {
+          "term": "shell company",
+          "explain": "Công ty vỏ bọc, ít hoặc không có hoạt động thực, thường dùng để che danh tính người nhận tiền."
+        }
+      ]
+    },
+    {
+      "id": "blog-hn-bot-ai-lam-cham-website",
+      "group": "community",
+      "source": "Sammy's Blog",
+      "url": "https://www.sammystraus.com/#i-posted-to-hn-and-then-my-website-was-flooded-with-ai-bot-traffic",
+      "discussionUrl": "https://news.ycombinator.com/item?id=50073221",
+      "points": 327,
+      "comments": 174,
+      "publishedAt": "2026-10-13T15:25:50Z",
+      "readMinutes": 3,
+      "tags": [
+        "Bot AI",
+        "Crawler",
+        "Hacker News"
+      ],
+      "titleEn": "I posted to HN, and then my website was flooded with AI bot traffic",
+      "titleVi": "Đăng lên Hacker News xong, một lập trình viên thấy website bị bot AI dồn truy cập làm chậm",
+      "summary": "Tác giả blog kể rằng sau khi đăng ứng dụng đọc tin sprinklz.io lên HN, website của anh chậm hẳn dù người dùng thật không nhiều. Anh tìm ra gần một nửa lưu lượng đến từ một dịch vụ tự động theo dõi và tóm tắt website bằng AI. Đây là chia sẻ cá nhân của tác giả, chưa được kiểm chứng.",
+      "keyPoints": [
+        "Tác giả làm sprinklz.io, một trình đọc tin cho phép hạ ưu tiên các chủ đề như AI hay LLM.",
+        "Sau bài đăng HN được khoảng một trăm lượt upvote, website chậm dần dù chỉ có ít người dùng thật.",
+        "Log NGINX cho thấy gần một nửa lưu lượng đến từ một dịch vụ theo dõi thay đổi website rồi tóm tắt bằng AI, truy vấn nhiều lần mỗi phút.",
+        "Phần còn lại gồm các crawler thông thường (Claude bot, OpenAI bot, Google) và vài công cụ dò lỗ hổng.",
+        "Anh đã chặn, thêm robots.txt và giới hạn tốc độ truy vấn, đồng thời cải thiện hiệu năng hạ tầng."
+      ],
+      "body": [
+        "Bài là chia sẻ cá nhân của một lập trình viên trên blog riêng, chưa được kiểm chứng độc lập. Trên Hacker News bài nhận 327 điểm và 174 bình luận.",
+        "## Chuyện gì xảy ra",
+        "Tác giả làm sprinklz.io, một trình đọc tin có thể tùy chỉnh. Khi bài giới thiệu lên HN, anh nghĩ chậm là do bất ngờ nổi tiếng. Nhưng tình trạng kéo dài và còn nặng hơn nhiều ngày sau, trong khi chỉ có một số ít người dùng thật đăng nhập.",
+        "Anh thêm log theo từng endpoint và thấy đa số yêu cầu không hề tải bài viết. Vì website là single-page application, điều đó nghĩa là phần lớn yêu cầu không chạy JavaScript để dựng trang. Log NGINX cho thấy gần một nửa lưu lượng đến từ một người dùng duy nhất. Theo mô tả của tác giả, đó là một dịch vụ lắng nghe thay đổi của website rồi tóm tắt thành bản tin do AI viết, và truy vấn nhiều lần mỗi phút. Anh đã chặn dịch vụ này.",
+        "## Cách xử lý",
+        "Các yêu cầu còn lại phần lớn là crawler tự nhận diện như Claude bot, OpenAI bot và bộ lập chỉ mục của Google, cùng vài công cụ dò lỗ hổng. Tác giả thêm robots.txt để hạn chế các bot AI nhưng vẫn cho phép bot tìm kiếm, nhờ Claude giả lập các đường dò lỗ hổng để kiểm tra không có gì bị lộ, và đặt giới hạn tốc độ.",
+        "Bài học chính theo tác giả là phải làm website nhanh và co giãn tốt hơn. Anh cho biết đã cải thiện nhiều phần hạ tầng sau sự cố này.",
+        "> Số liệu và nhận định trong bài là của tác giả blog, chưa có kiểm chứng độc lập."
+      ],
+      "glossary": [
+        {
+          "term": "crawler",
+          "explain": "Chương trình tự động truy cập website để thu thập nội dung."
+        },
+        {
+          "term": "robots.txt",
+          "explain": "Tệp khai báo cho bot biết phần nào của website được hoặc không được truy cập."
+        },
+        {
+          "term": "rate limit",
+          "explain": "Giới hạn số yêu cầu một nguồn được gửi trong một khoảng thời gian."
+        }
+      ]
+    },
+    {
+      "id": "apple-minions-gpu-cloud-may-mac-ranh",
+      "group": "lab",
+      "source": "Apple Machine Learning Research",
+      "url": "https://machinelearning.apple.com/research/distributed-gpu-cloud",
+      "discussionUrl": "https://news.ycombinator.com/item?id=50070593",
+      "points": 246,
+      "comments": 97,
+      "publishedAt": "2026-10-13T12:26:36Z",
+      "readMinutes": 2,
+      "tags": [
+        "Apple",
+        "Suy luận",
+        "GPU"
+      ],
+      "titleEn": "A Dynamic and Distributed Virtual GPU Cloud Built on Idle Apple Silicon Devices",
+      "titleVi": "Apple giới thiệu Minions: gom GPU nhàn rỗi của máy Mac thành đám mây suy luận ML",
+      "summary": "Nhóm nghiên cứu Apple trình bày Minions, hệ thống gom GPU Apple Silicon đang rảnh trên các máy macOS để chạy suy luận machine learning quy mô lớn. Mục tiêu là tận dụng phần cứng có sẵn thay vì mua thêm GPU. Trang chỉ có tóm tắt của paper.",
+      "keyPoints": [
+        "Nhu cầu suy luận bằng GPU làm lộ ra hạn chế của hạ tầng GPU tập trung: chi phí cao, kém linh hoạt và phải chờ lâu khi thiếu tài nguyên.",
+        "Minions gom GPU nhàn rỗi trên các máy macOS dùng Apple Silicon thành một đám mây GPU ảo, phân tán.",
+        "Hệ thống hỗ trợ chạy tác vụ suy luận linh hoạt, chịu lỗi và dùng tài nguyên hiệu quả.",
+        "Nhóm tác giả kết luận máy macOS nhàn rỗi có thể thành nền tảng suy luận phân tán thực tế khi GPU tập trung bị hạn chế."
+      ],
+      "body": [
+        "Trang của Apple Machine Learning Research chỉ đăng tóm tắt của paper, nên bài này chỉ nêu những gì tóm tắt đó nói. Tác giả gồm Jianhua Li, Yun Xing, Girisha De Silva, Ryan Flint, Kai Yuan và Sean Suchter.",
+        "Nhóm nhận định nhu cầu suy luận machine learning dùng GPU tăng, làm lộ hạn chế của hạ tầng GPU tập trung: chi phí cao, khó co giãn và thời gian chờ lâu khi tài nguyên căng. Trong khi đó GPU của các máy macOS dùng Apple Silicon phần lớn nằm rảnh khi sử dụng bình thường.",
+        "Minions là hệ thống gom các GPU rảnh đó trên nhiều máy macOS để chạy suy luận quy mô lớn, giúp các nhóm tận dụng phần cứng có sẵn mà không phải mua thêm GPU. Hệ thống cho phép chạy tác vụ linh hoạt, chịu lỗi và dùng tài nguyên hiệu quả.",
+        "> Kết luận “thực tế” là của chính nhóm tác giả, rút ra từ kinh nghiệm triển khai của họ."
+      ],
+      "glossary": [
+        {
+          "term": "suy luận (inference)",
+          "explain": "Giai đoạn chạy mô hình đã huấn luyện để tạo ra kết quả cho yêu cầu mới."
+        },
+        {
+          "term": "Apple Silicon",
+          "explain": "Dòng chip do Apple tự thiết kế cho máy Mac, tích hợp cả CPU và GPU."
+        },
+        {
+          "term": "fault tolerance",
+          "explain": "Khả năng chịu lỗi: hệ thống vẫn chạy khi một số máy trong đó hỏng hoặc ngừng."
+        }
+      ]
+    },
+    {
+      "id": "agent-reflex-day-agent-tu-phan-tuong",
+      "group": "research",
+      "source": "Hugging Face Papers",
+      "url": "https://arxiv.org/abs/2610.17953",
+      "discussionUrl": "https://huggingface.co/papers/2610.17953",
+      "pdfUrl": "https://arxiv.org/pdf/2610.17953",
+      "points": 86,
+      "comments": 1,
+      "publishedAt": "2026-10-12T20:00:00.000Z",
+      "readMinutes": 3,
+      "tags": [
+        "Agent",
+        "Huấn luyện",
+        "Phản tư"
+      ],
+      "titleEn": "Agent-Reflex: Teaching Language Agents to Act Reflectively",
+      "titleVi": "Agent-Reflex: khung huấn luyện giúp agent ngôn ngữ biết chủ động phản tư khi gặp phản hồi nhiễu",
+      "summary": "Agent-Reflex là khung huấn luyện giúp agent tự phản tư và phục hồi sau lỗi, khi dịch vụ công cụ MCP trả phản hồi nhiễu hoặc người dùng can thiệp sửa. Xây trên Qwen3-8B, nhóm tác giả báo kết quả tốt hơn các baseline mạnh. Bài chỉ có phần tóm tắt.",
+      "keyPoints": [
+        "Vấn đề: ngoài thực tế, dịch vụ công cụ MCP có thể trả phản hồi nhiễu và người dùng có thể can thiệp sửa agent, nhưng các phương pháp hiện có ít giám sát cho việc học phản tư.",
+        "Giai đoạn một, RSD, chèn nhiễu vào phản hồi công cụ, tìm các cặp thành công và thất bại tương ứng rồi tóm tắt thành các “meta-skill” phản tư.",
+        "Giai đoạn hai, ReSFT, biến mỗi kỹ năng thành dữ liệu giám sát cho tự phản tư, phục hồi và sửa theo người dùng.",
+        "Giai đoạn ba, ORPO, kết hợp học tăng cường trong môi trường nhiễu với chưng cất theo hướng phản tư.",
+        "Trên Qwen3-8B, mô hình đạt 58,6 điểm tổng ở năm benchmark dùng công cụ dài hạn và 29,1 trên AgentNoiseBench."
+      ],
+      "body": [
+        "Phần này chỉ dựa trên tóm tắt (abstract) của paper. Các kết quả là do nhóm tác giả tự báo.",
+        "Nhóm tác giả cho rằng các mô hình ngôn ngữ đã chuyển từ chatbot một lượt thành agent tương tác có thể suy luận dài hạn. Khi triển khai thật, dịch vụ công cụ MCP có thể trả phản hồi nhiễu và người dùng có thể can thiệp để sửa agent. Các phương pháp hiện nay cung cấp ít giám sát cho việc học phản tư và phục hồi lỗi.",
+        "Agent-Reflex gồm ba giai đoạn: RSD để khám phá kỹ năng phản tư, ReSFT để tinh chỉnh có giám sát, và ORPO để tối ưu chính sách. Xây trên Qwen3-8B, nó đạt 58,6 điểm tổng trên năm benchmark dùng công cụ dài hạn và 29,1 trên AgentNoiseBench, vượt các baseline mở rộng môi trường và phản tư mạnh. Mã nguồn có trên GitHub của nhóm RUC-NLPIR."
+      ],
+      "glossary": [
+        {
+          "term": "MCP",
+          "explain": "Model Context Protocol, giao thức chuẩn để agent AI gọi các dịch vụ và công cụ bên ngoài."
+        },
+        {
+          "term": "reflection (phản tư)",
+          "explain": "Việc agent xem lại hành động và phản hồi của mình để phát hiện sai sót rồi sửa."
+        },
+        {
+          "term": "on-policy distillation",
+          "explain": "Chưng cất kiến thức dùng chính các hành vi mà mô hình đang tạo ra khi huấn luyện."
+        }
+      ]
+    },
+    {
+      "id": "urbex-agent-tim-vi-tri-trong-canh-3d-thanh-pho",
+      "group": "research",
+      "source": "Hugging Face Papers",
+      "url": "https://arxiv.org/abs/2610.18356",
+      "discussionUrl": "https://huggingface.co/papers/2610.18356",
+      "pdfUrl": "https://arxiv.org/pdf/2610.18356",
+      "points": 99,
+      "comments": 1,
+      "publishedAt": "2026-10-12T20:00:00.000Z",
+      "readMinutes": 3,
+      "tags": [
+        "Thị giác máy tính",
+        "Cảnh 3D",
+        "Agent"
+      ],
+      "titleEn": "Urbex: Agentic Spatial Grounding for City-Scale 3D Scenes",
+      "titleVi": "Urbex: dùng agent thị giác-ngôn ngữ để tìm vật thể trong cảnh 3D cỡ thành phố bằng cách tìm kiếm chủ động",
+      "summary": "Urbex xem việc xác định vị trí vật thể trong cảnh 3D thành phố như một quá trình tìm kiếm chủ động, thay vì xếp hạng các ứng viên có sẵn. Agent được huấn luyện bằng học tăng cường trên CityRefer. Bài chỉ có phần tóm tắt.",
+      "keyPoints": [
+        "Cách làm phổ biến là xếp hạng ứng viên, cần đề xuất thực thể tính trước và kém hiệu quả ở cảnh ngoài trời lớn.",
+        "Urbex biến cảnh 3D thành môi trường nhiều góc nhìn để agent VLM hỏi về mốc, phóng to vùng, dựng góc nhìn xiên và chốt khung bao.",
+        "Chính sách dùng công cụ được tối ưu bằng học tăng cường trên CityRefer.",
+        "Urbex đạt Hit@1 và IoU tốt nhất trên CityRefer, không cần hộp chuẩn, và nhanh hơn đáng kể so với baseline xếp hạng mạnh nhất."
+      ],
+      "body": [
+        "Phần này chỉ dựa trên tóm tắt của paper. Các kết quả do nhóm tác giả tự báo.",
+        "Bài toán là gán một mô tả bằng lời cho đúng vị trí trong cảnh 3D cỡ thành phố. Nhóm tác giả cho rằng cách làm thông dụng là xếp hạng ứng viên, nhưng nó cần các đề xuất thực thể tính trước và kém hiệu quả ở cảnh ngoài trời lớn.",
+        "Urbex coi cảnh là một môi trường tương tác nhiều góc nhìn. Agent thị giác-ngôn ngữ có thể hỏi về mốc, phóng to vùng, dựng góc nhìn xiên rồi chốt khung bao. Chính sách dùng công cụ được huấn luyện bằng học tăng cường trên CityRefer, với phần thưởng định vị mượt và phần thưởng nhẹ khuyến khích khám phá hiệu quả.",
+        "Theo tóm tắt, Urbex đạt Hit@1 và IoU tốt nhất trên CityRefer, hỗ trợ định vị không cần hộp chuẩn và nhanh hơn đáng kể so với baseline mạnh nhất. Thử zero-shot trên STPLS3D-Refer cho thấy độ bền tốt hơn khi đổi cảnh."
+      ],
+      "glossary": [
+        {
+          "term": "grounding",
+          "explain": "Gắn một mô tả bằng ngôn ngữ vào đúng đối tượng hoặc vị trí trong dữ liệu hình ảnh hoặc 3D."
+        },
+        {
+          "term": "VLM",
+          "explain": "Mô hình thị giác-ngôn ngữ, hiểu cả hình ảnh lẫn văn bản."
+        },
+        {
+          "term": "IoU",
+          "explain": "Độ chồng lấn giữa khung dự đoán và khung đúng, thước đo độ chính xác định vị."
+        }
+      ]
+    },
+    {
+      "id": "jeva-kien-truc-quyet-dinh-he-thong-mot",
+      "group": "research",
+      "source": "Hugging Face Papers",
+      "url": "https://arxiv.org/abs/2610.18773",
+      "discussionUrl": "https://huggingface.co/papers/2610.18773",
+      "pdfUrl": "https://arxiv.org/pdf/2610.18773",
+      "points": 83,
+      "comments": 1,
+      "publishedAt": "2026-10-12T20:00:00.000Z",
+      "readMinutes": 3,
+      "tags": [
+        "Kiến trúc mô hình",
+        "Ra quyết định",
+        "Độ trễ"
+      ],
+      "titleEn": "Jeva: System One Models from First Principles",
+      "titleVi": "Jeva: kiến trúc mô hình ra quyết định nhanh, không đổi kết quả khi đảo thứ tự lựa chọn",
+      "summary": "Jeva là kiến trúc “decision-native” cho các mô hình ra quyết định trực tiếp, độ trễ thấp (system one). Nó đáp ứng bốn yêu cầu: nhận biết không có đáp án, bất biến theo hoán vị, mở rộng theo số lựa chọn và tái sử dụng được tính toán. Bài chỉ có phần tóm tắt.",
+      "keyPoints": [
+        "Nhóm tác giả cho rằng cách dự đoán đáp án từ văn bản tuần tự hóa chưa tôn trọng cấu trúc của bài toán quyết định.",
+        "Bốn yêu cầu: null-aware, permutation-invariant, option-scalable và cacheable.",
+        "Bộ mã hóa dùng chung biểu diễn riêng yêu cầu và từng lựa chọn, còn ngăn xếp quyết định gọn chỉ tinh chỉnh trạng thái yêu cầu theo bộ nhớ lựa chọn bất biến.",
+        "Theo tóm tắt, Jeva cho kết quả mạnh, phát hiện trường hợp không có đáp án gần như hoàn hảo, và không đổi quyết định ở mọi hoán vị đã thử.",
+        "Mô hình mở rộng tới hàng nghìn ứng viên và giảm độ trễ đáng kể nhờ tái sử dụng giữa các yêu cầu."
+      ],
+      "body": [
+        "Phần này chỉ dựa trên tóm tắt của paper. Các kết quả do nhóm tác giả tự báo.",
+        "“System one” ở đây chỉ mô hình ra quyết định trực tiếp với độ trễ thấp. Nhóm tác giả cho rằng thiết kế hiện nay, dự đoán đáp án từ văn bản tuần tự hóa, chưa đáp ứng bốn yêu cầu cấu trúc: phân biệt “không có đáp án” với “phân vân giữa các ứng viên”, không đổi quyết định khi đảo thứ tự lựa chọn, mở rộng khi số lựa chọn tăng mà không phải định nghĩa lại đầu ra, và tái sử dụng được phần tính toán độc lập với yêu cầu.",
+        "Jeva là kiến trúc đáp ứng đồng thời các yêu cầu đó. Một bộ mã hóa dùng chung biểu diễn riêng yêu cầu và từng lựa chọn. Một ngăn xếp quyết định gọn chỉ tinh chỉnh trạng thái yêu cầu so với bộ nhớ lựa chọn bất biến. Một ước lượng độ phủ riêng cho phép đưa ra kết quả “không có đáp án”.",
+        "Theo tóm tắt, Jeva cho hiệu năng mạnh ở các bài quyết định có kiểu, phát hiện trường hợp không có đáp án gần như hoàn hảo, không có quyết định nào đổi dưới mọi hoán vị đã thử, mở rộng tới hàng nghìn ứng viên và giảm độ trễ đáng kể nhờ tái sử dụng giữa các yêu cầu mà không đổi quyết định."
+      ],
+      "glossary": [
+        {
+          "term": "System one",
+          "explain": "Kiểu ra quyết định nhanh, trực giác, không suy luận nhiều bước."
+        },
+        {
+          "term": "permutation-invariant",
+          "explain": "Bất biến theo hoán vị: đảo thứ tự các lựa chọn không làm đổi kết quả."
+        },
+        {
+          "term": "cacheable",
+          "explain": "Có thể lưu và dùng lại phần tính toán cho nhiều yêu cầu khác nhau."
+        }
+      ]
+    },
+    {
+      "id": "switchmem-chon-dang-bo-nho-cho-gui-agent",
+      "group": "research",
+      "source": "Hugging Face Papers",
+      "url": "https://arxiv.org/abs/2610.17928",
+      "discussionUrl": "https://huggingface.co/papers/2610.17928",
+      "pdfUrl": "https://arxiv.org/pdf/2610.17928",
+      "points": 30,
+      "comments": 1,
+      "publishedAt": "2026-10-12T20:00:00.000Z",
+      "readMinutes": 2,
+      "tags": [
+        "GUI agent",
+        "Bộ nhớ",
+        "VLM"
+      ],
+      "titleEn": "Learning How to Remember: Memory Modality Selection for GUI Agents",
+      "titleVi": "SwitchMem: GUI agent chọn dạng bộ nhớ chữ hay hình theo từng bước thao tác",
+      "summary": "Nghiên cứu cho thấy dạng bộ nhớ tốt nhất cho GUI agent thay đổi theo từng bước tương tác. Nhóm tác giả đề xuất SwitchMem, bộ định tuyến chọn giữa bộ nhớ dạng văn bản và hình ảnh ở mỗi bước. Bài chỉ có phần tóm tắt.",
+      "keyPoints": [
+        "Các GUI agent có bộ nhớ hiện nay thường dùng một dạng biểu diễn cố định cho kinh nghiệm truy xuất.",
+        "Qua các benchmark GUI, nhóm tác giả thấy dạng bộ nhớ ưu tiên phụ thuộc mạnh vào bước tương tác.",
+        "SwitchMem chọn động giữa bộ nhớ văn bản và hình ảnh ở mỗi bước.",
+        "Trên ba benchmark GUI, SwitchMem vượt các baseline dùng bộ nhớ tĩnh."
+      ],
+      "body": [
+        "Phần này chỉ dựa trên tóm tắt của paper. Các kết quả do nhóm tác giả tự báo.",
+        "Các agent điều khiển giao diện (GUI agent) dựa trên mô hình thị giác-ngôn ngữ ngày càng giỏi, và bộ nhớ giúp chúng tái sử dụng kinh nghiệm từ các lần tương tác trước. Tuy vậy các hệ thống hiện có thường đưa kinh nghiệm truy xuất vào theo một dạng cố định. Nhóm tác giả đặt câu hỏi liệu một dạng duy nhất có luôn tối ưu không.",
+        "Qua nghiên cứu có hệ thống, họ thấy dạng bộ nhớ tốt nhất phụ thuộc mạnh vào bước thao tác. Từ đó họ đề xuất SwitchMem, một khung định tuyến chọn động giữa bộ nhớ dạng văn bản và dạng hình ảnh ở mỗi bước. Trên ba benchmark GUI, SwitchMem vượt các baseline dùng bộ nhớ tĩnh. Nhóm cho rằng dạng bộ nhớ là một quyết định theo từng bước, không phải lựa chọn thiết kế cố định."
+      ],
+      "glossary": [
+        {
+          "term": "GUI agent",
+          "explain": "Agent AI thao tác trên giao diện đồ họa như người dùng, bằng cách nhìn màn hình rồi bấm hoặc gõ."
+        },
+        {
+          "term": "memory modality",
+          "explain": "Dạng biểu diễn của bộ nhớ, ví dụ văn bản hoặc hình ảnh."
+        }
+      ]
+    },
+    {
+      "id": "workrover-huan-luyen-agent-cowork-moi-truong-tien-hoa",
+      "group": "research",
+      "source": "Hugging Face Papers",
+      "url": "https://arxiv.org/abs/2610.18067",
+      "discussionUrl": "https://huggingface.co/papers/2610.18067",
+      "pdfUrl": "https://arxiv.org/pdf/2610.18067",
+      "points": 23,
+      "comments": 1,
+      "publishedAt": "2026-10-12T20:00:00.000Z",
+      "readMinutes": 3,
+      "tags": [
+        "Agent",
+        "Học tăng cường",
+        "Qwen3.5"
+      ],
+      "titleEn": "WorkRover: Scaling Long-Horizon Cowork Agent Training Via Recursive Environment Evolution",
+      "titleVi": "WorkRover: huấn luyện agent làm việc cộng tác dài hạn bằng môi trường được tự sửa và tiến hóa nhiều vòng",
+      "summary": "WorkRover là khung huấn luyện agent làm việc dài hạn (cowork) qua môi trường tự tiến hóa: tạo, kiểm thử và sửa đồng thời bối cảnh công việc, tác vụ và bộ kiểm chứng. Nhóm tác giả hậu huấn luyện Qwen3.5-35B-A3B thành WorkRover-35B-A3B. Bài chỉ có phần tóm tắt.",
+      "keyPoints": [
+        "Vấn đề: môi trường huấn luyện thường cần kiểm thử và chỉnh sửa sau khi tạo, nhưng quy trình hiện có hỗ trợ kém việc giữ bối cảnh, tác vụ và bộ kiểm chứng khớp nhau.",
+        "Harness-driven synthesis để các agent xây môi trường cùng lúc tạo và kiểm chứng bối cảnh công việc, tác vụ chạy được và bộ kiểm chứng dựa trên bằng chứng.",
+        "Factorial Compatibility Replay (FCR) chọn bản sửa nhỏ nhất đã được kiểm chứng trong số các tổ hợp sửa được thử.",
+        "Verifier-to-Turn Credit Assignment (VTCA) bổ sung tín hiệu tiến độ vào lợi thế GRPO, chia một phần thưởng cho các lượt tiên quyết.",
+        "WorkRover-35B-A3B hơn Qwen3.5-35B-A3B 26,27 điểm phần trăm trên JobBench, 29,32 trên OfficeQA Pro và 413,25 Elo trên GDPval v2."
+      ],
+      "body": [
+        "Phần này chỉ dựa trên tóm tắt của paper. Các điểm số là do nhóm tác giả tự báo cáo.",
+        "Để huấn luyện agent làm việc dài hạn bằng học tăng cường, cần các môi trường tương tác quy mô lớn. Nhóm tác giả chỉ ra rằng các môi trường này thường phải kiểm thử và sửa sau khi tạo, và sửa một tác vụ có thể kéo theo cập nhật bối cảnh công việc và bộ kiểm chứng. Quy trình hiện có hỗ trợ kém việc sửa lặp trong khi giữ các thành phần khớp nhau.",
+        "WorkRover xử lý bằng việc để các agent xây môi trường cùng lúc tạo và kiểm chứng bối cảnh, tác vụ và bộ kiểm chứng, tùy theo trạng thái không gian làm việc và phản hồi khi chạy. FCR dùng phản hồi từ các lượt chạy thử để chọn bản sửa nhỏ nhất đã được kiểm chứng. VTCA thêm tín hiệu từ các kiểm tra tiến độ tất định vào lợi thế GRPO.",
+        "Nhóm hậu huấn luyện Qwen3.5-35B-A3B thành WorkRover-35B-A3B. Điểm báo cáo vượt bản gốc 26,27 điểm phần trăm trên JobBench, 29,32 trên OfficeQA Pro và 413,25 Elo trên GDPval v2."
+      ],
+      "glossary": [
+        {
+          "term": "cowork agent",
+          "explain": "Agent AI làm việc cùng người trong không gian công việc như tài liệu, bảng tính, thư mục."
+        },
+        {
+          "term": "GRPO",
+          "explain": "Thuật toán học tăng cường dùng để huấn luyện mô hình ngôn ngữ dựa trên so sánh một nhóm kết quả."
+        },
+        {
+          "term": "verifier",
+          "explain": "Bộ kiểm chứng tự động chấm xem agent đã hoàn thành tác vụ đúng hay chưa."
+        }
       ]
     }
   ]
