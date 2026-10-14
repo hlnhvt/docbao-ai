@@ -70,6 +70,16 @@ Vercel tự build và triển khai. Cũng có thể làm số bằng tay khi ng�
 - Thứ tự bài trong file là thứ tự hiển thị ở tab "Tất cả".
 - Số báo có `date`, `title` (một dòng nêu tin chính), `intro` (2-3 câu tổng quan), `articles`.
 
+## Chuyên đề (series)
+
+- Loạt bài chuyên sâu tự biên soạn, nằm ở `public/data/series/<slug>.json` (`slug`, `title`, `intro`, `updated`,
+  `articles` theo thứ tự đọc). Mỗi bài như mẫu trên nhưng không cần `url`, `group`, `source`, `publishedAt`;
+  có thêm `order` và `part` (tên phần, dùng để chia nhóm trong mục lục).
+- Không bao giờ bị xoá tự động, không tính vào chống trùng tin. `npm run build` kiểm tra và dựng `series/index.json`.
+- Web: mục "Chuyên đề" (`#/series`, `#/s/<slug>`, bài ở `#/a/s:<slug>/<id>`). App Android (D:\DocBao, từ 3.1):
+  dòng "Chuyên đề" trên màn hình đọc, đọc theo thứ tự series. Đổi định dạng file series thì phải sửa cả `DocBaoAi.kt`.
+- Ví dụ về doanh nghiệp thật phải ghi là minh hoạ; không bịa số liệu, nghiên cứu, thông tin nội bộ.
+
 ## Kỹ thuật
 
 - `npm run dev`: chạy thử (mở được trên điện thoại cùng mạng). `npm run build`: kiểm tra + build ra `dist/`.

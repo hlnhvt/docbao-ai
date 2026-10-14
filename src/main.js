@@ -152,6 +152,7 @@ const ICON = {
   hot: '<path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/>',
   link: '<path d="M14 4h6v6"/><path d="M20 4l-9 9"/><path d="M18 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1h5"/>',
   headphones: '<path d="M4 15v-3a8 8 0 0116 0v3"/><rect x="3" y="14" width="5" height="7" rx="2"/><rect x="16" y="14" width="5" height="7" rx="2"/>',
+  book: '<path d="M4 5a2 2 0 012-2h13v15H6a2 2 0 00-2 2z"/><path d="M4 20a2 2 0 002 2h13v-4"/><path d="M9 7h6"/>',
 }
 const icon = (name, cls = 'size-6') =>
   `<svg class="${cls}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICON[name]}</svg>`
@@ -195,9 +196,30 @@ async function loadIndex() {
   return S.index
 }
 
+/**
+ * An issue, or a series under the key "s:<slug>": series are shaped like issues (articles in
+ * reading order), so saving, read marks, previous/next and continuous reading work the same.
+ */
 async function loadIssue(date) {
-  if (!S.issues.has(date)) S.issues.set(date, await getJson(`data/issues/${date}.json`))
+  if (!S.issues.has(date)) S.issues.set(date, isSeries(date) ? seriesAsIssue(await getJson(`data/series/${date.slice(2)}.json`)) : await getJson(`data/issues/${date}.json`))
   return S.issues.get(date)
+}
+
+const isSeries = (key) => String(key).startsWith('s:')
+
+function seriesAsIssue(s) {
+  const n = s.articles.length
+  return {
+    ...s,
+    date: 's:' + s.slug,
+    series: true,
+    articles: s.articles.map((a, i) => ({ ...a, source: 'Chuyên đề', seriesTitle: s.title, n: i + 1, of: n })),
+  }
+}
+
+async function loadSeriesIndex() {
+  if (!S.seriesIndex) S.seriesIndex = await getJson('data/series/index.json').catch(() => ({ series: [] }))
+  return S.seriesIndex
 }
 
 /** Articles of [issue] shown under [tab], in the order the issue lists them. */
@@ -295,8 +317,10 @@ if (Speech.supported) speechSynthesis.getVoices()
  */
 const Reading = {
   session: null,
-  begin(kind) {
-    if (this.session?.kind !== kind) this.session = { kind, startedAt: Date.now() }
+  /** continuous: read on to the next article whatever the reading mode ("Nghe cả chuyên đề"). */
+  begin(kind, { continuous = false } = {}) {
+    if (this.session?.kind !== kind) this.session = { kind, startedAt: Date.now(), continuous }
+    if (continuous) this.session.continuous = true
     const music = kind === 'briefing' ? S.settings.briefingMusic : S.settings.readingMusic
     if (music) Music.start(S.settings.musicLevel)
     else Music.stop()
@@ -326,20 +350,20 @@ const articleParts = (a) => [
 ]
 
 /** Reads [a] (of the list [list] in issue [date]) and, in continuous mode, moves on afterwards. */
-function readArticle(date, a, list) {
+function readArticle(date, a, list, opts) {
   if (!Speech.supported) return alert('Trình duyệt này không hỗ trợ đọc to.')
   unlockAudio()
-  Reading.begin('article')
+  Reading.begin('article', opts)
   Speech.speak(articleParts(a), { onPart: highlight, onDone: () => afterArticle(date, a, list) })
 }
 
 async function afterArticle(date, a, list) {
-  if (S.settings.readMode !== 'continuous') return Reading.end()
+  if (S.settings.readMode !== 'continuous' && !Reading.session?.continuous) return Reading.end()
   const say = (text) => Speech.speak([{ key: 'end', text }], { onDone: () => Reading.end() })
   // Sleep timer: the article in progress is always finished, then a short goodbye
   if (Reading.timeUp()) return say(`Đã hết thời gian đọc tin đã hẹn. Xin tạm dừng tại đây. Cảm ơn ${who()} đã lắng nghe.`)
   const next = list[list.findIndex((x) => x.id === a.id) + 1]
-  if (!next) return say(`Đã đọc hết các bài trong số này. Cảm ơn ${who()} đã lắng nghe.`)
+  if (!next) return say(`Đã đọc hết các bài trong ${isSeries(date) ? 'chuyên đề' : 'số'} này. Cảm ơn ${who()} đã lắng nghe.`)
   await playSwish()
   if (!Reading.session) return // stopped during the swish
   S.autoRead = true
@@ -453,7 +477,7 @@ async function renderFeed(date) {
   const briefingCount = briefingStories(issue).length
 
   $app.innerHTML = `
-  ${topBar({ right: iconButton('data-action="archive"', 'archive', 'Các số trước') })}
+  ${topBar({ right: iconButton('data-action="series"', 'book', 'Chuyên đề') + iconButton('data-action="archive"', 'archive', 'Các số trước') })}
   <main class="reading mx-auto max-w-3xl px-3 pb-[calc(2rem+env(safe-area-inset-bottom))]">
     <section class="mt-4 rounded-2xl border border-line bg-card p-4">
       <div class="flex items-center gap-2 text-[0.8em] text-muted">
@@ -502,6 +526,8 @@ async function renderFeed(date) {
     } else if (t.dataset.action === 'briefing') {
       if (Speech.active) return Speech.stop()
       startBriefing(issue)
+    } else if (t.dataset.action === 'series') {
+      location.hash = '#/series'
     } else if (t.dataset.action === 'archive') {
       location.hash = '#/archive'
     }
@@ -553,9 +579,16 @@ async function renderArticle(date, id) {
   const next = list[i + 1]
   const saved = !!S.saved[k]
 
-  const links = [
-    `<a href="${safeUrl(a.url)}" target="_blank" rel="noopener" class="flex items-center gap-2 rounded-xl border border-line bg-card px-4 py-3">${icon('link', 'size-5 shrink-0 text-accent')}<span>Bài gốc <span class="text-muted">(${esc(host(a.url))})</span></span></a>`,
-  ]
+  const links = a.url
+    ? [`<a href="${safeUrl(a.url)}" target="_blank" rel="noopener" class="flex items-center gap-2 rounded-xl border border-line bg-card px-4 py-3">${icon('link', 'size-5 shrink-0 text-accent')}<span>Bài gốc <span class="text-muted">(${esc(host(a.url))})</span></span></a>`]
+    : []
+  const back = issue.series ? `#/s/${esc(issue.slug)}` : `#/d/${esc(date)}`
+  const meta = issue.series
+    ? `<span>${esc(a.seriesTitle)}</span><span class="font-normal text-muted">· Bài ${a.n}/${a.of}${a.part ? ` · ${esc(a.part)}` : ''}</span>`
+    : `${a.hot ? hotBadge : ''}<span>${metaLine(a)}</span><span class="font-normal text-muted">· ${esc(timeAgo(a.publishedAt))}</span>`
+  const footnote = issue.series
+    ? 'Bài viết thuộc chuyên đề do Đọc Báo AI biên soạn. Ví dụ về sản phẩm là ví dụ minh hoạ, không phải thông tin nội bộ của doanh nghiệp nào.'
+    : 'Bài viết được tóm lược và biên tập bằng tiếng Việt từ nguồn gốc tiếng Anh, không phải bản dịch nguyên văn.'
   if (a.discussionUrl && a.discussionUrl !== a.url)
     links.push(`<a href="${safeUrl(a.discussionUrl)}" target="_blank" rel="noopener" class="flex items-center gap-2 rounded-xl border border-line bg-card px-4 py-3">${icon('link', 'size-5 shrink-0 text-accent')}<span>Thảo luận${a.comments ? ` (${esc(a.comments)} bình luận)` : ''} <span class="text-muted">(${esc(host(a.discussionUrl))})</span></span></a>`)
   if (a.pdfUrl)
@@ -563,15 +596,15 @@ async function renderArticle(date, id) {
 
   $app.innerHTML = `
   ${topBar({
-    left: `<a href="#/d/${esc(date)}" class="grid size-11 place-items-center rounded-full hover:bg-line/60" aria-label="Về danh sách">${icon('back')}</a>`,
-    title: GROUPS[a.group] ?? 'Đọc Báo AI',
+    left: `<a href="${back}" class="grid size-11 place-items-center rounded-full hover:bg-line/60" aria-label="Về danh sách">${icon('back')}</a>`,
+    title: issue.series ? 'Chuyên đề' : (GROUPS[a.group] ?? 'Đọc Báo AI'),
     right:
       iconButton('data-action="speak"', Speech.active ? 'stop' : 'speak', speakLabel(), Speech.active ? 'text-hot' : '') +
       iconButton('data-action="save"', saved ? 'saved' : 'save', saved ? 'Bỏ lưu' : 'Lưu bài', saved ? 'text-accent' : ''),
   })}
   <main id="article" class="reading mx-auto max-w-2xl px-4 pb-[calc(6rem+env(safe-area-inset-bottom))]">
     <div class="mt-5 flex flex-wrap items-center gap-x-2 gap-y-1 text-[0.8em] font-semibold text-accent">
-      ${a.hot ? hotBadge : ''}<span>${metaLine(a)}</span><span class="font-normal text-muted">· ${esc(timeAgo(a.publishedAt))}</span>
+      ${meta}
     </div>
     <h1 class="mt-2 text-[1.55em] font-bold leading-tight" data-say="title">${esc(a.titleVi)}</h1>
     ${a.titleEn ? `<p class="mt-2 text-[0.9em] leading-snug text-muted">${esc(a.titleEn)}</p>` : ''}
@@ -602,8 +635,8 @@ async function renderArticle(date, id) {
         : ''
     }
 
-    <section class="mt-6 grid gap-2 text-[0.9em]">${links.join('')}</section>
-    <p class="mt-4 text-[0.75em] text-muted">Bài viết được tóm lược và biên tập bằng tiếng Việt từ nguồn gốc tiếng Anh, không phải bản dịch nguyên văn.</p>
+    ${links.length ? `<section class="mt-6 grid gap-2 text-[0.9em]">${links.join('')}</section>` : ''}
+    <p class="mt-4 text-[0.75em] text-muted">${footnote}</p>
   </main>
 
   <nav class="fixed inset-x-0 bottom-0 z-20 border-t border-line bg-paper/95 pb-[env(safe-area-inset-bottom)] backdrop-blur">
@@ -636,7 +669,8 @@ async function renderArticle(date, id) {
   // Continuous reading arrived here from the previous article: go on reading
   if (S.autoRead) {
     S.autoRead = false
-    readArticle(date, a, list)
+    readArticle(date, a, list, { continuous: S.listenAll })
+    S.listenAll = false
   }
 }
 
@@ -665,6 +699,77 @@ function swipe(el, onRight, onLeft) {
     if (dx > 0) onRight()
     else onLeft()
   }, { passive: true })
+}
+
+/* ---------- Series ---------- */
+
+async function renderSeriesList() {
+  const { series } = await loadSeriesIndex()
+  $app.innerHTML = `
+  ${topBar({ left: `<a href="#/" class="grid size-11 place-items-center rounded-full hover:bg-line/60" aria-label="Về số mới nhất">${icon('back')}</a>`, title: 'Chuyên đề' })}
+  <main class="reading mx-auto max-w-3xl px-3 py-4">
+    <p class="mb-3 text-[0.9em] text-muted">Loạt bài chuyên sâu do Đọc Báo AI biên soạn, đọc theo thứ tự từ đầu đến cuối.</p>
+    <div class="grid gap-3">
+      ${
+        series.length
+          ? series
+              .map(
+                (s) => `<a href="#/s/${esc(s.slug)}" class="block rounded-2xl border border-line bg-card p-4">
+              <div class="text-[0.8em] font-semibold text-accent">${s.count} bài</div>
+              <div class="mt-1 text-[1.1em] font-bold leading-snug">${esc(s.title)}</div>
+              ${s.intro ? `<p class="mt-1 line-clamp-3 text-[0.9em] text-muted">${esc(s.intro)}</p>` : ''}
+            </a>`,
+              )
+              .join('')
+          : '<p class="py-16 text-center text-muted">Chưa có chuyên đề nào.</p>'
+      }
+    </div>
+  </main>`
+  $app.onclick = null
+  document.onspeech = null
+}
+
+async function renderSeries(slug) {
+  const key = 's:' + slug
+  const s = await loadIssue(key)
+  const first = s.articles.find((a) => !S.read.has(keyOf(key, a.id))) ?? s.articles[0]
+  let part = ''
+  const items = s.articles
+    .map((a) => {
+      const read = S.read.has(keyOf(key, a.id))
+      const head = a.part && a.part !== part ? `<h2 class="mt-4 text-[0.78em] font-bold uppercase tracking-wide text-muted">${esc((part = a.part))}</h2>` : ''
+      return `${head}<a href="#/a/${esc(key)}/${esc(a.id)}" class="flex gap-3 rounded-2xl border border-line bg-card p-4">
+        <span class="grid size-9 shrink-0 place-items-center rounded-full ${read ? 'bg-line text-muted' : 'bg-accent text-on-accent'} text-[0.85em] font-bold">${a.n}</span>
+        <span class="min-w-0">
+          <span class="block font-bold leading-snug ${read ? 'opacity-60' : ''}">${esc(a.titleVi)}</span>
+          <span class="mt-1 block line-clamp-2 text-[0.88em] text-muted">${esc(a.summary)}</span>
+          <span class="mt-1 block text-[0.75em] text-muted">${a.readMinutes ? `${esc(a.readMinutes)} phút đọc` : ''}${read ? ' · đã đọc' : ''}</span>
+        </span>
+      </a>`
+    })
+    .join('')
+  $app.innerHTML = `
+  ${topBar({ left: `<a href="#/series" class="grid size-11 place-items-center rounded-full hover:bg-line/60" aria-label="Các chuyên đề">${icon('back')}</a>`, title: 'Chuyên đề' })}
+  <main class="reading mx-auto max-w-3xl px-3 pb-[calc(2rem+env(safe-area-inset-bottom))]">
+    <section class="mt-4 rounded-2xl border border-line bg-card p-4">
+      <h1 class="text-[1.3em] font-bold leading-tight">${esc(s.title)}</h1>
+      ${s.intro ? `<p class="mt-2 text-[0.95em] leading-relaxed text-muted">${esc(s.intro)}</p>` : ''}
+      <div class="mt-3 flex flex-wrap gap-2">
+        <a href="#/a/${esc(key)}/${esc(first.id)}" class="inline-flex h-11 items-center rounded-full bg-accent px-4 text-[0.88em] font-bold text-on-accent">${first === s.articles[0] ? 'Bắt đầu đọc' : `Đọc tiếp bài ${first.n}`}</a>
+        <button data-action="listen-all" class="inline-flex h-11 items-center gap-2 rounded-full bg-hot px-4 text-[0.88em] font-bold text-white">${icon('headphones', 'size-5')}<span>Nghe cả chuyên đề</span></button>
+      </div>
+    </section>
+    <div class="mt-2 grid gap-2">${items}</div>
+  </main>`
+  $app.onclick = (e) => {
+    if (!e.target.closest('[data-action="listen-all"]')) return
+    if (!Speech.supported) return alert('Trình duyệt này không hỗ trợ đọc to.')
+    unlockAudio()
+    S.autoRead = true
+    S.listenAll = true
+    go(key, first)
+  }
+  document.onspeech = null
 }
 
 /* ---------- Archive ---------- */
@@ -864,6 +969,8 @@ async function route({ keep = false } = {}) {
   try {
     if (parts[0] === 'a') return await renderArticle(parts[1], parts[2])
     if (parts[0] === 'archive') return await renderArchive()
+    if (parts[0] === 'series') return await renderSeriesList()
+    if (parts[0] === 's' && parts[1]) return await renderSeries(parts[1])
     const index = await loadIndex()
     const date = parts[0] === 'd' ? parts[1] : index.issues[0]?.date
     if (!date) {

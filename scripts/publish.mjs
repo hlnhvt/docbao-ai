@@ -10,12 +10,14 @@
  *   npm run check                 # prune + check + index
  *   npm run check -- --strict     # similar titles are errors too
  */
-import { readFile, rm, writeFile } from 'node:fs/promises'
+import { readdir, readFile, rm, writeFile } from 'node:fs/promises'
+import { existsSync } from 'node:fs'
 import {
   ISSUES_DIR, KEEP_DAYS, SEEN_DAYS, articleKeys, daysBefore, loadIssues, loadSeen, saveSeen, titleSimilarity, todayVn,
 } from './dedup.mjs'
 
 const GROUPS = new Set(['research', 'lab', 'newsletter', 'press', 'community'])
+const SERIES_DIR = 'public/data/series'
 const STRICT = process.argv.includes('--strict')
 const SIMILAR = 0.6
 const errors = []
@@ -91,6 +93,39 @@ for (const { file, date } of await loadIssues()) {
   issues.push({ date, title: issue.title, intro: issue.intro ?? '', count: issue.articles?.length ?? 0 })
 }
 
+/* ---------- series: long-form articles written in-house, never pruned ---------- */
+
+const series = []
+const seriesFiles = existsSync(SERIES_DIR) ? (await readdir(SERIES_DIR)).filter((f) => /^[a-z0-9-]+\.json$/.test(f) && f !== 'index.json').sort() : []
+for (const file of seriesFiles) {
+  const slug = file.slice(0, -5)
+  const err = (m) => errors.push(`series/${file}: ${m}`)
+  let s
+  try {
+    s = JSON.parse(await readFile(`${SERIES_DIR}/${file}`, 'utf8'))
+  } catch (e) {
+    err(`invalid JSON (${e.message})`)
+    continue
+  }
+  if (s.slug !== slug) err(`slug "${s.slug}" does not match the file name`)
+  if (!s.title) err('missing title')
+  if (!Array.isArray(s.articles) || !s.articles.length) err('no articles')
+  const ids = new Set()
+  for (const [i, a] of (s.articles ?? []).entries()) {
+    const at = `article ${i} (${a.id ?? '?'})`
+    if (!/^[a-z0-9-]+$/.test(a.id ?? '')) err(`${at}: id must be lower-case letters, digits and dashes`)
+    if (ids.has(a.id)) err(`${at}: duplicate id`)
+    ids.add(a.id)
+    for (const f of ['titleVi', 'summary']) if (!a[f]) err(`${at}: missing ${f}`)
+    if (!Array.isArray(a.body) || !a.body.length || !a.body.every((b) => typeof b === 'string')) err(`${at}: body must be a non-empty list of paragraphs`)
+    if (a.readMinutes != null && !(Number.isInteger(a.readMinutes) && a.readMinutes >= 0)) err(`${at}: readMinutes must be a whole number`)
+    if (a.keyPoints && !Array.isArray(a.keyPoints)) err(`${at}: keyPoints must be a list`)
+    if (a.tags && !(Array.isArray(a.tags) && a.tags.every((t) => typeof t === 'string'))) err(`${at}: tags must be a list of text`)
+    if (a.glossary && !a.glossary.every((g) => g.term && g.explain)) err(`${at}: glossary items need term and explain`)
+  }
+  series.push({ slug, title: s.title, intro: s.intro ?? '', count: s.articles?.length ?? 0, updated: s.updated ?? '' })
+}
+
 if (pruned.length) console.log(`Pruned ${pruned.length} issue(s) older than ${cutoff}: ${pruned.join(', ')}`)
 if (warnings.length) console.warn('Warnings:\n  ' + warnings.join('\n  '))
 if (errors.length) {
@@ -98,4 +133,9 @@ if (errors.length) {
   process.exit(1)
 }
 await writeFile('public/data/index.json', JSON.stringify({ updated: new Date().toISOString(), issues }, null, 1) + '\n')
-console.log(`OK: ${issues.length} issue(s), ${issues.reduce((n, i) => n + i.count, 0)} articles. index.json rebuilt.`)
+if (seriesFiles.length) await writeFile(`${SERIES_DIR}/index.json`, JSON.stringify({ series }, null, 1) + '\n')
+console.log(
+  `OK: ${issues.length} issue(s), ${issues.reduce((n, i) => n + i.count, 0)} articles` +
+    (series.length ? `; ${series.length} series, ${series.reduce((n, s) => n + s.count, 0)} articles` : '') +
+    '. index.json rebuilt.',
+)
