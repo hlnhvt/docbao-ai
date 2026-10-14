@@ -1,6 +1,7 @@
 /**
  * Downloads pages and extracts their readable text (Mozilla Readability), for the editor to read
- * before writing the Vietnamese version. Output: work/text/<n>-<host>.md, one file per URL.
+ * before writing the Vietnamese version. Output: work/text/<host>-<slug>.md, one file per URL
+ * (named from the URL, so several runs at once do not overwrite each other).
  *
  *   npm run text -- https://example.com/post https://arxiv.org/html/2610.12345
  */
@@ -18,8 +19,14 @@ await mkdir('work/text', { recursive: true })
 
 const BLOCKS = 'h1,h2,h3,h4,p,li,pre,blockquote,figcaption,td'
 
-for (const [n, url] of urls.entries()) {
-  const name = `work/text/${n}-${new URL(url).hostname.replace(/^www\./, '')}.md`
+const fileName = (url) => {
+  const u = new URL(url)
+  const slug = (u.pathname + u.search).replace(/[^a-z0-9]+/gi, '-').replace(/^-+|-+$/g, '').slice(-60) || 'index'
+  return `work/text/${u.hostname.replace(/^www\./, '')}-${slug}.md`
+}
+
+for (const url of urls) {
+  const name = fileName(url)
   try {
     const r = await fetch(url, { headers: { 'User-Agent': UA }, signal: AbortSignal.timeout(30000) })
     if (!r.ok) throw new Error(`HTTP ${r.status}`)

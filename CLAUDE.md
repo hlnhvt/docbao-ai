@@ -1,21 +1,30 @@
 # Đọc Báo AI (web)
 
 Web app tĩnh (Vite + Tailwind + JS thuần, localStorage) đọc điểm tin AI mỗi ngày bằng tiếng Việt.
-Nội dung là các file JSON trong `public/data/issues/`, do Claude biên tập mỗi ngày khi người dùng yêu cầu.
+Nội dung là các file JSON trong `public/data/issues/`, do Claude biên tập.
+Một routine trên cloud (Claude Sonnet) tự làm số mới lúc 6:00 sáng giờ Việt Nam mỗi ngày; cũng có thể làm tay khi người dùng yêu cầu.
 Push lên GitHub, Vercel tự build và triển khai.
 
 ## Quy trình mỗi ngày ("làm số hôm nay", "cập nhật tin")
 
 1. `npm run collect` (mặc định 36 giờ gần nhất; thêm `-- --hours 48` nếu số trước đã cách hơn một ngày).
-   Kết quả: `work/candidates-<ngày>.json` và danh sách in ra theo nhóm, có điểm.
-2. Chọn 12 đến 18 bài, cân đối các nhóm: research, lab, newsletter, press, community.
+   Kết quả: `work/candidates-<ngày>.json`, `work/published-recent.txt` (tiêu đề 7 ngày qua) và danh sách in ra theo nhóm, có điểm.
+   Bài đã đăng (cùng url, luồng HN hoặc mã arXiv) bị ẩn tự động. Dòng có `≈ĐÃ ĐĂNG?` là tiêu đề gần giống bài cũ: kiểm tra kỹ.
+2. Chọn **30 đến 40 bài**, cân đối các nhóm: research, lab, newsletter, press, community.
+   Không đủ bài tốt thì mở rộng: `--hours 48`, `--hn-min 50`, `--arxiv "agent,reasoning,benchmark"`. Không độn bài kém để đủ số.
    Ưu tiên: mô hình hoặc sản phẩm lớn, bài có mặt ở nhiều nguồn, HN nhiều điểm, paper HF nhiều upvote, phân tích sâu.
    Bỏ: tin quảng cáo, sự kiện, gọi vốn nhỏ, chuyện lặt vặt về sản phẩm tiêu dùng, bài trùng chủ đề.
+   **Không trùng nội dung**: mỗi sự kiện chỉ một bài, kể cả khi nhiều nguồn cùng đưa (chọn nguồn đầy đủ nhất,
+   nguồn khác chỉ nhắc trong thân bài). Đối chiếu với `work/published-recent.txt`: sự kiện đã đăng thì bỏ,
+   trừ khi có diễn biến mới thật sự (khi đó tiêu đề và tóm tắt phải nói rõ diễn biến mới).
 3. `npm run text -- <url> <url> ...` để lấy toàn văn vào `work/text/`. Đọc từng file trước khi viết.
    Paper Hugging Face: abstract đã có trong file candidates. Trang chặn tải (Ars Technica) thì thử WebFetch;
    không đọc được nguồn thì **bỏ bài**, không viết dựa trên tiêu đề.
-4. Viết `public/data/issues/<YYYY-MM-DD>.json` (ngày giờ Việt Nam) theo mẫu dưới.
-5. `npm run build` (tự kiểm tra JSON và dựng lại `public/data/index.json`), sửa lỗi nếu có.
+4. Viết `public/data/issues/<YYYY-MM-DD>.json` (ngày giờ Việt Nam) theo mẫu dưới. Số nhiều bài thì viết từng phần
+   (mảng JSON khoảng 10 bài) vào `work/drafts/`, rồi `npm run assemble -- <ngày> work/drafts/*.json` để ghép;
+   sau đó điền `title`, `intro` và đặt `hot`.
+5. `npm run build`, sửa lỗi nếu có. Bước này xoá số cũ, kiểm tra JSON, chặn bài trùng và dựng lại `public/data/index.json`.
+   Cảnh báo "tiêu đề gần giống" không chặn build nhưng phải xem và xử lý.
 6. Commit `content: điểm tin <ngày>` và `git push`. Vercel tự triển khai.
 
 ## Văn phong
@@ -55,7 +64,7 @@ Push lên GitHub, Vercel tự build và triển khai.
 ```
 
 - `points` chỉ ghi khi chính nguồn có điểm (HN points, HF upvotes). `comments` có thể lấy từ luồng thảo luận HN.
-- `hot: true` cho 5 đến 8 bài nổi bật nhất; tab "Nổi bật" và "Nghe điểm tin" dùng các bài này.
+- `hot: true` cho 6 đến 10 bài nổi bật nhất; tab "Nổi bật" và "Nghe điểm tin" dùng các bài này.
 - Thứ tự bài trong file là thứ tự hiển thị ở tab "Tất cả".
 - Số báo có `date`, `title` (một dòng nêu tin chính), `intro` (2-3 câu tổng quan), `articles`.
 
@@ -63,5 +72,7 @@ Push lên GitHub, Vercel tự build và triển khai.
 
 - `npm run dev`: chạy thử (mở được trên điện thoại cùng mạng). `npm run build`: kiểm tra + build ra `dist/`.
 - `scripts/sources.mjs`: danh sách nguồn. Reddit cần User-Agent riêng (đã có), giãn 3 giây giữa hai lần gọi.
+- Lưu trữ: số cũ hơn 45 ngày (`KEEP_DAYS` trong `scripts/dedup.mjs`) bị xoá khi build; url và tiêu đề của chúng
+  chuyển vào `data/seen.json` (giữ 365 ngày) để vẫn chặn đăng lại. Commit cả việc xoá file lẫn `data/seen.json`.
 - arXiv tắt mặc định; dùng `npm run collect -- --arxiv "agent,reasoning"` để lọc theo từ khoá.
 - localStorage (khóa `dbai:*`): settings, read, saved, tab. Bài đã lưu giữ bản tóm tắt để vẫn liệt kê được.

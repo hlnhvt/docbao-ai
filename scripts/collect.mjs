@@ -9,6 +9,7 @@
 import { XMLParser } from 'fast-xml-parser'
 import { mkdir, writeFile } from 'node:fs/promises'
 import { SOURCES, AI_RE, DEEP_HOSTS, MEDIA_HOSTS } from './sources.mjs'
+import { canonical, publishedList, titleSimilarity, todayVn, daysBefore } from './dedup.mjs'
 
 const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128 Safari/537.36'
 // Reddit rate-limits browser-like agents on its feeds and asks clients to name themselves
@@ -23,7 +24,7 @@ const SINCE = Date.now() - HOURS * 3600e3
 const ARXIV_WORDS = String(arg('--arxiv', '')).split(',').map((w) => w.trim().toLowerCase()).filter(Boolean)
 const REDDIT_MIN_CHARS = Number(arg('--reddit-min', 1200))
 const HN_MIN_POINTS = Number(arg('--hn-min', 80))
-const today = new Date().toLocaleDateString('sv-SE', { timeZone: 'Asia/Ho_Chi_Minh' })
+const today = todayVn()
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms))
 
@@ -68,11 +69,6 @@ const host = (u) => {
   }
 }
 const matchesHost = (h, list) => list.some((d) => h === d || h.endsWith('.' + d))
-const canonical = (u) => {
-  const m = /arxiv\.org\/(?:abs|pdf|html)\/(\d{4}\.\d{4,5})/.exec(u)
-  if (m) return 'arxiv:' + m[1]
-  return u.toLowerCase().replace(/[#?].*$/, '').replace(/^https?:\/\/(www\.|m\.)?/, '').replace(/\/$/, '')
-}
 
 /* ---------- parsers ---------- */
 
@@ -213,8 +209,24 @@ for (const c of all) {
   }
 }
 
+// Already published (live issues or data/seen.json): drop exact matches, flag look-alike titles
+const published = await publishedList()
+const publishedKeys = new Map(published.flatMap((p) => p.keys.map((k) => [k, p.ref])))
+let dropped = 0
+const fresh = [...byKey.values()].filter((c) => {
+  const keys = [c.key, c.discussionUrl && canonical(c.discussionUrl), ...c.alsoIn.map((x) => canonical(x.url))].filter(Boolean)
+  if (keys.some((k) => publishedKeys.has(k))) return dropped++, false
+  let best = { score: 0 }
+  for (const p of published) {
+    const score = titleSimilarity(c.title, p.titleEn)
+    if (score > best.score) best = { score, ref: p.ref, title: p.titleEn }
+  }
+  if (best.score >= 0.4) c.similarTo = { ...best, score: Math.round(best.score * 100) / 100 }
+  return true
+})
+
 const now = Date.now()
-const candidates = [...byKey.values()].map((c) => {
+const candidates = fresh.map((c) => {
   const ageH = (now - Date.parse(c.publishedAt)) / 3600e3
   const pts = c.sourceId === 'hn' ? Math.min(c.points / 100, 4) : c.sourceId === 'hf' ? Math.min(c.points / 15, 4) : 0
   const reddit = c.group === 'community' && c.rank != null ? Math.max(0, 2 - c.rank / 5) : 0
@@ -226,11 +238,15 @@ candidates.sort((a, b) => a.group.localeCompare(b.group) || b.score - a.score)
 await mkdir('work', { recursive: true })
 const out = `work/candidates-${today}.json`
 await writeFile(out, JSON.stringify({ date: today, hours: HOURS, failures, candidates }, null, 1))
+// Titles of the last 7 days, for the editor to spot the same event told by another source
+const recent = published.filter((p) => p.date >= daysBefore(today, 7) && p.titleVi)
+await writeFile('work/published-recent.txt', recent.map((p) => `${p.ref} | ${p.titleVi} | ${p.titleEn}`).join('\n') + '\n')
 
 console.log(`\n${candidates.length} candidates -> ${out}${failures.length ? `\nFailed: ${failures.join('; ')}` : ''}\n`)
 let group = ''
 candidates.forEach((c, i) => {
   if (c.group !== group) console.log(`\n== ${(group = c.group).toUpperCase()} ==`)
   const meta = [c.points ? `▲${c.points}` : '', c.comments ? `${c.comments}c` : '', c.alsoIn.length ? `+${c.alsoIn.map((x) => x.source).join('+')}` : ''].filter(Boolean).join(' ')
-  console.log(`[${i}] ${c.score.toFixed(1).padStart(4)} ${c.source} ${meta} | ${c.title.slice(0, 110)} (${c.text.length}c)`)
+  const similar = c.similarTo ? ` ≈ĐÃ ĐĂNG? ${c.similarTo.ref} (${c.similarTo.score})` : ''
+  console.log(`[${i}] ${c.score.toFixed(1).padStart(4)} ${c.source} ${meta} | ${c.title.slice(0, 110)} (${c.text.length}c)${similar}`)
 })

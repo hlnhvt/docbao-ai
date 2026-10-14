@@ -10,7 +10,8 @@
     "preview": "vite preview --host",
     "collect": "node scripts/collect.mjs",
     "text": "node scripts/fetch-text.mjs",
-    "check": "node scripts/publish.mjs"
+    "check": "node scripts/publish.mjs",
+    "assemble": "node scripts/assemble.mjs"
   },
   "devDependencies": {
     "@mozilla/readability": "0.6.0",
