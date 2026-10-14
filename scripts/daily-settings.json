@@ -1,0 +1,35 @@
+{
+  "permissions": {
+    "defaultMode": "default",
+    "allow": [
+      "Read(./**)",
+      "Glob",
+      "Agent",
+      "Write(./work/**)",
+      "Edit(./work/**)",
+      "Write(./public/data/issues/**)",
+      "Edit(./public/data/issues/**)",
+      "Bash(npm run collect)",
+      "Bash(npm run collect -- *)",
+      "Bash(npm run text -- *)",
+      "Bash(npm run assemble -- *)",
+      "Bash(npm run build)",
+      "Bash(npm run check)"
+    ],
+    "deny": [
+      "WebFetch",
+      "WebSearch",
+      "PowerShell",
+      "Bash(git *)",
+      "Bash(node *)",
+      "Bash(rm *)",
+      "Bash(curl *)",
+      "Write(./scripts/**)",
+      "Edit(./scripts/**)",
+      "Write(./src/**)",
+      "Edit(./src/**)",
+      "Edit(./CLAUDE.md)",
+      "Edit(./package.json)"
+    ]
+  }
+}

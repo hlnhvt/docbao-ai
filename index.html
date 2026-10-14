@@ -21,7 +21,11 @@
         var s = JSON.parse(localStorage.getItem('dbai:settings') || '{}')
         var t = s.theme && s.theme !== 'auto' ? s.theme : matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
         document.documentElement.dataset.theme = t
-        if (s.font) document.documentElement.style.setProperty('--fs', s.font + 'px')
+        var r = document.documentElement
+        if (s.font) r.style.setProperty('--fs', s.font + 'px')
+        if (s.lineHeight) r.style.setProperty('--lh', String(s.lineHeight))
+        if (s.weight) r.style.setProperty('--fw', String(s.weight))
+        if (s.face) r.dataset.face = s.face
       } catch (e) {}
     </script>
   </head>

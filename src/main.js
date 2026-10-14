@@ -1,4 +1,6 @@
 import './style.css'
+import { forSpeech } from './speech-text.js'
+import { Music, keepAwake, playSwish, unlockAudio } from './audio.js'
 
 /* ---------- Constants ---------- */
 
@@ -10,7 +12,14 @@ const GROUPS = {
   community: 'Cộng đồng',
 }
 const TABS = [['hot', 'Nổi bật'], ['all', 'Tất cả'], ...Object.entries(GROUPS), ['saved', 'Đã lưu']]
-const THEMES = [['auto', 'Tự động'], ['light', 'Sáng'], ['sepia', 'Giấy'], ['dark', 'Tối']]
+const THEMES = [['auto', 'Tự động'], ['light', 'Sáng'], ['sepia', 'Giấy'], ['dark', 'Tối'], ['contrast', 'Tương phản cao']]
+const FACES = [['sans', 'Không chân'], ['serif', 'Có chân']]
+const WEIGHTS = [[400, 'Thường'], [500, 'Vừa'], [600, 'Đậm'], [700, 'Rất đậm']]
+const SPEEDS = [['Rất chậm', 0.6], ['Chậm', 0.8], ['Vừa', 1], ['Nhanh', 1.25], ['Rất nhanh', 1.5]]
+const STOP_AFTER = [['15 phút', 15], ['30 phút', 30], ['1 tiếng', 60], ['2 tiếng', 120], ['Đến khi tôi tắt', 0]]
+/** Background pad levels, all well under the voice. */
+const MUSIC_LEVELS = [['Rất nhỏ', 0.02], ['Nhỏ', 0.04], ['Vừa', 0.06], ['To', 0.1], ['Rất to', 0.16]]
+const ORDINALS = ['nhất', 'hai', 'ba', 'tư', 'năm', 'sáu', 'bảy', 'tám', 'chín', 'mười']
 const BASE = import.meta.env.BASE_URL
 const $app = document.getElementById('app')
 const $settings = document.getElementById('settings')
@@ -38,7 +47,31 @@ const store = {
 const S = {
   index: null,
   issues: new Map(),
-  settings: { theme: 'auto', font: 18, showEn: true, rate: 1, ...store.get('settings', {}) },
+  settings: {
+    theme: 'auto',
+    font: 18,
+    lineHeight: 1.75,
+    face: 'sans',
+    weight: 400,
+    showEn: true,
+    rate: 1,
+    pitch: 1,
+    /** voiceURI of the chosen Vietnamese voice ('' : the browser's default one). */
+    voice: '',
+    /** 'one': read the open article and stop; 'continuous': go on to the next article. */
+    readMode: 'one',
+    /** Continuous reading stops after this many minutes (0: only when the reader stops it). */
+    stopAfter: 0,
+    /** How the voice addresses the listener, e.g. "anh Nam" (blank: "bạn"). */
+    listener: '',
+    briefingCount: 8,
+    readingMusic: false,
+    briefingMusic: false,
+    musicLevel: 0.06,
+    ...store.get('settings', {}),
+  },
+  /** Set while continuous reading moves to the next article, so the new page starts reading. */
+  autoRead: false,
   read: new Set(store.get('read', [])),
   /** key "date/id" -> snapshot, so saved articles stay listed whatever issue is open */
   saved: store.get('saved', {}),
@@ -129,8 +162,21 @@ const darkQuery = matchMedia('(prefers-color-scheme: dark)')
 function applySettings() {
   const s = S.settings
   const theme = s.theme === 'auto' ? (darkQuery.matches ? 'dark' : 'light') : s.theme
-  document.documentElement.dataset.theme = theme
-  document.documentElement.style.setProperty('--fs', s.font + 'px')
+  const root = document.documentElement
+  root.dataset.theme = theme
+  root.dataset.face = s.face
+  root.style.setProperty('--fs', s.font + 'px')
+  root.style.setProperty('--lh', String(s.lineHeight))
+  root.style.setProperty('--fw', String(s.weight))
+  // The serif face is fetched only when chosen: system serifs often lack Vietnamese diacritics
+  if (s.face === 'serif' && !document.getElementById('serif-font')) {
+    const link = Object.assign(document.createElement('link'), {
+      id: 'serif-font',
+      rel: 'stylesheet',
+      href: 'https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap',
+    })
+    document.head.append(link)
+  }
   const bg = getComputedStyle(document.documentElement).getPropertyValue('--paper').trim()
   document.querySelector('meta[name="theme-color"]')?.setAttribute('content', bg)
 }
@@ -171,47 +217,159 @@ const Speech = {
   queue: [],
   i: 0,
   onPart: null,
-  voice() {
-    const vs = speechSynthesis.getVoices()
-    return vs.find((v) => v.lang === 'vi-VN') || vs.find((v) => v.lang?.toLowerCase().startsWith('vi'))
+  onDone: null,
+  /** Bumped by every speak/stop, so callbacks of a cancelled utterance cannot move the new queue on. */
+  gen: 0,
+  /** Vietnamese voices of this browser, offline ones first. */
+  voices() {
+    if (!this.supported) return []
+    return speechSynthesis
+      .getVoices()
+      .filter((v) => v.lang?.toLowerCase().replace('_', '-').startsWith('vi'))
+      .sort((a, b) => Number(b.localService) - Number(a.localService))
   },
-  /** parts: [{ key, text }]; each is split into short sentences (long utterances stop early on some browsers). */
-  speak(parts, onPart) {
-    this.stop()
-    this.queue = parts.flatMap((p) => splitSentences(p.text).map((text) => ({ key: p.key, text })))
+  voice() {
+    const vs = this.voices()
+    return vs.find((v) => v.voiceURI === S.settings.voice) || vs.find((v) => v.lang === 'vi-VN') || vs[0]
+  },
+  /**
+   * parts: [{ key, text }]. Text is rewritten for speech, then split into short sentences (long
+   * utterances stop early on some browsers). onDone runs when everything was read (not on stop).
+   */
+  speak(parts, { onPart = null, onDone = null } = {}) {
+    this.cancel()
+    this.queue = parts.flatMap((p) => splitSentences(forSpeech(p.text)).map((text) => ({ key: p.key, text })))
     this.i = 0
     this.active = true
     this.onPart = onPart
+    this.onDone = onDone
     document.dispatchEvent(new Event('speech'))
-    this.next()
+    this.next(this.gen)
   },
-  next() {
-    if (!this.active) return
-    if (this.i >= this.queue.length) return this.stop()
+  next(gen) {
+    if (!this.active || gen !== this.gen) return
+    if (this.i >= this.queue.length) {
+      const done = this.onDone
+      this.finish()
+      return done?.()
+    }
     const p = this.queue[this.i]
     const u = new SpeechSynthesisUtterance(p.text)
     u.lang = 'vi-VN'
     const v = this.voice()
     if (v) u.voice = v
     u.rate = S.settings.rate || 1
+    u.pitch = S.settings.pitch || 1
     u.onend = u.onerror = () => {
+      if (gen !== this.gen) return
       this.i++
-      this.next()
+      this.next(gen)
     }
     this.onPart?.(p.key)
     speechSynthesis.speak(u)
   },
-  stop() {
+  /** Stops the voice only (a reading session may go on with the next article). */
+  cancel() {
+    this.gen++
+    if (this.supported) speechSynthesis.cancel()
+  },
+  finish() {
     const was = this.active
+    this.cancel()
     this.active = false
     this.queue = []
-    if (this.supported) speechSynthesis.cancel()
     this.onPart?.(null)
-    this.onPart = null
+    this.onPart = this.onDone = null
     if (was) document.dispatchEvent(new Event('speech'))
+  },
+  stop() {
+    this.finish()
+    Reading.end()
   },
 }
 if (Speech.supported) speechSynthesis.getVoices()
+
+/**
+ * A reading session: from the reader's tap until they stop, the sleep timer runs out or there is
+ * nothing left to read. Holds the background music and keeps the screen awake meanwhile.
+ */
+const Reading = {
+  session: null,
+  begin(kind) {
+    if (this.session?.kind !== kind) this.session = { kind, startedAt: Date.now() }
+    const music = kind === 'briefing' ? S.settings.briefingMusic : S.settings.readingMusic
+    if (music) Music.start(S.settings.musicLevel)
+    else Music.stop()
+    keepAwake(true)
+  },
+  end() {
+    this.session = null
+    S.autoRead = false
+    Music.stop()
+    keepAwake(false)
+  },
+  timeUp() {
+    const limit = (S.settings.stopAfter || 0) * 60000
+    return !!this.session && limit > 0 && Date.now() - this.session.startedAt >= limit
+  },
+}
+
+/** How the voice calls the listener: the configured name, or "bạn". */
+const who = () => S.settings.listener.trim() || 'bạn'
+
+/** Parts read for one article: title, summary, key points, then the body. */
+const articleParts = (a) => [
+  { key: 'title', text: a.titleVi },
+  { key: 'summary', text: a.summary },
+  ...(a.keyPoints ?? []).map((p, j) => ({ key: `k${j}`, text: p })),
+  ...(a.body ?? []).map((b, j) => ({ key: `p${j}`, text: b.replace(/^(## |- |> )/, '') })),
+]
+
+/** Reads [a] (of the list [list] in issue [date]) and, in continuous mode, moves on afterwards. */
+function readArticle(date, a, list) {
+  if (!Speech.supported) return alert('Trình duyệt này không hỗ trợ đọc to.')
+  unlockAudio()
+  Reading.begin('article')
+  Speech.speak(articleParts(a), { onPart: highlight, onDone: () => afterArticle(date, a, list) })
+}
+
+async function afterArticle(date, a, list) {
+  if (S.settings.readMode !== 'continuous') return Reading.end()
+  const say = (text) => Speech.speak([{ key: 'end', text }], { onDone: () => Reading.end() })
+  // Sleep timer: the article in progress is always finished, then a short goodbye
+  if (Reading.timeUp()) return say(`Đã hết thời gian đọc tin đã hẹn. Xin tạm dừng tại đây. Cảm ơn ${who()} đã lắng nghe.`)
+  const next = list[list.findIndex((x) => x.id === a.id) + 1]
+  if (!next) return say(`Đã đọc hết các bài trong số này. Cảm ơn ${who()} đã lắng nghe.`)
+  await playSwish()
+  if (!Reading.session) return // stopped during the swish
+  S.autoRead = true
+  go(date, next)
+}
+
+/** Words of the spoken briefing: greeting, each story's title and summary, then closing words. */
+function briefingParts(issue, stories) {
+  const h = new Date().getHours()
+  const partOfDay = h >= 4 && h <= 10 ? 'buổi sáng' : h <= 13 && h >= 11 ? 'buổi trưa' : h >= 14 && h <= 17 ? 'buổi chiều' : 'buổi tối'
+  const w = who()
+  const parts = [
+    {
+      key: 'intro',
+      text: `Xin chào ${w}. Chúc ${w} ${partOfDay} tốt lành. Sau đây là điểm tin AI ${dateVi(issue.date)}. ${issue.intro ?? ''}`,
+    },
+  ]
+  stories.forEach((a, i) =>
+    parts.push({ key: `b-${a.id}`, text: `Tin thứ ${ORDINALS[i] ?? i + 1}. ${a.titleVi.replace(/\.$/, '')}. ${a.summary}` }),
+  )
+  parts.push({ key: 'end', text: `Đó là các tin nổi bật hôm nay. Cảm ơn ${w} đã lắng nghe. Chúc ${w} một ngày vui vẻ.` })
+  return parts
+}
+
+/** Stories of the briefing: the hot ones first, then the rest in issue order, up to the chosen count. */
+function briefingStories(issue) {
+  const hot = tabArticles(issue, 'hot')
+  const rest = issue.articles.filter((a) => !a.hot)
+  return [...hot, ...rest].slice(0, Math.max(1, S.settings.briefingCount || 8))
+}
 
 function splitSentences(text) {
   const out = []
@@ -251,8 +409,8 @@ const iconButton = (attrs, name, label, cls = '') =>
 
 function metaLine(a) {
   const bits = [esc(a.source)]
-  if (a.points) bits.push(`▲ ${a.points}`)
-  if (a.comments) bits.push(`${a.comments} bình luận`)
+  if (a.points) bits.push(`▲ ${esc(a.points)}`)
+  if (a.comments) bits.push(`${esc(a.comments)} bình luận`)
   return bits.join('<span class="opacity-50"> · </span>')
 }
 
@@ -273,7 +431,7 @@ function card(date, a) {
       <p class="mt-2 line-clamp-3 text-[0.94em] leading-relaxed ${read ? 'opacity-70' : ''}">${esc(a.summary)}</p>
     </a>
     <div class="flex items-center gap-2 pl-4 pr-1 pb-1 text-[0.78em] text-muted">
-      <span class="flex-1">${esc(GROUPS[a.group] ?? '')}${a.readMinutes ? ` · ${a.readMinutes} phút đọc` : ''}${read ? ' · đã đọc' : ''}</span>
+      <span class="flex-1">${esc(GROUPS[a.group] ?? '')}${a.readMinutes ? ` · ${esc(a.readMinutes)} phút đọc` : ''}${read ? ' · đã đọc' : ''}</span>
       <button data-save="${esc(k)}" class="grid size-11 place-items-center rounded-full ${saved ? 'text-accent' : ''}" aria-label="${saved ? 'Bỏ lưu' : 'Lưu bài'}">${icon(saved ? 'saved' : 'save', 'size-5')}</button>
     </div>
   </article>`
@@ -292,7 +450,7 @@ async function renderFeed(date) {
     tab === 'saved'
       ? Object.values(S.saved).sort((x, y) => y.savedAt - x.savedAt)
       : tabArticles(issue, tab)
-  const hotCount = tabArticles(issue, 'hot').length
+  const briefingCount = briefingStories(issue).length
 
   $app.innerHTML = `
   ${topBar({ right: iconButton('data-action="archive"', 'archive', 'Các số trước') })}
@@ -306,7 +464,7 @@ async function renderFeed(date) {
       <h1 class="mt-2 text-[1.3em] font-bold leading-tight">${esc(issue.title)}</h1>
       ${issue.intro ? `<p class="mt-2 text-[0.95em] leading-relaxed text-muted" data-say="intro">${esc(issue.intro)}</p>` : ''}
       <button data-action="briefing" class="mt-3 inline-flex h-11 items-center gap-2 rounded-full bg-hot px-4 text-[0.88em] font-bold text-white">
-        ${icon(Speech.active ? 'stop' : 'headphones', 'size-5')}<span>${Speech.active ? 'Dừng nghe' : `Nghe điểm tin (${hotCount || Math.min(8, issue.articles.length)} bài)`}</span>
+        ${icon(Speech.active ? 'stop' : 'headphones', 'size-5')}<span>${Speech.active ? 'Dừng nghe' : `Nghe điểm tin (${briefingCount} bài)`}</span>
       </button>
     </section>
 
@@ -353,13 +511,9 @@ async function renderFeed(date) {
 
 function startBriefing(issue) {
   if (!Speech.supported) return alert('Trình duyệt này không hỗ trợ đọc to.')
-  const hot = tabArticles(issue, 'hot')
-  const picks = (hot.length ? hot : issue.articles).slice(0, 10)
-  const ord = ['nhất', 'hai', 'ba', 'tư', 'năm', 'sáu', 'bảy', 'tám', 'chín', 'mười']
-  const parts = [{ key: 'intro', text: `Điểm tin AI ${dateVi(issue.date)}. ${issue.intro ?? ''}` }]
-  picks.forEach((a, i) => parts.push({ key: `b-${a.id}`, text: `Tin thứ ${ord[i]}. ${a.titleVi}. ${a.summary}` }))
-  parts.push({ key: 'end', text: 'Hết điểm tin hôm nay. Cảm ơn bạn đã lắng nghe.' })
-  Speech.speak(parts, highlight)
+  unlockAudio()
+  Reading.begin('briefing')
+  Speech.speak(briefingParts(issue, briefingStories(issue)), { onPart: highlight, onDone: () => Reading.end() })
 }
 
 /* ---------- Article ---------- */
@@ -403,7 +557,7 @@ async function renderArticle(date, id) {
     `<a href="${safeUrl(a.url)}" target="_blank" rel="noopener" class="flex items-center gap-2 rounded-xl border border-line bg-card px-4 py-3">${icon('link', 'size-5 shrink-0 text-accent')}<span>Bài gốc <span class="text-muted">(${esc(host(a.url))})</span></span></a>`,
   ]
   if (a.discussionUrl && a.discussionUrl !== a.url)
-    links.push(`<a href="${safeUrl(a.discussionUrl)}" target="_blank" rel="noopener" class="flex items-center gap-2 rounded-xl border border-line bg-card px-4 py-3">${icon('link', 'size-5 shrink-0 text-accent')}<span>Thảo luận${a.comments ? ` (${a.comments} bình luận)` : ''} <span class="text-muted">(${esc(host(a.discussionUrl))})</span></span></a>`)
+    links.push(`<a href="${safeUrl(a.discussionUrl)}" target="_blank" rel="noopener" class="flex items-center gap-2 rounded-xl border border-line bg-card px-4 py-3">${icon('link', 'size-5 shrink-0 text-accent')}<span>Thảo luận${a.comments ? ` (${esc(a.comments)} bình luận)` : ''} <span class="text-muted">(${esc(host(a.discussionUrl))})</span></span></a>`)
   if (a.pdfUrl)
     links.push(`<a href="${safeUrl(a.pdfUrl)}" target="_blank" rel="noopener" class="flex items-center gap-2 rounded-xl border border-line bg-card px-4 py-3">${icon('link', 'size-5 shrink-0 text-accent')}<span>Bản PDF</span></a>`)
 
@@ -412,7 +566,7 @@ async function renderArticle(date, id) {
     left: `<a href="#/d/${esc(date)}" class="grid size-11 place-items-center rounded-full hover:bg-line/60" aria-label="Về danh sách">${icon('back')}</a>`,
     title: GROUPS[a.group] ?? 'Đọc Báo AI',
     right:
-      iconButton('data-action="speak"', Speech.active ? 'stop' : 'speak', Speech.active ? 'Dừng đọc' : 'Đọc to', Speech.active ? 'text-hot' : '') +
+      iconButton('data-action="speak"', Speech.active ? 'stop' : 'speak', speakLabel(), Speech.active ? 'text-hot' : '') +
       iconButton('data-action="save"', saved ? 'saved' : 'save', saved ? 'Bỏ lưu' : 'Lưu bài', saved ? 'text-accent' : ''),
   })}
   <main id="article" class="reading mx-auto max-w-2xl px-4 pb-[calc(6rem+env(safe-area-inset-bottom))]">
@@ -437,7 +591,7 @@ async function renderArticle(date, id) {
         : ''
     }
 
-    <div class="mt-6 space-y-4 leading-[1.75]">${bodyHtml(a)}</div>
+    <div class="read-body mt-6 space-y-4">${bodyHtml(a)}</div>
 
     ${
       a.glossary?.length
@@ -467,15 +621,8 @@ async function renderArticle(date, id) {
       toggleSaved(date, a)
       renderArticle(date, id)
     } else if (t.dataset.action === 'speak') {
-      if (Speech.active) return Speech.stop()
-      if (!Speech.supported) return alert('Trình duyệt này không hỗ trợ đọc to.')
-      const parts = [
-        { key: 'title', text: a.titleVi },
-        { key: 'summary', text: a.summary },
-        ...(a.keyPoints ?? []).map((p, j) => ({ key: `k${j}`, text: p })),
-        ...(a.body ?? []).map((b, j) => ({ key: `p${j}`, text: b.replace(/^(## |- |> )/, '') })),
-      ]
-      Speech.speak(parts, highlight)
+      if (Speech.active || Reading.session) return Speech.stop()
+      readArticle(date, a, list)
     }
   }
   document.onspeech = () => {
@@ -483,10 +630,17 @@ async function renderArticle(date, id) {
     if (!btn) return
     btn.innerHTML = icon(Speech.active ? 'stop' : 'speak')
     btn.classList.toggle('text-hot', Speech.active)
-    btn.setAttribute('aria-label', Speech.active ? 'Dừng đọc' : 'Đọc to')
+    btn.setAttribute('aria-label', speakLabel())
   }
   swipe(document.getElementById('article'), () => prev && go(date, prev), () => next && go(date, next))
+  // Continuous reading arrived here from the previous article: go on reading
+  if (S.autoRead) {
+    S.autoRead = false
+    readArticle(date, a, list)
+  }
 }
+
+const speakLabel = () => (Speech.active ? 'Dừng đọc' : S.settings.readMode === 'continuous' ? 'Đọc liên tục' : 'Đọc to')
 
 function navButton(date, a, dir, label) {
   if (!a) return `<span class="flex h-12 flex-1 items-center justify-center rounded-xl border border-line text-[0.85em] text-muted opacity-50">${dir === 'back' ? 'Bài đầu' : 'Hết bài'}</span>`
@@ -538,60 +692,158 @@ async function renderArchive() {
 
 /* ---------- Settings dialog ---------- */
 
+const num1 = (x) => Number(x).toFixed(1).replace('.', ',')
+const pitchWord = (p) => (p < 0.85 ? 'trầm' : p > 1.15 ? 'cao' : 'bình thường')
+/** "Giọng 2 · Microsoft An · cần mạng": numbered, with the browser's name for it. */
+const voiceLabel = (v, i) => `Giọng ${i + 1} · ${v.name.replace(/\s*[-–(].*$/, '') || v.name}${v.localService ? '' : ' · cần mạng'}`
+
+/** Readable value shown next to each slider. */
+const SHOW = {
+  font: (v) => `${v}px`,
+  lineHeight: (v) => num1(v),
+  rate: (v) => `${num1(v)} lần`,
+  pitch: (v) => `${num1(v)} (${pitchWord(v)})`,
+  briefingCount: (v) => `${v} tin, khoảng ${Math.max(1, Math.round(v * 0.6))} phút`,
+}
+
+/** Row of choice buttons for setting [key]; the chosen one is filled. */
+function choices(key, options, cols = options.length) {
+  const cur = S.settings[key]
+  return `<div class="grid gap-2" style="grid-template-columns: repeat(${Math.min(cols, 3)}, minmax(0, 1fr))">
+    ${options
+      .map(([value, label]) => {
+        const on = String(cur) === String(value)
+        return `<button type="button" data-pick="${key}" data-value="${esc(value)}" class="min-h-11 rounded-xl border px-2 py-1.5 text-sm font-semibold ${on ? 'border-accent bg-accent text-on-accent' : 'border-line'}">${esc(label)}</button>`
+      })
+      .join('')}
+  </div>`
+}
+
+const slider = (key, label, min, max, step) => `
+  <label class="block">
+    <div class="mb-1 flex justify-between gap-2 text-sm font-semibold text-muted"><span>${label}</span><span data-out="${key}">${SHOW[key](S.settings[key])}</span></div>
+    <input data-range="${key}" type="range" min="${min}" max="${max}" step="${step}" value="${S.settings[key]}" class="w-full" />
+  </label>`
+
+const toggle = (key, label) => `
+  <label class="flex min-h-11 items-center justify-between gap-3 text-sm font-semibold">
+    <span>${label}</span>
+    <input data-check="${key}" type="checkbox" ${S.settings[key] ? 'checked' : ''} class="size-5 shrink-0 accent-[var(--accent)]" />
+  </label>`
+
+const section = (title, body) => `
+  <section class="space-y-3 border-t border-line pt-4 first:border-0 first:pt-0">
+    <h3 class="text-base font-bold">${title}</h3>
+    ${body}
+  </section>`
+
 function openSettings() {
   const s = S.settings
-  $settings.className = 'm-auto w-[min(92vw,26rem)] rounded-2xl border border-line p-0 shadow-xl'
+  const voices = Speech.voices()
+  const scroll = $settings.open ? $settings.scrollTop : 0
+  $settings.className = 'm-auto max-h-[90dvh] w-[min(94vw,28rem)] overflow-y-auto rounded-2xl border border-line p-0 shadow-xl'
   $settings.innerHTML = `
   <form method="dialog" class="space-y-5 p-5">
-    <h2 class="text-lg font-bold">Cỡ chữ và giao diện</h2>
-    <div>
-      <div class="mb-2 text-sm font-semibold text-muted">Màu nền</div>
-      <div class="grid grid-cols-4 gap-2">
-        ${THEMES.map(([t, label]) => `<button type="button" data-theme-pick="${t}" class="h-11 rounded-xl border text-sm font-semibold ${s.theme === t ? 'border-accent bg-accent text-on-accent' : 'border-line'}">${label}</button>`).join('')}
-      </div>
-    </div>
-    <label class="block">
-      <div class="mb-1 flex justify-between text-sm font-semibold text-muted"><span>Cỡ chữ</span><span id="fs-val">${s.font}px</span></div>
-      <input id="fs" type="range" min="15" max="26" step="1" value="${s.font}" class="w-full" />
-    </label>
-    <label class="block">
-      <div class="mb-1 flex justify-between text-sm font-semibold text-muted"><span>Tốc độ đọc to</span><span id="rate-val">${s.rate.toFixed(1)}×</span></div>
-      <input id="rate" type="range" min="0.6" max="1.6" step="0.1" value="${s.rate}" class="w-full" />
-    </label>
-    <label class="flex items-center justify-between gap-3 text-sm font-semibold">
-      <span>Hiện tiêu đề tiếng Anh</span>
-      <input id="show-en" type="checkbox" ${s.showEn ? 'checked' : ''} class="size-5 accent-[var(--accent)]" />
-    </label>
-    <p class="reading rounded-xl bg-line/50 p-3 leading-relaxed" style="font-size: var(--fs)">Ví dụ chữ khi đọc bài: mô hình ngôn ngữ lớn ngày càng giỏi lập luận.</p>
-    <button class="h-11 w-full rounded-xl bg-accent font-bold text-on-accent">Xong</button>
+    <h2 class="text-lg font-bold">Cài đặt</h2>
+
+    ${section(
+      'Hiển thị',
+      `${choices('theme', THEMES, 3)}
+      ${slider('font', 'Cỡ chữ', 15, 30, 1)}
+      ${slider('lineHeight', 'Giãn dòng', 1.4, 2.2, 0.1)}
+      <div class="text-sm font-semibold text-muted">Kiểu chữ</div>
+      ${choices('face', FACES)}
+      <div class="text-sm font-semibold text-muted">Độ dày chữ</div>
+      ${choices('weight', WEIGHTS, 2)}
+      ${toggle('showEn', 'Hiện tiêu đề tiếng Anh')}
+      <p class="reading read-body rounded-xl bg-line/50 p-3">Ví dụ chữ khi đọc bài: mô hình ngôn ngữ lớn ngày càng giỏi lập luận.</p>`,
+    )}
+
+    ${section(
+      'Chế độ đọc bài',
+      `${choices('readMode', [['one', 'Đọc một bài rồi dừng'], ['continuous', 'Đọc liên tục']])}
+      <p class="text-sm text-muted">${
+        s.readMode === 'continuous'
+          ? 'Đọc xong tự chuyển sang bài tiếp trong cùng nhóm, có tiếng “xoẹt” nhẹ báo bài mới, cho tới khi bạn bấm dừng.'
+          : 'Máy đọc xong bài đang xem thì dừng lại.'
+      }</p>
+      ${
+        s.readMode === 'continuous'
+          ? `<div class="text-sm font-semibold text-muted">Tự dừng sau</div>
+            ${choices('stopAfter', STOP_AFTER.map(([l, v]) => [v, l]), 3)}
+            <p class="text-sm text-muted">Hết giờ, máy đọc nốt bài đang đọc rồi mới dừng.</p>`
+          : ''
+      }
+      ${toggle('readingMusic', 'Nhạc nền nhẹ khi đọc bài')}
+      <p class="text-sm text-muted">Màn hình được giữ sáng trong lúc đọc, vì khi màn hình tắt trình duyệt sẽ ngừng đọc.</p>`,
+    )}
+
+    ${section(
+      'Giọng đọc',
+      `<label class="block">
+        <div class="mb-1 text-sm font-semibold text-muted">Tên người nghe</div>
+        <input data-text="listener" type="text" maxlength="40" value="${esc(s.listener)}" placeholder="Ví dụ: anh Nam, chị Lan" class="h-11 w-full rounded-xl border border-line bg-paper px-3" />
+        <div class="mt-1 text-sm text-muted">Máy sẽ chào “Xin chào ${esc(who())}…” khi đọc điểm tin.</div>
+      </label>
+      <div class="text-sm font-semibold text-muted">Tốc độ đọc</div>
+      ${choices('rate', SPEEDS.map(([l, v]) => [v, l]), 3)}
+      ${slider('rate', 'Hoặc kéo để chỉnh chi tiết', 0.5, 2, 0.05)}
+      <div class="text-sm font-semibold text-muted">Giọng đọc</div>
+      ${
+        !Speech.supported
+          ? '<p class="text-sm text-muted">Trình duyệt này không hỗ trợ đọc to.</p>'
+          : voices.length
+            ? choices('voice', [['', 'Mặc định'], ...voices.map((v, i) => [v.voiceURI, voiceLabel(v, i)])], 1)
+            : '<p class="text-sm text-muted">Chưa thấy giọng tiếng Việt. Nếu danh sách vẫn trống, hãy cài giọng tiếng Việt trong phần cài đặt chuyển văn bản thành giọng nói của máy, rồi mở lại trang.</p>'
+      }
+      ${slider('pitch', 'Độ cao giọng', 0.6, 1.5, 0.05)}
+      <button type="button" data-action="test-voice" class="h-11 w-full rounded-xl border border-accent font-bold text-accent">Nghe thử</button>`,
+    )}
+
+    ${section('Nghe điểm tin', `${slider('briefingCount', 'Số tin được đọc', 3, 30, 1)} ${toggle('briefingMusic', 'Nhạc đệm nhẹ khi nghe điểm tin')}`)}
+
+    ${section('Âm lượng nhạc nền', choices('musicLevel', MUSIC_LEVELS.map(([l, v]) => [v, l]), 3))}
+
+    <button class="sticky bottom-0 h-12 w-full rounded-xl bg-accent font-bold text-on-accent shadow">Xong</button>
   </form>`
-  const rerender = () => route()
-  $settings.querySelectorAll('[data-theme-pick]').forEach((b) =>
-    b.addEventListener('click', () => {
-      s.theme = b.dataset.themePick
-      saveSettings()
-      applySettings()
-      openSettings()
-    }),
-  )
-  $settings.querySelector('#fs').addEventListener('input', (e) => {
-    s.font = Number(e.target.value)
-    $settings.querySelector('#fs-val').textContent = s.font + 'px'
+
+  const update = (key, value, redraw) => {
+    s[key] = value
     saveSettings()
     applySettings()
+    if (key === 'musicLevel') Music.setLevel(value)
+    if ((key === 'readingMusic' && Reading.session?.kind === 'article') || (key === 'briefingMusic' && Reading.session?.kind === 'briefing'))
+      value ? Music.start(s.musicLevel) : Music.stop()
+    if (redraw) openSettings()
+  }
+  $settings.querySelectorAll('[data-pick]').forEach((b) =>
+    b.addEventListener('click', () => {
+      const old = s[b.dataset.pick]
+      update(b.dataset.pick, typeof old === 'number' ? Number(b.dataset.value) : b.dataset.value, true)
+    }),
+  )
+  $settings.querySelectorAll('[data-range]').forEach((r) =>
+    r.addEventListener('input', () => {
+      const key = r.dataset.range
+      update(key, Number(r.value))
+      $settings.querySelector(`[data-out="${key}"]`).textContent = SHOW[key](s[key])
+    }),
+  )
+  // Preset buttons and the fine slider show the same speed: redraw once the slider is let go
+  $settings.querySelector('[data-range="rate"]')?.addEventListener('change', () => openSettings())
+  $settings.querySelectorAll('[data-check]').forEach((c) => c.addEventListener('change', () => update(c.dataset.check, c.checked)))
+  $settings.querySelector('[data-text="listener"]')?.addEventListener('input', (e) => update('listener', e.target.value.slice(0, 40)))
+  $settings.querySelector('[data-action="test-voice"]')?.addEventListener('click', () => {
+    if (Reading.session) Speech.stop()
+    Speech.speak([{ key: 'test', text: `Xin chào ${who()}. Đây là giọng sẽ đọc điểm tin AI cho ${who()} mỗi ngày.` }])
   })
-  $settings.querySelector('#rate').addEventListener('input', (e) => {
-    s.rate = Number(e.target.value)
-    $settings.querySelector('#rate-val').textContent = s.rate.toFixed(1) + '×'
-    saveSettings()
-  })
-  $settings.querySelector('#show-en').addEventListener('change', (e) => {
-    s.showEn = e.target.checked
-    saveSettings()
-  })
-  $settings.onclose = rerender
+  $settings.onclose = () => route({ keep: true })
   if (!$settings.open) $settings.showModal()
+  $settings.scrollTop = scroll
 }
+
+// Browsers load their voice list late: refresh the dialog when it arrives
+if (Speech.supported) speechSynthesis.addEventListener?.('voiceschanged', () => $settings.open && openSettings())
 
 document.addEventListener('click', (e) => {
   if (e.target.closest('[data-action="settings"]')) openSettings()
@@ -604,10 +856,11 @@ $settings.addEventListener('click', (e) => {
 
 document.addEventListener('speech', () => document.onspeech?.())
 
-async function route() {
+/** keep: redraw the same page (after settings) without stopping the voice. */
+async function route({ keep = false } = {}) {
   const parts = location.hash.replace(/^#\/?/, '').split('/').filter(Boolean)
-  // Reading belongs to the page it started on
-  Speech.stop()
+  // Reading belongs to the page it started on, except when continuous reading moves to the next article
+  if (!keep && !S.autoRead) Speech.stop()
   try {
     if (parts[0] === 'a') return await renderArticle(parts[1], parts[2])
     if (parts[0] === 'archive') return await renderArchive()

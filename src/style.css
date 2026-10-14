@@ -49,6 +49,19 @@
   color-scheme: dark;
 }
 
+/* Strong contrast for weak eyesight (same colours as the Android app) */
+[data-theme="contrast"] {
+  --paper: #000000;
+  --card: #000000;
+  --ink: #ffff00;
+  --muted: #ffffff;
+  --line: #8a8a8a;
+  --accent: #00ffff;
+  --on-accent: #000000;
+  --hot: #d40000;
+  color-scheme: dark;
+}
+
 html {
   -webkit-tap-highlight-color: transparent;
 }
@@ -58,9 +71,18 @@ body {
   color: var(--ink);
 }
 
-/* Reading text follows the reader's chosen size; everything inside uses em */
+/* Reading text follows the reader's chosen size, thickness and typeface; everything inside uses em */
 .reading {
   font-size: var(--fs);
+  font-weight: var(--fw, 400);
+}
+[data-face="serif"] .reading {
+  font-family: "Noto Serif", "Source Serif 4", Georgia, "Times New Roman", serif;
+}
+
+/* Article body and the settings sample follow the chosen line spacing */
+.read-body {
+  line-height: var(--lh, 1.75);
 }
 
 /* The part being read aloud */

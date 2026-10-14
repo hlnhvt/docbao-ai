@@ -2,8 +2,10 @@
 
 Web app tĩnh (Vite + Tailwind + JS thuần, localStorage) đọc điểm tin AI mỗi ngày bằng tiếng Việt.
 Nội dung là các file JSON trong `public/data/issues/`, do Claude biên tập.
-Một routine trên cloud (Claude Sonnet) tự làm số mới lúc 6:00 sáng giờ Việt Nam mỗi ngày; cũng có thể làm tay khi người dùng yêu cầu.
-Push lên GitHub, Vercel tự build và triển khai.
+Tác vụ "DocBaoAI daily" của Windows Task Scheduler chạy `scripts/daily.ps1` lúc 6:00 sáng mỗi ngày: xoá số cũ, gọi
+`claude -p` (Sonnet) làm số mới theo `scripts/daily-prompt.md` (CLI quá cũ thì tự `claude update` rồi thử lại một lần),
+rồi nếu kiểm tra đạt thì commit riêng `public/data` và `data` và push `main`. Log ở `work/logs/`.
+Vercel tự build và triển khai. Cũng có thể làm số bằng tay khi người dùng yêu cầu.
 
 ## Quy trình mỗi ngày ("làm số hôm nay", "cập nhật tin")
 

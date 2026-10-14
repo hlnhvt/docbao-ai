@@ -8,6 +8,7 @@
 import { Readability } from '@mozilla/readability'
 import { parseHTML } from 'linkedom'
 import { mkdir, writeFile } from 'node:fs/promises'
+import { lookup } from 'node:dns/promises'
 
 const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128 Safari/537.36'
 const urls = process.argv.slice(2).filter((u) => /^https?:\/\//.test(u))
@@ -25,10 +26,31 @@ const fileName = (url) => {
   return `work/text/${u.hostname.replace(/^www\./, '')}-${slug}.md`
 }
 
+// Pages are summarised onto a public site, so never read anything from the local or company network
+const INTERNAL_HOST = /^(localhost|.*\.(local|internal|intranet|corp|lan|home)|(.*\.)?(fpt\.com|fpt\.net|fpt\.vn|fis\.com\.vn))$/i
+const PRIVATE_IP = /^(127\.|10\.|192\.168\.|172\.(1[6-9]|2\d|3[01])\.|169\.254\.|0\.|100\.(6[4-9]|[7-9]\d|1[01]\d|12[0-7])\.|::1$|f[cd][0-9a-f]{2}:|fe80:)/i
+async function assertPublic(url) {
+  const { hostname, protocol } = new URL(url)
+  if (!/^https?:$/.test(protocol)) throw new Error(`blocked protocol ${protocol}`)
+  if (!hostname.includes('.') || INTERNAL_HOST.test(hostname)) throw new Error(`blocked internal host ${hostname}`)
+  for (const { address } of await lookup(hostname.replace(/^\[|\]$/g, ''), { all: true }))
+    if (PRIVATE_IP.test(address)) throw new Error(`blocked ${hostname}: resolves to private address ${address}`)
+}
+async function fetchPublic(url) {
+  for (let hop = 0; hop < 5; hop++) {
+    await assertPublic(url)
+    const r = await fetch(url, { headers: { 'User-Agent': UA }, redirect: 'manual', signal: AbortSignal.timeout(30000) })
+    const next = r.status >= 300 && r.status < 400 && r.headers.get('location')
+    if (!next) return r
+    url = new URL(next, url).href
+  }
+  throw new Error('too many redirects')
+}
+
 for (const url of urls) {
   const name = fileName(url)
   try {
-    const r = await fetch(url, { headers: { 'User-Agent': UA }, signal: AbortSignal.timeout(30000) })
+    const r = await fetchPublic(url)
     if (!r.ok) throw new Error(`HTTP ${r.status}`)
     const html = await r.text()
     const { document } = parseHTML(html)
