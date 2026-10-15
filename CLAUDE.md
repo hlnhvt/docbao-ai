@@ -80,6 +80,15 @@ Vercel tự build và triển khai. Cũng có thể làm số bằng tay khi ng�
   dòng "Chuyên đề" trên màn hình đọc, đọc theo thứ tự series. Đổi định dạng file series thì phải sửa cả `DocBaoAi.kt`.
 - Ví dụ về doanh nghiệp thật phải ghi là minh hoạ; không bịa số liệu, nghiên cứu, thông tin nội bộ.
 
+## Luyện thi (ngân hàng câu hỏi)
+
+- `public/data/quiz/<slug>.json`: `series`, `title`, `intro`, `questions`. Quy cách câu hỏi ở `docs/quiz-spec.md`
+  (dạng single, multi, truefalse, match, order; `level` 1-3; `scenario` + `context` cho câu tình huống; `explanation`;
+  `article` + `section` để dẫn về bài). `npm run build` kiểm tra từng câu và dựng `quiz/index.json`.
+- Web: `#/quiz/<slug>` (tổng quan, tiến độ theo bài), `/bank` (duyệt, lọc), `/new` (tạo đề theo điều kiện),
+  `/run`, `/result/<id>`. Mã ở `src/quiz.js`. Bài làm, lịch sử và thống kê từng câu lưu ở localStorage (`dbai:quiz:*`).
+- Thêm hoặc sửa bài trong series thì phải soạn lại câu hỏi của bài đó cho khớp.
+
 ## Kỹ thuật
 
 - `npm run dev`: chạy thử (mở được trên điện thoại cùng mạng). `npm run build`: kiểm tra + build ra `dist/`.

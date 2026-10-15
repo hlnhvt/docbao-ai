@@ -1,6 +1,7 @@
 import './style.css'
 import { forSpeech } from './speech-text.js'
 import { Music, keepAwake, playSwish, unlockAudio } from './audio.js'
+import { leaveQuiz, renderQuiz } from './quiz.js'
 
 /* ---------- Constants ---------- */
 
@@ -152,6 +153,7 @@ const ICON = {
   hot: '<path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/>',
   link: '<path d="M14 4h6v6"/><path d="M20 4l-9 9"/><path d="M18 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1h5"/>',
   headphones: '<path d="M4 15v-3a8 8 0 0116 0v3"/><rect x="3" y="14" width="5" height="7" rx="2"/><rect x="16" y="14" width="5" height="7" rx="2"/>',
+  quiz: '<rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3h6v1"/><path d="M9 12l2 2 4-4"/>',
   book: '<path d="M4 5a2 2 0 012-2h13v15H6a2 2 0 00-2 2z"/><path d="M4 20a2 2 0 002 2h13v-4"/><path d="M9 7h6"/>',
 }
 const icon = (name, cls = 'size-6') =>
@@ -477,7 +479,7 @@ async function renderFeed(date) {
   const briefingCount = briefingStories(issue).length
 
   $app.innerHTML = `
-  ${topBar({ right: iconButton('data-action="series"', 'book', 'Chuyên đề') + iconButton('data-action="archive"', 'archive', 'Các số trước') })}
+  ${topBar({ right: iconButton('data-action="quiz"', 'quiz', 'Luyện thi') + iconButton('data-action="series"', 'book', 'Chuyên đề') + iconButton('data-action="archive"', 'archive', 'Các số trước') })}
   <main class="reading mx-auto max-w-3xl px-3 pb-[calc(2rem+env(safe-area-inset-bottom))]">
     <section class="mt-4 rounded-2xl border border-line bg-card p-4">
       <div class="flex items-center gap-2 text-[0.8em] text-muted">
@@ -526,6 +528,8 @@ async function renderFeed(date) {
     } else if (t.dataset.action === 'briefing') {
       if (Speech.active) return Speech.stop()
       startBriefing(issue)
+    } else if (t.dataset.action === 'quiz') {
+      location.hash = '#/quiz'
     } else if (t.dataset.action === 'series') {
       location.hash = '#/series'
     } else if (t.dataset.action === 'archive') {
@@ -757,6 +761,7 @@ async function renderSeries(slug) {
       <div class="mt-3 flex flex-wrap gap-2">
         <a href="#/a/${esc(key)}/${esc(first.id)}" class="inline-flex h-11 items-center rounded-full bg-accent px-4 text-[0.88em] font-bold text-on-accent">${first === s.articles[0] ? 'Bắt đầu đọc' : `Đọc tiếp bài ${first.n}`}</a>
         <button data-action="listen-all" class="inline-flex h-11 items-center gap-2 rounded-full bg-hot px-4 text-[0.88em] font-bold text-white">${icon('headphones', 'size-5')}<span>Nghe cả chuyên đề</span></button>
+        <a href="#/quiz/${esc(slug)}" class="inline-flex h-11 items-center gap-2 rounded-full border border-accent px-4 text-[0.88em] font-bold text-accent">${icon('quiz', 'size-5')}<span>Luyện thi</span></a>
       </div>
     </section>
     <div class="mt-2 grid gap-2">${items}</div>
@@ -969,6 +974,9 @@ async function route({ keep = false } = {}) {
   try {
     if (parts[0] === 'a') return await renderArticle(parts[1], parts[2])
     if (parts[0] === 'archive') return await renderArchive()
+    if (parts[0] === 'quiz') return await renderQuiz(parts.slice(1), { $app, topBar, icon, esc, store, getJson, loadIssue })
+    leaveQuiz()
+    $app.onchange = null
     if (parts[0] === 'series') return await renderSeriesList()
     if (parts[0] === 's' && parts[1]) return await renderSeries(parts[1])
     const index = await loadIndex()
