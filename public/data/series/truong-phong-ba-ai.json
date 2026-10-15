@@ -1,14 +1,15 @@
 {
   "slug": "truong-phong-ba-ai",
   "title": "Làm Trưởng phòng BA cho sản phẩm AI: từ trợ lý giọng nói trên ô tô đến bài toán dữ liệu",
-  "intro": "Loạt 12 bài đi qua mọi mặt công việc của một Trưởng phòng BA phụ trách trợ lý giọng nói AI trên xe điện và các bài toán AI, dữ liệu: dẫn dắt đội BA, viết PRD và luồng hội thoại, đặc tả intent, công cụ và guardrail, trải nghiệm trong xe, phối hợp kỹ thuật và UX, xác định bài toán AI, vòng đời dữ liệu, chỉ số đánh giá và A/B test, dashboard, tuân thủ dữ liệu cá nhân, và kế hoạch 90 ngày đầu. Ví dụ trong bài là ví dụ minh hoạ, không phải thông tin nội bộ của doanh nghiệp nào.",
-  "updated": "2026-10-14",
+  "intro": "Loạt 13 bài đi qua mọi mặt công việc của một Trưởng phòng BA phụ trách trợ lý giọng nói AI trên xe điện và các bài toán AI, dữ liệu: dẫn dắt đội BA, viết PRD và luồng hội thoại, đặc tả intent, công cụ và guardrail, trải nghiệm trong xe, phối hợp kỹ thuật và UX, xác định bài toán AI, vòng đời dữ liệu, chỉ số đánh giá và A/B test, dashboard, tuân thủ dữ liệu cá nhân, vòng đời phát triển sản phẩm, và kế hoạch 90 ngày đầu. Ví dụ trong bài là ví dụ minh hoạ, không phải thông tin nội bộ của doanh nghiệp nào.",
+  "updated": "2026-10-15",
   "articles": [
     {
       "id": "00-tong-quan",
+      "order": 1,
       "part": "Mở đầu",
       "titleVi": "Trưởng phòng BA cho sản phẩm AI trên xe điện: một ngày làm việc và bức tranh toàn cảnh",
-      "summary": "Bài mở đầu vẽ lại công việc của một Trưởng phòng BA phụ trách trợ lý giọng nói AI trên ô tô điện và các bài toán AI, dữ liệu đi kèm. Bạn sẽ thấy BA sản phẩm AI khác BA truyền thống ở đâu, hai mảng việc nối với nhau thế nào, cần những năng lực gì và cả series 12 bài sẽ đi qua những gì.",
+      "summary": "Bài mở đầu vẽ lại công việc của một Trưởng phòng BA phụ trách trợ lý giọng nói AI trên ô tô điện và các bài toán AI, dữ liệu đi kèm. Bạn sẽ thấy BA sản phẩm AI khác BA truyền thống ở đâu, hai mảng việc nối với nhau thế nào, cần những năng lực gì và cả series 13 bài sẽ đi qua những gì.",
       "keyPoints": [
         "Trưởng phòng BA cho sản phẩm AI trên xe làm hai mảng: nghiệp vụ trợ lý giọng nói (A) và nghiệp vụ AI cho bài toán dữ liệu (B).",
         "Yêu cầu cho AI mang tính xác suất, nên tiêu chí nghiệm thu phải viết bằng tỷ lệ trên một bộ câu thử, không chỉ đúng hoặc sai.",
@@ -16,7 +17,7 @@
         "Trong xe, an toàn khi lái đứng trên mọi tính năng; mọi yêu cầu phải trả lời được câu hỏi “người lái có bị xao nhãng không”.",
         "Mảng A sinh ra dữ liệu, mảng B dùng dữ liệu đó để cá nhân hoá và cải tiến, rồi kết quả quay lại làm trợ lý tốt hơn.",
         "Năng lực cốt lõi gồm hiểu sản phẩm, hiểu AI ở mức đủ để đặt câu hỏi đúng, viết rõ ràng, đo lường và dẫn dắt con người.",
-        "Series gồm 12 bài, đi từ tổng quan, qua 5 bài mảng A, 5 bài mảng B, và kết bằng kế hoạch 90 ngày cùng bộ công cụ."
+        "Series gồm 13 bài, đi từ tổng quan, qua 5 bài mảng A, 5 bài mảng B, một bài về vòng đời sản phẩm, và kết bằng kế hoạch 90 ngày cùng bộ công cụ."
       ],
       "body": [
         "Hãy hình dung bạn vừa nhận vai Trưởng phòng BA ở một hãng xe điện Việt Nam bán xe ở nhiều thị trường. Sản phẩm bạn phụ trách là trợ lý giọng nói AI trong xe. Người lái nói “mình hơi lạnh”, và xe phải hiểu, chỉnh điều hoà, rồi trả lời gọn một câu. Nghe đơn giản, nhưng phía sau câu nói đó là cả một chuỗi yêu cầu mà đội BA của bạn phải viết ra, đo được và giữ cho đúng qua từng phiên bản.",
@@ -86,8 +87,8 @@
         "- Quên trường hợp mất kết nối. Xe đi vào hầm, vào vùng núi, và trợ lý im lặng.",
         "- Tin vào bản demo. Demo trong phòng họp yên tĩnh khác xa xe chạy 80 km/h, cửa sổ mở, trẻ con hát ở ghế sau.",
         "- Không đo sau phát hành. Không ai biết tính năng có được dùng thật hay không.",
-        "## Bản đồ series: 12 bài, đi theo thứ tự nào",
-        "Series đi theo đúng hai mảng của mô tả công việc. Mỗi bài có cách làm từng bước, ví dụ minh hoạ, sai lầm thường gặp và checklist. Bạn có thể đọc theo thứ tự, hoặc nhảy thẳng đến bài đang cần.",
+        "## Bản đồ series: 13 bài, đi theo thứ tự nào",
+        "Series đi theo đúng hai mảng của mô tả công việc, thêm một bài về vòng đời sản phẩm nối hai mảng lại. Mỗi bài có cách làm từng bước, ví dụ minh hoạ, sai lầm thường gặp và checklist. Bạn có thể đọc theo thứ tự, hoặc nhảy thẳng đến bài đang cần.",
         "- Bài 1 (bài này): Bức tranh toàn cảnh.",
         "- Bài 2, A1: Dẫn dắt đội BA. Tổ chức đội theo nhóm tính năng, kỹ thuật thu thập yêu cầu cho trợ lý giọng nói, ưu tiên bằng MoSCoW, RICE, Kano, quản lý backlog và thay đổi.",
         "- Bài 3, A2: Từ định hướng đến PRD, user story và luồng hội thoại. Có ví dụ đầy đủ cho tính năng đặt điểm đến có điểm sạc trên đường.",
@@ -99,7 +100,8 @@
         "- Bài 9, B3: Từ bài toán kinh doanh đến mô hình. Đầu vào, đầu ra, chỉ số đánh giá, A/B test, điều kiện vận hành và giám sát.",
         "- Bài 10, B4: Dashboard đo lường. North Star, HEART, AARRR, chỉ số riêng cho trợ lý giọng nói, từ điển chỉ số.",
         "- Bài 11, B5: Tuân thủ dữ liệu cá nhân. Riêng tư theo thiết kế, đồng ý, DPIA, dữ liệu giọng nói và vị trí, bản đồ quy định theo thị trường ở mức tổng quan.",
-        "- Bài 12: Kế hoạch 90 ngày đầu và bộ công cụ. Mẫu tài liệu, chỉ số đo hiệu quả phòng BA, tài liệu nên đọc.",
+        "- Bài 12, C1: Vòng đời phát triển sản phẩm. Các giai đoạn từ ý tưởng đến ngừng hỗ trợ, cổng chuyển giai đoạn, dual-track agile, SOP, OTA, mô hình chữ V, ASPICE, vòng đời mô hình AI.",
+        "- Bài 13: Kế hoạch 90 ngày đầu và bộ công cụ. Mẫu tài liệu, chỉ số đo hiệu quả phòng BA, tài liệu nên đọc.",
         "> Lưu ý: các con số ngưỡng xuất hiện trong series (độ trễ, tỷ lệ đúng, thời gian nhìn màn hình) là gợi ý của người viết để minh hoạ cách viết yêu cầu. Đội của bạn cần tự đặt mục tiêu dựa trên dữ liệu và quy định áp dụng.",
         "## Checklist: bạn đã sẵn sàng cho vai trò này chưa",
         "- Bạn giải thích được cho một BA mới vì sao tiêu chí nghiệm thu của AI phải viết bằng tỷ lệ trên bộ câu thử.",
@@ -157,8 +159,7 @@
         "Trợ lý giọng nói",
         "Xe điện",
         "Tổng quan"
-      ],
-      "order": 1
+      ]
     },
     {
       "id": "a1-dan-dat-doi-ba",
@@ -1890,7 +1891,181 @@
       "order": 11
     },
     {
+      "id": "c1-vong-doi-phat-trien-san-pham",
+      "order": 12,
+      "part": "C. Vòng đời sản phẩm",
+      "titleVi": "Vòng đời phát triển sản phẩm: BA làm gì từ ý tưởng đến ngày ngừng hỗ trợ một tính năng trợ lý giọng nói",
+      "summary": "Bài này đi qua cả hành trình của một tính năng trợ lý giọng nói trên xe điện, từ khám phá ý tưởng đến ngày ngừng hỗ trợ. Bạn sẽ thấy BA làm gì và giao tài liệu gì ở mỗi giai đoạn, cách dùng cổng chuyển giai đoạn, dual-track agile, những ràng buộc riêng của ngành ô tô như mô hình chữ V, ASPICE, SOP, OTA, và cách vòng đời mô hình AI lồng vào vòng đời sản phẩm.",
+      "keyPoints": [
+        "Một tính năng đi qua chín giai đoạn: khám phá, kiểm chứng, định nghĩa, thiết kế, xây dựng, kiểm thử và nghiệm thu, ra mắt, vận hành và cải tiến, ngừng hỗ trợ.",
+        "Ở mỗi giai đoạn BA có việc riêng và tài liệu giao riêng; việc của BA không dừng ở ngày bàn giao PRD.",
+        "Cổng chuyển giai đoạn là điểm ra quyết định dựa trên bằng chứng, với tiêu chí đặt trước và kết quả rõ: đi tiếp, đi tiếp có điều kiện, làm lại, tạm giữ hoặc dừng.",
+        "Dual-track agile cho khám phá và giao hàng chạy song song; Trưởng phòng BA giữ cho hai luồng nối với nhau.",
+        "Ngành ô tô thêm ràng buộc: mốc chương trình xe và SOP, mô hình chữ V, ASPICE, OTA, quản lý phiên bản, điểm chạm với ISO 26262, UN R155 và UN R156.",
+        "Vòng đời mô hình AI (CRISP-DM, MLOps) phải lồng vào vòng đời sản phẩm, nhất là giám sát drift và điều kiện huấn luyện lại.",
+        "Mỗi giai đoạn cần chỉ số riêng; dùng chỉ số của giai đoạn này để quyết định ở giai đoạn khác dễ dẫn tới quyết định sai."
+      ],
+      "body": [
+        "Một tính năng của trợ lý giọng nói không sinh ra vào ngày viết PRD, cũng không kết thúc vào ngày phát hành. Nó bắt đầu từ một câu hỏi mơ hồ, đi qua nhiều tháng kiểm chứng, thiết kế, xây dựng, kiểm thử trên xe thật. Rồi nó sống nhiều năm trên những chiếc xe đã bán, và có ngày sẽ bị thay thế hoặc tắt đi.",
+        "Các bài trước đi sâu vào từng việc. Bài này lùi lại để nhìn cả hành trình: ở mỗi giai đoạn BA làm gì, giao tài liệu gì, qua cổng nào, và ngành ô tô thêm những ràng buộc gì mà phần mềm trên điện thoại không có.",
+        "> Lưu ý: tên giai đoạn, tên mốc, ví dụ và con số trong bài là minh hoạ và gợi ý của người viết. Bài không mô tả quy trình nội bộ của VinFast hay công ty nào. Phần tiêu chuẩn và quy định chỉ ở mức tổng quan, cần đối chiếu văn bản hiện hành cùng đội an toàn, an ninh mạng và pháp chế.",
+        "## Vì sao Trưởng phòng BA phải nhìn cả vòng đời",
+        "Nhiều BA quen làm một khúc: nhận định hướng, viết yêu cầu, bàn giao. Với AI trên xe, cách đó gây rắc rối. Yêu cầu không kiểm chứng được vì chưa ai nghĩ tới bộ câu thử. Tính năng lỡ mốc sản xuất vì phụ thuộc phần cứng. Hoặc không ai đo sau ra mắt, mô hình kém dần mà chỉ biết qua phàn nàn của khách.",
+        "Trưởng phòng BA giữ mạch xuyên suốt: bảo đảm mỗi giai đoạn nhận đầu vào đủ tốt và để lại đầu ra đủ rõ. Hiểu vòng đời cũng giúp phân người: giai đoạn đầu cần BA giỏi khám phá, giai đoạn sau cần BA chặt chẽ về truy vết.",
+        "## Chín giai đoạn và các cổng",
+        "Bài chia vòng đời thành chín giai đoạn: khám phá ý tưởng, kiểm chứng, định nghĩa, thiết kế, xây dựng, kiểm thử và nghiệm thu, ra mắt, vận hành và cải tiến, ngừng hỗ trợ. Cách chia là gợi ý để dễ trao đổi, công ty bạn có thể gộp hoặc tách khác.",
+        "Giữa các giai đoạn lớn là cổng chuyển giai đoạn (stage gate). Ý tưởng này phổ biến qua mô hình Stage-Gate của Robert G. Cooper. Tại mỗi cổng, người có quyền quyết định xem bằng chứng rồi chọn đi tiếp, dừng, tạm giữ hoặc làm lại.",
+        "## Giai đoạn 1: Khám phá ý tưởng",
+        "Đầu vào là tín hiệu: phàn nàn của khách, log hội thoại, dashboard, đối thủ, chiến lược của hãng. Mục tiêu là trả lời: có vấn đề thật không, của ai, lớn cỡ nào. Chưa bàn giải pháp. BA phân tích log các câu trợ lý không hiểu, phỏng vấn người lái, ngồi cùng đội chăm sóc khách hàng.",
+        "- Tài liệu giao: mô tả cơ hội (opportunity brief) có bằng chứng; danh sách giả định xếp theo rủi ro; problem statement nếu là bài toán AI.",
+        "> Ví dụ minh hoạ: log cho thấy nhiều người hỏi “pin còn đủ về nhà không”. Trợ lý chỉ đọc phần trăm pin, chưa trả lời đúng câu hỏi. Đó là một cơ hội.",
+        "## Giai đoạn 2: Kiểm chứng",
+        "Kiểm chứng là thử rẻ trước khi làm đắt. Marty Cagan, trong sách Inspired, nêu bốn rủi ro cần soi: giá trị, khả dụng, khả thi và tính phù hợp với kinh doanh. BA thiết kế thí nghiệm nhỏ: Wizard-of-Oz trong xe, spike đo độ trễ trên phần cứng xe, phân tích dữ liệu lịch sử. Nếu tính năng chạm chức năng xe, hỏi sớm kỹ sư hệ thống và đội an toàn chức năng.",
+        "- Tài liệu giao: kế hoạch và kết quả thử nghiệm với tiêu chí thành công đặt trước; đánh giá khả thi kỹ thuật và dữ liệu; đề xuất đi tiếp hay dừng.",
+        "> Mẹo: viết tiêu chí thành công trước khi thử. Viết sau, cả đội sẽ vô thức diễn giải kết quả cho đẹp.",
+        "## Giai đoạn 3: Định nghĩa",
+        "Đây là sân nhà của BA, các bài A2 đến A4, B2, B3 đã nói cách viết. Điểm riêng của ô tô: một phần yêu cầu phải chốt sớm theo lịch chương trình xe, vì micro, loa, bộ xử lý không đổi được sau khi sản xuất. BA cần đánh dấu rõ yêu cầu nào thuộc loại đó.",
+        "- Tài liệu giao: PRD theo phiên bản, user story có tiêu chí tỷ lệ trên bộ câu thử; đặc tả intent, công cụ, guardrail; kế hoạch tracking, checklist riêng tư; yêu cầu cấp hệ thống có mã định danh.",
+        "## Giai đoạn 4: Thiết kế",
+        "Nhiều lớp thiết kế chạy song song: hội thoại, HMI, kiến trúc (phần nào trên xe, phần nào trên cloud), dữ liệu và mô hình. BA không vẽ, nhưng kiểm tra thiết kế có vừa ngân sách độ trễ, chạy được khi mất kết nối, đủ nhánh lỗi không. Yêu cầu thiếu lộ ra lúc này là bình thường, hãy đưa vào quản lý thay đổi, đừng sửa lặng lẽ.",
+        "- Tài liệu giao: biên bản review thiết kế; yêu cầu bổ sung; ma trận truy vết cập nhật; rủi ro kỹ thuật còn mở.",
+        "## Giai đoạn 5: Xây dựng",
+        "Dev làm theo sprint, đội AI huấn luyện mô hình, đội tích hợp đưa phần mềm lên xe. BA làm rõ yêu cầu ở buổi refinement, xem demo, đánh giá tác động khi có thay đổi. Một việc hay bị quên: giữ bộ câu thử tách biệt khỏi dữ liệu huấn luyện. Nếu lẫn, con số sẽ đẹp mà không phản ánh người dùng thật.",
+        "- Tài liệu giao: backlog được làm mịn; quyết định thay đổi có ghi lại; tiêu chí nghiệm thu và bộ câu thử cập nhật theo phiên bản.",
+        "## Giai đoạn 6: Kiểm thử và nghiệm thu",
+        "Trợ lý được kiểm thử nhiều tầng: thành phần, tích hợp, mô hình trên bộ câu thử, băng thử (bench) có phần cứng xe, và lái thử thật ở đường ồn, vùng sóng yếu, xe đông người. BA cùng QA viết kịch bản nghiệm thu từ PRD, xem kết quả theo từng nhóm (vùng miền, độ ồn, tính năng), và cùng quyết định lỗi nào chặn phát hành.",
+        "- Tài liệu giao: báo cáo nghiệm thu truy vết về yêu cầu; danh sách lỗi tồn kèm người chấp nhận rủi ro; ghi chú phát hành.",
+        "## Giai đoạn 7: Ra mắt",
+        "Xe mới nhận tính năng qua phần mềm cài từ nhà máy, xe đã bán nhận qua OTA, còn phần trên cloud cập nhật được mà không đụng tới xe. Ba con đường có nhịp và rủi ro khác nhau, BA phải biết tính năng mình đi đường nào. Nên ra mắt theo đợt: xe nội bộ trước, xem chỉ số rồi mới mở rộng. Feature flag, tức công tắc bật tắt từ xa, giúp tắt nhanh khi có sự cố.",
+        "- Tài liệu giao: kế hoạch ra mắt theo đợt; tiêu chí mở rộng và tiêu chí dừng; dashboard sẵn sàng từ ngày đầu.",
+        "## Giai đoạn 8: Vận hành và cải tiến",
+        "Đây là giai đoạn dài nhất, vì xe chạy trên đường nhiều năm. Với AI, cách nói đổi, địa danh mới xuất hiện, mô hình có thể kém dần. BA theo dõi tỷ lệ thành công, hỏi lại, bỏ dở, định kỳ cùng AI Engineer đọc mẫu hội thoại lỗi đã ẩn danh, rồi đưa ý tưởng cải tiến quay lại khám phá. Vòng đời là vòng tròn, không phải đường thẳng.",
+        "- Tài liệu giao: báo cáo sức khoẻ tính năng định kỳ; backlog cải tiến có ưu tiên; yêu cầu huấn luyện lại kèm dữ liệu và tiêu chí; bộ câu thử bổ sung cách nói mới.",
+        "## Giai đoạn 9: Ngừng hỗ trợ",
+        "Ngày tắt tính năng sẽ đến: hợp đồng dịch vụ hết hạn, xe đời cũ không chạy nổi mô hình mới, hoặc quá ít người dùng. BA xem ai còn dùng, viết yêu cầu để trợ lý nói rõ tính năng đã ngừng và gợi ý cách khác thay vì im lặng. Hỏi pháp chế về lưu giữ, xoá dữ liệu và thông báo cho khách. Kiểm tra xe đời cũ còn gọi dịch vụ sắp tắt không.",
+        "- Tài liệu giao: kế hoạch ngừng hỗ trợ có mốc; thông điệp cho người dùng; yêu cầu xử lý dữ liệu; danh sách phiên bản bị ảnh hưởng.",
+        "## Cổng chuyển giai đoạn: tiêu chí và cách họp",
+        "Cổng trả lời một câu: với bằng chứng hiện có, có nên đầu tư tiếp không. Cổng tốt dừng sớm ý tưởng kém. Cổng tồi là buổi trình chiếu dài, ai cũng gật cho qua. Gợi ý tiêu chí, đội bạn tự điều chỉnh:",
+        "- Sau khám phá: vấn đề có bằng chứng từ ít nhất hai nguồn độc lập, người dùng mục tiêu rõ, gắn với mục tiêu sản phẩm.",
+        "- Sau kiểm chứng: thử nghiệm đạt tiêu chí đặt trước, phương án kỹ thuật khả thi, có dữ liệu hoặc kế hoạch có dữ liệu, không vướng pháp lý chưa có hướng giải.",
+        "- Sau định nghĩa: đạt Definition of Ready, có bộ câu thử và chỉ số thành công, đã review an toàn và riêng tư khi cần, yêu cầu phải chốt sớm khớp lịch chương trình xe.",
+        "- Trước phát hành: tiêu chí nghiệm thu đạt, hoặc rủi ro còn lại được người có thẩm quyền chấp nhận bằng văn bản; giám sát và phương án quay lui sẵn sàng.",
+        "Kết quả mỗi cổng phải rõ: đi tiếp, đi tiếp có điều kiện (ghi điều kiện, người chịu trách nhiệm, hạn), làm lại, tạm giữ, hoặc dừng. BA gửi gói bằng chứng gọn trước, để buổi họp dành cho quyết định.",
+        "> Mẹo: ý tưởng bị dừng ở cổng kiểm chứng là tiền tiết kiệm được, không phải thất bại. Ghi lại lý do dừng để lần sau không ai thử lại từ đầu.",
+        "## Dual-track agile: khám phá và giao hàng song song",
+        "Trong đội agile, khám phá và giao hàng chạy cùng lúc. Cách làm này gọi là dual-track agile. Luồng discovery tìm và kiểm chứng việc nên làm tiếp. Luồng delivery xây những gì đã kiểm chứng.",
+        "Ví dụ minh hoạ: trong lúc Dev xây tính năng tìm điểm sạc trên đường cho bản 1.1, một BA và một UX chạy Wizard-of-Oz cho ý tưởng của bản 1.2. Bản 1.1 xong thì backlog bản 1.2 đã có story được kiểm chứng.",
+        "Trưởng phòng BA giữ hai luồng không tách rời: mỗi tuần kết quả discovery đưa vào refinement, vướng mắc của delivery thành câu hỏi cho discovery. Đừng để một BA ôm cả hai, vì luồng gấp hơn sẽ nuốt luồng kia. Trong ô tô, luồng delivery còn phải khớp mốc chương trình xe và lịch OTA, không chạy tự do theo sprint.",
+        "## Đặc thù ngành ô tô: chương trình xe, mô hình chữ V và ASPICE",
+        "Phần mềm trên xe sống trong một chương trình xe (vehicle program) kéo dài nhiều năm. Tên mốc khác nhau giữa các hãng. Ví dụ minh hoạ: khởi động chương trình, chốt ý tưởng, chốt thiết kế, các đợt xe mẫu, sản xuất thử, và SOP (Start of Production, bắt đầu sản xuất hàng loạt). Phần cứng chốt sớm, phần mềm cài từ nhà máy phải sẵn sàng trước SOP.",
+        "Mô hình chữ V mô tả cách phát triển hệ thống trên xe. Nhánh trái đi xuống: yêu cầu các bên, yêu cầu hệ thống, kiến trúc, thiết kế phần mềm, lập trình ở đáy. Nhánh phải đi lên: kiểm thử đơn vị, tích hợp, hệ thống, nghiệm thu. Mỗi tầng trái có tầng kiểm thử tương ứng bên phải, nên mỗi yêu cầu BA viết phải có cách kiểm chứng ở tầng tương ứng. Chữ V và agile không loại trừ nhau: nhiều đội chạy sprint bên trong, rồi tích hợp theo nhịp chương trình xe.",
+        "Automotive SPICE (ASPICE) là mô hình đánh giá năng lực quy trình phát triển hệ thống và phần mềm trong ngành ô tô, hay dùng để đánh giá nhà cung cấp và đội nội bộ. Điều ASPICE quan tâm khá quen với BA: yêu cầu được phân tích có hệ thống, truy vết hai chiều tới thiết kế và kiểm thử, thay đổi được quản lý, có bằng chứng. Phiên bản 4.0 bổ sung nhóm quy trình về kỹ thuật học máy.",
+        "> Lưu ý: bài không đi vào chi tiết ASPICE. Hãy hỏi đội chất lượng công ty đang áp dụng phiên bản và phạm vi nào.",
+        "## SOP, OTA và quản lý phiên bản phần mềm trên xe",
+        "Với OTA (over-the-air, cập nhật qua mạng), đội có thể ra mắt tại SOP với phạm vi lõi ổn định, rồi bổ sung qua các đợt OTA. Nhưng OTA không phải phép màu. Bản cập nhật cần kiểm thử kỹ, cần người dùng đồng ý cài, có thể cần xe đỗ và đủ pin; nếu chạm phần mềm liên quan phê duyệt kiểu thì có thể thêm thủ tục. Câu “để sau OTA sửa” là một quyết định có chi phí.",
+        "Quản lý phiên bản là chỗ BA hay vấp. Trên đường cùng lúc có xe chạy nhiều phiên bản phần mềm, nhiều đời phần cứng, ở nhiều thị trường, và dịch vụ cloud phải phục vụ tất cả. BA nên yêu cầu:",
+        "- Ma trận tương thích: tính năng nào có ở phiên bản phần mềm, đời phần cứng, thị trường, ngôn ngữ nào.",
+        "- Mã định danh cho yêu cầu và phiên bản mô hình, truy vết được tới bản phần mềm đã phát hành.",
+        "- Hành vi khi xe và cloud lệch phiên bản, và phương án quay lui cho phần mềm trên xe, mô hình, cloud.",
+        "## Khi SOP tới gần mà tính năng chưa đạt",
+        "Ví dụ minh hoạ: còn sáu tuần đến SOP, nhận dạng tên bài hát vẫn dưới ngưỡng, có người đề xuất hạ ngưỡng nghiệm thu cho kịp. BA không chỉ nói không, mà đưa ra phương án:",
+        "- Tách phạm vi: phần đạt đi theo SOP, phần chưa đạt tắt bằng feature flag và đưa vào một đợt OTA có kế hoạch.",
+        "- Giảm thiểu: nếu vẫn bật, thêm bước xác nhận khi độ tin cậy thấp, ví dụ đọc lại tên bài trước khi phát.",
+        "- Nếu chấp nhận rủi ro: người có thẩm quyền ký bằng văn bản, kèm kế hoạch theo dõi sau ra mắt. Không bao giờ hạ tiêu chí lặng lẽ.",
+        "Với lỗi chạm tới an toàn, ví dụ trợ lý có thể thực hiện sai một lệnh điều khiển xe, không có chuyện đổi lấy tiến độ. Quyết định thuộc về đội an toàn chức năng.",
+        "## Điểm chạm với an toàn chức năng và an ninh mạng",
+        "ISO 26262 là tiêu chuẩn an toàn chức năng cho hệ thống điện và điện tử trên xe đường bộ. Nó dùng phân tích mối nguy và đánh giá rủi ro để xếp mức ASIL từ A đến D, hoặc QM khi chỉ cần quản lý chất lượng thông thường. Trợ lý giọng nói thường thuộc hệ thống thông tin giải trí, nhưng khi ra lệnh cho cửa sổ, gạt mưa, đèn, chế độ lái thì chạm tới an toàn chức năng.",
+        "BA không tự xếp ASIL. Việc của BA là nhận diện sớm tính năng chạm chức năng xe, mời đội an toàn chức năng review, và đưa ràng buộc của họ vào yêu cầu và tiêu chí nghiệm thu. Gợi ý thiết kế: trợ lý chỉ gửi yêu cầu, hệ thống của xe kiểm tra điều kiện lần cuối và quyết định có thực hiện không.",
+        "UN R155 và UN R156 là hai quy định trong khuôn khổ UNECE. R155 yêu cầu hãng xe có hệ thống quản lý an ninh mạng. R156 yêu cầu hệ thống quản lý cập nhật phần mềm, gồm cả OTA. Phạm vi áp dụng tuỳ thị trường. ISO/SAE 21434 về kỹ thuật an ninh mạng cho xe thường đi cùng R155. Với trợ lý, điểm chạm là lệnh giả mạo từ âm thanh bên ngoài, kết nối cloud, công cụ bên thứ ba, và mọi bản OTA phải qua quy trình cập nhật của hãng.",
+        "> Lưu ý: phần này chỉ giúp bạn biết điểm chạm và người cần hỏi. Phạm vi áp dụng và nghĩa vụ cụ thể phải do đội an toàn chức năng, an ninh mạng, phê duyệt kiểu và pháp chế xác nhận theo văn bản hiện hành.",
+        "## Vòng đời mô hình AI lồng vào vòng đời sản phẩm",
+        "CRISP-DM, một quy trình phổ biến cho dự án dữ liệu, có sáu bước: hiểu nghiệp vụ, hiểu dữ liệu, chuẩn bị dữ liệu, xây mô hình, đánh giá, triển khai, và lặp nhiều vòng. Ghép với vòng đời sản phẩm, gợi ý của người viết như sau:",
+        "- Khám phá, kiểm chứng: hiểu nghiệp vụ và dữ liệu, xác định baseline.",
+        "- Định nghĩa, thiết kế: chuẩn bị dữ liệu, tracking, nhãn, bộ câu thử, tiêu chí đánh giá.",
+        "- Xây dựng, kiểm thử: xây mô hình, đánh giá offline rồi trên xe thật. Ra mắt: chạy ngầm song song (shadow), A/B test, mở dần.",
+        "- Vận hành: giám sát và huấn luyện lại, phần CRISP-DM nói ít nhưng MLOps tập trung vào.",
+        "MLOps là cách làm để đưa mô hình vào vận hành và giữ nó khoẻ: quản lý phiên bản dữ liệu và mô hình, tự động hoá huấn luyện, triển khai có kiểm soát, giám sát. BA không dựng đường ống, nhưng viết yêu cầu cho nó: giám sát chỉ số nào, ngưỡng cảnh báo nào, ai nhận, điều kiện nào thì huấn luyện lại, mô hình mới phải vượt mô hình cũ trên bộ câu thử nào mới được thay.",
+        "Drift là khi dữ liệu thật trôi xa dữ liệu huấn luyện. Ví dụ minh hoạ: vài tháng sau ra mắt, tên bài hát mới và cách nói pha tiếng Anh tăng lên, tỷ lệ hiểu đúng nhóm giải trí giảm dần dù không ai sửa code. Riêng ở xe: mô hình trên cloud thay nhanh được, còn mô hình trên xe để chạy ngoại tuyến thường phải chờ đợt OTA. BA cần ghi rõ điều này từ giai đoạn định nghĩa.",
+        "## Chỉ số theo từng giai đoạn",
+        "Dùng chỉ số sai giai đoạn dễ dẫn tới quyết định sai, ví dụ đòi số lượt dùng lớn khi ý tưởng còn đang kiểm chứng. Gợi ý để bạn chọn lọc:",
+        "- Khám phá và kiểm chứng: số nguồn tín hiệu độc lập, tần suất trong log, tỷ lệ hoàn thành nhiệm vụ trong Wizard-of-Oz, so sánh với baseline.",
+        "- Định nghĩa và thiết kế: tỷ lệ story đạt Definition of Ready, độ phủ truy vết, số câu hỏi mở.",
+        "- Xây dựng và nghiệm thu: tỷ lệ đúng trên bộ câu thử theo nhóm, độ trễ từng chặng, số lỗi chặn phát hành.",
+        "- Ra mắt: tỷ lệ xe cập nhật thành công, tỷ lệ lỗi sau cập nhật, tỷ lệ dùng thử lần đầu.",
+        "- Vận hành và ngừng hỗ trợ: tỷ lệ thành công, hỏi lại, bỏ dở, quay lại, chỉ báo drift; số người và số xe còn dùng tính năng sắp tắt.",
+        "## Sai lầm thường gặp",
+        "- Coi PRD xong là việc của BA xong, không ai viết yêu cầu cho giám sát, huấn luyện lại và ngừng hỗ trợ.",
+        "- Bỏ qua kiểm chứng vì lãnh đạo đã thích ý tưởng, xây xong mới biết người lái không cần.",
+        "- Cổng hình thức: không có tiêu chí đặt trước, không ai dám nói dừng.",
+        "- Dùng “để sau OTA sửa” như lối thoát miễn phí, hoặc hạ tiêu chí nghiệm thu lặng lẽ khi SOP đến gần.",
+        "- Không có ma trận tương thích, không ai biết tính năng nào chạy trên xe nào.",
+        "- Gọi đội an toàn chức năng và an ninh mạng vào khi thiết kế đã xong, phải làm lại tốn kém.",
+        "## Checklist cuối bài",
+        "- Bạn biết tính năng mình đang ở giai đoạn nào, cổng tiếp theo và tiêu chí của nó.",
+        "- Mỗi giai đoạn có tài liệu giao rõ, có người nhận và người duyệt.",
+        "- Có luồng discovery và delivery, có điểm chạm hằng tuần.",
+        "- Bạn nắm mốc chương trình xe, SOP, lịch OTA; yêu cầu phải chốt sớm đã được đánh dấu.",
+        "- Có ma trận tương thích và phương án quay lui cho phần mềm trên xe, mô hình, cloud.",
+        "- Đội an toàn chức năng và an ninh mạng đã review những tính năng liên quan.",
+        "- Có yêu cầu giám sát mô hình, ngưỡng cảnh báo, điều kiện huấn luyện lại, chỉ số theo từng giai đoạn.",
+        "Đến đây bạn đã có đủ mảnh ghép: hai mảng A và B, và vòng đời nối chúng thành một hành trình. Bài cuối sẽ gom tất cả thành kế hoạch 90 ngày đầu cho một Trưởng phòng BA mới, kèm bộ mẫu tài liệu và cách tự đo hiệu quả của phòng."
+      ],
+      "glossary": [
+        {
+          "term": "Stage gate (cổng chuyển giai đoạn)",
+          "explain": "Điểm dừng giữa hai giai đoạn, nơi người có quyền quyết định xem bằng chứng và chọn đi tiếp, đi tiếp có điều kiện, làm lại, tạm giữ hoặc dừng."
+        },
+        {
+          "term": "Dual-track agile",
+          "explain": "Cách làm cho luồng khám phá (discovery) và luồng giao hàng (delivery) chạy song song, để backlog luôn có những việc đã được kiểm chứng."
+        },
+        {
+          "term": "SOP (Start of Production)",
+          "explain": "Mốc bắt đầu sản xuất hàng loạt của một mẫu xe. Phần mềm cài từ nhà máy phải sẵn sàng trước mốc này."
+        },
+        {
+          "term": "Mô hình chữ V",
+          "explain": "Mô hình phát triển trong đó mỗi tầng yêu cầu và thiết kế ở nhánh trái có một tầng kiểm thử tương ứng ở nhánh phải."
+        },
+        {
+          "term": "Automotive SPICE (ASPICE)",
+          "explain": "Mô hình đánh giá năng lực quy trình phát triển hệ thống và phần mềm trong ngành ô tô, coi trọng yêu cầu, truy vết và bằng chứng."
+        },
+        {
+          "term": "OTA (over-the-air)",
+          "explain": "Cập nhật phần mềm cho xe qua mạng, không cần mang xe tới xưởng."
+        },
+        {
+          "term": "ISO 26262 và ASIL",
+          "explain": "ISO 26262 là tiêu chuẩn an toàn chức năng cho hệ thống điện và điện tử trên xe. ASIL là mức yêu cầu an toàn, từ A đến D."
+        },
+        {
+          "term": "UN R155 và UN R156",
+          "explain": "Hai quy định trong khuôn khổ UNECE, lần lượt về quản lý an ninh mạng và quản lý cập nhật phần mềm cho xe."
+        },
+        {
+          "term": "CRISP-DM",
+          "explain": "Quy trình phổ biến cho dự án dữ liệu, gồm sáu bước: hiểu nghiệp vụ, hiểu dữ liệu, chuẩn bị dữ liệu, xây mô hình, đánh giá, triển khai."
+        },
+        {
+          "term": "MLOps và drift",
+          "explain": "MLOps là cách làm để đưa mô hình vào vận hành và giữ nó khoẻ. Drift là khi dữ liệu thật trôi xa dữ liệu huấn luyện khiến mô hình kém dần."
+        }
+      ],
+      "readMinutes": 15,
+      "tags": [
+        "BA",
+        "Vòng đời sản phẩm",
+        "Stage gate",
+        "Dual-track agile",
+        "Ô tô",
+        "OTA",
+        "MLOps"
+      ]
+    },
+    {
       "id": "99-90-ngay-va-bo-cong-cu",
+      "order": 13,
       "part": "Tổng kết",
       "titleVi": "90 ngày đầu làm Trưởng phòng BA: kế hoạch, bộ mẫu và cách tự đo mình",
       "summary": "Bài cuối gom cả series lại thành một kế hoạch hành động. Bạn sẽ có kế hoạch 90 ngày đầu chia ba chặng, danh sách các mẫu tài liệu cần có cho cả hai mảng trợ lý giọng nói và AI/dữ liệu, bộ chỉ số đo hiệu quả của chính phòng BA, những sai lầm thường gặp của trưởng phòng mới và danh sách tài liệu nên đọc thêm.",
@@ -1903,7 +2078,7 @@
         "Học liên tục là một phần công việc: BABOK cho nền tảng, sách về yêu cầu, giọng nói, thử nghiệm và đo lường cho chiều sâu."
       ],
       "body": [
-        "Chúng ta đã đi một chặng khá dài. Từ bức tranh toàn cảnh, qua năm bài về trợ lý giọng nói trên xe, rồi năm bài về AI và dữ liệu. Nếu bạn vừa nhận vai Trưởng phòng BA, có lẽ câu hỏi lúc này là: bắt đầu từ đâu vào sáng thứ Hai tới?",
+        "Chúng ta đã đi một chặng khá dài. Từ bức tranh toàn cảnh, qua năm bài về trợ lý giọng nói trên xe, rồi năm bài về AI và dữ liệu, và một bài về vòng đời phát triển sản phẩm. Nếu bạn vừa nhận vai Trưởng phòng BA, có lẽ câu hỏi lúc này là: bắt đầu từ đâu vào sáng thứ Hai tới?",
         "Bài này trả lời câu hỏi đó. Nó không thêm nhiều kiến thức mới, mà sắp xếp những gì đã nói thành việc cần làm, theo thứ tự hợp lý. Bạn có thể in phần kế hoạch và checklist ra, dán cạnh bàn làm việc.",
         "> Kế hoạch, mẫu và chỉ số trong bài là gợi ý của người viết để bạn điều chỉnh theo tổ chức của mình. Bối cảnh hãng xe điện bán ở nhiều thị trường là ví dụ minh hoạ, không mô tả quy trình nội bộ của công ty nào.",
         "## Nhìn lại cả series trong một trang",
@@ -1912,6 +2087,7 @@
         "- A3, đặc tả thành phần AI: intent, slot, ngưỡng tin cậy, function calling, kịch bản agent, guardrail, xử lý khi hiểu sai, bộ dữ liệu đánh giá. A4, trải nghiệm trong xe: giảm xao nhãng, ngân sách độ trễ, hội thoại tự nhiên, chạy khi mất kết nối, viết yêu cầu đo được. A5, phối hợp kỹ thuật và UX: spike, POC, review HMI, RACI, nghi thức làm việc, ngôn ngữ chung, tài liệu bàn giao.",
         "- B1, xác định bài toán AI: cá nhân hoá, dự báo, phát hiện bất thường, khi nào không cần AI, mẫu problem statement. B2, vòng đời dữ liệu: nguồn dữ liệu, kế hoạch tracking, chất lượng dữ liệu, data contract, riêng tư theo từng giai đoạn.",
         "- B3, từ bài toán kinh doanh đến mô hình: đầu vào, đầu ra, nhãn, baseline, chỉ số offline, A/B test, điều kiện vận hành, giám sát. B4, dashboard đo lường: North Star, HEART, AARRR, từ điển chỉ số, dashboard theo người xem, quản trị, tránh chỉ số phù phiếm. B5, tuân thủ dữ liệu cá nhân: riêng tư theo thiết kế, đồng ý, quyền chủ thể, lưu giữ, chuyển dữ liệu xuyên biên giới, DPIA, làm việc với pháp chế.",
+        "- C1, vòng đời phát triển sản phẩm: chín giai đoạn từ khám phá ý tưởng đến ngừng hỗ trợ, BA làm gì và giao tài liệu gì ở mỗi giai đoạn, cổng chuyển giai đoạn có tiêu chí, dual-track agile, mốc chương trình xe và SOP, mô hình chữ V, ASPICE, OTA và quản lý phiên bản, điểm chạm với ISO 26262, UN R155, UN R156, vòng đời mô hình AI với CRISP-DM và MLOps.",
         "Nếu phải tóm cả series vào một câu, đó là: Trưởng phòng BA là người giữ cho mọi người cùng hiểu một vấn đề, từ người lái trong xe đến kỹ sư dữ liệu, và giữ cho mọi quyết định được viết ra, đo được và kiểm chứng được.",
         "## Nguyên tắc cho 90 ngày đầu",
         "Người mới thường muốn chứng minh mình nhanh. Đó là tâm lý dễ hiểu, nhưng thay đổi quá sớm dễ phá vỡ những thứ đang chạy tốt mà bạn chưa kịp hiểu. Ba nguyên tắc sau giúp bạn cân bằng.",
@@ -2049,8 +2225,7 @@
         "Mẫu tài liệu",
         "Quản lý đội",
         "Tổng kết"
-      ],
-      "order": 12
+      ]
     }
   ]
 }
