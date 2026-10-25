@@ -1,0 +1,1313 @@
+{
+  "date": "2026-10-26",
+  "title": "Bác sĩ da liễu thử: CNN cũ 10 năm chẩn đoán ung thư da đúng 62%, hơn hai LLM hàng đầu (42%)",
+  "intro": "Số cuối tuần ít tin lớn từ các lab. Nổi bật là phép thử nhỏ về chẩn đoán ung thư da, hai nhận định trái chiều về việc AI có sinh lời ngoài ngành công nghệ hay không, và cách Cerebras chia mô hình 3 nghìn tỷ tham số lên 59 wafer. Cộng đồng mã nguồn mở và các trang tin cũng đang phản ứng với AI theo hướng gay gắt hơn.",
+  "articles": [
+    {
+      "id": "cnn-10-tuoi-chan-doan-ung-thu-da-tot-hon-llm-hang-dau",
+      "group": "community",
+      "source": "Lynch Lab (blog bác sĩ da liễu)",
+      "url": "https://lynchlab.net/llm-skin-cancer",
+      "discussionUrl": "https://news.ycombinator.com/item?id=50233779",
+      "points": 358,
+      "comments": 180,
+      "publishedAt": "2026-10-25T17:15:38Z",
+      "hot": true,
+      "readMinutes": 4,
+      "tags": [
+        "y tế",
+        "benchmark",
+        "LLM",
+        "thị giác máy tính"
+      ],
+      "titleEn": "A 10-year-old CNN outperforms frontier LLMs for skin cancer diagnosis",
+      "titleVi": "Bác sĩ da liễu thử: mạng CNN cũ 10 năm chẩn đoán tổn thương da đúng 62%, hơn hai LLM hàng đầu chỉ đạt 42%",
+      "summary": "Bác sĩ Magnus Lynch cho GPT-6 Astra, Claude Fable 5.1 và một mạng Inception v3 đã fine-tune xem 200 tổn thương da đã sinh thiết. Mạng nhỏ đoán đúng nhiều hơn rõ rệt. Tác giả nhấn mạnh đây là thử nghiệm nhỏ, chưa phải kết luận lâm sàng.",
+      "keyPoints": [
+        "200 tổn thương da từ bộ dữ liệu MILK10k, đều đã có kết quả sinh thiết, mỗi ca có ảnh lâm sàng và ảnh dermoscopy.",
+        "CNN Inception v3 (ra năm 2015), fine-tune khoảng 20 phút trên 68.011 ảnh, chọn đúng 125 ca (62%); hai LLM chọn đúng 84 và 85 ca (42%).",
+        "Mỗi LLM có một đáp án “ưa thích”: GPT-6 Astra gọi 75 ca là ung thư tế bào đáy dù chỉ có 25 ca thật.",
+        "Cả hai LLM đều từng bảo bệnh nhân có thể xuất viện với một ca u hắc tố ác tính (melanoma).",
+        "Tác giả tự nêu hạn chế: mẫu nhỏ, mỗi ca LLM chạy một lần, các sản phẩm y tế hiện hành dùng mô hình mạnh hơn nhiều."
+      ],
+      "body": [
+        "Magnus Lynch là bác sĩ da liễu tại Guy's Hospital (London). Ông cho hai LLM mạnh nhất tháng 10/2026 là GPT-6 Astra và Claude Fable 5.1 xem 200 tổn thương da, rồi so với một mạng CNN cũ.",
+        "## Cách thử",
+        "- 100 ca cần theo dõi hoặc điều trị: 30 melanoma, 25 ung thư tế bào đáy, 25 ung thư tế bào vảy, 20 dày sừng quang hóa.",
+        "- 100 ca lành tính có thể cho về: 50 nốt ruồi và 50 dày sừng tiết bã.",
+        "- Mọi ca đều đã sinh thiết, kể cả ca lành. Vì vậy đây là những ca khó, vì người ta chỉ cắt khi còn lo ngại.",
+        "- LLM chỉ nhận hai ảnh và một câu hỏi: chẩn đoán khả dĩ nhất trong 6 loại, độ tự tin, lựa chọn thứ hai và có thể cho về không. CNN chọn từ cùng 6 loại.",
+        "## Kết quả",
+        "CNN đoán đúng 125/200 ca. Hai LLM đúng 84 và 85. Nếu tính cả lựa chọn thứ hai, CNN đạt 173, các LLM đạt 134 và 138. Với melanoma, CNN gọi đúng 13/30 ca, LLM gọi đúng 8 và 11.",
+        "Các mô hình sai theo kiểu khác nhau. GPT-6 Astra gọi 75 ca là ung thư tế bào đáy (thực tế 25), kể cả 14 trong 30 ca melanoma. Claude Fable 5.1 gọi 53 ca là dày sừng quang hóa (thực tế 20). Với 17 ca melanoma mà CNN đoán sai, nó thường gọi nhầm là nốt ruồi hoặc dày sừng tiết bã.",
+        "Khi hỏi theo vai bệnh nhân (chỉ có ảnh lâm sàng, hỏi “tôi có cần đi khám không?”), hai LLM khuyên đi khám ở gần như mọi trường hợp, kể cả tổn thương lành.",
+        "## Hạn chế do chính tác giả nêu",
+        "- Mẫu nhỏ: 200 ca đủ thấy xu hướng nhưng không đủ xếp hạng các kết quả sát nhau, và 30 ca melanoma cho khoảng sai số rộng.",
+        "- Mỗi ca LLM chỉ chạy một lần, đáp án có thể đổi giữa các lần chạy.",
+        "- MILK10k công khai từ 2025 nên LLM có thể đã thấy khi huấn luyện, điều này nếu có thì chỉ có lợi cho LLM.",
+        "- Inception v3 chỉ là mốc so sánh. Các sản phẩm được cấp phép dùng mô hình mạnh hơn và cho kết quả tốt hơn đáng kể.",
+        "> Gợi ý của người biên tập: kết quả cho thấy mô hình chuyên biệt nhỏ vẫn có thể thắng LLM đa năng ở một tác vụ thị giác hẹp, nhưng một thử nghiệm của một người, 200 ca, chưa đủ để kết luận cho thực hành lâm sàng.",
+        "> Đây là bài blog cá nhân và chia sẻ trên Hacker News, số liệu chưa được bên thứ ba kiểm chứng. Tác giả cho biết phần phân tích và bản nháp được soạn với Claude Code, và một trong hai LLM được thử cũng của Anthropic."
+      ],
+      "glossary": [
+        {
+          "term": "CNN",
+          "explain": "Mạng nơ-ron tích chập, kiến trúc quen thuộc để nhận dạng ảnh."
+        },
+        {
+          "term": "Dermoscopy",
+          "explain": "Ảnh chụp tổn thương da qua kính phóng đại có chiếu sáng, bác sĩ da liễu dùng để quan sát chi tiết."
+        },
+        {
+          "term": "Melanoma",
+          "explain": "U hắc tố ác tính, loại ung thư da nguy hiểm, cần phát hiện sớm."
+        },
+        {
+          "term": "Fine-tune",
+          "explain": "Huấn luyện tiếp một mô hình đã có sẵn trên dữ liệu của một việc cụ thể."
+        }
+      ]
+    },
+    {
+      "id": "apricitas-viec-lam-sang-tao-my-mat-200-nghin-viec-ai-co-tham-gia-bao-nhieu",
+      "group": "community",
+      "source": "Apricitas Economics",
+      "url": "https://www.apricitas.io/p/ai-and-the-fall-of-the-creative-class",
+      "discussionUrl": "https://news.ycombinator.com/item?id=50226419",
+      "points": 497,
+      "comments": 532,
+      "publishedAt": "2026-10-24T23:11:54Z",
+      "hot": true,
+      "readMinutes": 5,
+      "tags": [
+        "việc làm",
+        "kinh tế",
+        "nghệ thuật"
+      ],
+      "titleEn": "America has lost 200k of jobs in media, film and the arts. How much is AI?",
+      "titleVi": "Mỹ mất hơn 200.000 việc làm trong truyền thông, phim ảnh và nghệ thuật sau bốn năm, nhưng chưa ai chứng minh được AI chịu trách nhiệm bao nhiêu",
+      "summary": "Bản tin kinh tế Apricitas chỉ ra ngành sáng tạo Mỹ đang mất việc theo nhịp mà trước đây chỉ thấy trong các cuộc suy thoái 2001 và 2008. Tác giả cho rằng AI là một yếu tố, nhưng khó tách khỏi các nguyên nhân khác.",
+      "keyPoints": [
+        "Hơn 200.000 việc làm trong ngành “sáng tạo” biến mất trong bốn năm, khoảng 50.000 trong năm gần nhất.",
+        "Điện ảnh và truyền hình mất hơn 100.000 việc, gần một phần ba tổng số của ngành.",
+        "Tác giả khó tách tác động của AI khỏi sáp nhập, chuyển sản xuất ra nước ngoài và sự lên ngôi của người sáng tạo nội dung trên mạng xã hội.",
+        "Khoảng 32% lao động ngành nghệ thuật, giải trí dùng AI tạo sinh, thấp hơn mức trung bình 62% của mọi ngành.",
+        "Ngoài truyền thông, ngành công nghệ là nơi thấy rõ nhất việc mất việc liên quan đến AI; các ngành khác nhìn chung tác động còn nhỏ."
+      ],
+      "body": [
+        "Bài của Apricitas cho thấy ngành truyền thông, phim ảnh và nghệ thuật Mỹ mất hơn 200.000 việc trong bốn năm. Mức mất việc và độ dài của đợt giảm này chỉ có trước đây vào các cuộc suy thoái 2001 và 2008, trong khi hiện nay kinh tế chung chưa suy thoái.",
+        "## Khó chứng minh vai trò của AI",
+        "Các hãng truyền thông thường không nói rõ họ dùng AI đến đâu, một phần để tránh phản ứng của công chúng, một phần để giữ cơ sở pháp lý cho bản quyền. Ngoài ra còn nhiều nguyên nhân khác: sáp nhập ở Hollywood, chuyển sản xuất ra nước ngoài, mạng xã hội lấy mất thời gian xem. Dấu hiệu rõ nhất theo tác giả là mọi mảng nghệ thuật số đều mất việc, còn giải trí trực tiếp vẫn tăng.",
+        "## Bài học từ làn sóng internet",
+        "Tác giả so sánh với thời Napster. Âm nhạc sống sót nhờ biểu diễn trực tiếp, còn video và báo chí không có chỗ dựa tương tự. Báo giấy Mỹ từng có khoảng nửa triệu người, nay giảm gần 85%. Kịch bản xấu nhất là các doanh nghiệp truyền thông bị xé nhỏ sản phẩm và mất doanh thu như báo chí.",
+        "## Những điều chưa chắc chắn",
+        "Công nghệ đôi khi tạo hiệu ứng bất ngờ: doanh số sách tăng khoảng 70% trong sáu năm nhờ TikTok. Tác giả cũng cho rằng tác động kinh tế vĩ mô của nghệ thuật là nhỏ, còn tác động lên văn hóa mới là lớn. Ông xem ngành sáng tạo như tín hiệu sớm cho các công việc “gần sáng tạo” khác. Tại Mỹ, ngành công nghệ đã mất việc liên tục từ 2022 khi các coding agent thay một phần lập trình viên, trong khi luật và kỹ thuật vẫn tuyển thêm.",
+        "> Gợi ý của người biên tập: đây là bài phân tích và nhận định của một bản tin kinh tế, không phải nghiên cứu nhân quả. Con số mất việc là số liệu thống kê, còn phần quy cho AI là suy đoán của tác giả."
+      ],
+      "glossary": [
+        {
+          "term": "Kinh tế vĩ mô",
+          "explain": "Bức tranh chung của toàn nền kinh tế, khác với từng ngành hay từng công ty."
+        },
+        {
+          "term": "Coding agent",
+          "explain": "Công cụ AI tự viết, chạy và sửa mã thay cho lập trình viên."
+        }
+      ]
+    },
+    {
+      "id": "apollo-ai-khong-mang-lai-loi-nhuan-cho-doanh-nghiep-ngoai-cong-nghe",
+      "group": "press",
+      "source": "TechCrunch",
+      "url": "https://techcrunch.com/2026/10/25/ai-delivers-zero-financial-payoff-to-most-companies-according-to-apollo-economist/",
+      "discussionUrl": "https://news.ycombinator.com/item?id=50224463",
+      "comments": 645,
+      "publishedAt": "2026-10-25T16:57:32Z",
+      "hot": true,
+      "readMinutes": 2,
+      "tags": [
+        "kinh tế",
+        "doanh nghiệp",
+        "năng suất"
+      ],
+      "titleEn": "AI delivers ‘zero financial payoff’ to most companies, Apollo economist says",
+      "titleVi": "Kinh tế trưởng Apollo: AI chưa mang lại “lợi ích tài chính nào” cho doanh nghiệp Mỹ ngoài ngành công nghệ",
+      "summary": "Torsten Slok, kinh tế trưởng quỹ Apollo, xem nhóm S&P 500 bỏ bảy tập đoàn công nghệ lớn và thấy biên lợi nhuận, doanh thu trên mỗi lao động gần như đi ngang. Ông nghi ngờ đây chỉ là chuyện chậm chân.",
+      "keyPoints": [
+        "Slok gọi nhóm S&P 500 trừ Alphabet, Amazon, Apple, Meta, Microsoft, Nvidia và Tesla là “S&P 493”.",
+        "Ở nhóm này, biên lợi nhuận và doanh thu trên mỗi lao động có vẻ đi ngang, chưa thấy bằng chứng AI tăng năng suất.",
+        "Ông nói AI cho “zero financial payoff” với các công ty Mỹ ngoài công nghệ dù đầu tư lớn.",
+        "Lập luận: AI là “máy tính tuyệt vời”, nhưng trong kinh doanh trí tuệ chủ yếu là phán đoán, trách nhiệm, niềm tin."
+      ],
+      "body": [
+        "Theo TechCrunch, Torsten Slok, kinh tế trưởng của Apollo Global Management, vừa đăng một ghi chú về tác động tài chính của AI. Apollo từng là chủ của TechCrunch.",
+        "Slok tập trung vào nhóm ông gọi là “S&P 493”, tức S&P 500 bỏ Alphabet, Amazon, Apple, Meta, Microsoft, Nvidia và Tesla. Ở nhóm này, biên lợi nhuận và doanh thu trên mỗi lao động có vẻ đi ngang, và ông không thấy bằng chứng AI nâng năng suất.",
+        "Ông viết rằng dù đầu tư lớn và nhiều kỳ vọng, AI chưa mang lại “zero financial payoff” cho nước Mỹ doanh nghiệp ngoài lĩnh vực công nghệ.",
+        "Có thể các công ty này chỉ chậm hơn các hãng công nghệ lớn? Slok tỏ ra hoài nghi. Theo ông, doanh nghiệp sẽ khó “biến trí tuệ ngày càng rẻ thành tăng trưởng doanh thu và biên lợi nhuận cao hơn”. Ông viết AI có thể là một chiếc máy tính tuyệt vời, nhưng trong kinh doanh trí tuệ chủ yếu là phán đoán, và AI không hiểu trách nhiệm, niềm tin, văn hóa, luật bất thành văn, đánh đổi đạo đức hay sự công bằng.",
+        "TechCrunch cho biết các nghiên cứu gần đây cũng chưa thấy AI tạo ra mức tăng năng suất đáng kể.",
+        "> Bản ghi chú gốc của Apollo trên trang web không đọc được toàn văn (chỉ có phần miễn trừ trách nhiệm), nên bài này dựa trên tường thuật của TechCrunch. Trên Hacker News, bài của Apollo được 608 điểm và 645 bình luận."
+      ],
+      "glossary": [
+        {
+          "term": "S&P 500",
+          "explain": "Chỉ số gồm 500 công ty niêm yết lớn nhất của Mỹ."
+        },
+        {
+          "term": "Biên lợi nhuận",
+          "explain": "Phần trăm lợi nhuận trên doanh thu."
+        }
+      ]
+    },
+    {
+      "id": "cerebras-chay-mo-hinh-3-nghin-ty-tham-so-tren-59-wafer",
+      "group": "lab",
+      "source": "Cerebras",
+      "url": "https://www.cerebras.ai/blog/how-we-deploy-trillion-parameter-frontier-models-on-cerebras",
+      "discussionUrl": "https://news.ycombinator.com/item?id=50227356",
+      "comments": 127,
+      "publishedAt": "2026-10-25T01:33:49Z",
+      "hot": true,
+      "readMinutes": 4,
+      "tags": [
+        "hạ tầng",
+        "suy luận",
+        "chip AI"
+      ],
+      "titleEn": "How Cerebras Deploys Trillion-Parameter AI Models",
+      "titleVi": "Cerebras giải thích cách chia Kimi K3 (3 nghìn tỷ tham số) lên 59 wafer để chạy 1.000-2.000 token mỗi giây",
+      "summary": "Cerebras lấy mô hình mở Kimi K3 làm ví dụ: mỗi wafer WSE-3T chỉ có 44 GB SRAM nên mô hình được chia theo tầng, xếp thành đường ống trên nhiều wafer. Bài là minh hoạ tính toán của hãng, không phải số đo thực tế.",
+      "keyPoints": [
+        "Mỗi wafer WSE-3T có 44 GB bộ nhớ trên chip, trong khi mô hình nghìn tỷ tham số cần hàng terabyte chỉ cho trọng số.",
+        "Ví dụ Kimi K3: khoảng 3 nghìn tỷ tham số, 93 tầng (69 tầng linear attention, 24 tầng dense), lượng tử hóa trọng số 4 bit, KV cache 8 bit.",
+        "Mỗi tầng khoảng 16 GB: một tầng dense mỗi wafer (chừa chỗ cho KV cache), hai tầng linear mỗi wafer, tổng 59 wafer.",
+        "Trọng số đứng yên trên chip; chỉ activation đi từ wafer này sang wafer khác qua RDMA trên Ethernet, khoảng 2 micro giây mỗi bước.",
+        "Nhiều yêu cầu cùng lúc chạy như dây chuyền; số yêu cầu đồng thời bị giới hạn bởi bộ nhớ dành cho KV cache."
+      ],
+      "body": [
+        "Cerebras trả lời câu hỏi họ hay gặp: làm sao chạy mô hình rất lớn trên chip wafer-scale. Một wafer WSE-3T có 44 GB bộ nhớ trên chip, còn trọng số của mô hình nghìn tỷ tham số cần hàng terabyte. Hãng nói họ chia mô hình ra nhiều wafer để chạy mô hình nhiều nghìn tỷ tham số ở tốc độ 1.000 đến 2.000 token mỗi giây hoặc hơn.",
+        "## Ví dụ với Kimi K3",
+        "Bài dùng mô hình mã nguồn mở Kimi K3 làm ví dụ minh hoạ, với giả định yêu cầu trung bình 256 nghìn token, trọng số 4 bit và KV cache 8 bit. Kimi K3 có khoảng 3 nghìn tỷ tham số, 69 tầng linear attention và 24 tầng dense, tức 93 tầng. Mỗi tầng nặng khoảng 16 GB.",
+        "- Tầng dense phải lưu key và value của mọi token cho mọi yêu cầu, nên mỗi wafer đặt một tầng dense và để phần SRAM còn lại cho KV cache.",
+        "- Tầng linear attention chỉ giữ một trạng thái cố định cho mỗi yêu cầu, nên một wafer chứa được hai tầng (32 GB).",
+        "- Tổng cộng 35 wafer cho tầng linear và 24 wafer cho tầng dense, là 59 wafer.",
+        "## Cách chạy",
+        "Cerebras chạy mô hình theo kiểu đường ống. Trọng số nằm yên trên chip, chỉ activation chuyển giữa các wafer, qua RDMA trên Ethernet, khoảng 2 micro giây mỗi bước nhảy. Mỗi wafer là một công đoạn trên dây chuyền, nhiều yêu cầu cùng đi qua, mỗi công đoạn xử lý một yêu cầu khác nhau, nên không bị chạy ở batch size bằng một. Micro-batch nhỏ giúp mỗi yêu cầu nhanh hơn, micro-batch lớn giúp tăng tổng thông lượng.",
+        "Số yêu cầu đồng thời tối đa phụ thuộc vào lượng SRAM còn lại cho KV cache trên các wafer có tầng dense. Hãng cũng lưu ý rằng số yêu cầu đồng thời hay batch size chưa nói hết hiệu quả; thước đo có ý nghĩa hơn là số token trên giây trên mỗi megawatt ở cùng tốc độ sinh.",
+        "> Đây là bài của chính Cerebras, và các con số (59 wafer, 16 GB mỗi tầng...) là phép tính minh hoạ của hãng. Bài không đưa ra số đo hiệu năng độc lập."
+      ],
+      "glossary": [
+        {
+          "term": "Wafer-scale",
+          "explain": "Chip làm trên nguyên cả tấm wafer silicon thay vì cắt thành nhiều chip nhỏ."
+        },
+        {
+          "term": "SRAM",
+          "explain": "Bộ nhớ nhanh nằm ngay trên chip, dung lượng nhỏ hơn nhiều so với HBM hay DRAM."
+        },
+        {
+          "term": "KV cache",
+          "explain": "Bộ nhớ đệm lưu key và value của các token đã xử lý để không phải tính lại khi sinh token tiếp theo."
+        },
+        {
+          "term": "Linear attention",
+          "explain": "Dạng attention giữ trạng thái kích thước cố định, chi phí không tăng theo độ dài ngữ cảnh."
+        },
+        {
+          "term": "Activation",
+          "explain": "Kết quả trung gian giữa các tầng của mạng nơ-ron."
+        }
+      ]
+    },
+    {
+      "id": "borcherds-berkeley-ngung-cham-bai-tap-ve-nha-vi-ai",
+      "group": "press",
+      "source": "The Daily Californian",
+      "url": "https://www.dailycal.org/news/campus/academics/ai-use-leads-uc-berkeley-math-professor-to-see-no-point-in-grading-homework/article_bdf1eae2-c08b-491f-b9f1-81a7cea177de.html",
+      "discussionUrl": "https://news.ycombinator.com/item?id=50233304",
+      "comments": 257,
+      "publishedAt": "2026-10-25T16:28:26Z",
+      "hot": true,
+      "readMinutes": 2,
+      "tags": [
+        "giáo dục",
+        "toán học",
+        "ý kiến"
+      ],
+      "titleEn": "AI use leads UC Berkeley math professor to see 'no point' in grading homework",
+      "titleVi": "Giáo sư Toán Berkeley, huy chương Fields Richard Borcherds, không còn chấm đúng sai bài tập về nhà vì sinh viên dùng AI",
+      "summary": "Trả lời báo sinh viên Daily Californian, Borcherds nói ông chỉ chấm theo việc có nộp bài, vì nhiều sinh viên dùng AI để đạt điểm cao. Ông cho rằng nếu AI cứ tiến bộ thế này, vài năm nữa sẽ không còn gì nhà toán học làm mà AI không làm tốt hơn.",
+      "keyPoints": [
+        "Borcherds, giáo sư UC Berkeley và người đoạt huy chương Fields, không còn chi tiền thuê người chấm đúng sai bài tập.",
+        "Ông chấm theo hoàn thành, thừa nhận đây là hệ thống “không tốt lắm” nhưng chưa có cách khác.",
+        "Ông nói không còn biết nên khuyên sinh viên học toán hay không.",
+        "Trường đã thử công cụ phát hiện AI như Turnitin và Rumi nhưng thấy chưa đủ tốt để dùng chung cho cả trường."
+      ],
+      "body": [
+        "Richard Borcherds, giáo sư UC Berkeley và người đoạt huy chương Fields, không còn chấm bài tập về nhà theo đúng sai. Theo The Daily Californian, ông thấy nhiều sinh viên dùng AI để liên tục đạt điểm cao nên cho rằng “không còn ý nghĩa” khi trả tiền cho người chấm, vì việc dùng AI giờ là không tránh khỏi.",
+        "Ông nói điều này trong cuộc phỏng vấn hôm thứ Ba, sau khi OpenAI thông báo các AI agent dường như đã giải được bài toán tồn tại và trơn của phương trình Navier-Stokes. Borcherds nói nếu AI tiếp tục tiến bộ như hiện nay, vài năm nữa sẽ không còn gì nhà toán học làm mà AI không làm tốt hơn.",
+        "Hiện ông chấm theo việc sinh viên có nộp bài hay không. Ông thừa nhận đó là hệ thống “không tốt lắm” nhưng chưa có lựa chọn khác. Ông cũng không biết nên khuyên sinh viên có theo ngành toán hay không: năm năm trước nghề toán còn được xem là một trong những nghề an toàn nhất trước AI, và ông kể ngay cả ChatGPT cũng nói nó không biết điều gì sẽ xảy ra.",
+        "Ông cho rằng hệ thống học thuật có nhiều “quán tính”, nên không ngạc nhiên nếu khoa toán gần như giữ nguyên thêm vài năm, giống các tạp chí giấy vẫn xuất bản dù ông gọi chúng là “hoàn toàn vô nghĩa” suốt hai thập kỷ.",
+        "## Chính sách của trường",
+        "Hội đồng học thuật Berkeley yêu cầu giảng viên ghi rõ quy định dùng AI trong đề cương môn học, còn chính sách cụ thể tuỳ từng môn. Nhà trường đã thử các công cụ phát hiện AI như Turnitin và Rumi nhưng thấy chưa đủ tốt để chuẩn hoá. Giảng viên có thể tham khảo cơ sở dữ liệu mẫu trong AI Hub của trường.",
+        "> Phát biểu của Borcherds là ý kiến cá nhân, được báo thuật lại. Nội dung về việc OpenAI giải bài toán Navier-Stokes là lời thuật lại trong bài, chúng tôi chưa tự kiểm chứng."
+      ],
+      "glossary": [
+        {
+          "term": "Huy chương Fields",
+          "explain": "Giải thưởng danh giá nhất của toán học, trao bốn năm một lần cho các nhà toán học trẻ."
+        },
+        {
+          "term": "Navier-Stokes",
+          "explain": "Phương trình mô tả chuyển động của chất lưu; bài toán về sự tồn tại và tính trơn của nghiệm vẫn là một bài toán mở nổi tiếng."
+        }
+      ]
+    },
+    {
+      "id": "reddit-r-opensource-cam-du-an-dung-ai-va-nguoi-khong-noi-tieng-anh",
+      "group": "press",
+      "source": "The Verge",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/1018217/reddit-opensource-ai-ban",
+      "discussionUrl": "https://news.ycombinator.com/item?id=50231722",
+      "comments": 104,
+      "publishedAt": "2026-10-25T13:25:32.000Z",
+      "hot": true,
+      "readMinutes": 2,
+      "tags": [
+        "mã nguồn mở",
+        "cộng đồng",
+        "quy định"
+      ],
+      "titleEn": "r/opensource just banned AI, non-English speakers, and more",
+      "titleVi": "Subreddit r/opensource cấm dự án dùng AI, dự án mới dưới một năm và người không nói tiếng Anh, cộng đồng phản ứng gay gắt",
+      "summary": "Quản trị viên r/opensource đăng luật mới tối thứ Bảy: cấm dự án “dùng AI, do AI làm hoặc dành cho AI”, chỉ nhận dự án trên một năm tuổi, còn bảo trì và có nhiều người đóng góp. Cộng đồng phản đối và một subreddit đối thủ ra đời.",
+      "keyPoints": [
+        "Luật mới cấm dự án dùng AI, do AI tạo hoặc dành cho AI; quản trị viên nói có chỗ cho ngoại lệ như tính năng trợ năng dùng AI.",
+        "Dự án đăng phải có ít nhất một năm tuổi, còn được bảo trì và có nhiều người đóng góp, nên các dự án cá nhân mới không đăng được.",
+        "Quản trị viên nói không còn nhận yêu cầu tìm người bảo trì hay người đóng góp.",
+        "Người không nói tiếng Anh bị khuyên tìm cộng đồng khác vì không phân biệt được bài do AI viết hay do AI dịch.",
+        "Cộng đồng chỉ ra Linux kernel đã có mã do AI tạo; một subreddit đối thủ r/trueopensource được lập."
+      ],
+      "body": [
+        "Theo The Verge, quản trị viên r/opensource đăng luật đăng bài mới vào tối thứ Bảy. Bài mở đầu: dự án nào “dùng AI, do AI làm hoặc dành cho AI” đều không được chào đón vì “AI như hiện nay không phù hợp với cộng đồng mã nguồn mở này”.",
+        "Luật mới gây tranh cãi dữ dội trong phần bình luận, và một subreddit đối thủ, r/trueopensource, đã được lập. Quản trị viên Wolvereness vào phần bình luận giải thích rằng có chỗ cho sự linh hoạt và thực thi có chọn lọc, ví dụ phần mềm có tính năng trợ năng dùng AI như phụ đề tự động. Nhiều người phản đối vẫn cho luật quá rộng, mơ hồ, và chỉ ra Linux kernel hiện đã chứa một phần mã do AI sinh, nên cũng có thể bị cấm theo luật này.",
+        "## Các giới hạn khác",
+        "- Dự án đăng phải ít nhất một năm tuổi, còn được bảo trì và có nhiều người đóng góp. Điều này loại các nhà phát triển đơn lẻ có dự án mới đang tìm người giúp.",
+        "- Quản trị viên nói không còn nhận yêu cầu tìm người bảo trì hay người đóng góp.",
+        "- Người không nói tiếng Anh được khuyên tìm cộng đồng khác: “Chúng tôi không phân biệt được bài do AI viết hay do AI dịch”, và người không biết tiếng Anh cũng không tự kiểm tra bản dịch được.",
+        "> Nội dung luật lấy từ tường thuật của The Verge. Chúng tôi chưa đọc bài đăng gốc trên Reddit. Trên Hacker News, chủ đề này cũng được người dùng chia sẻ."
+      ],
+      "glossary": [
+        {
+          "term": "Subreddit",
+          "explain": "Một diễn đàn con trên Reddit, do quản trị viên tự đặt luật."
+        },
+        {
+          "term": "Mã nguồn mở",
+          "explain": "Phần mềm công khai mã để ai cũng có thể xem, sửa, đóng góp."
+        }
+      ]
+    },
+    {
+      "id": "verge-ai-search-cua-google-khien-cac-trang-tin-mat-luu-luong",
+      "group": "press",
+      "source": "The Verge",
+      "url": "https://www.theverge.com/column/1017983/google-ai-search-online-publishing",
+      "publishedAt": "2026-10-25T12:00:00.000Z",
+      "hot": true,
+      "readMinutes": 4,
+      "tags": [
+        "tìm kiếm",
+        "báo chí",
+        "Google"
+      ],
+      "titleEn": "Google’s AI search changes upended online publishing",
+      "titleVi": "The Verge tổng hợp: AI Overviews và AI Mode của Google làm các trang tin mất lưu lượng, kiện tụng phần lớn chưa thành công",
+      "summary": "Bài The Stepback điểm lại từ khi Google đưa AI Overviews (2024) và AI Mode (5/2025) đến nay: lưu lượng từ Google về các trang tin giảm, Google nói “web đang phát triển”, còn nhà xuất bản chuyển sang mạng xã hội, bản tin và thuê bao.",
+      "keyPoints": [
+        "AI Overviews ra năm 2024, AI Mode ra tháng 5/2025; cả hai đặt tóm tắt do AI viết lên đầu kết quả tìm kiếm.",
+        "Các báo cáo cho thấy lưu lượng về nhiều trang tin giảm; DMG Media nói tỷ lệ nhấp chuột giảm tới 89% trong tháng 6-7/2025.",
+        "Google nói lượng nhấp “tương đối ổn định” và “web đang phát triển”, trái với số liệu của nhà xuất bản.",
+        "Nhiều vụ kiện của nhà xuất bản chưa thành công; Google có chương trình cấp phép nội dung với khoảng 400 nhà xuất bản và đang thử trả tiền cho nội dung dùng trong AI search."
+      ],
+      "body": [
+        "Bài trong chuyên mục The Stepback của The Verge nhìn lại mối quan hệ giữa Google và nhà xuất bản trực tuyến. Trước đây hai bên có lợi cho nhau: nhà xuất bản làm đầy chỉ mục của Google, còn Google gửi lại lưu lượng. Điều đó thay đổi từ khi Google đưa AI Overviews (2024) và AI Mode (5/2025) vào tìm kiếm.",
+        "## Tình hình hiện nay",
+        "Theo các báo cáo mà bài dẫn, lưu lượng về nhiều trang tin sụt giảm. Similarweb cho thấy tỷ lệ lưu lượng tìm kiếm vào The New York Times giảm từ 44% xuống 35,5% sau ba năm. 19 thành viên của Digital Content Next mất từ 1 đến 25% lưu lượng từ Google giữa tháng 5 và 6/2025. DMG Media nói với cơ quan cạnh tranh Anh rằng tỷ lệ nhấp giảm tới 89% giữa tháng 6 và 7/2025. Pew Research cũng thấy người dùng ít nhấp vào liên kết hơn khi thấy AI Overview.",
+        "Google khẳng định ngược lại: người đứng đầu Search Liz Reid nói lượng nhấp “tương đối ổn định”, còn Nick Fox nói “web đang phát triển”.",
+        "## Kiện tụng và điều chỉnh",
+        "Nhiều vụ kiện chưa thành công: thẩm phán Amit Mehta bác vụ chống độc quyền của Chegg và Penske Media, và bác một vụ kiện tập thể của các báo ở Arkansas. Nhà xuất bản chuyển sang mạng xã hội, bản tin, thuê bao, hoặc dùng công tắc để không xuất hiện trong AI Mode và AI Overviews. Google cho nguồn nổi bật hơn, đặt liên kết lên cao hơn, có chương trình News AI cấp phép nội dung với khoảng 400 nhà xuất bản và, theo The Information và Digiday, đang thử trả tiền cho nội dung dùng trong AI search.",
+        "> Các số liệu trong bài do The Verge dẫn lại từ nhiều báo cáo khác, chúng tôi không kiểm chứng riêng."
+      ],
+      "glossary": [
+        {
+          "term": "AI Overviews",
+          "explain": "Phần tóm tắt do AI viết, hiện ở đầu kết quả tìm kiếm của Google."
+        },
+        {
+          "term": "AI Mode",
+          "explain": "Chế độ tìm kiếm của Google dạng trò chuyện với chatbot thay cho danh sách liên kết."
+        },
+        {
+          "term": "Tỷ lệ nhấp (CTR)",
+          "explain": "Tỷ lệ người xem kết quả mà nhấp vào đường dẫn."
+        }
+      ]
+    },
+    {
+      "id": "oai-math-revised-cong-dong-toan-hoc-sua-lai-bai-viet-toan-cua-openai",
+      "group": "community",
+      "source": "Blog Terence Tao",
+      "url": "https://terrytao.wordpress.com/2026/10/24/oai-math-revised-a-community-hub-for-revising-openais-math-write-ups/",
+      "discussionUrl": "https://news.ycombinator.com/item?id=50222283",
+      "points": 51,
+      "comments": 41,
+      "publishedAt": "2026-10-24T15:35:17Z",
+      "readMinutes": 1,
+      "tags": [
+        "toán học",
+        "cộng đồng",
+        "mã nguồn mở"
+      ],
+      "titleEn": "oai-math-revised: a community hub for revising OpenAI’s math write-ups",
+      "titleVi": "Nhóm nhà toán học lập kho chung để sửa các bài viết toán của OpenAI vì khó đọc và thiếu trích dẫn",
+      "summary": "Bốn tác giả khách, đăng trên blog của Terence Tao, mở kho oai-math-revised để cộng đồng cùng viết lại các bài trình bày toán của OpenAI. Họ mời cả sinh viên, giảng viên và người yêu toán tham gia.",
+      "keyPoints": [
+        "Các bài viết toán của OpenAI tại github.com/openai/math bị cho là khó hiểu và có trích dẫn chưa đầy đủ.",
+        "Kho oai-math-revised là nỗ lực chung của cộng đồng toán học nhằm cải thiện các bài này.",
+        "Đối tượng tham gia: sinh viên, postdoc, giáo sư và người yêu toán.",
+        "Nhóm cũng tìm người làm admin hoặc reviewer theo từng nhóm chủ đề trong tệp tổng quan của OpenAI."
+      ],
+      "body": [
+        "Đây là bài đăng khách trên blog của Terence Tao, do Abhinav Nellore, Johannes Schmitt, Soledad Villar và Rachel Ward viết.",
+        "Các tác giả nhận xét rằng những bài viết toán của OpenAI (kho github.com/openai/math) có thể khó hiểu và có phần trích dẫn chưa đầy đủ. Kho mới oai-math-revised hướng tới một nỗ lực “bao trùm” để cải thiện các bài này, và mời cộng đồng toán học rộng rãi, gồm sinh viên, postdoc, giáo sư và người yêu toán, cùng tham gia.",
+        "Kho có thể xem tại một trang web riêng. Nhóm cũng mời những ai muốn làm admin hoặc reviewer gửi email, kèm theo hạng mục nào trong tệp tổng quan (overview.pdf) của OpenAI mà mình phù hợp để thẩm định.",
+        "> Bài gốc ngắn và chỉ giới thiệu dự án. Chúng tôi không có thông tin về nội dung các bài toán hay chất lượng của bản sửa."
+      ],
+      "glossary": [
+        {
+          "term": "Postdoc",
+          "explain": "Nhà nghiên cứu đã có bằng tiến sĩ và đang làm nghiên cứu sau tiến sĩ."
+        },
+        {
+          "term": "Reviewer",
+          "explain": "Người thẩm định, kiểm tra nội dung trước khi chấp nhận thay đổi."
+        }
+      ]
+    },
+    {
+      "id": "thinkrail-jetbrains-ide-cho-agent-dung-git-worktree-va-spec-graph",
+      "group": "community",
+      "source": "ThinkRail (JetBrains InnovationHub)",
+      "url": "https://thinkrail.ai/",
+      "discussionUrl": "https://news.ycombinator.com/item?id=50219186",
+      "points": 56,
+      "comments": 81,
+      "publishedAt": "2026-10-24T08:08:42Z",
+      "readMinutes": 3,
+      "tags": [
+        "công cụ",
+        "coding agent",
+        "mã nguồn mở"
+      ],
+      "titleEn": "ThinkRail — the agentic IDE that gets better every time you use it",
+      "titleVi": "JetBrains mở mã ThinkRail: IDE cho coding agent, mỗi agent làm việc trong một git worktree riêng và đọc “đồ thị đặc tả” của dự án",
+      "summary": "ThinkRail là dự án của JetBrains InnovationHub, giấy phép Apache-2.0. Mỗi workspace là một git worktree, agent đọc các tệp SPEC.md liên kết thành đồ thị để nắm ý định của dự án. Thông tin trong bài lấy từ trang giới thiệu của chính dự án.",
+      "keyPoints": [
+        "Mỗi workspace là một git worktree với nhánh và thư mục làm việc riêng, nên nhiều agent chạy song song mà không làm bẩn nhánh chính.",
+        "Dự án lưu ý định trong các tệp SPEC.md có frontmatter, liên kết thành đồ thị mục tiêu, kiến trúc, module, nhiệm vụ.",
+        "Agent là pi coding agent chạy trong cùng tiến trình; ThinkRail lo workspace, trình soạn thảo và giao thức.",
+        "Giao diện gồm tab Monaco, cây tệp, bản diff trực tiếp và terminal gắn với từng worktree.",
+        "Cài bằng script, chạy lệnh thinkrail để mở giao diện web; cần git và một nhà cung cấp pi đã xác thực."
+      ],
+      "body": [
+        "ThinkRail là dự án mã nguồn mở của JetBrains InnovationHub (Apache-2.0), giới thiệu như một “IDE agent” ngày càng tốt hơn khi dùng.",
+        "## Worktree cho agent",
+        "Mỗi dự án là một repo git cục bộ, mỗi workspace là một git worktree cắt từ repo đó, tạo bằng một cú nhấp. Mỗi workspace có nhánh và thư mục làm việc riêng nên tệp, diff, terminal và hội thoại đều gắn với nó. Có thể chạy nhiều agent song song; phần lộn xộn của mỗi agent nằm trên nhánh của nó và nhánh chính vẫn sạch cho tới khi bạn quyết định gộp.",
+        "## Đặc tả làm chuẩn",
+        "Mỗi module có một tệp SPEC.md với frontmatter liên kết vào một đồ thị gồm mục tiêu, kiến trúc, module và nhiệm vụ. Tiện ích pi-spec-graph kèm theo cho agent các công cụ spec_* để tìm kiếm, điều hướng và cập nhật đồ thị, còn tab Specs vẽ đồ thị của worktree hiện tại. Đây là markdown thuần, lưu cùng mã nguồn.",
+        "## Kiến trúc và giao diện",
+        "ThinkRail gọi mình là “host mỏng”. Pi coding agent chạy trong cùng tiến trình và lo mô hình, skill, nén ngữ cảnh và chi phí, còn ThinkRail lo workspace, trình soạn thảo và giao thức. Bài nhấn mạnh ThinkRail không tự ghép prompt sau lưng người dùng. Giao diện có tab Monaco (engine của VS Code), cây tệp, diff trực tiếp và terminal. Mỗi workspace có thể có nhiều phiên chat chạy đồng thời, chọn mô hình theo phiên và xem token, chi phí.",
+        "Cài đặt qua script cho macOS, Linux (Ubuntu 24.04+), Windows và WSL.",
+        "> Phần mô tả lấy từ trang giới thiệu của chính dự án, chưa có đánh giá độc lập. Trên Hacker News đây là chia sẻ của người dùng."
+      ],
+      "glossary": [
+        {
+          "term": "Git worktree",
+          "explain": "Tính năng của git cho phép có nhiều thư mục làm việc từ cùng một repo, mỗi thư mục một nhánh."
+        },
+        {
+          "term": "IDE",
+          "explain": "Môi trường phát triển tích hợp: soạn thảo, chạy, gỡ lỗi mã trong một ứng dụng."
+        },
+        {
+          "term": "Monaco",
+          "explain": "Engine soạn thảo mã nguồn mở đứng sau VS Code."
+        }
+      ]
+    },
+    {
+      "id": "wired-phong-trao-chong-data-center-o-my-hoc-gi-tu-nuoc-ngoai",
+      "group": "press",
+      "source": "Wired",
+      "url": "https://www.wired.com/story/what-the-us-anti-data-center-movement-can-learn-from-everywhere-else/",
+      "publishedAt": "2026-10-25T10:00:00.000Z",
+      "readMinutes": 5,
+      "tags": [
+        "data center",
+        "năng lượng",
+        "chính sách"
+      ],
+      "titleEn": "What the US Movement Against Data Centers Can Learn From Abroad",
+      "titleVi": "Phỏng vấn Paris Marx: Ireland, Hà Lan và Singapore đã gặp rắc rối với data center từ trước, nước Mỹ đang lặp lại bài học đó",
+      "summary": "Wired phỏng vấn Paris Marx, tác giả sách “Hyperscale”, về phong trào phản đối data center khi nó trở thành chủ đề của bầu cử giữa kỳ Mỹ. Marx cho rằng AI đang ở trong bong bóng và chính phủ nên siết quy định cả với data center lẫn sản phẩm AI. Đây là ý kiến của người được phỏng vấn.",
+      "keyPoints": [
+        "Hà Lan và Singapore đã có lệnh tạm ngừng data center từ 2019, Dublin từ 2021 khi nhà vận hành lưới điện nói không còn đủ công suất.",
+        "Ở Ireland, ngành này chuyển sang đường ống khí đốt, nhà máy điện khí riêng và vận động cho phép tư nhân xây đường dây điện.",
+        "Ở The Dalles (Oregon), Google từng giữ kín số liệu nước; khi công bố mới biết hãng dùng 29% lượng nước của cộng đồng.",
+        "Marx lo nếu bong bóng AI vỡ, các nhà máy điện khí sẽ còn lại và đi tìm khách hàng mới, trong khi chip nhanh lỗi thời.",
+        "Ông kêu gọi quy định chặt hơn cho data center và cho cả sản phẩm AI; ví dụ thay thế là dự án nhận dạng giọng nói tiếng Māori ở New Zealand."
+      ],
+      "body": [
+        "Bài phỏng vấn của Wired với Paris Marx, người dẫn podcast Tech Won’t Save Us và tác giả sách “Hyperscale”, xuất hiện đúng lúc data center là một chủ đề của bầu cử giữa kỳ Mỹ chưa đầy hai tuần nữa.",
+        "## Bài học từ nước ngoài",
+        "Marx nhắc rằng Hà Lan và Singapore đã có lệnh tạm ngừng từ 2019, và Dublin ra lệnh tương tự năm 2021 khi nhà vận hành lưới điện nói không còn đủ công suất. Ngành data center sau đó tìm cách khác: xây ở nơi khác tại Ireland, dùng mạng khí đốt, xây nhà máy điện khí riêng và vận động để luật cho phép tư nhân xây đường điện. Ông thấy điều tương tự đang diễn ra ở Mỹ với các nhà máy khí tư nhân.",
+        "Ví dụ khác là The Dalles (Oregon): Google từng nhờ hội đồng thành phố giữ kín số liệu dùng nước gần một năm; khi công bố mới biết hãng dùng 29% lượng nước của cộng đồng.",
+        "## Nếu bong bóng vỡ",
+        "Marx cho rằng AI đang ở trong bong bóng. Ông lo các nhà máy khí được xây để cấp điện sẽ vẫn tồn tại và đi tìm khách hàng mới, còn data center xây cho AI có thể lỗi thời vì chip phải thay sau vài năm. Ông dẫn lần dư thừa data center thời dotcom, khi Equinix mua lại nhiều cơ sở.",
+        "## Hướng khác",
+        "Ông muốn chính phủ siết quy định với data center và đi kèm quy định với chính sản phẩm AI. Ông nêu ví dụ cộng đồng ở New Zealand xây mô hình nhận dạng giọng nói tiếng Māori trên nhà cung cấp đám mây địa phương, và đặt câu hỏi cần bao nhiêu năng lực tính toán là thật sự chính đáng.",
+        "> Các nhận định trong bài là quan điểm của Paris Marx, một người phê phán Big Tech; chúng tôi không kiểm chứng riêng các số liệu."
+      ],
+      "glossary": [
+        {
+          "term": "Data center",
+          "explain": "Trung tâm dữ liệu: toà nhà chứa máy chủ, tiêu thụ nhiều điện và nước."
+        },
+        {
+          "term": "Hyperscale",
+          "explain": "Quy mô cực lớn, thường chỉ các data center của các hãng như Google, Amazon, Microsoft."
+        },
+        {
+          "term": "Bầu cử giữa kỳ",
+          "explain": "Bầu cử Quốc hội Mỹ diễn ra giữa nhiệm kỳ tổng thống."
+        }
+      ]
+    },
+    {
+      "id": "techcrunch-tap-dau-odyssey-do-grok-tao-bay-phut-dung-hinh-nhung-thieu-hon",
+      "group": "press",
+      "source": "TechCrunch",
+      "url": "https://techcrunch.com/2026/10/25/grok-releases-the-first-seven-minutes-of-its-ai-generated-odyssey/",
+      "publishedAt": "2026-10-25T21:31:16.000Z",
+      "readMinutes": 2,
+      "tags": [
+        "video AI",
+        "Grok",
+        "điện ảnh"
+      ],
+      "titleEn": "Grok releases the first seven minutes of its AI-generated ‘Odyssey’",
+      "titleVi": "Grok đăng 7 phút đầu của “Odyssey” do AI tạo, ba tháng sau lời hứa phim dài; TechCrunch chê là thiếu sức sống",
+      "summary": "Ba tháng sau khi Elon Musk hứa phim “The Odyssey” “đúng lịch sử” do Grok làm, hãng chỉ đăng 7 phút gọi là tập 1. Người viết thấy hình ảnh đỡ tệ hơn mong đợi nhưng thiếu nghệ thuật. Bài là bình luận của tác giả.",
+      "keyPoints": [
+        "Grok đăng 7 phút, gọi là “Episode 1 of our Odyssey series”, làm cùng Wonder Studios và đạo diễn Dev Walker.",
+        "Musk trước đó chỉ trích phiên bản của Christopher Nolan vì chọn diễn viên da màu và chuyển giới.",
+        "Người viết nói vài cảnh có thể tưởng là diễn viên thật, nhưng tổng thể “ngột ngạt”, thiếu nhịp và lý do để quan tâm nhân vật.",
+        "Phim của Nolan ra mắt tháng 7, bán hết vé Imax nhiều tháng và được nhắc là ứng viên hàng đầu của giải Oscar."
+      ],
+      "body": [
+        "Ba tháng sau khi Elon Musk tuyên bố Grok sẽ làm một bản phim “The Odyssey” dài, “đúng lịch sử”, Grok đã đăng 7 phút mà công ty gọi là “Episode 1 of our Odyssey series”. Sản phẩm làm cùng Wonder Studios và đạo diễn Dev Walker.",
+        "TechCrunch nhắc rằng Musk từng chỉ trích bản của Christopher Nolan vì chọn diễn viên da màu và chuyển giới. Nolan tự nhận là “người hoài nghi công nghệ” và từng nói chưa có công nghệ nào “bị công chúng bác bỏ hoàn toàn” như AI. Phim của ông, chủ yếu quay thật ở sáu nước, ra mắt tháng 7, bán hết vé Imax trong nhiều tháng và được nhắc là ứng viên hàng đầu giải Oscar.",
+        "## Nhận xét của người viết",
+        "Anthony Ha thừa nhận đoạn phim không “xấu ấn tượng” như ông tưởng và có lúc ông có thể tưởng là diễn viên thật trên biển thật. Nhưng ông thấy thiếu nghệ thuật, cảm hứng và sự quan tâm con người: phần dẫn truyện dài, các khuôn mặt hét thoại cứng, và cả đoạn phim “ngột ngạt”, không có nhịp. Ông nói khó hình dung muốn xem thêm bảy phút nữa, nói gì cả phim.",
+        "> Đây là bình luận cá nhân của người viết TechCrunch, không phải đánh giá kỹ thuật."
+      ],
+      "glossary": [
+        {
+          "term": "Imax",
+          "explain": "Định dạng chiếu phim màn hình lớn, chất lượng hình và âm cao."
+        }
+      ]
+    },
+    {
+      "id": "techbronerd-ai-lab-thay-ky-su-nhung-lai-pha-khach-hang-cua-chinh-minh",
+      "group": "community",
+      "source": "Techbro’s Newsletter (Substack)",
+      "url": "https://techbronerd.substack.com/p/openai-and-anthropic-wanted-to-replace",
+      "discussionUrl": "https://news.ycombinator.com/item?id=50232682",
+      "points": 83,
+      "comments": 95,
+      "publishedAt": "2026-10-25T15:34:44Z",
+      "readMinutes": 4,
+      "tags": [
+        "ý kiến",
+        "mô hình kinh doanh",
+        "phần mềm"
+      ],
+      "titleEn": "OpenAI and Anthropic Wanted to Replace Engineers. Instead, They Shot Their Own Customers.",
+      "titleVi": "Bài ý kiến: AI lab muốn thay kỹ sư nhưng lại làm sụp chính những công ty phần mềm là khách hàng của mình",
+      "summary": "Một blogger lập luận rằng khi AI khiến viết phần mềm thành rẻ, các “trạm thu phí” như Adobe bị nhân bản miễn phí, còn tiền không chảy về lab. Đây là bài ý kiến có giọng châm biếm, không có số liệu kiểm chứng.",
+      "keyPoints": [
+        "Luận điểm: phần mềm từng đắt vì khó làm; khi AI làm phần mềm rẻ, bản sao miễn phí xuất hiện và doanh thu “bốc hơi” thay vì chuyển sang lab.",
+        "Gói 20 USD là “chi phí marketing”, người dùng nặng có thể tiêu tốn tài nguyên lớn hơn nhiều so với số tiền họ trả.",
+        "Tăng giá lên mức lương kỹ sư thì khách chuyển sang mô hình mở; giữ giá thấp thì lab chịu lỗ.",
+        "Tác giả so sánh với bạc Tây Ban Nha, De Beers và bài toán khai thác tiểu hành tinh vàng."
+      ],
+      "body": [
+        "Đây là bài ý kiến trên một bản tin Substack, đăng trên Hacker News với tiêu đề “What Adobe v ArtCraft teaches us”. Giọng văn châm biếm và chưa kiểm chứng.",
+        "## Luận điểm chính",
+        "Tác giả nói ba năm qua các AI lab bán một lời hứa đơn giản: kỹ sư phần mềm là nhân sự đắt nhất, nên hãy xây kỹ sư AI, bán cho các công ty và thu phần lương họ không phải trả nữa. Theo ông, lỗ hổng là phần mềm trước đây giống một “trạm thu phí”. Adobe giàu vì làm được thứ như Photoshop rất khó, nên nhiều người trả phí hàng tháng. Khi AI khiến việc viết phần mềm dễ, một người có thể làm bản thay thế trong một cuối tuần và cho không.",
+        "Bản sao miễn phí không trả tiền cho ai, người dùng bỏ gói 60 USD sang dự án GitHub thì tiền “bốc hơi” chứ không chuyển sang lab. Ông viết rằng gói 20 USD là chi phí marketing, người dùng nặng có thể dùng tài nguyên lớn hơn nhiều lần số tiền trả, và nhắc tới khoản chi vốn nửa nghìn tỷ USD cho 2026 của Amazon, Alphabet và Meta.",
+        "## Thế khó của các lab",
+        "Theo tác giả, nếu lab khoá chặt mô hình và định giá 150.000 USD mỗi năm cho một “nhân viên AI” thì có thể giữ giá trị, nhưng điều này không thực hiện được vì Llama của Meta và các mô hình mở, nhiều cái từ Trung Quốc, đã phá thế độc quyền. Ông kết luận hai lựa chọn đều xấu: giá rẻ làm mất khách hàng, giá đắt làm mất nhu cầu. Ông cũng so sánh với bạc của Tây Ban Nha và kim cương nhân tạo của De Beers.",
+        "> Gợi ý của người biên tập: bài mang tính ý kiến cá nhân, nhiều khẳng định (ví dụ gói 200 USD thua lỗ, “nhiều tài khoản cho thấy”) không kèm nguồn đo đạc. Nội dung này là chia sẻ của người dùng trên Hacker News, chưa kiểm chứng."
+      ],
+      "glossary": [
+        {
+          "term": "Mô hình open-weight",
+          "explain": "Mô hình công bố trọng số, ai cũng tải về chạy được."
+        },
+        {
+          "term": "Capex",
+          "explain": "Chi tiêu vốn, ví dụ tiền xây data center và mua chip."
+        }
+      ]
+    },
+    {
+      "id": "interconnects-podcast-kimi-k3-1-pro-va-tranh-luan-an-ninh-mang-voi-mo-hinh-mo",
+      "group": "newsletter",
+      "source": "Interconnects",
+      "url": "https://www.interconnects.ai/p/podcast-kimi-k31-pro-the-new-cyber",
+      "publishedAt": "2026-10-25T11:49:00.000Z",
+      "readMinutes": 6,
+      "tags": [
+        "an ninh mạng",
+        "mô hình mở",
+        "podcast"
+      ],
+      "titleEn": "Podcast: Kimi K3.1 Pro, the new cyber reality, and Muse musings",
+      "titleVi": "Podcast Interconnects: lỗ hổng bảo mật tăng mạnh nhưng chưa có bằng chứng tấn công hàng loạt từ mô hình mở; Kimi chủ động hạ khả năng tấn công mạng",
+      "summary": "Nathan Lambert và Florian Brand bàn về phản ứng lẫn lộn với Kimi K3.1 Pro và cuộc tranh cãi mô hình mở có làm tăng rủi ro an ninh mạng hay không. Phần Kimi K3.1 đã đăng ở số trước; bài này chỉ tóm phần tranh luận mới. Đây là quan điểm cá nhân của hai người dẫn.",
+      "keyPoints": [
+        "Kimi K3.1 Pro có điểm cao trên Artificial Analysis nhưng phản hồi lẫn lộn; hai người dẫn nghi sau huấn luyện của mô hình còn “hơi non”.",
+        "Kimi nói không muốn phát hành trọng số mở làm tăng giới hạn năng lực tấn công mạng; Florian cho đây là bước đi hợp lý.",
+        "Sau vụ lỗ hổng PHP, họ chưa thấy khai thác hàng loạt; Lambert cho rằng không phải là chuyện mô hình mở hay đóng mà là xu hướng lỗ hổng tăng theo lượng mã được viết.",
+        "Lambert cho rằng các chương trình truy cập tin cậy của lab đóng là lý do chính khiến nhiều lỗ hổng được báo cáo.",
+        "Họ phê bình việc có dịch vụ API chạy mô hình bị gỡ giới hạn an toàn (abliterated), và việc Anthropic không tuyển nhân sự junior."
+      ],
+      "body": [
+        "Nathan Lambert và Florian Brand thảo luận một tuần nhiều biến động. Trọng số của Kimi K3.1 Pro được hứa phát hành chậm nhất ngày 4/11. Phần ra mắt mô hình này đã có ở số trước, nên bài này chỉ điểm các ý mới của buổi nói chuyện.",
+        "## Kimi K3.1 Pro",
+        "Mô hình đứng thứ tư trên Artificial Analysis Intelligence Index, sau hai mô hình Claude 5.5 mới nhất và Muse Wonder Full, và vượt GPT-6 Astra. Nhưng các điểm khác thì gồ ghề: Terminal-Bench Science thấp hơn GPT-6 Astra khoảng 20 điểm. Lambert cho rằng mô hình lớn nên cần mạnh ở khả năng khám phá, và nghi quá trình hậu huấn luyện hơi “non”. Florian lưu ý mô hình 3 nghìn tỷ tham số cần khoảng một node B300 cho mỗi bản sao, khó phục vụ hơn nhiều so với mô hình nhỏ chạy trên H100 hay H200.",
+        "Kimi nêu nguyên tắc: không phát hành trọng số mở làm vượt giới hạn năng lực tấn công mạng, và khả năng tấn công của K3.1 Pro bị chủ ý đặt thấp hơn các mô hình đóng. Florian cho đây là cách phát hành tốt: vẫn giúp phòng thủ mà không đẩy mạnh tấn công, vì tấn công trọn vẹn cần khả năng làm việc dài hơi mà mô hình đóng vẫn vượt trội.",
+        "## Tranh luận an ninh mạng",
+        "Lambert nói ông chưa muốn quy mọi chuyện thành câu hỏi mô hình mở hay đóng. Theo ông, các chỉ số như tốc độ phát hiện và khai thác lỗ hổng đã tăng theo hàm mũ từ trước ChatGPT. Về lỗ hổng PHP, Florian nói lỗ hổng cho phép chạy mã từ xa, được chương trình “Patch the Planet” của OpenAI cùng các nhà nghiên cứu tìm ra và vá đồng loạt, và nhiều báo cáo cho thấy khai thác hàng loạt chưa xảy ra. Họ cũng nhắc vụ LiteLLM bị xâm nhập lần nữa, theo báo cáo sơ bộ do một API key nằm trên GitHub năm tháng.",
+        "Lambert cho rằng các chương trình truy cập tin cậy của các lab đóng là lý do chính khiến nhiều lỗ hổng được báo cáo, và tin rằng sẽ còn nhiều lỗ hổng trong vài năm tới do lượng mã do agent viết tăng nhanh. Ông cũng nói nếu một “bầy DeepSeek” tấn công một công ty Mỹ, hệ quả chính trị sẽ rất lớn.",
+        "## Chuyện khác",
+        "Họ chê việc có công ty cung cấp qua API các mô hình bị gỡ giới hạn an toàn, cho là quyết định tồi. Lambert cũng phê bình việc Anthropic không tuyển nhân sự junior, coi đó là một dấu hiệu văn hóa đáng lo, còn Florian cho rằng điều đó tốt cho các nơi khác vì họ có thể tuyển nhân tài trẻ.",
+        "> Đây là quan điểm cá nhân của hai người dẫn podcast. Các nhận định về an ninh mạng và việc tuyển dụng của Anthropic là ý kiến, chưa kiểm chứng; một số điểm (như thông tin trả tiền quảng bá Kimi) họ cũng nói là chưa có ai xác nhận."
+      ],
+      "glossary": [
+        {
+          "term": "Open-weight",
+          "explain": "Mô hình công bố trọng số để người khác tải về chạy."
+        },
+        {
+          "term": "Abliterated",
+          "explain": "Mô hình bị chỉnh để gỡ các cơ chế từ chối của nó."
+        },
+        {
+          "term": "Hậu huấn luyện (post-training)",
+          "explain": "Giai đoạn huấn luyện sau khi tiền huấn luyện, gồm tinh chỉnh và học tăng cường."
+        }
+      ]
+    },
+    {
+      "id": "policy-mask-chon-dac-trung-tu-mo-hinh-khuech-tan-theo-ngan-sach-kenh",
+      "group": "research",
+      "source": "Hugging Face Papers (arXiv)",
+      "url": "https://arxiv.org/abs/2610.28889",
+      "discussionUrl": "https://huggingface.co/papers/2610.28889",
+      "pdfUrl": "https://arxiv.org/pdf/2610.28889",
+      "points": 52,
+      "comments": 2,
+      "publishedAt": "2026-10-19T20:00:00Z",
+      "readMinutes": 3,
+      "tags": [
+        "diffusion",
+        "thị giác máy tính",
+        "paper"
+      ],
+      "titleEn": "Policy-Mask: Budget-Aware Adaptation of Diffusion Features to Discriminative Tasks",
+      "titleVi": "Policy-Mask: học cách chọn timestep, block và kênh từ mô hình khuếch tán đóng băng để dùng cho phân đoạn, phân loại",
+      "summary": "Nhóm tác giả huấn luyện một chính sách chọn đồng thời timestep, block và tập kênh đặc trưng từ mô hình khuếch tán, dưới một ngân sách kênh cho trước. Nhóm báo cáo kết quả tốt hơn cách chọn cố định trên ba loại tác vụ.",
+      "keyPoints": [
+        "Tín hiệu hữu ích trong mô hình khuếch tán rải khắp timestep, độ sâu và kênh, nên việc chọn thủ công khó tối ưu.",
+        "Policy-Mask là chính sách có điều kiện theo ngân sách, huấn luyện trên mục tiêu của tác vụ đích để chọn cả ba yếu tố.",
+        "Nhóm chuẩn hoá điểm kênh theo số kênh được chọn để ba đầu chính sách cân bằng và huấn luyện ổn định.",
+        "Kết quả báo cáo: 38,9 mIoU trên ADE20K, 75,4% top-1 trên CIFAR-100 ở 128 chiều, 76,3 PCK@0.1 trên SPair-71k.",
+        "Phương pháp được mở rộng sang diffusion transformer như PixArt-Σ và SD3.5 MMDiT."
+      ],
+      "body": [
+        "Dùng đặc trưng trung gian của một mô hình khuếch tán đóng băng cho các tác vụ nhận diện là việc không đơn giản, vì thông tin hữu ích nằm rải rác trên quá trình khử nhiễu, độ sâu mạng và các kênh. Thực tế cần chọn timestep, block và tập kênh. Các phương pháp hiện có hoặc chọn tay, hoặc chỉ tối ưu một vài siêu tham số, thường chỉ timestep, rồi dùng cùng quy tắc cho mọi ảnh và mọi ngân sách.",
+        "## Cách làm",
+        "Policy-Mask là một chính sách có điều kiện theo ngân sách, huấn luyện theo mục tiêu của tác vụ đích. Nó chọn đồng thời cả ba yếu tố dưới một ngân sách kênh định trước. Nhóm nhận thấy nếu không chuẩn hoá, phần đóng góp của điểm kênh tăng theo số kênh được chọn và lấn át cập nhật của timestep và block, nên họ chuẩn hoá theo kích thước tập kênh.",
+        "## Kết quả",
+        "Ở cùng ngân sách, Policy-Mask hơn cách trích xuất cố định và các bộ lọc đặc trưng trên phân đoạn, phân loại và tìm tương ứng ngữ nghĩa: 38,9 mIoU trên ADE20K, 75,4% top-1 trên CIFAR-100 ở 128 chiều, và 76,3 PCK@0.1 trên SPair-71k. Phân tích loại bỏ từng thành phần cho thấy việc chọn block ảnh hưởng đáng kể đến độ chính xác, và điểm cao nhất về ngân sách kênh nằm ở 256 kênh giữ lại. Phương pháp cũng được áp dụng cho diffusion transformer bằng cách thay kênh U-Net bằng chiều ẩn của token ảnh.",
+        "> Các số liệu lấy từ abstract của paper, do nhóm tác giả tự báo cáo."
+      ],
+      "glossary": [
+        {
+          "term": "Mô hình khuếch tán (diffusion)",
+          "explain": "Mô hình sinh ảnh bằng cách khử nhiễu dần từ nhiễu ngẫu nhiên."
+        },
+        {
+          "term": "mIoU",
+          "explain": "Chỉ số đo độ chồng khớp giữa vùng phân đoạn dự đoán và vùng thật."
+        },
+        {
+          "term": "Timestep",
+          "explain": "Bước trong chuỗi khử nhiễu của mô hình khuếch tán."
+        }
+      ]
+    },
+    {
+      "id": "code2video-compass-benchmark-tao-video-bang-ma-lenh-cho-mllm",
+      "group": "research",
+      "source": "Hugging Face Papers (arXiv)",
+      "url": "https://arxiv.org/abs/2610.28416",
+      "discussionUrl": "https://huggingface.co/papers/2610.28416",
+      "pdfUrl": "https://arxiv.org/pdf/2610.28416",
+      "points": 33,
+      "comments": 2,
+      "publishedAt": "2026-10-19T20:00:00Z",
+      "readMinutes": 3,
+      "tags": [
+        "benchmark",
+        "video",
+        "MLLM",
+        "paper"
+      ],
+      "titleEn": "Code2Video-Compass: A Comprehensive Benchmark for General-Purpose Code-Based Video Generation across T2V, I2V, and V2V",
+      "titleVi": "Code2Video-Compass: benchmark 2.104 tác vụ đo khả năng viết mã để dựng video, mô hình hàng đầu vẫn chưa làm ổn định",
+      "summary": "Benchmark mới đo việc mô hình đa phương thức viết chương trình để dựng video hoàn chỉnh từ văn bản, ảnh hoặc video. Kết quả trên 15 mô hình cho thấy ngay cả mô hình mạnh nhất vẫn khó tạo video chất lượng và đúng yêu cầu.",
+      "keyPoints": [
+        "Tạo video bằng mã cho phép kiểm soát chi tiết, sửa có mục tiêu và tái sử dụng thành phần.",
+        "Benchmark có 2.104 tác vụ, 10 nhóm, 24 nhóm con, và ba mức phức tạp: dựng hình, chuyển động, phụ thuộc trạng thái.",
+        "Có ba chế độ: text-to-video, image-to-video và video-to-video.",
+        "Đánh giá hai tầng: 12 chỉ số khách quan và 5 chỉ số chủ quan do một MLLM chấm.",
+        "Thử 15 mô hình đóng và mở từ chín họ; hiệu năng giảm khi độ phức tạp tăng."
+      ],
+      "body": [
+        "Tạo video bằng mã nguồn có nhiều ưu điểm so với sinh video trực tiếp: kiểm soát chi tiết, sửa có mục tiêu, tái sử dụng thành phần. Cách này đòi hỏi mô hình ngôn ngữ đa phương thức (MLLM) dịch yêu cầu về hình ảnh và thời gian thành chương trình chạy ra cả video. Các benchmark hiện có chủ yếu nhắm tác vụ chuyên biệt, chưa đánh giá việc tạo video trọn vẹn.",
+        "## Benchmark",
+        "Code2Video-Compass có 2.104 tác vụ, chia thành 10 nhóm và 24 nhóm con, theo ba chiều phức tạp: dựng hình, chuyển động và phụ thuộc trạng thái. Tác vụ đến từ chỉ dẫn văn bản, tham chiếu hình ảnh và các video chuyên nghiệp hoặc do người dùng tạo, thuộc ba chế độ T2V, I2V và V2V.",
+        "Đánh giá gồm 12 chỉ số khách quan (hiệu quả vận hành, chất lượng video, độ khớp văn bản-video, độ trung thực với tham chiếu) và 5 chỉ số chủ quan do MLLM chấm theo mức làm đúng chỉ dẫn và chất lượng tổng thể.",
+        "## Kết quả",
+        "Nhóm thử 15 MLLM đóng và mở từ chín họ. Theo nhóm, ngay các mô hình dẫn đầu cũng khó tạo video đầy đủ, chất lượng cao và đúng cả yêu cầu văn bản lẫn hình ảnh, và hiệu năng thường giảm khi độ phức tạp tăng.",
+        "> Nội dung dựa trên abstract của paper; chúng tôi không có số liệu chi tiết từng mô hình."
+      ],
+      "glossary": [
+        {
+          "term": "MLLM",
+          "explain": "Mô hình ngôn ngữ lớn xử lý được cả văn bản và hình ảnh, video."
+        },
+        {
+          "term": "T2V / I2V / V2V",
+          "explain": "Tạo video từ văn bản / từ ảnh / từ một video khác."
+        }
+      ]
+    },
+    {
+      "id": "filmflow-nhieu-agent-tu-dong-chi-dao-may-quay-trong-moi-truong-3d",
+      "group": "research",
+      "source": "Hugging Face Papers (arXiv)",
+      "url": "https://arxiv.org/abs/2610.30753",
+      "discussionUrl": "https://huggingface.co/papers/2610.30753",
+      "pdfUrl": "https://arxiv.org/pdf/2610.30753",
+      "points": 31,
+      "comments": 2,
+      "publishedAt": "2026-10-21T20:00:00Z",
+      "readMinutes": 3,
+      "tags": [
+        "agent",
+        "3D",
+        "điện ảnh",
+        "paper"
+      ],
+      "titleEn": "FilmFlow: Agentic System for 3D Virtual Film Cinematography",
+      "titleVi": "FilmFlow: bốn agent phối hợp biến lời mô tả hoặc video mẫu thành quỹ đạo camera cho cảnh 3D, kèm bộ CinemaBench 750 tác vụ",
+      "summary": "FilmFlow gồm một Director và ba agent phụ (Interpreter, Scout, Critic) để dựng chuyển động camera có thể thực thi trong cảnh 3D. Nhóm cũng công bố CinemaBench và báo cáo FilmFlow đạt kết quả tốt nhất cùng mức ưa thích cao nhất của người dùng.",
+      "keyPoints": [
+        "Đầu vào là chỉ dẫn bằng ngôn ngữ tự nhiên hoặc video tham chiếu, đầu ra là quỹ đạo camera tường minh.",
+        "Director ghép các chuyển động đơn giản chạy đồng thời để điều khiển tịnh tiến, xoay và bố cục khung hình.",
+        "Interpreter rút ý đồ quay phim, Scout chọn góc nhìn ban đầu, Critic xem kết quả render và phản hồi để chỉnh kế hoạch.",
+        "CinemaBench: 150 cảnh Blender, mỗi cảnh 5 chỉ dẫn (750 tác vụ văn bản) và 60 video tham chiếu.",
+        "Theo nhóm, FilmFlow đạt kết quả benchmark mạnh nhất và được người dùng ưa thích nhất trong các baseline."
+      ],
+      "body": [
+        "Chuyển động camera phức tạp là phần quan trọng của kể chuyện bằng hình ảnh, nhưng chuyển ý đồ quay phim thành quỹ đạo camera chạy được vẫn khó. FilmFlow là một khung agent nhận lời mô tả hoặc video tham chiếu và cho ra quỹ đạo camera tường minh trong môi trường 3D động.",
+        "## Các agent",
+        "- Director dựng kế hoạch camera bằng cách ghép các chuyển động cấp cao từ những thao tác nguyên tử chạy đồng thời, điều khiển tịnh tiến, xoay và khung hình.",
+        "- Interpreter rút ra ý đồ quay phim gắn với cảnh.",
+        "- Scout chọn góc nhìn ban đầu.",
+        "- Critic xem cảnh đã render và phản hồi bằng hình ảnh để Director chỉnh lại kế hoạch.",
+        "## CinemaBench",
+        "Nhóm tạo CinemaBench với 150 cảnh Blender (tự tạo và có bản quyền), mỗi cảnh có 5 chỉ dẫn camera, tổng 750 tác vụ theo văn bản, cùng 60 video tham chiếu cho một số cảnh. Bộ này cho phép đánh giá cả việc tạo camera theo văn bản và theo video mẫu.",
+        "Theo abstract, FilmFlow đạt kết quả benchmark cao nhất và được người dùng ưa thích nhất trong các baseline được thử.",
+        "> Kết luận do nhóm tác giả tự báo cáo, dựa trên abstract."
+      ],
+      "glossary": [
+        {
+          "term": "Quỹ đạo camera",
+          "explain": "Chuỗi vị trí và hướng của camera theo thời gian trong một cảnh quay."
+        },
+        {
+          "term": "Blender",
+          "explain": "Phần mềm dựng hình 3D mã nguồn mở."
+        }
+      ]
+    },
+    {
+      "id": "t2quant-luong-tu-hoa-mo-hinh-ngon-ngu-khuech-tan-theo-tac-vu-va-buoc-khu-nhieu",
+      "group": "research",
+      "source": "Hugging Face Papers (arXiv)",
+      "url": "https://arxiv.org/abs/2610.31198",
+      "discussionUrl": "https://huggingface.co/papers/2610.31198",
+      "pdfUrl": "https://arxiv.org/pdf/2610.31198",
+      "points": 23,
+      "comments": 2,
+      "publishedAt": "2026-10-21T20:00:00Z",
+      "readMinutes": 3,
+      "tags": [
+        "lượng tử hóa",
+        "diffusion LM",
+        "paper"
+      ],
+      "titleEn": "Different Tasks, Different Timesteps: Temporal Task-Aware Quantization for Diffusion Language Models",
+      "titleVi": "T²Quant: phân bổ độ chính xác theo từng bước khử nhiễu và từng tác vụ, tăng độ chính xác tới 6,7 điểm phần trăm khi lượng tử hóa mô hình ngôn ngữ khuếch tán",
+      "summary": "Nhóm thấy độ nhạy lượng tử hóa của mô hình ngôn ngữ khuếch tán thay đổi theo tác vụ và theo bước khử nhiễu, và dự đoán được mà không cần nhãn. T²Quant dùng tín hiệu này để phân bổ độ chính xác kích hoạt trong cùng ngân sách bit.",
+      "keyPoints": [
+        "Độ nhạy lượng tử hóa của DLM phụ thuộc cả tác vụ lẫn thời điểm trong quá trình khử nhiễu.",
+        "Mẫu độ nhạy này dự đoán được mà không cần nhãn thật hay chỉ số đánh giá riêng.",
+        "T²Quant là khung lượng tử hóa độ chính xác hỗn hợp, phân bổ độ chính xác kích hoạt theo bước khử nhiễu dưới ngân sách bit cố định.",
+        "Thử trên ba DLM và sáu benchmark, cải thiện độ chính xác trung bình của các phương pháp hiện có, tăng tới 6,7 điểm phần trăm cùng ngân sách."
+      ],
+      "body": [
+        "Mô hình ngôn ngữ khuếch tán (DLM) sinh văn bản qua nhiều bước khử nhiễu, khiến việc lượng tử hóa khác với mô hình tự hồi quy thông thường. Nhóm tác giả chỉ ra rằng độ nhạy với lượng tử hóa vừa phụ thuộc tác vụ, vừa phụ thuộc thời điểm: các tác vụ khác nhau cần độ chính xác khác nhau ở các bước khử nhiễu khác nhau.",
+        "Họ cũng cho thấy các mẫu này có thể được dự đoán mà không cần nhãn đúng hay các chỉ số đánh giá riêng của từng tác vụ.",
+        "## T²Quant",
+        "Dựa trên phát hiện đó, nhóm đề xuất T²Quant, một khung lượng tử hóa độ chính xác hỗn hợp theo tác vụ và thời gian. Nó dùng tín hiệu độ nhạy không cần nhãn để chia độ chính xác kích hoạt cho từng bước khử nhiễu, trong cùng một ngân sách số bit.",
+        "Thử trên ba DLM và sáu benchmark, T²Quant cải thiện độ chính xác trung bình của các phương pháp lượng tử hóa hiện có, tăng tới 6,7 điểm phần trăm ở cùng ngân sách.",
+        "> Số liệu do nhóm tác giả báo cáo trong abstract."
+      ],
+      "glossary": [
+        {
+          "term": "Lượng tử hóa",
+          "explain": "Giảm số bit biểu diễn trọng số hoặc kích hoạt để mô hình nhẹ và nhanh hơn, đổi lại có thể giảm độ chính xác."
+        },
+        {
+          "term": "Kích hoạt (activation)",
+          "explain": "Giá trị trung gian mà các tầng của mạng tính ra khi chạy."
+        }
+      ]
+    },
+    {
+      "id": "cola2-mo-hinh-ngon-ngu-phan-tang-nen-ngu-nghia-lien-tuc-hon-llama-3-8b-tren-hai-bai-test",
+      "group": "research",
+      "source": "Hugging Face Papers (arXiv)",
+      "url": "https://arxiv.org/abs/2610.31305",
+      "discussionUrl": "https://huggingface.co/papers/2610.31305",
+      "pdfUrl": "https://arxiv.org/pdf/2610.31305",
+      "points": 21,
+      "comments": 2,
+      "publishedAt": "2026-10-21T20:00:00Z",
+      "readMinutes": 3,
+      "tags": [
+        "mô hình ngôn ngữ",
+        "huấn luyện",
+        "paper"
+      ],
+      "titleEn": "Cola2: Co-Adaptive Hierarchical Language Modeling with Continuous Semantic Compression and Balanced Discrete Generation",
+      "titleVi": "Cola2: mô hình ngôn ngữ phân tầng nén ngữ nghĩa liên tục, bản chưa hội tụ vượt Llama-3-8B ở HellaSwag và StoryCloze dù dùng ít dữ liệu hơn nhiều",
+      "summary": "Cola2 tách phần mô hình hoá ngữ nghĩa liên tục khỏi phần sinh văn bản rời rạc, cùng điều chỉnh mức nén và cân bằng giữa tái tạo và sinh. Một checkpoint chưa hội tụ đạt trung bình 60,10 trên tám tác vụ.",
+      "keyPoints": [
+        "Văn bản được cắt động thành các đoạn ngữ nghĩa, mức nén được điều khiển bằng phản hồi âm không cần hàm mất mát phụ.",
+        "Bộ giải mã khuếch tán có mặt nạ theo khối, huấn luyện với điều kiện tiềm ẩn sạch, nhiễu và bị bỏ.",
+        "Khi suy luận, văn bản sinh ra được mã hóa lại để lịch sử tiềm ẩn khớp với văn bản thực.",
+        "Với 346,03 tỷ token nguồn, checkpoint chưa hội tụ đạt trung bình 60,10 trên tám tác vụ.",
+        "Vượt Llama-3-8B ở HellaSwag và StoryCloze dù ngân sách tiền huấn luyện được báo cáo là lớn hơn hơn 43 lần."
+      ],
+      "body": [
+        "Sinh ngôn ngữ phân tầng tách việc mô hình hoá ngữ nghĩa liên tục khỏi việc hiện thực hoá thành văn bản rời rạc. Hiệu quả của cách này phụ thuộc không gian tiềm ẩn nén thứ gì và bộ sinh rời rạc dùng nó ra sao. Cola2 nghiên cứu cùng lúc ba việc: nén ngữ nghĩa liên tục, cân bằng giữa tái tạo và sinh, và đồng thích nghi giữa phần liên tục và rời rạc.",
+        "## Cách làm",
+        "- Cắt văn bản động thành các đoạn ngữ nghĩa và điều khiển tỉ lệ nén bằng phản hồi âm, không cần hàm mất mát phụ.",
+        "- Kết hợp giám sát tái tạo và giám sát sinh để học biểu diễn tiềm ẩn gọn và có tính dự báo.",
+        "- Bộ giải mã khuếch tán có mặt nạ theo khối nhân quả được huấn luyện với điều kiện tiềm ẩn sạch, có nhiễu và bị bỏ; classifier-free guidance điều chỉnh cân bằng giữa tái tạo và tự sinh.",
+        "- Khi suy luận, văn bản được sinh ra sẽ mã hoá lại theo bố cục đoạn cố định để lịch sử tiềm ẩn khớp với văn bản thực.",
+        "## Kết quả",
+        "Thử với khoảng 210 tỷ token huấn luyện trên năm tác vụ cho thấy các thiết kế chính có tác dụng và khả năng mở rộng cạnh tranh, chưa bão hoà. Với 346,03 tỷ token nguồn, một checkpoint chưa hội tụ đạt trung bình 60,10 trên tám tác vụ, và vượt Llama-3-8B trên HellaSwag và StoryCloze dù ngân sách tiền huấn luyện của Llama được báo cáo lớn hơn hơn 43 lần.",
+        "> Số liệu do nhóm tác giả tự báo cáo, dựa trên abstract."
+      ],
+      "glossary": [
+        {
+          "term": "Không gian tiềm ẩn (latent)",
+          "explain": "Biểu diễn số nén của dữ liệu, mô hình dùng nội bộ."
+        },
+        {
+          "term": "Classifier-free guidance",
+          "explain": "Kỹ thuật điều chỉnh mức mô hình bám theo điều kiện đầu vào khi sinh."
+        },
+        {
+          "term": "HellaSwag, StoryCloze",
+          "explain": "Hai benchmark về lẽ thường và hoàn thành câu chuyện."
+        }
+      ]
+    },
+    {
+      "id": "anygamerenderer-bien-video-game-tho-thanh-hinh-anh-dep-giu-dung-tung-thuc-the",
+      "group": "research",
+      "source": "Hugging Face Papers (arXiv)",
+      "url": "https://arxiv.org/abs/2610.31466",
+      "discussionUrl": "https://huggingface.co/papers/2610.31466",
+      "pdfUrl": "https://arxiv.org/pdf/2610.31466",
+      "points": 19,
+      "comments": 2,
+      "publishedAt": "2026-10-21T20:00:00Z",
+      "readMinutes": 3,
+      "tags": [
+        "video",
+        "game",
+        "paper"
+      ],
+      "titleEn": "AnyGameRenderer: Entity-Consistent Generative Rendering Across Games and an Entity-Level Benchmark",
+      "titleVi": "AnyGameRenderer: biến video game “khối xám” do coding agent dựng thành hình ảnh đẹp, giữ đúng vị trí và thời điểm của từng thực thể",
+      "summary": "Agent lập trình có thể dựng game chơi được trong vài phút nhưng hình ảnh thô. AnyGameRenderer là bộ dựng hình video-sang-video fine-tune từ mô hình MiniMax-H3 ref2va 33B, đo độ khớp thực thể trên bộ 59 ca.",
+      "keyPoints": [
+        "Đầu vào là video thường của game thô: khối xám, hình học màu, bản đồ ngữ nghĩa hay khung dây; không cần G-buffer hay nhãn.",
+        "Giữ nguyên bố cục, camera, vị trí và thời điểm của từng thực thể.",
+        "Fine-tune bằng LoRA trên MiniMax-H3 ref2va (33B), với sim10k cặp clip từ game agent làm, Unreal Engine và bản ghi chơi thật.",
+        "Bộ benchmark 59 ca với 753 thực thể; độ khớp theo thời gian tăng từ 50,9% lên 62,9%.",
+        "Số lần bỏ sót thay đổi số lượng giảm từ 34,7% xuống 21,3%."
+      ],
+      "body": [
+        "Các AI coding agent ngày nay dựng được game nhỏ chơi được trong vài phút, nhưng hình ảnh thường như “nghệ thuật lập trình viên”: khối xám, hình học màu và các mảng ngữ nghĩa phẳng. AnyGameRenderer là bộ dựng hình sinh video-sang-video, biến những cảnh đó thành hình ảnh chất lượng cao có nhân vật, chuyển động chi tiết và hiệu ứng, mà vẫn giữ bố cục, camera, và vị trí, thời điểm của mỗi thực thể.",
+        "Nó nhận video thường làm đầu vào, không cần biểu diễn phức tạp như G-buffer của engine, nhãn lớp từng đối tượng hay mô hình đa giác thấp. Nhóm nói nó áp dụng được cho nhiều thể loại agent hay dựng như tower defense, auto-battler, top-down survivor, đấu theo lượt, đua kart và crowd runner.",
+        "## Huấn luyện và đánh giá",
+        "Nhóm fine-tune bằng LoRA mô hình MiniMax-H3 ref2va (33B, điều kiện theo video tham chiếu), dùng sim10k cặp clip từ ba nguồn: 38 game do agent làm xuất từ công cụ GEAR, dữ liệu dựng hình từ Unreal Engine với đám đông và số lượng điều khiển bằng chương trình, và bản ghi chơi thật.",
+        "Để đo độ khớp thực thể, nhóm đề xuất benchmark 59 ca giữ lại với 753 thực thể, chấm theo ô giới hạn thật. So với mô hình gốc, độ khớp theo thời gian tăng từ 50,9% lên 62,9%, số lần bỏ sót thay đổi số lượng giảm từ 34,7% xuống 21,3%, và ít thực thể bị bịa hoặc không được dựng hơn.",
+        "> Các số liệu do nhóm tác giả tự báo cáo, dựa trên abstract."
+      ],
+      "glossary": [
+        {
+          "term": "LoRA",
+          "explain": "Kỹ thuật fine-tune nhẹ, chỉ huấn luyện thêm một lượng nhỏ tham số."
+        },
+        {
+          "term": "G-buffer",
+          "explain": "Các lớp dữ liệu trung gian do game engine xuất ra khi dựng hình, như độ sâu, pháp tuyến."
+        },
+        {
+          "term": "Thực thể (entity)",
+          "explain": "Mỗi đối tượng riêng trong cảnh, như một nhân vật hay một quân địch."
+        }
+      ]
+    },
+    {
+      "id": "ridar-phat-hien-va-chan-hanh-vi-vi-pham-liem-chinh-nghien-cuu-cua-agent",
+      "group": "research",
+      "source": "Hugging Face Papers (arXiv)",
+      "url": "https://arxiv.org/abs/2610.31372",
+      "discussionUrl": "https://huggingface.co/papers/2610.31372",
+      "pdfUrl": "https://arxiv.org/pdf/2610.31372",
+      "points": 16,
+      "comments": 3,
+      "publishedAt": "2026-10-21T20:00:00Z",
+      "readMinutes": 3,
+      "tags": [
+        "agent",
+        "liêm chính nghiên cứu",
+        "an toàn",
+        "paper"
+      ],
+      "titleEn": "RIDAR: Safeguarding Research Integrity in Autonomous Research Agents via Automated Detection and Runtime Intervention",
+      "titleVi": "RIDAR: tìm thấy gần 4.000 vi phạm liêm chính nghiên cứu trong 99,7% quỹ đạo của agent nghiên cứu tự động, bản chạy trực tiếp giảm được 36,8%",
+      "summary": "Nhóm đưa ra bảng phân loại 14 loại vi phạm liêm chính nghiên cứu của agent và công cụ phát hiện sau, trực tiếp. Họ thấy vi phạm xuất hiện gần như trong mọi quỹ đạo mẫu.",
+      "keyPoints": [
+        "RIVT là bảng phân loại 14 loại vi phạm liêm chính nghiên cứu (RIV) dọc vòng đời nghiên cứu.",
+        "RIDAR-post-hoc phát hiện RIV trong quỹ đạo của agent, đạt F1 85,2% trên RIV-Gold (60 quỹ đạo do chuyên gia gán nhãn).",
+        "Trên RIV-Wild (300 quỹ đạo, 50 nhiệm vụ), phát hiện 3.964 vi phạm trong 99,7% quỹ đạo.",
+        "RIDAR-runtime phát hiện và sửa khi agent đang chạy, giảm 36,8% số vi phạm còn lại khi hoàn thành nhiệm vụ.",
+        "Nhóm sẽ công bố mã và dữ liệu."
+      ],
+      "body": [
+        "Agent nghiên cứu tự động ngày càng được dùng để tự động hóa nhiều phần của khoa học, nhưng chúng dễ mắc các hành vi làm hỏng tính hợp lệ, khả năng tái lập hoặc tính trung thực của quá trình nghiên cứu. Nhóm gọi đó là vi phạm liêm chính nghiên cứu (RIV).",
+        "## Bộ công cụ",
+        "- RIVT: bảng phân loại 14 loại RIV trải dài toàn bộ vòng đời nghiên cứu.",
+        "- RIDAR-post-hoc: khung phát hiện RIV trong quỹ đạo của agent sau khi chạy, đạt F1 85,2% trên RIV-Gold, bộ 60 quỹ đạo do chuyên gia gán nhãn.",
+        "- RIDAR-runtime: khung phát hiện và chỉnh sửa RIV ngay khi agent đang chạy.",
+        "## Kết quả",
+        "Áp dụng RIDAR-post-hoc cho RIV-Wild (300 quỹ đạo của 50 nhiệm vụ nghiên cứu khác nhau), nhóm phát hiện 3.964 trường hợp RIV trong 99,7% quỹ đạo, cho thấy vi phạm phổ biến ở các agent hiện nay. RIDAR-runtime giảm 36,8% số RIV còn lại khi hoàn thành nhiệm vụ. Nhóm cho biết sẽ phát hành mã và dữ liệu.",
+        "> Số liệu do nhóm tác giả tự báo cáo, phát hiện bởi chính công cụ của họ; paper chưa được bên ngoài kiểm chứng."
+      ],
+      "glossary": [
+        {
+          "term": "Quỹ đạo (trajectory) của agent",
+          "explain": "Toàn bộ chuỗi suy nghĩ, hành động và kết quả của agent trong một nhiệm vụ."
+        },
+        {
+          "term": "F1",
+          "explain": "Chỉ số cân bằng giữa độ chính xác và độ phủ khi phát hiện."
+        },
+        {
+          "term": "Tái lập (reproducibility)",
+          "explain": "Khả năng người khác làm lại và ra cùng kết quả."
+        }
+      ]
+    },
+    {
+      "id": "agentvqa-benchmark-thi-giac-cho-agent-mo-hinh-tot-nhat-chi-dung-58-5-phan-tram",
+      "group": "research",
+      "source": "Hugging Face Papers (arXiv)",
+      "url": "https://arxiv.org/abs/2610.31494",
+      "discussionUrl": "https://huggingface.co/papers/2610.31494",
+      "pdfUrl": "https://arxiv.org/pdf/2610.31494",
+      "points": 17,
+      "comments": 2,
+      "publishedAt": "2026-10-21T20:00:00Z",
+      "readMinutes": 3,
+      "tags": [
+        "benchmark",
+        "thị giác-ngôn ngữ",
+        "agent",
+        "paper"
+      ],
+      "titleEn": "AgentVQA: A Unified Benchmark for Agentic Visual Understanding",
+      "titleVi": "AgentVQA: benchmark offline 1.000 ví dụ cho mô hình thị giác-ngôn ngữ làm agent, mô hình tốt nhất đạt 58,5%, lỗi chủ yếu ở việc theo dõi trạng thái hình ảnh",
+      "summary": "AgentVQA lấy 1.000 ví dụ khó từ 23 bộ dữ liệu, trải năm lĩnh vực agent. Trong 22 mô hình, tốt nhất đạt 58,5%. Nhóm cho rằng lỗi chủ yếu do không bám được trạng thái hình ảnh, không phải do hiểu sai nhiệm vụ.",
+      "keyPoints": [
+        "Đánh giá trực tuyến trong mô phỏng tốn kém; benchmark offline giúp so sánh nhanh hơn.",
+        "Năm lĩnh vực: web agent, robot, video góc nhìn thứ nhất, game, lập kế hoạch không gian.",
+        "1.000 ví dụ chọn tay từ 23 bộ dữ liệu; xếp hạng mô hình khớp với đánh giá trực tuyến tương ứng.",
+        "22 mô hình được thử, tốt nhất đạt 58,5%.",
+        "Lỗi chủ yếu: định vị phần tử giao diện, hiểu chuyển động, theo dõi thay đổi trạng thái và suy luận không gian 3D."
+      ],
+      "body": [
+        "Mô hình thị giác-ngôn ngữ (VLM) làm được nhiều việc, nhưng hiệu năng của chúng khi làm agent vẫn ít được hiểu. Đánh giá trực tuyến trong mô phỏng hoặc thế giới thật là cần thiết nhưng tốn kém và khó mở rộng. Các benchmark hỏi đáp hình ảnh offline thì còn rời rạc.",
+        "## AgentVQA",
+        "AgentVQA là benchmark offline gồm 1.000 ví dụ khó, chọn tay từ 23 bộ dữ liệu và chỉnh lại cho đánh giá offline đáng tin. Nó trải năm lĩnh vực: Web Agents, Robotics, Egocentric Videos, Games và Spatial Planning. Nhóm nói xếp hạng mô hình trên AgentVQA khớp với xếp hạng ở các đánh giá trực tuyến tương ứng.",
+        "## Kết quả",
+        "Trong 22 mô hình, mô hình tốt nhất chỉ đạt 58,5% độ chính xác. Phân tích chéo lĩnh vực cho thấy lỗi chủ yếu đến từ việc không định vị và giữ được biểu diễn đúng về trạng thái hình ảnh hiện tại và đang thay đổi: tìm đúng phần tử giao diện, hiểu chuyển động, theo dõi thay đổi theo thời gian, suy ra quan hệ 3D. Theo nhóm, nguyên nhân không phải hiểu sai nhiệm vụ hay suy luận logic về sau.",
+        "> Số liệu do nhóm tác giả báo cáo, dựa trên abstract."
+      ],
+      "glossary": [
+        {
+          "term": "VLM",
+          "explain": "Mô hình thị giác-ngôn ngữ, nhận cả ảnh và văn bản."
+        },
+        {
+          "term": "VQA",
+          "explain": "Hỏi đáp về hình ảnh (visual question answering)."
+        },
+        {
+          "term": "Egocentric",
+          "explain": "Video quay từ góc nhìn của chính người hoặc robot thực hiện hành động."
+        }
+      ]
+    },
+    {
+      "id": "chinh-sach-unmasking-hoc-duoc-cho-mo-hinh-ngon-ngu-khuech-tan-chi-856-nghin-tham-so",
+      "group": "research",
+      "source": "Hugging Face Papers (arXiv)",
+      "url": "https://arxiv.org/abs/2610.31576",
+      "discussionUrl": "https://huggingface.co/papers/2610.31576",
+      "pdfUrl": "https://arxiv.org/pdf/2610.31576",
+      "points": 12,
+      "comments": 3,
+      "publishedAt": "2026-10-21T20:00:00Z",
+      "readMinutes": 3,
+      "tags": [
+        "diffusion LM",
+        "giải mã",
+        "paper"
+      ],
+      "titleEn": "What Makes a Good Unmasking Policy? A Controlled Study of Learned Unmasking in Diffusion Language Models",
+      "titleVi": "Chính sách unmasking tốt cần gì: policy chỉ 856 nghìn tham số tăng tốc LLaDA-8B, giảm khoảng 10% số lần chạy mô hình là đủ bù chi phí",
+      "summary": "Một nghiên cứu có đối chứng về chính sách học cách chọn token nào được chốt ở mỗi bước khi giải mã mô hình ngôn ngữ khuếch tán có mặt nạ. Nhóm huấn luyện policy nhỏ trên mục tiêu “co quỹ đạo” và đạt biên độ chính xác - số lần chạy tốt nhất trên GSM8K.",
+      "keyPoints": [
+        "Mô hình khuếch tán có mặt nạ sinh token song song; hiệu quả phụ thuộc token nào được chốt.",
+        "Gán nhãn “được chốt” khi dự đoán trùng đầu ra cuối là quá dễ dãi ở NFE thấp.",
+        "Trạng thái ẩn riêng lẻ yếu nhưng bổ sung được cho độ tin cậy.",
+        "Giảm khoảng 10% NFE là đủ bù chi phí của policy cỡ tới 7,5 triệu tham số.",
+        "Policy 856 nghìn tham số trên LLaDA-8B-Instruct đạt biên chính xác-NFE tốt nhất và thông lượng cao nhất trên GSM8K; phần lớn chuyển giao sang Dream-7B-Instruct."
+      ],
+      "body": [
+        "Mô hình ngôn ngữ khuếch tán có mặt nạ sinh nhiều token song song, và hiệu quả phụ thuộc việc dự đoán nào được chốt. Các chính sách unmasking học được cải thiện đánh đổi giữa tốc độ và độ chính xác, nhưng khác nhau ở cách giám sát, đầu vào và dung lượng, nên khó biết lựa chọn nào quan trọng.",
+        "## Phát hiện",
+        "Nhóm xem chính sách có giám sát như chưng cất một quy trình giải mã qua một giáo viên, rồi xét riêng từng yếu tố. Họ thấy gán nhãn “được chốt” cho các dự đoán trùng với đầu ra cuối là quá dễ dãi khi số lần đánh giá hàm (NFE) thấp, và trạng thái ẩn riêng lẻ yếu nhưng có thể bổ sung cho độ tin cậy. Chỉ cần giảm khoảng 10% NFE là đủ bù chi phí của các policy tới 7,5 triệu tham số.",
+        "## Kết quả",
+        "Từ đó họ huấn luyện policy trên mục tiêu “co quỹ đạo” (chỉ chấp nhận các quyết định chốt còn nằm trên quỹ đạo tham chiếu), dùng độ tin cậy và trạng thái ẩn. Trên LLaDA-8B-Instruct, policy 856 nghìn tham số đạt biên chính xác - NFE tốt nhất và thông lượng cao nhất trên GSM8K, cạnh tranh ở mức vừa trên MATH-500 và HumanEval, và phần lớn chuyển sang Dream-7B-Instruct.",
+        "> Kết quả do nhóm tác giả tự báo cáo, lấy từ abstract."
+      ],
+      "glossary": [
+        {
+          "term": "Masked diffusion LM",
+          "explain": "Mô hình ngôn ngữ sinh văn bản bằng cách dần “mở mặt nạ” các token, nhiều token mỗi bước."
+        },
+        {
+          "term": "NFE",
+          "explain": "Số lần chạy mô hình để sinh xong một đầu ra; càng ít càng nhanh."
+        },
+        {
+          "term": "Chưng cất (distillation)",
+          "explain": "Dạy mô hình nhỏ bắt chước hành vi của một quy trình hoặc mô hình lớn hơn."
+        }
+      ]
+    },
+    {
+      "id": "llm-attacker-khung-red-team-do-quyen-rieng-tu-trong-llm-chia-doi",
+      "group": "research",
+      "source": "Hugging Face Papers (arXiv)",
+      "url": "https://arxiv.org/abs/2610.22722",
+      "discussionUrl": "https://huggingface.co/papers/2610.22722",
+      "pdfUrl": "https://arxiv.org/pdf/2610.22722",
+      "points": 10,
+      "comments": 2,
+      "publishedAt": "2026-10-14T20:00:00Z",
+      "readMinutes": 3,
+      "tags": [
+        "quyền riêng tư",
+        "red team",
+        "paper"
+      ],
+      "titleEn": "The LLM-Attacker: A Unified Red-Team Framework for Privacy Evaluation of Split and Distributed LLM Systems",
+      "titleVi": "LLM-Attacker: khung red-team chuẩn hoá cách đo quyền riêng tư của LLM chia đôi client-server; thêm gradient làm khả năng khôi phục nguyên văn tăng từ 13,7% lên 37,8%",
+      "summary": "Trong LLM chia đôi, client giữ văn bản còn server nhận biểu diễn trung gian, nhưng kẻ tấn công vẫn khôi phục được văn bản. Nhóm đề xuất khung ghi lại điều kiện thử để các đánh giá quyền riêng tư so sánh được.",
+      "keyPoints": [
+        "Split LLM giữ văn bản trên client và gửi biểu diễn trung gian lên server, nhưng tấn công có thể dựng lại văn bản.",
+        "Các đánh giá hiện có khó so sánh vì kẻ tấn công thấy thông điệp, biết trọng số và dùng bộ dữ liệu, thước đo khác nhau.",
+        "Khung ghi lại các lựa chọn này; phòng thủ chỉ được tính là đạt khi có mốc tham chiếu không phòng thủ liên kết.",
+        "Thử với GPT-2: thêm gradient trả về khi huấn luyện làm khôi phục token tăng từ 94,20% lên 97,38%, khôi phục nguyên văn từ 13,71% lên 37,77%.",
+        "Báo cáo nên nêu rõ kẻ tấn công, bộ dữ liệu, quy tắc chấm và các tấn công chưa thử."
+      ],
+      "body": [
+        "Trong mô hình ngôn ngữ chia đôi (split LLM), văn bản gốc nằm ở client, còn server chỉ nhận biểu diễn trung gian. Tuy vậy, có những tấn công khôi phục được văn bản từ các thông điệp này. Việc so sánh các đánh giá quyền riêng tư khó vì mỗi nghiên cứu cho kẻ tấn công thấy thông điệp khác nhau, biết trọng số khác nhau, và dùng bộ dữ liệu, thước đo khôi phục khác nhau.",
+        "## Khung đề xuất",
+        "LLM-Attacker ghi lại các lựa chọn đó để nhà nghiên cứu kiểm tra, so sánh và mở rộng một đánh giá. Các tấn công tương thích dùng lại thông điệp đã ghi, và dự đoán được lưu để chấm độc lập. Quy tắc chấm yêu cầu có mốc tham chiếu không phòng thủ liên kết trước khi một biện pháp phòng thủ được coi là đạt. Báo cáo cũng nêu các tấn công chưa được thử.",
+        "## Thí nghiệm",
+        "Trong một thí nghiệm có đối chứng với GPT-2, việc thêm gradient trả về khi huấn luyện làm tăng tỷ lệ khôi phục token từ 94,20% lên 97,38%, và khôi phục nguyên văn từ 13,71% lên 37,77%. Khoảng tin cậy 95% của mức tăng token nằm trên ngưỡng hai điểm phần trăm được đặt trước khi thử. Nhóm cũng đo ảnh hưởng của việc chọn kho văn bản và biện pháp nén, so một tấn công đã công bố với bản triển khai gốc, và kiểm thử chính mã đo.",
+        "> Số liệu do nhóm tác giả báo cáo từ abstract."
+      ],
+      "glossary": [
+        {
+          "term": "Split LLM",
+          "explain": "Chia một mô hình thành hai phần, một phần chạy trên máy người dùng, một phần trên server."
+        },
+        {
+          "term": "Red team",
+          "explain": "Đội đóng vai kẻ tấn công để thử độ an toàn của hệ thống."
+        },
+        {
+          "term": "Gradient",
+          "explain": "Tín hiệu hướng điều chỉnh tham số trong lúc huấn luyện."
+        }
+      ]
+    },
+    {
+      "id": "mo-hinh-khuech-tan-ton-nhieu-luot-chay-hon-khi-viet-sang-tao-va-voi-ngon-ngu-nhieu-token",
+      "group": "research",
+      "source": "Hugging Face Papers (arXiv)",
+      "url": "https://arxiv.org/abs/2610.25835",
+      "discussionUrl": "https://huggingface.co/papers/2610.25835",
+      "pdfUrl": "https://arxiv.org/pdf/2610.25835",
+      "points": 10,
+      "comments": 2,
+      "publishedAt": "2026-10-19T01:47:58Z",
+      "readMinutes": 3,
+      "tags": [
+        "diffusion LM",
+        "suy luận",
+        "đa ngôn ngữ",
+        "paper"
+      ],
+      "titleEn": "Diffusion Language Models Change Speed Across Tasks and Languages",
+      "titleVi": "Mô hình ngôn ngữ khuếch tán chạy chậm hơn khi viết sáng tạo, với ngôn ngữ cần nhiều token; tốc độ giải mã còn là tín hiệu để đoán đúng sai",
+      "summary": "Phân tích hai mô hình khuếch tán trên 10 tác vụ cho thấy số lượt chạy cho mỗi token phụ thuộc mạnh vào tác vụ. Tốc độ giải mã cũng liên hệ với tính đúng, và dùng nó để trọng số các đáp án thắng bỏ phiếu đa số tới 4,2 điểm.",
+      "keyPoints": [
+        "Chép hoặc sửa nhẹ văn bản đầu vào rẻ, viết tự do thì đắt: với DiffusionGemma, viết truyện cần hơn gấp ba số lượt chạy mỗi token so với sửa ngữ pháp.",
+        "Hai yếu tố giải thích phần lớn: lượng nội dung mới so với đầu vào và độ hiếm của từ trong tác vụ.",
+        "Câu trả lời cuối rẻ nếu lặp lại chuỗi suy luận, đắt nếu thêm điều mới.",
+        "Ngôn ngữ bị chia thành nhiều token cũng cần nhiều lượt mỗi token hơn.",
+        "Đáp án sai tốn nhiều lượt mỗi token hơn đáp án đúng; chọn theo tốc độ giải mã hơn bỏ phiếu đa số tới 4,2 điểm, không tốn thêm."
+      ],
+      "body": [
+        "Mô hình ngôn ngữ khuếch tán viết được nhiều token trong một lượt chạy và tự quyết số lượt cần dùng, nên hai đầu ra cùng độ dài có thể tốn rất khác nhau. Nhóm phân tích hai mô hình trên 10 tác vụ để tìm nguyên nhân.",
+        "## Phát hiện chính",
+        "- Số lượt chạy cho mỗi token phụ thuộc mạnh vào tác vụ. Văn bản chép hoặc chỉnh nhẹ từ đầu vào thì rẻ, viết tự do thì đắt. Với DiffusionGemma, một token khi viết truyện cần hơn ba lần số lượt chạy so với khi sửa ngữ pháp.",
+        "- Hai đặc tính của đầu ra giải thích phần lớn khác biệt: phần mới so với đầu vào nhiều hay ít và các từ hiếm đến đâu trong tác vụ đó.",
+        "- Khi mô hình có “nghĩ”, câu trả lời cuối rẻ nếu lặp lại chuỗi suy luận, đắt nếu thêm nội dung mới.",
+        "- Với đa ngôn ngữ, các ngôn ngữ bị chia thành nhiều token cũng cần nhiều lượt mỗi token hơn, cộng thêm chi phí vốn đã phải trả vì nhiều token.",
+        "## Dùng tốc độ làm tín hiệu",
+        "Chi phí giải mã đi cùng độ đúng: trên cùng một bài toán, đáp án sai cần nhiều lượt mỗi token hơn đáp án đúng. Chọn đáp án bằng cách trọng số theo tốc độ giải mã tốt hơn bỏ phiếu đa số tới 4,2 điểm mà không tốn thêm chi phí. Nhóm kết luận lợi thế tính toán của khuếch tán phụ thuộc vào phần đầu ra đã được xác định sẵn, và nỗ lực giải mã là tín hiệu thực tế để suy luận hiệu quả và đáng tin hơn.",
+        "> Số liệu do nhóm tác giả báo cáo từ abstract."
+      ],
+      "glossary": [
+        {
+          "term": "Forward pass",
+          "explain": "Một lượt chạy mô hình từ đầu vào đến đầu ra."
+        },
+        {
+          "term": "Bỏ phiếu đa số (majority voting)",
+          "explain": "Sinh nhiều đáp án rồi chọn đáp án xuất hiện nhiều nhất."
+        },
+        {
+          "term": "Tokenization",
+          "explain": "Cách chia văn bản thành các đơn vị token cho mô hình xử lý."
+        }
+      ]
+    },
+    {
+      "id": "ai-nhuong-ai-dan-dat-moi-truong-me-cung-model-manh-tu-xu-ly-model-yeu-goi-nguoi-giup",
+      "group": "research",
+      "source": "Hugging Face Papers (arXiv)",
+      "url": "https://arxiv.org/abs/2610.27148",
+      "discussionUrl": "https://huggingface.co/papers/2610.27148",
+      "pdfUrl": "https://arxiv.org/pdf/2610.27148",
+      "points": 10,
+      "comments": 3,
+      "publishedAt": "2026-10-18T20:00:00Z",
+      "readMinutes": 3,
+      "tags": [
+        "agent",
+        "hợp tác người-AI",
+        "paper"
+      ],
+      "titleEn": "Who Takes the Lead? Model Ability and Task-Conditioned Collaboration with Humans",
+      "titleVi": "Ai dẫn đầu? Thử agent và người cùng chơi mê cung: mô hình giỏi chỉ nhờ người khi người thật sự có đường đi ngắn hơn, mô hình yếu thì không phân biệt",
+      "summary": "Nhóm đặt agent và người chia chung một mục tiêu trong mê cung, thay đổi ai có lợi thế. Mô hình giải tốt một mình biết chọn lúc nhờ người; mô hình yếu hơn thì không.",
+      "keyPoints": [
+        "Ít nhờ người không hẳn là hợp tác kém, có thể là phân công đúng; tỷ lệ can thiệp của người không phân biệt được hai trường hợp.",
+        "Mê cung điều khiển chung: agent mỗi lượt quyết định tự đi hay giao nước đi cho người.",
+        "Ba điều kiện: người có lợi thế, không ai có lợi thế, agent có lợi thế.",
+        "Thử GPT 5.6 Sol, Command A+, Qwen 3.8 27B và Command R với người tham gia.",
+        "Mô hình giải giỏi một mình gần như luôn tự đi khi người không có lợi thế, và nhờ người trong khoảng 80% quyết định đầu khi đường của người ngắn hơn; Command R yếu hơn không có tính chọn lọc này."
+      ],
+      "body": [
+        "Khi agent mạnh dần, chúng có thể tự gánh nhiều phần việc mà không hỏi ai. Việc ít dựa vào người dễ bị coi là hợp tác kém, nhưng có thể đó là phân công đúng. Chỉ nhìn tỷ lệ người tham gia thì không phân biệt được hai trường hợp.",
+        "## Thiết kế thí nghiệm",
+        "Nhóm đặt agent và người vào một mê cung điều khiển chung: hai nhân vật cùng mục tiêu là đến đích chung trong số lượt ít nhất. Mỗi lượt đội, agent quyết định tự đi hay giao nước đi cho người. Vị trí xuất phát quyết định lợi thế đường đi ngắn nhất của người, nên nhóm tạo được ba điều kiện: người có lợi thế rõ, không ai có lợi thế, agent có lợi thế.",
+        "Họ thử GPT 5.6 Sol, Command A+, Qwen 3.8 27B và Command R, trước hết đo khả năng giải một mình với bản đồ đầy đủ, rồi cho chơi chung với người tham gia.",
+        "## Kết quả",
+        "Giải tốt một mình đi cùng sự nhờ cậy người có chọn lọc theo đường đi. Những mô hình giải ổn định gần như luôn tự đi khi người không có lợi thế, và giao nước đi cho người trong khoảng 80% quyết định ban đầu khi đường của người ngắn hơn. Command R, mô hình yếu hơn đáng kể khi giải một mình, không thể hiện tính chọn lọc này.",
+        "> Kết quả dựa trên abstract do nhóm tác giả báo cáo, trong một trò mê cung đơn giản, chưa chắc áp dụng cho công việc thực tế."
+      ],
+      "glossary": [
+        {
+          "term": "Co-play",
+          "explain": "Cùng chơi giữa người và AI hướng tới một mục tiêu chung."
+        },
+        {
+          "term": "Solo capability",
+          "explain": "Khả năng tự giải tác vụ khi không có người giúp."
+        }
+      ]
+    },
+    {
+      "id": "if-map-chon-agent-nao-trong-he-nhieu-agent-nen-nang-cap-truoc",
+      "group": "research",
+      "source": "Hugging Face Papers (arXiv)",
+      "url": "https://arxiv.org/abs/2610.24383",
+      "discussionUrl": "https://huggingface.co/papers/2610.24383",
+      "pdfUrl": "https://arxiv.org/pdf/2610.24383",
+      "points": 8,
+      "comments": 2,
+      "publishedAt": "2026-10-16T20:00:00Z",
+      "readMinutes": 3,
+      "tags": [
+        "multi-agent",
+        "tối ưu",
+        "paper"
+      ],
+      "titleEn": "IF-MAP: Influence-Function-Inspired Agent Prioritization in Multi-Agent Systems",
+      "titleVi": "IF-MAP: chọn agent đáng nâng cấp nhất trong hệ nhiều agent, nâng cấp đúng agent được chọn tăng 7,62-16,42 điểm so với 3,81-8,62 khi chọn đều",
+      "summary": "Cải thiện mọi agent trong hệ đa agent rất tốn. IF-MAP đo xem làm nhiễu prompt của từng agent làm thay đổi kết quả cuối ra sao để xếp thứ tự ưu tiên, không cần truy cập tham số mô hình.",
+      "keyPoints": [
+        "Quy trách nhiệm lỗi cho một agent không cho biết nâng cấp nó mang lại bao nhiêu lợi ích cho cả hệ.",
+        "IF-MAP đo thay đổi mất mát đầu-cuối khi nhiễu prompt có kiểm soát, dựng mô hình phản hồi cục bộ trong không gian nhúng prompt chiều thấp, dùng chuẩn phản hồi làm điểm ưu tiên.",
+        "Phương pháp hộp đen, không cần tham số hay gradient.",
+        "Trên sáu quy trình, tối ưu prompt cho agent được chọn tăng trung bình 3,81 điểm so với 1,85 khi chọn đều.",
+        "Nâng cấp mô hình cho agent được chọn tăng 7,62-16,42 điểm so với 3,81-8,62; dùng ít token hơn."
+      ],
+      "body": [
+        "Trong một hệ thống nhiều agent dùng LLM, cải thiện mọi agent có thể quá tốn kém, nên cần biết agent nào nên ưu tiên để lợi ích toàn hệ lớn nhất với nguồn lực hạn chế. Quy lỗi cho agent giúp ích một phần, nhưng agent chịu trách nhiệm cho thất bại không chắc là agent cải thiện được nhiều nhất.",
+        "## Cách làm",
+        "IF-MAP lấy cảm hứng từ hàm ảnh hưởng. Với mỗi agent, nó đo mất mát đầu-cuối thay đổi thế nào khi prompt bị nhiễu ngữ nghĩa có kiểm soát, dựng một mô hình phản hồi cục bộ có điều chuẩn trong không gian nhúng prompt chiều thấp, và dùng chuẩn của phản hồi làm điểm ưu tiên. Đây là quy trình hộp đen, không cần tham số hay gradient của mô hình.",
+        "## Kết quả",
+        "Nhóm thử trên sáu quy trình gồm sinh mã, hỏi đáp và suy luận toán, dùng cùng thứ tự ưu tiên cho tối ưu prompt và nâng cấp mô hình. Tối ưu prompt của các agent được chọn tăng trung bình 3,81 điểm phần trăm, so với 1,85 khi chọn đều. Qua năm mô hình đích, nâng cấp agent được chọn tăng 7,62-16,42 điểm so với 3,81-8,62. Dù tốn chi phí thăm dò, IF-MAP giảm token dùng 74,2% với Qwen3-8B và 35,2% với DeepSeek-V3.2 so với tối ưu mọi agent, và giảm 63,6-64,9% token của mô hình đích so với nâng cấp mọi agent.",
+        "> Số liệu do nhóm tác giả báo cáo từ abstract."
+      ],
+      "glossary": [
+        {
+          "term": "Hàm ảnh hưởng (influence function)",
+          "explain": "Công cụ thống kê đo một thay đổi nhỏ ở đầu vào ảnh hưởng thế nào đến kết quả."
+        },
+        {
+          "term": "Hộp đen",
+          "explain": "Phương pháp chỉ dùng đầu vào, đầu ra, không cần xem bên trong mô hình."
+        },
+        {
+          "term": "Không gian nhúng (embedding)",
+          "explain": "Biểu diễn văn bản dưới dạng vector số."
+        }
+      ]
+    },
+    {
+      "id": "mmedagent-plus-agent-y-te-goi-18-mo-hinh-chuyen-khoa-dat-do-chinh-xac-0-98",
+      "group": "research",
+      "source": "Hugging Face Papers (arXiv)",
+      "url": "https://arxiv.org/abs/2610.27233",
+      "discussionUrl": "https://huggingface.co/papers/2610.27233",
+      "pdfUrl": "https://arxiv.org/pdf/2610.27233",
+      "points": 4,
+      "comments": 2,
+      "publishedAt": "2026-10-18T20:00:00Z",
+      "readMinutes": 3,
+      "tags": [
+        "y tế",
+        "agent",
+        "paper"
+      ],
+      "titleEn": "MMedAgent-Plus: Scaling Multimodal Medical Agents across Modalities, Tasks and Workflows",
+      "titleVi": "MMedAgent-Plus: agent y tế đa phương thức điều phối 18 mô hình chuyên khoa, độ chính xác câu trả lời cuối 0,98 trên các ca thử của nhóm",
+      "summary": "Bộ lập kế hoạch thị giác-ngôn ngữ chọn, chạy tuần tự và tổng hợp kết quả từ 18 mô hình chuyên khoa cho 12 tác vụ, 8 loại dữ liệu y tế. Đây là kết quả trên bộ mẫu giữ lại của chính nhóm, chưa phải thử nghiệm lâm sàng.",
+      "keyPoints": [
+        "Quy trình y tế thường cần nhiều phân tích phụ thuộc nhau mà mô hình chuyên khoa hay tổng quát chưa được thiết kế để phối hợp.",
+        "Bộ lập kế hoạch gọi 18 mô hình chuyên khoa qua giao diện công cụ thống nhất, phủ 12 tác vụ và 8 loại dữ liệu.",
+        "Huấn luyện bằng instruction tuning trên 208.928 mẫu từ 32 benchmark y tế công khai.",
+        "Độ chính xác gọi công cụ: 91,0% (một công cụ, nhiều vòng), 98,1% (nhiều công cụ, nhiều vòng), 80,7% (nhiều công cụ, một vòng).",
+        "Chạy đầu-cuối: gọi đúng chuyên gia ở 90,6% trong 350 ca; độ chính xác câu trả lời 0,98, ngang chuyên gia dẫn đầu và hơn baseline mạnh nhất (0,28)."
+      ],
+      "body": [
+        "Quy trình y tế thường cần nhiều phân tích phụ thuộc nhau, trong khi các mô hình chuyên khoa và tổng quát hiện nay không được thiết kế để phối hợp. MMedAgent-Plus là một agent đa phương thức dùng công cụ, kết hợp bộ lập kế hoạch thị giác-ngôn ngữ với 18 mô hình chuyên khoa hàng đầu, phủ 12 tác vụ và 8 loại dữ liệu.",
+        "## Cách hoạt động",
+        "Qua một giao diện công cụ thống nhất, bộ lập kế hoạch chọn chuyên gia, chạy tuần tự rồi tổng hợp câu trả lời dựa trên kết quả của chúng. Nó được instruction tuning trên 208.928 mẫu từ 32 benchmark y tế công khai, gồm tương tác một và nhiều công cụ, một và nhiều vòng.",
+        "## Kết quả",
+        "Nhóm đánh giá riêng phần điều phối công cụ, phần tổng hợp câu trả lời và chạy đầu-cuối trên mẫu giữ lại. Độ chính xác gọi công cụ là 91,0%, 98,1% và 80,7% lần lượt cho các thiết lập một công cụ nhiều vòng, nhiều công cụ nhiều vòng, nhiều công cụ một vòng. Khi có kết quả công cụ đúng, điểm tính trung thực, đầy đủ và súc tích đạt 14,4-14,8 trên 15 qua 600 mẫu. Chạy đầu-cuối không có sẵn kết quả công cụ, agent gọi đúng chuyên gia ở 90,6% trong 350 ca thuộc bảy tác vụ, và độ chính xác câu trả lời cuối đạt 0,98, ngang chuyên gia dẫn đầu và hơn baseline mạnh nhất (0,28).",
+        "> Số liệu do nhóm tác giả tự báo cáo trên mẫu của họ; nội dung này không phải khuyến nghị hay bằng chứng sử dụng trong lâm sàng."
+      ],
+      "glossary": [
+        {
+          "term": "Modality",
+          "explain": "Loại dữ liệu, như ảnh X-quang, CT, MRI hay văn bản bệnh án."
+        },
+        {
+          "term": "Instruction tuning",
+          "explain": "Huấn luyện mô hình làm theo chỉ dẫn bằng các cặp yêu cầu - trả lời mẫu."
+        },
+        {
+          "term": "Tool use",
+          "explain": "Khả năng mô hình gọi công cụ hoặc mô hình khác để hoàn thành việc."
+        }
+      ]
+    }
+  ]
+}
