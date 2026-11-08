@@ -1,0 +1,956 @@
+{
+  "date": "2026-11-09",
+  "title": "Nvidia mở điều tra độc lập về CEO Jensen Huang; Goldman Sachs hạn chế Claude Code",
+  "intro": "Nvidia công bố điều tra độc lập về CEO Jensen Huang, kèm thư xin lỗi gửi nhân viên. Goldman Sachs chỉ cho kỹ sư dùng các công cụ lập trình bằng AI, còn Apple bị cho là đang chạy đua đưa Siri thành agent. Phần nghiên cứu có mô hình ảnh WeLM-Image, mạng quang cho data center AI và cách giảm độ trễ cho mô hình giọng nói.",
+  "articles": [
+    {
+      "id": "goldman-sachs-rut-claude-code-khoi-thuong-gia-va-trader",
+      "group": "community",
+      "source": "Hacker News (The State of AI)",
+      "url": "https://www.thestateofai.com/news/goldman-sachs-claude-code-traders-bankers",
+      "discussionUrl": "https://news.ycombinator.com/item?id=50415628",
+      "points": 515,
+      "comments": 312,
+      "publishedAt": "2026-11-08T18:16:07Z",
+      "hot": true,
+      "readMinutes": 3,
+      "tags": [
+        "Claude Code",
+        "Goldman Sachs",
+        "doanh nghiệp",
+        "bảo mật"
+      ],
+      "titleEn": "Goldman Sachs is pulling Claude Code from its bankers and traders",
+      "titleVi": "Goldman Sachs giới hạn Claude Code và GitHub Copilot chỉ cho kỹ sư, cắt quyền của trader và banker",
+      "summary": "Theo Bloomberg, hướng dẫn nội bộ cập nhật hồi tháng 10 của Goldman Sachs chỉ cho phép kỹ sư dùng các công cụ lập trình bằng AI. Nhiều trader và banker từng dùng chúng để theo dõi dòng giao dịch của khách và dựng mô hình thị trường nay không còn quyền. Bài đăng trên Hacker News là bản tổng hợp của một trang tin, kèm nhận định riêng của trang này.",
+      "keyPoints": [
+        "Hướng dẫn tháng 10 giới hạn Claude Code và công cụ lập trình của GitHub cho kỹ sư của ngân hàng.",
+        "Nhóm strats (làm cả giao dịch, nghiên cứu định lượng và phần mềm) vẫn được dùng.",
+        "Hồi tháng 7, giám đốc công nghệ Marco Argenti còn khen việc nhân viên không chuyên “vibe coding”.",
+        "Goldman và Morgan Stanley là hai ngân hàng bảo lãnh chính cho đợt IPO của Anthropic."
+      ],
+      "body": [
+        "Theo Bloomberg (qua bài tổng hợp của The State of AI), hướng dẫn nội bộ của Goldman Sachs cập nhật hồi tháng 10 giới hạn Claude Code của Anthropic và công cụ của GitHub cho đội kỹ sư. Quyết định đến sau một đợt rà soát về năng suất và rủi ro. Nhóm strats, làm xuyên suốt giao dịch, nghiên cứu định lượng và phần mềm, vẫn có quyền truy cập.",
+        "Một số trader tỏ ra khó chịu. Họ từng dùng các công cụ này để theo dõi dòng giao dịch của khách, dựng mô hình biến động thị trường và vị thế, và làm tài liệu chữ lẫn đồ hoạ. Người phát ngôn của Goldman nói ngân hàng cung cấp một số công cụ AI cho nhân viên “để xác định các trường hợp sử dụng tốt nhất”.",
+        "## Bối cảnh",
+        "Hồi tháng 7, giám đốc công nghệ Marco Argenti còn nói về việc nhân viên không chuyên môn xây công cụ bằng AI rồi chuyển cho khoảng 12.000 kỹ sư cải tiến. Hồi tháng 4, Goldman đã gỡ Claude khỏi nền tảng AI nội bộ cho banker ở Hồng Kông, một hạn chế dựa trên địa điểm và điều khoản hợp đồng. Lần này hạn chế dựa trên vai trò. Trợ lý AI nội bộ của ngân hàng, dùng mô hình của nhiều hãng, vẫn mở cho toàn công ty.",
+        "Goldman vẫn làm việc sát với Anthropic: kỹ sư Anthropic từng ở ngân hàng sáu tháng để dựng agent cho kế toán giao dịch và tiếp nhận khách hàng. Goldman và Morgan Stanley cũng là bên bảo lãnh chính cho đợt IPO của Anthropic theo hồ sơ S-1 nộp ngày 26/10.",
+        "## Nhận định của nguồn",
+        "Bài gốc cho rằng mã do agent viết, nếu người dùng không đọc được và không qua rà soát, là rủi ro trên sàn giao dịch, nhất là với các “bức tường thông tin” giữa các nhóm. Bài khuyên doanh nghiệp xác định ai chịu trách nhiệm về mã do agent tạo ra trước khi phát agent cho mọi người. Đây là quan điểm của tác giả bài gốc, không phải thông tin xác nhận từ Goldman.",
+        "> Đây là bài của người dùng chia sẻ trên Hacker News, dựa trên tin của Bloomberg. Goldman chưa công bố đầy đủ nội dung hướng dẫn."
+      ],
+      "glossary": [
+        {
+          "term": "Vibe coding",
+          "explain": "Cách viết phần mềm bằng cách mô tả ý muốn cho AI rồi nhận mã về, người dùng không nhất thiết đọc hay hiểu từng dòng."
+        },
+        {
+          "term": "Strats",
+          "explain": "Nhóm ở các ngân hàng đầu tư làm cầu nối giữa giao dịch, nghiên cứu định lượng và kỹ thuật phần mềm."
+        },
+        {
+          "term": "Bảo lãnh phát hành",
+          "explain": "Ngân hàng giúp công ty bán cổ phiếu ra công chúng lần đầu (IPO) và thường nhận mua phần chưa bán hết."
+        }
+      ]
+    },
+    {
+      "id": "tam-biet-claude-code-chuyen-sang-pi",
+      "group": "community",
+      "source": "Hacker News (blog caleb.software)",
+      "url": "https://caleb.software/posts/claude-to-pi.html",
+      "discussionUrl": "https://news.ycombinator.com/item?id=50410107",
+      "points": 663,
+      "comments": 419,
+      "publishedAt": "2026-09-21T00:00:00Z",
+      "hot": true,
+      "readMinutes": 3,
+      "tags": [
+        "Claude Code",
+        "Pi",
+        "coding agent",
+        "mã nguồn mở"
+      ],
+      "titleEn": "Goodbye Claude, hello Pi",
+      "titleVi": "Một lập trình viên bỏ Claude Code sang Pi vì hàng loạt lỗi vặt và thay đổi liên tục",
+      "summary": "Tác giả blog caleb.software dùng Claude Code hơn một năm, rồi chuyển sang công cụ mã nguồn mở Pi vì tích tụ nhiều bất tiện. Họ phàn nàn về trải nghiệm với VS Code, tốc độ thêm tính năng và việc system prompt bị đổi liên tục. Bài đạt 663 điểm trên Hacker News.",
+      "keyPoints": [
+        "Claude Code chỉ nối được một phiên với IDE tại một thời điểm, theo tác giả.",
+        "Tiện ích VS Code chính thức thiếu nhiều lệnh slash và không hỗ trợ status line tuỳ biến.",
+        "Tác giả đếm 244 bản phát hành Claude Code trong năm, hơn 3/4 đổi system prompt hoặc mô tả công cụ.",
+        "Mô tả công cụ Bash mặc định dài gần 3.000 token, theo tác giả."
+      ],
+      "body": [
+        "Tác giả là người dùng Claude Code lâu năm, từ khi nó có trong gói Claude Pro. Họ quyết định bỏ nó làm công cụ chính và chuyển sang Pi. Theo họ, một ngày sau quyết định đó Anthropic thông báo Claude Code sẽ hỗ trợ file AGENTS.md, nhưng với họ thì đã muộn.",
+        "## Những điều tác giả không thích",
+        "- Phải sao chép hoặc tạo liên kết giữa CLAUDE.md và AGENTS.md.",
+        "- Khi dùng trong VS Code, chỉ một phiên được nối với IDE, nên mở tab thứ hai thì không nhận được đoạn mã đang bôi đen.",
+        "- Tiện ích VS Code chính thức cho nhiều tab, nhưng theo tác giả một nửa lệnh slash không chạy, không có status line tuỳ biến, và kết quả các subagent bị xếp lẫn vào một luồng chat.",
+        "- Tính năng mới ra rất nhanh, như workflow động, agent team, ultrareview, nhưng tác giả cho là thiếu chăm chút về chất lượng.",
+        "- Theo số đếm của tác giả, 244 bản phát hành trong năm, hơn 3/4 đổi system prompt hoặc mô tả công cụ, có thể làm đổi hành vi mô hình.",
+        "- Mô tả công cụ Bash mặc định gần 3.000 token, phần lớn nói về git và pull request.",
+        "## Lựa chọn thay thế",
+        "Tác giả thừa nhận bài viết nặng tính phàn nàn và không cho rằng mình sẽ làm tốt hơn nếu điều hành Claude Code. Họ thích Pi ở độ ổn định, cách làm tối giản và khả năng tuỳ biến cao, và đã viết vài tiện ích mở rộng cho nhu cầu riêng. Một tiện ích xử lý việc nhiều tab nhận đoạn mã chọn trong IDE được viết trong khoảng 20 phút.",
+        "> Đây là ý kiến cá nhân của một người dùng, các số liệu do tác giả tự đếm và chưa được kiểm chứng độc lập."
+      ],
+      "glossary": [
+        {
+          "term": "Harness",
+          "explain": "Lớp phần mềm bao quanh mô hình để biến nó thành agent lập trình: công cụ, prompt hệ thống, quản lý ngữ cảnh."
+        },
+        {
+          "term": "AGENTS.md",
+          "explain": "File văn bản đặt trong kho mã, ghi hướng dẫn cho các agent lập trình. CLAUDE.md là tên riêng của Claude Code."
+        },
+        {
+          "term": "System prompt",
+          "explain": "Phần chỉ dẫn gốc luôn được gửi kèm mô hình, người dùng thường không thấy."
+        }
+      ]
+    },
+    {
+      "id": "the-verge-nvidia-dieu-tra-jensen-huang-va-thu-ngo-loi-cua-ceo",
+      "group": "press",
+      "source": "The Verge",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/1029595/full-text-jensen-huang-affair-memo-nvidia",
+      "publishedAt": "2026-11-08T22:54:50Z",
+      "hot": true,
+      "readMinutes": 2,
+      "tags": [
+        "Nvidia",
+        "Jensen Huang",
+        "an ninh quốc gia"
+      ],
+      "titleEn": "Here’s the full text of Jensen Huang’s memo to Nvidia",
+      "titleVi": "Diễn biến mới: hội đồng quản trị Nvidia mở điều tra độc lập, Jensen Huang gửi thư xin lỗi nhân viên",
+      "summary": "Sau tin hôm trước về việc một giám đốc ngành AI bị cho là được tuyển để thu thập thông tin về Jensen Huang, hội đồng quản trị Nvidia công bố điều tra độc lập. Huang cũng gửi thư cho nhân viên thừa nhận không chung thuỷ với vợ. The Verge đăng toàn văn thư.",
+      "keyPoints": [
+        "Hội đồng quản trị lập một uỷ ban thành viên độc lập, có luật sư độc lập hỗ trợ, để điều tra.",
+        "Hội đồng nói không có lý do để tin an ninh quốc gia hay bí mật của Nvidia bị xâm phạm.",
+        "Thư của Huang thừa nhận ông không chung thuỷ, xin lỗi gia đình và nhân viên, và nói sẽ hợp tác với cuộc điều tra.",
+        "The Verge nêu người liên quan là Alice Huang, giám đốc ngành AI, được mô tả là đặc vụ của chính phủ Trung Quốc."
+      ],
+      "body": [
+        "Ngày 8/11, Nvidia thông báo mở điều tra liên quan đến CEO Jensen Huang. Tin trước đó (đã đăng ở số ngày 7/11) cho biết, theo một bản ghi nhớ tình báo Mỹ, một giám đốc từng làm ở Megaspeed bị tuyển để thu thập thông tin về ông. Phần dưới là diễn biến mới.",
+        "## Thông báo của hội đồng quản trị",
+        "Hội đồng nói họ khởi động một cuộc điều tra độc lập sau các báo cáo rằng ông Huang là mục tiêu của một nỗ lực tình báo nước ngoài. Một uỷ ban gồm các thành viên độc lập sẽ giám sát, có luật sư bên ngoài hỗ trợ. Hội đồng khẳng định an ninh quốc gia và kinh tế Mỹ được đặt lên hàng đầu, đồng thời nói không có lý do để tin an ninh quốc gia hay bí mật của Nvidia đã bị xâm phạm. Hội đồng vẫn tin tưởng ông Huang và ban lãnh đạo, và sẽ cập nhật khi thích hợp.",
+        "## Thư của Jensen Huang",
+        "Cùng ngày, ông Huang gửi thư cho nhân viên. Ông viết rằng ông không chung thuỷ với vợ, nhận hoàn toàn trách nhiệm, xin lỗi gia đình, đồng nghiệp, hội đồng, đối tác và cổ đông. Ông nói ủng hộ cuộc điều tra và sẽ hợp tác đầy đủ, cam kết bảo vệ Nvidia và hỗ trợ an ninh quốc gia Mỹ, đồng thời xin tôn trọng sự riêng tư của gia đình.",
+        "The Verge nêu người có quan hệ với ông là Alice Huang, một giám đốc ngành AI mà báo mô tả là đặc vụ của chính phủ Trung Quốc. Bài viết không đưa thêm chi tiết điều tra.",
+        "> Đây là thông tin từ thông cáo của Nvidia và các bản tin; cuộc điều tra mới bắt đầu, chưa có kết luận."
+      ],
+      "glossary": [
+        {
+          "term": "Hội đồng quản trị độc lập",
+          "explain": "Nhóm thành viên hội đồng không giữ chức vụ điều hành trong công ty, được giao giám sát các việc nhạy cảm như điều tra nội bộ."
+        }
+      ]
+    },
+    {
+      "id": "the-verge-apple-gap-rut-lam-siri-thanh-agent",
+      "group": "press",
+      "source": "The Verge",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/1029552/apple-siri-ai-agentic",
+      "publishedAt": "2026-11-08T19:18:19Z",
+      "hot": true,
+      "readMinutes": 2,
+      "tags": [
+        "Apple",
+        "Siri",
+        "agent"
+      ],
+      "titleEn": "Apple is racing to make Siri more agentic",
+      "titleVi": "Diễn biến mới: theo Bloomberg, CEO Apple thúc Federighi đẩy nhanh lộ trình Siri, ứng dụng bên thứ ba đến vào mùa xuân",
+      "summary": "The Verge dẫn Mark Gurman của Bloomberg: CEO John Ternus đang gây áp lực để Siri thành agent mạnh hơn, đủ cạnh tranh với Dots của OpenAI hay Muse của Meta. Thông tin chưa được Apple xác nhận trong bài.",
+      "keyPoints": [
+        "iOS 27.3 dự kiến cho Siri điều khiển chi tiết ứng dụng của Apple, như xoay và cắt ảnh trong Photos hay sắp xếp tab Safari.",
+        "Tích hợp ứng dụng bên thứ ba dự kiến đến muộn hơn, vào mùa xuân.",
+        "Apple muốn Siri làm được việc kéo dài, không chỉ từng yêu cầu lẻ.",
+        "Theo Gurman, Apple tự nhận chưa theo kịp đối thủ."
+      ],
+      "body": [
+        "Theo Mark Gurman của Bloomberg (qua The Verge), CEO John Ternus đang thúc giám đốc AI Craig Federighi đẩy nhanh lộ trình của Siri. Federighi đã đưa ra một bản Siri AI chạy được trong thời gian rất ngắn, nhưng Apple không ảo tưởng rằng mình đang theo kịp đối thủ.",
+        "## Hai cải tiến sắp tới",
+        "Cải tiến thứ nhất cho Siri quyền điều khiển chi tiết các ứng dụng của Apple, ví dụ xoay, cắt ảnh trong Photos và sắp xếp tab Safari. Tính năng này dự kiến có trong iOS 27.3. Cải tiến lớn hơn là tích hợp ứng dụng bên thứ ba, dự kiến tới vào mùa xuân, cho phép đặt món qua Grubhub hay đặt bàn qua OpenTable.",
+        "Số ngày 4/11 đã đưa tin Apple bắt đầu cho Siri AI thao tác trong ứng dụng bên thứ ba; điểm mới ở đây là mốc thời gian, tham vọng làm agent và áp lực từ lãnh đạo.",
+        "## Hướng agent",
+        "Gurman viết rằng Dots, Muse và Grok có thể theo dõi mục tiêu, xác định bước tiếp theo và tiếp tục theo đuổi mà người dùng không phải khởi động từng bước. Ông cho biết Apple cuối cùng muốn đi theo hướng này và tin rằng công ty có thể làm Siri giống agent hơn sớm nhất vào năm tới.",
+        "> Đây là thông tin Bloomberg đưa theo nguồn riêng, Apple chưa xác nhận trong bài của The Verge."
+      ],
+      "glossary": [
+        {
+          "term": "Agent",
+          "explain": "Hệ thống AI tự lên kế hoạch và thực hiện nhiều bước để đạt mục tiêu, thay vì chỉ trả lời một câu hỏi."
+        }
+      ]
+    },
+    {
+      "id": "llama-modchip-chay-deepseek-284b-tren-cpu-64gb-ram",
+      "group": "community",
+      "source": "Hacker News (GitHub)",
+      "url": "https://github.com/synchopate/llama-modchip",
+      "discussionUrl": "https://news.ycombinator.com/item?id=50411961",
+      "points": 330,
+      "comments": 130,
+      "publishedAt": "2026-11-08T10:22:04Z",
+      "hot": true,
+      "readMinutes": 3,
+      "tags": [
+        "llama.cpp",
+        "DeepSeek",
+        "MoE",
+        "chạy cục bộ"
+      ],
+      "titleEn": "Llama-modchip: 284B DeepSeek on 64GB RAM, no GPU",
+      "titleVi": "llama-modchip: chạy DeepSeek-V4-Flash 284 tỷ tham số trên CPU với 64 GB RAM, không cần GPU",
+      "summary": "Dự án GitHub llama-modchip gồm bản vá cho llama.cpp, bộ chuyển đổi lượng tử hoá và công cụ chạy, để chạy mô hình MoE lớn hoàn toàn bằng RAM hệ thống. Tác giả nói DeepSeek-V4-Flash nén còn 56,56 GiB, vừa một máy 64 GB. Mọi số đo dưới đây do tác giả dự án tự công bố.",
+      "keyPoints": [
+        "DeepSeek-V4-Flash có 284,33 tỷ tham số, khoảng 13,17 tỷ hoạt động mỗi lần; bản nén 1,71 bit mỗi trọng số có dung lượng 56,56 GiB.",
+        "Trên CPU Zen 5 16 nhân, tốc độ xử lý prompt đạt 44,36 token/giây, sinh chữ 9,1 đến 14,7 token/giây.",
+        "Ngữ cảnh 256K token chiếm tổng cộng khoảng 57,61 GiB bộ nhớ.",
+        "Mô hình MoE 30 tỷ chạy 25 đến 111 token/giây tuỳ cấu hình."
+      ],
+      "body": [
+        "llama-modchip là tập hợp bản vá kernel cho ggml/llama.cpp, công cụ chuyển đổi lượng tử hoá và công cụ chạy, nhằm chạy mô hình Mixture-of-Experts (MoE) hoàn toàn trong RAM hệ thống trên CPU x86_64 và ARM64.",
+        "## Nén vừa 64 GB",
+        "Bản UD-IQ1_S thông thường của DeepSeek-V4-Flash nặng 76,87 GiB, vượt phần RAM dùng được của máy 64 GB chạy Linux (khoảng 62,5 GiB). Theo tác giả, dự án đưa dung lượng xuống 56,56 GiB để cả mô hình và bộ nhớ đệm cho ngữ cảnh 256K token nằm gọn trong RAM, không cần swap. Mặc định cả 6 expert được chọn ở mỗi tầng đều được tính, không cắt bớt.",
+        "## Tăng tốc",
+        "- Thay vòng lặp nhân ma trận từng cột bằng lịch xếp ô nhiều cột phù hợp các tầng thanh ghi và cache, theo tác giả tăng 77% tốc độ xử lý prompt và 53% tốc độ sinh.",
+        "- Dùng một mô hình nháp n-gram nhỏ 1,64 MB cùng ảnh chụp KV cache trong /dev/shm; khôi phục prompt của Claude Code có 40 công cụ mất 13,1 đến 32,6 ms.",
+        "## Phần cứng khác",
+        "Với laptop hoặc mini-PC 16 đến 32 GB, dự án nhắm tới mô hình Nemotron-3.5-30B-A3B nén còn 14,35 GiB, chạy 25 đến 60 token/giây. Máy workstation 8 kênh bộ nhớ đạt 111,62 token/giây với mô hình 30 tỷ.",
+        "> Các số liệu hiệu năng do tác giả dự án tự công bố trên trang GitHub, chưa được kiểm chứng độc lập. Mức nén 1,71 bit đồng nghĩa chất lượng đầu ra có thể khác bản gốc."
+      ],
+      "glossary": [
+        {
+          "term": "MoE (Mixture-of-Experts)",
+          "explain": "Kiến trúc chia mô hình thành nhiều “expert”, mỗi lần chỉ bật một số ít, nên tổng tham số lớn nhưng tính toán mỗi bước nhỏ."
+        },
+        {
+          "term": "Lượng tử hoá",
+          "explain": "Giảm số bit dùng để lưu mỗi trọng số, đổi lấy dung lượng nhỏ hơn và có thể giảm chất lượng."
+        },
+        {
+          "term": "KV cache",
+          "explain": "Bộ nhớ lưu trạng thái attention của các token đã xử lý để không phải tính lại."
+        }
+      ]
+    },
+    {
+      "id": "bo-nho-agent-can-chuan-chung-giong-opentelemetry",
+      "group": "community",
+      "source": "Hacker News (blog LoreKit)",
+      "url": "https://www.lorekit.io/blog/open-agent-memory-format",
+      "discussionUrl": "https://news.ycombinator.com/item?id=50411467",
+      "points": 162,
+      "comments": 102,
+      "publishedAt": "2026-11-08T08:40:23Z",
+      "hot": true,
+      "readMinutes": 4,
+      "tags": [
+        "agent memory",
+        "chuẩn mở",
+        "MCP",
+        "OpenTelemetry"
+      ],
+      "titleEn": "Agent memory needs its OpenTelemetry moment",
+      "titleVi": "Bộ nhớ của agent đang thiếu một định dạng chung, giống cách OpenTelemetry thống nhất ngành giám sát",
+      "summary": "Tác giả công cụ mã nguồn mở LoreKit kêu gọi cộng đồng thống nhất định dạng lưu “bộ nhớ” của agent. Hiện mỗi công cụ lưu theo một kiểu riêng và không đọc được của nhau. Tác giả lấy OpenTelemetry năm 2019 làm hình mẫu và nói rõ mình là bên có lợi ích liên quan.",
+      "keyPoints": [
+        "Một máy lập trình thường có tới bốn kiểu lưu bộ nhớ khác nhau: AGENTS.md hoặc CLAUDE.md, thư mục /memories, bộ nhớ Copilot, máy chủ MCP lưu đồ thị tri thức.",
+        "Quan sát của tác giả: mọi định dạng đều trả lời bốn câu hỏi: đúng ở đâu, danh tính là gì, nội dung gì, hết đúng khi nào.",
+        "Đề xuất khung gồm quy ước tên chung, một hợp đồng thao tác (ghi, đọc, liệt kê, tìm, lưu trữ) qua MCP và bộ kiểm thử tuân thủ.",
+        "Rủi ro đã được nêu: bộ nhớ chung có thể trở thành kênh prompt injection."
+      ],
+      "body": [
+        "Bài mở đầu bằng việc liệt kê các nơi công cụ lập trình lưu thứ chúng “nhớ”: file hướng dẫn như AGENTS.md, CLAUDE.md và rule của Cursor, các file trong thư mục /memories qua công cụ bộ nhớ của Anthropic, thông tin Copilot lưu theo kho mã phía GitHub, và máy chủ MCP lưu đồ thị tri thức. Theo tác giả, bốn kiểu đó không đọc được của nhau.",
+        "## So sánh với OpenTelemetry",
+        "Trước năm 2019, mỗi hãng giám sát có agent và định dạng dữ liệu riêng. OpenTracing và OpenCensus sáp nhập thành OpenTelemetry, và các hãng đồng ý thống nhất bốn lớp: mô hình dữ liệu, quy ước tên, giao thức và bản cài đặt tham chiếu. Họ vẫn cạnh tranh ở phần lưu trữ và phân tích. Tác giả cho rằng bộ nhớ agent đang ở vị trí giống ngành giám sát trước 2019.",
+        "## Đề xuất",
+        "Các đề xuất hiện có (Portable Memory của MacPaw, Open Memory Protocol, COGX của Cognee) chủ yếu giải bài toán xuất bộ nhớ từ hãng này sang hãng khác. Tác giả nói còn thiếu phần “địa chỉ sống”: nhiều công cụ cùng đọc và ghi một chỗ và hiểu cùng một nghĩa. Một bản ghi có thể là file Markdown có phần đầu khai báo địa chỉ, khoá, vòng đời và ai viết (người, agent hay dịch vụ).",
+        "Tác giả cũng nêu các câu hỏi chưa có đáp án: nên có những mức địa chỉ nào, có nên quên theo mặc định, bản ghi có nên trỏ tới mã nó phụ thuộc, và ai điều phối.",
+        "> Tác giả là người làm LoreKit và tự nói định dạng của LoreKit chỉ là một đề xuất trong số nhiều. Đây là ý kiến, chưa có thoả thuận nào của ngành."
+      ],
+      "glossary": [
+        {
+          "term": "OpenTelemetry",
+          "explain": "Chuẩn mở về dữ liệu giám sát (trace, metric, log), giúp công cụ của nhiều hãng đọc được dữ liệu của nhau."
+        },
+        {
+          "term": "MCP",
+          "explain": "Giao thức để agent gọi công cụ và nguồn dữ liệu bên ngoài theo cách thống nhất."
+        },
+        {
+          "term": "Prompt injection",
+          "explain": "Chèn chỉ dẫn độc hại vào nội dung mà mô hình đọc để điều khiển hành vi của nó."
+        }
+      ]
+    },
+    {
+      "id": "chong-met-moi-khi-chay-nhieu-agent-bang-hang-doi-ticket-trong-git",
+      "group": "community",
+      "source": "Hacker News (blog Sergey Kuhne)",
+      "url": "https://sergeykuhne.com/blog/fighting-ai-brain-fry",
+      "discussionUrl": "https://news.ycombinator.com/item?id=50416363",
+      "points": 115,
+      "comments": 102,
+      "publishedAt": "2026-11-08T19:37:42Z",
+      "readMinutes": 2,
+      "tags": [
+        "năng suất",
+        "coding agent",
+        "quy trình làm việc"
+      ],
+      "titleEn": "How I Fight AI Brain Fry",
+      "titleVi": "Làm việc với nhiều agent mà không rối: một kỹ sư dùng hàng đợi ticket trong git và “hộp thư chủ”",
+      "summary": "Tác giả mô tả cách tránh kiệt sức khi chạy hàng chục phiên Claude Code hoặc Codex cùng lúc. Họ chuyển công việc thành hàng đợi ưu tiên lưu trong git, để agent làm theo vòng và chỉ chuyển cho người những việc cần phán đoán.",
+      "keyPoints": [
+        "Mỗi ticket là một file Markdown trong kho mã, nên không có gì quan trọng nằm lại trong cửa sổ chat hay trong đầu người.",
+        "Agent nghiên cứu ticket mới, xây những ticket đã được người gắn nhãn an toàn, chạy kiểm thử; không bao giờ tự triển khai lên production.",
+        "Mọi việc cần quyết định dồn vào một danh sách ưu tiên gọi là “owner inbox”.",
+        "Điểm mấu chốt: xử lý xong một mục thì đóng nó và trả vào hàng đợi, để ngữ cảnh cũng đóng theo."
+      ],
+      "body": [
+        "Tác giả mô tả tình huống quen thuộc với người dùng Claude Code hoặc Codex trong terminal: bắt đầu một việc, trong lúc chờ lại mở việc khác, rồi mỗi câu trả lời lại đẻ thêm câu hỏi và việc phụ cho tới khi người dùng phải xoay giữa khoảng 20 luồng và kiệt sức.",
+        "## Cách làm",
+        "Tác giả coi vấn đề nằm ở thứ tự việc và ngữ cảnh, nên tổ chức công việc như một hàng đợi ưu tiên. Hàng đợi nằm trong git. Một agent chạy theo vòng trên bảng ticket: nghiên cứu ticket mới, xây những ticket người đã đánh dấu là an toàn, chạy kiểm thử và kiểm tra bằng trình duyệt, rồi xác minh phần đã triển khai. Với mã nhạy cảm, nó làm trên một nhánh riêng và hỏi trước.",
+        "Phần agent không làm được là quyết định. Một script đọc cả bảng và đưa cho tác giả danh sách các mục chờ phán đoán của họ. Họ đọc trên một trang Claude artifact dựng lại từ git sau mỗi vòng, rồi ghi nhận xét vào lại git.",
+        "## Cốt lõi",
+        "Tác giả lấy một mục, nạp ngữ cảnh, ra quyết định rồi đóng mục đó bằng cách trả nó vào hàng đợi. Theo họ, việc đóng này là điểm quan trọng nhất vì ngữ cảnh đóng theo, nên khi lấy mục tiếp theo họ có thể tập trung vào một việc. Họ nói cách này vẫn mệt, nhưng không còn cảm giác bị phân tán hay lạc.",
+        "Tác giả thừa nhận khó khăn còn lại nằm ở công cụ: làm sao nạp ngữ cảnh trong một phút thay vì hai mươi, và tránh ticket bị kẹt vòng lặp vì chờ phán quyết của người.",
+        "> Đây là kinh nghiệm cá nhân chưa được kiểm chứng."
+      ],
+      "glossary": [
+        {
+          "term": "Claude artifact",
+          "explain": "Trang hoặc ứng dụng nhỏ do Claude tạo ra và hiển thị cạnh cuộc trò chuyện."
+        },
+        {
+          "term": "Production",
+          "explain": "Môi trường chạy thật mà người dùng cuối đang dùng."
+        }
+      ]
+    },
+    {
+      "id": "hyperflow-h3-flash-nen-mo-hinh-video-am-thanh-31b-con-14b",
+      "group": "community",
+      "source": "Hacker News (GitHub)",
+      "url": "https://github.com/Video-Rebirth/hyperflow-h3-flash",
+      "discussionUrl": "https://news.ycombinator.com/item?id=50405263",
+      "points": 75,
+      "comments": 14,
+      "publishedAt": "2026-11-07T15:16:01Z",
+      "readMinutes": 2,
+      "tags": [
+        "video generation",
+        "nén mô hình",
+        "INT8",
+        "GGUF"
+      ],
+      "titleEn": "Show HN: We compressed a 31B video+audio diffusion model to 14B, 6 steps, INT8",
+      "titleVi": "Video Rebirth thu nhỏ mô hình sinh video kèm âm thanh MiniMax-H3 từ khoảng 31 tỷ xuống 13,7 tỷ tham số",
+      "summary": "HyperFlow H3 Flash là bản nén, ít bước của MiniMax-H3, sinh video và âm thanh nổi cùng lúc. Nhóm tác giả đăng lên Hacker News (Show HN) với bản INT8 và GGUF cho GPU 24 đến 32 GB. Các số đo do chính nhóm công bố.",
+      "keyPoints": [
+        "Bản mới có 13,7 tỷ (fl2va) hoặc 13,9 tỷ (ref2va) tham số, chưa bằng một nửa phần transformer ~31 tỷ của MiniMax-H3.",
+        "Sinh 5,2 đến 15 giây video 24 khung hình/giây, độ phân giải mặc định 1344×768, kèm âm thanh nổi 32 kHz.",
+        "Lấy mẫu 4, 6 (mặc định) hoặc 8 bước, không cần classifier-free guidance.",
+        "Clip 5,2 giây với 6 bước: 8,7 giây trên 4 GPU B200, 36 giây trên một H200, 92 giây trên một RTX 5090."
+      ],
+      "body": [
+        "HyperFlow H3 Flash là phiên bản nén, ít bước lấy mẫu của MiniMax-H3 do Video Rebirth phát hành. Mô hình sinh video và âm thanh nổi đồng bộ trong cùng một lượt.",
+        "## Cấu hình và tác vụ",
+        "Theo trang GitHub, mô hình hỗ trợ ba kiểu đầu vào: chỉ có chữ, chữ kèm khung hình đầu (hoặc đầu và cuối), và chữ kèm tối đa 12 tham chiếu. Với tham chiếu, bản INT8 nhận ảnh, video và âm thanh, còn bản GGUF chỉ nhận ảnh.",
+        "## Chạy trên máy cá nhân",
+        "Bản GGUF Q4_K_M nặng 9,1 GB, Q8_0 nặng 14,9 GB. Nhóm cho biết có thể chạy trên GPU 24 và 32 GB với 16 GB RAM hệ thống; GPU 16 GB chưa đo. Bản INT8 dành cho GPU data center, hoặc GPU RTX từ 24 GB với ít nhất 69 GiB RAM hệ thống. Các runtime gồm ComfyUI, Unsloth Studio và stable-diffusion.cpp. Nhóm còn nói đối tác NVIDIA SOL-H3 chạy mô hình theo thời gian thực trên 4 GPU dòng Blackwell.",
+        "> Mọi số liệu về tốc độ và dung lượng do Video Rebirth tự công bố, chưa được kiểm chứng độc lập."
+      ],
+      "glossary": [
+        {
+          "term": "Diffusion",
+          "explain": "Họ mô hình sinh ảnh, video bằng cách khử nhiễu dần qua nhiều bước."
+        },
+        {
+          "term": "GGUF",
+          "explain": "Định dạng file mô hình đã lượng tử hoá, dùng với llama.cpp và các công cụ tương tự."
+        },
+        {
+          "term": "Classifier-free guidance (CFG)",
+          "explain": "Kỹ thuật bẻ hướng đầu ra theo prompt, thường tốn thêm một lượt tính mỗi bước."
+        }
+      ]
+    },
+    {
+      "id": "the-verge-chu-so-huu-nhac-elvis-va-eminem-kien-suno",
+      "group": "press",
+      "source": "The Verge",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/1029533/elvis-eminem-suno-ai-music-clone-lawsuit",
+      "publishedAt": "2026-11-08T17:23:19Z",
+      "readMinutes": 2,
+      "tags": [
+        "Suno",
+        "bản quyền",
+        "nhạc AI",
+        "kiện tụng"
+      ],
+      "titleEn": "Elvis and Eminem rights holders are suing Suno",
+      "titleVi": "Chủ sở hữu nhạc của Elvis Presley và nhà xuất bản của Eminem kiện Suno vì nhạc và lời nhại nghệ sĩ",
+      "summary": "Suno bị thêm hai vụ kiện. Bên đại diện Elvis dựa vào đạo luật ELVIS của bang Tennessee, vốn cấm công ty AI nhân bản giọng ca sĩ. Suno nói họ không cho nhập tên nghệ sĩ và bài hát cụ thể.",
+      "keyPoints": [
+        "Nguyên đơn gồm chủ sở hữu nhạc của Elvis Presley và nhà xuất bản của một số bản thu lớn của Eminem.",
+        "Vụ Presley viện dẫn đạo luật ELVIS về bảo vệ giọng nói và hình ảnh của bang Tennessee.",
+        "Vụ kiện tương tự vụ của Jason Isbell hồi tháng 9, không kiện trực tiếp về vi phạm bản quyền.",
+        "Suno còn đang bị Sony, UMG, Isbell, Reservoir Media và những bên khác kiện."
+      ],
+      "body": [
+        "Theo The Verge, Suno phải đối mặt thêm hai vụ kiện. Chủ sở hữu nhạc của Elvis Presley và nhà xuất bản của một số bản thu lớn của Eminem cho rằng Suno tạo ra nhạc và lời bắt chước các nghệ sĩ này một cách trái phép.",
+        "Luật sư bên Presley cho rằng Suno vi phạm đạo luật ELVIS (Ensuring Likeness Voice and Image Security Act) của Tennessee. Họ viết rằng Suno đã “mã hoá” danh tính và công sức của nghệ sĩ để kiếm tiền. Vụ kiện giống vụ do Jason Isbell và những người khác đưa ra hồi tháng 9.",
+        "## Phản hồi của Suno",
+        "Người phát ngôn Cat McCormack nói Suno tồn tại để giúp tạo nhạc mới, không khai thác tên hay hình ảnh của ai. Suno nói họ không cho nhập prompt có tên nghệ sĩ hoặc bài hát cụ thể, và phối hợp với bên thứ ba để lọc file âm thanh và lời nhạc tải lên. Công ty sẽ tiếp tục bổ sung biện pháp bảo vệ.",
+        "> Đây là cáo buộc trong đơn kiện, chưa có phán quyết của toà."
+      ],
+      "glossary": [
+        {
+          "term": "Đạo luật ELVIS",
+          "explain": "Luật của bang Tennessee (Mỹ) cấm dùng AI nhân bản giọng nói hoặc hình ảnh của nghệ sĩ khi chưa được phép."
+        }
+      ]
+    },
+    {
+      "id": "wired-world-model-sap-xuat-hien-khap-noi",
+      "group": "press",
+      "source": "Wired",
+      "url": "https://www.wired.com/story/world-models-will-soon-be-inescapable-what-you-need-to-know/",
+      "publishedAt": "2026-11-08T10:00:00Z",
+      "readMinutes": 3,
+      "tags": [
+        "world model",
+        "robot",
+        "xe tự lái",
+        "dữ liệu"
+      ],
+      "titleEn": "World Models Will Soon Be Inescapable. Here’s What You Need to Know",
+      "titleVi": "World model là gì và vì sao sắp có mặt trong robot, xe tự lái và game, theo Wired",
+      "summary": "Wired giải thích world model, loại mô hình nhận cảnh trực quan và dự đoán trạng thái tiếp theo của thế giới. Bài nói 2027 có thể là năm lớn của robot gia đình và xe tự lái, và cả chuyện người ta bán video làm việc nhà để lấy dữ liệu.",
+      "keyPoints": [
+        "Oliver Cameron (Odyssey): mô hình ngôn ngữ dự đoán từ tiếp theo, world model nhận một trạng thái hình ảnh và dự đoán trạng thái hình ảnh tiếp theo.",
+        "Niantic Spatial, tách ra từ Niantic của Pokémon Go, dựng bản sao thế giới thực để phục vụ robot.",
+        "Wayve dùng video dashcam để dựng lại đường nguy hiểm khó thử ngoài đời.",
+        "Các hãng cần người quay video đời thực làm dữ liệu, tác giả bán video làm việc nhà với mức trả khá thấp."
+      ],
+      "body": [
+        "Wired cho rằng world model sẽ thấm vào đời sống mà người dùng không nhất thiết tương tác trực tiếp. Khác mô hình ngôn ngữ làm việc với chữ, world model dùng đầu vào hình ảnh và có thể sinh môi trường số mô phỏng vật lý.",
+        "## Ứng dụng",
+        "Brian McClendon, CTO của Niantic Spatial, nói công ty muốn dùng kho dữ liệu thế giới thực để dựng bản sao. Ông hình dung một robot có thể luyện tập trong bản mô phỏng 3D dựng từ ảnh nơi nó sẽ làm việc, với “hàng triệu lần mô phỏng”. Xe tự lái cũng dùng cách này: Wayve dùng video dashcam để tái hiện đoạn đường nguy hiểm. Jamie Shotton, nhà khoa học trưởng Wayve, nói world model phải phản ứng với hành động của ta và hiểu vật lý, nhân quả.",
+        "Các hãng lớn như Tencent đầu tư world model cho game. Bài cũng nhắc việc Yann LeCun, cựu nhà khoa học trưởng AI của Meta, gọi được hơn một tỷ USD cho startup của ông, và World Labs của Fei-Fei Li bị AMD mua hơn 8 tỷ USD trong năm nay.",
+        "## Mặt trái về lao động",
+        "Tác giả bài kể đã đeo iPhone lên trán quay nhiều giờ video gấp đồ, rửa bát và rót nước ngọt, bán qua một ứng dụng với mức trả khá thấp. Theo bài, nhiều công việc thu thập dữ liệu kiểu này có thể xuất hiện thêm.",
+        "> Bài mang tính giải thích và dự báo của phóng viên; các dự đoán về năm 2027 chưa được kiểm chứng."
+      ],
+      "glossary": [
+        {
+          "term": "World model",
+          "explain": "Mô hình học cách thế giới thay đổi theo hành động, thường dùng hình ảnh, để mô phỏng hoặc dự đoán trạng thái kế tiếp."
+        },
+        {
+          "term": "Dashcam",
+          "explain": "Camera gắn trên xe ghi lại hành trình."
+        }
+      ]
+    },
+    {
+      "id": "latent-space-stanford-day-ky-su-ai-native-mihail-eric",
+      "group": "newsletter",
+      "source": "Latent Space",
+      "url": "https://latent.space/p/cs146s/",
+      "publishedAt": "2026-11-08T21:41:44Z",
+      "readMinutes": 3,
+      "tags": [
+        "giáo dục",
+        "coding agent",
+        "Stanford",
+        "context engineering"
+      ],
+      "titleEn": "How Stanford Teaches AI-Native Engineering — Mihail Eric, Monaco",
+      "titleVi": "Podcast Latent Space: giảng viên Stanford kể cách dạy khoá “Modern Software Developer” về lập trình với agent",
+      "summary": "Swyx phỏng vấn Mihail Eric, giảng viên thỉnh giảng Stanford và trưởng bộ phận AI tại Monaco, về khoá CS146S. Ông nói năm nay khoá học chuyển từ khảo sát công cụ sang các nguyên tắc như context engineering và thiết kế kiến trúc.",
+      "keyPoints": [
+        "CS146S, “The Modern Software Developer”, dạy lần đầu mùa thu 2025, năm nay là lần thứ hai.",
+        "Khoá không dành cho người mới và không thay thế các môn khoa học máy tính nền tảng.",
+        "Bài tập năm trước khá dễ vì agent có thể làm một lượt; năm nay khoá chuyển sang làm việc với các đối tác mã nguồn mở.",
+        "Theo Eric, trong lớp ông khảo sát không sinh viên nào còn gõ mã bằng tay."
+      ],
+      "body": [
+        "Đây là tập podcast đặc biệt mừng kênh YouTube AI Engineer đạt một triệu người đăng ký. Khách mời Mihail Eric vừa dạy khoá “The Modern Software Developer” (CS146S) ở Stanford, vừa là trưởng bộ phận AI tại Monaco. Bản chép lời trang đăng là bản tự động.",
+        "## Khoá học thay đổi thế nào",
+        "Eric kể ý tưởng khoá học hình thành từ khoảng tháng 11/2024, ông mất chín đến mười tháng để lập đề cương và được hội đồng thông qua, rồi dạy lần đầu mùa thu 2025. Năm ngoái khoá chủ yếu là một chuyến khảo sát về nơi dùng coding agent trong toàn bộ vòng đời phát triển phần mềm. Năm nay, theo ông, một số nguyên tắc đã rõ hơn, như context engineering cẩn thận và nghĩ về thiết kế, kiến trúc để xử lý tác vụ phức tạp.",
+        "Ông nói khoá dành cho người đã có nền tảng và nhấn mạnh sinh viên vẫn cần kiến thức kỹ thuật phần mềm cốt lõi: cách hệ thống được xây và các đánh đổi của chúng. Với sinh viên lo lắng về việc làm, ông cho rằng một kỹ sư “AI-native” được đào tạo tốt có thể rất có giá trị, nhưng mặt bằng đầu vào cao hơn trước.",
+        "## Bài tập và khách mời",
+        "Năm ngoái có chín bài tập cộng một dự án cuối kỳ. Ông thấy nhiều bài có thể làm bằng một lượt agent nên không còn hữu ích, vì vậy năm nay có phần đóng góp mã nguồn mở với các đối tác. Ông cũng mời các diễn giả đang làm ở tuyến đầu và xin thêm tín dụng cho sinh viên từ một số hãng công cụ để họ không bị giới hạn bởi gói 20 USD mỗi tháng.",
+        "> Phần nhận định trong bài là của khách mời và người dẫn chương trình. Bản tóm tắt này dựa trên phần đầu của bản chép lời."
+      ],
+      "glossary": [
+        {
+          "term": "Context engineering",
+          "explain": "Việc chọn và sắp xếp thông tin đưa vào ngữ cảnh của mô hình để nó làm việc tốt hơn."
+        },
+        {
+          "term": "AI-native engineer",
+          "explain": "Cách gọi kỹ sư quen làm việc với agent lập trình ngay từ đầu sự nghiệp."
+        }
+      ]
+    },
+    {
+      "id": "reddit-mo-hinh-the-gioi-khuech-tan-cho-pokemon-red-va-agent-system-1-2",
+      "group": "community",
+      "source": "r/MachineLearning",
+      "url": "https://www.reddit.com/r/MachineLearning/comments/1xqt0pk/i_trained_a_playable_diffusion_world_model_of/",
+      "publishedAt": "2026-11-08T07:48:52Z",
+      "readMinutes": 2,
+      "tags": [
+        "world model",
+        "diffusion",
+        "game agent",
+        "dự án cá nhân"
+      ],
+      "titleEn": "I trained a playable diffusion world model of Pokémon Red, plus a game agent harness on the same System 1/2 split as Krafton's PUBG Ally",
+      "titleVi": "Một người dùng Reddit huấn luyện mô hình thế giới Pokémon Red chơi được và agent chia hai tầng System 1/System 2",
+      "summary": "Tác giả bài đăng trên r/MachineLearning dựng một mô hình khuếch tán 16,7 triệu tham số học trò chơi Pokémon Red, rồi luyện các chính sách đi bộ nhỏ ngay trong “giấc mơ” của nó. Họ nói agent thắng huy hiệu đầu tiên trong game thật ở 30/30 lần chạy. Đây là dự án cá nhân, số liệu chưa kiểm chứng.",
+      "keyPoints": [
+        "Mô hình thế giới kiểu DIAMOND nhận 4 màn hình gần nhất và một phím bấm rồi vẽ màn hình tiếp theo, ảnh xám 72×80.",
+        "Tầng System 2 (lập kế hoạch) chọn mục tiêu theo RAM của game, bằng luật viết sẵn hoặc một LLM cục bộ.",
+        "Tầng System 1 gồm mười chính sách đi bộ, mỗi cái 1,58 triệu tham số, huấn luyện hoàn toàn trong mô hình thế giới.",
+        "Tổng cộng 50 giờ GPU trên một RTX 4090; phần trận đấu vẫn dùng kịch bản viết sẵn."
+      ],
+      "body": [
+        "Tác giả mô tả dự án gồm bốn phần. Thứ nhất là mô hình thế giới: một mô hình khuếch tán học Pokémon Red từ bản ghi chơi, 16,7 triệu tham số. Cứ 10 bước nó đồng bộ lại với 4 khung hình thật, còn lại tự chạy, và người dùng có thể đi lại trong “giấc mơ” này bằng bàn phím.",
+        "## Agent hai tầng",
+        "Tác giả dùng cách chia như tác giả nói Krafton áp dụng cho PUBG Ally: tầng phản xạ nhanh và tầng suy nghĩ chậm. Tầng lập kế hoạch đọc RAM của game, chọn mục tiêu (luyện cấp, hồi máu, di chuyển, đánh gym), được tra cứu hướng dẫn, và mọi quyết định đều được kiểm tra với bộ nhớ game trước khi chạy. Tầng thực thi gồm mười chính sách đi bộ nhỏ được huấn luyện hoàn toàn trong trí tưởng tượng của mô hình thế giới, không dùng bước chơi thật nào, rồi đưa vào game thật.",
+        "Theo tác giả, 5 trong 6 LLM cục bộ thử làm planner lấy được huy hiệu 10/10 lần; mô hình tốt nhất cần trung vị 7.144,5 lần bấm phím, so với 8.779,5 của luật tự viết. Hai mạng nhỏ khác giúp nâng và tô màu ảnh để dễ xem.",
+        "## Giới hạn",
+        "Tổng chi phí là 50 giờ GPU trên một RTX 4090. Mô hình hay kết thúc trận đấu sớm trong giấc mơ nên phần chiến đấu còn viết kịch bản. Tác giả nói đây là dự án để học và hỏi cộng đồng cần bổ sung gì để đủ cho một workshop học thuật.",
+        "> Đây là chia sẻ của người dùng Reddit, chưa qua bình duyệt và chưa được kiểm chứng."
+      ],
+      "glossary": [
+        {
+          "term": "System 1 / System 2",
+          "explain": "Cách chia kiểu tư duy: phản xạ nhanh (System 1) và suy nghĩ chậm có chủ đích (System 2)."
+        },
+        {
+          "term": "World model",
+          "explain": "Mô hình học cách môi trường thay đổi theo hành động, để mô phỏng hoặc luyện agent trong đó."
+        }
+      ]
+    },
+    {
+      "id": "welm-image-mo-hinh-anh-hop-nhat-cua-wechat",
+      "group": "research",
+      "source": "Hugging Face Papers",
+      "url": "https://arxiv.org/abs/2611.07392",
+      "discussionUrl": "https://huggingface.co/papers/2611.07392",
+      "pdfUrl": "https://arxiv.org/pdf/2611.07392",
+      "points": 44,
+      "comments": 1,
+      "publishedAt": "2026-11-04T19:00:00Z",
+      "readMinutes": 3,
+      "tags": [
+        "sinh ảnh",
+        "MoE",
+        "chỉnh sửa ảnh",
+        "WeChat"
+      ],
+      "titleEn": "WeLM-Image: A Unified Image Generation Model towards Visual Intelligence",
+      "titleVi": "WeLM-Image: mô hình ảnh hợp nhất cho sinh ảnh, sửa ảnh và tổng hợp nhiều ảnh tham chiếu, thiết kế chạy trên một GPU",
+      "summary": "WeLM-Image gộp hiểu đa phương thức vào sinh ảnh từ chữ, sửa ảnh theo lệnh và ghép nhiều ảnh tham chiếu. Mô hình có 31,7 tỷ tham số lưu trữ, khoảng 5,4 tỷ tham số sinh ảnh hoạt động cho mỗi token. Các kết quả so sánh do chính nhóm tác giả báo cáo.",
+      "keyPoints": [
+        "Thiết kế cho các ứng dụng đại chúng của WeChat, chạy trên một GPU.",
+        "Xử lý chữ, ảnh tham chiếu và latent đích như một chuỗi xen kẽ, dùng backbone Mixture-of-Transformers cùng các mô-đun MoE.",
+        "Bản 1536 độ phân giải xếp đầu trong các mô hình mã nguồn mở được so sánh trên PRISM-Bench, Qwen-Image-Bench và UnicBench.",
+        "Bản chưng cất WeLM-Image-Turbo sinh ảnh 1024×1024 trong 4,98 giây trên một GPU NVIDIA H20 với tám bước, không dùng guidance."
+      ],
+      "body": [
+        "WeLM-Image là mô hình nền về ảnh, tích hợp khả năng hiểu đa phương thức vào ba tác vụ: sinh ảnh từ chữ, sửa ảnh theo hướng dẫn và tổng hợp từ nhiều ảnh tham chiếu. Mô hình xử lý chữ, ảnh tham chiếu và latent đích trong cùng một chuỗi xen kẽ.",
+        "## Kiến trúc và dữ liệu",
+        "Backbone Mixture-of-Transformers dùng chung attention nhưng giữ tham số riêng cho phần hiểu và phần sinh, để hai việc ít cản nhau khi huấn luyện. Mỗi nhánh có thêm các mô-đun MoE: tổng 31,7 tỷ tham số lưu trữ, khoảng 5,4 tỷ tham số sinh được kích hoạt cho mỗi token latent đích.",
+        "Nhóm dựng một “data engine” kết hợp bộ từ vựng thị giác gắn tri thức với phân cụm ảnh quy mô lớn, cân bằng độ phủ ngữ nghĩa và tác vụ sửa ảnh. Chú thích song ngữ và dữ liệu sửa ảnh đã kiểm chứng phục vụ huấn luyện tiến dần tới độ phân giải gốc 1,5K.",
+        "## Hậu huấn luyện và tốc độ",
+        "Sinh ảnh và sửa ảnh được tối ưu riêng bằng phần thưởng dựa trên rubric và checklist, sau đó hợp nhất bằng chưng cất on-policy có xét nhiễu. Bản chưng cất few-step WeLM-Image-Turbo sinh ảnh 1024×1024 trong 4,98 giây trên một GPU H20 với tám bước và không cần guidance.",
+        "> Các kết quả xếp hạng và tốc độ do nhóm tác giả báo cáo, chưa được kiểm chứng độc lập."
+      ],
+      "glossary": [
+        {
+          "term": "Mixture-of-Transformers (MoT)",
+          "explain": "Kiến trúc có chung lớp attention nhưng tách tham số riêng cho từng loại tác vụ hoặc phương thức."
+        },
+        {
+          "term": "Chưng cất on-policy",
+          "explain": "Huấn luyện mô hình học sinh trên chính các mẫu nó tự sinh, dưới sự chấm của mô hình thầy."
+        }
+      ]
+    },
+    {
+      "id": "tailsteer-sua-anh-nhieu-luot-khong-troi-dan",
+      "group": "research",
+      "source": "Hugging Face Papers",
+      "url": "https://arxiv.org/abs/2611.06741",
+      "discussionUrl": "https://huggingface.co/papers/2611.06741",
+      "pdfUrl": "https://arxiv.org/pdf/2611.06741",
+      "points": 40,
+      "comments": 4,
+      "publishedAt": "2026-11-03T19:00:00Z",
+      "readMinutes": 2,
+      "tags": [
+        "sửa ảnh",
+        "diffusion",
+        "FLUX",
+        "Qwen"
+      ],
+      "titleEn": "TailSteer: Trajectory-Tail Steering for Drift-Resistant Multi-turn Image Editing",
+      "titleVi": "TailSteer: giữ ảnh khỏi “trôi” sau 15-20 lượt sửa liên tiếp bằng bước huấn luyện cuối",
+      "summary": "Mô hình sửa ảnh tốt từng lượt vẫn có thể tích luỹ sai lệch nhỏ qua nhiều lượt, làm ảnh dần biến dạng. TailSteer là bước huấn luyện cuối giúp giảm sai lệch này mà gần như giữ nguyên năng lực gốc. Kết quả do nhóm tác giả báo cáo.",
+      "keyPoints": [
+        "Vấn đề: khi dùng lại ảnh đã sửa làm đầu vào, thay đổi ngoài ý muốn cộng dồn thành sai lệch lớn.",
+        "Nguyên tắc: giữ giai đoạn đầu của quá trình khử nhiễu gần mô hình gốc, dồn hiệu chỉnh bảo toàn vào phần đuôi quỹ đạo.",
+        "Học từ các lượt khử nhiễu on-policy của chính mô hình, dùng nội dung nguồn không đổi làm tham chiếu, không cần cặp sửa ảnh chuẩn.",
+        "Thử trên các họ FLUX, SenseNova và Qwen, giảm rõ sai lệch tích luỹ qua 15-20 lượt."
+      ],
+      "body": [
+        "Sửa ảnh một lượt giỏi chưa đảm bảo tương tác nhiều lượt ổn định. Khi ảnh đã sửa được dùng lại làm đầu vào, những thay đổi ngoài ý muốn rất nhỏ tích luỹ thành hiện tượng trôi hình ảnh. Các cách khắc phục trước đó, như huấn luyện trên dữ liệu nhiều lượt hay cơ chế riêng lúc suy luận, hoặc làm đổi tri thức đã học hoặc khó mở rộng cho mô hình nền, theo nhóm tác giả.",
+        "## TailSteer",
+        "TailSteer là khung huấn luyện giai đoạn cuối. Ý chính: giữ động lực khử nhiễu ở đầu quỹ đạo gần với mô hình gốc, và dồn các hiệu chỉnh bảo toàn vào gần cuối quỹ đạo, nơi có thể triệt các sai lệch nhỏ. Các hiệu chỉnh học từ chính lượt chạy on-policy của bộ sửa ảnh, dùng nội dung nguồn không đổi làm tham chiếu, nên không cần cặp ảnh sửa chuẩn.",
+        "## Kết quả",
+        "Thí nghiệm trên các họ FLUX, SenseNova và Qwen cho thấy sai lệch tích luỹ qua 15-20 lượt sửa giảm đáng kể, trong khi hiệu năng gốc trên các bài kiểm tra sinh ảnh và sửa ảnh một lượt được giữ phần lớn.",
+        "> Các kết quả do nhóm tác giả báo cáo trong paper, chưa được kiểm chứng độc lập."
+      ],
+      "glossary": [
+        {
+          "term": "Drift (trôi)",
+          "explain": "Sai lệch nhỏ cộng dồn qua nhiều lượt, làm kết quả cuối khác xa ảnh ban đầu."
+        },
+        {
+          "term": "On-policy",
+          "explain": "Học từ các mẫu do chính mô hình đang huấn luyện tạo ra."
+        }
+      ]
+    },
+    {
+      "id": "halley-dieu-khien-du-doan-mang-quang-trong-trung-tam-du-lieu-ai",
+      "group": "research",
+      "source": "Hugging Face Papers",
+      "url": "https://arxiv.org/abs/2611.04408",
+      "discussionUrl": "https://huggingface.co/papers/2611.04408",
+      "pdfUrl": "https://arxiv.org/pdf/2611.04408",
+      "points": 33,
+      "comments": 2,
+      "publishedAt": "2026-11-03T01:45:50Z",
+      "readMinutes": 3,
+      "tags": [
+        "hạ tầng AI",
+        "mạng quang",
+        "data center",
+        "huấn luyện"
+      ],
+      "titleEn": "Halley: A Predictive Control Plane for Optical AI Data Center Networks",
+      "titleVi": "Halley: bộ điều khiển dự đoán lỗi cho mạng quang của data center AI, nâng goodput từ 65,2% lên 76,5% trong mô phỏng",
+      "summary": "Mô hình lớn được huấn luyện trên hàng chục nghìn bộ tăng tốc nối bằng mạng quang, và mỗi bước huấn luyện đều kết thúc bằng trao đổi dữ liệu toàn cụm. Halley đọc trạng thái kế tiếp của từng tài nguyên để xử lý trước khi hỏng. Số liệu đến từ mô phỏng do tác giả công bố.",
+      "keyPoints": [
+        "Laser dùng chung vỏ, làm mát và nguồn có thể hỏng cùng nhau; với tỷ lệ dự phòng cố định, lỗi tương quan đặt trần cho độ sẵn sàng.",
+        "Bốn thành phần: LightReserve (cỡ nhóm laser), FoldFit (xếp lịch switch trong 11/9 mức tối ưu), ThermaLead (điều khiển vi vòng cộng hưởng), TriageGuard (bảo vệ mô-đun rủi ro cao trước).",
+        "Trong mô phỏng, goodput hiệu dụng tăng từ 65,2% lên 76,5%, hoặc 67,4% nếu chỉ mất băng thông kênh tối.",
+        "Mạch dự phòng được kiểm chứng hình thức, chạy trên FPGA thương mại và qua signoff 130 nm."
+      ],
+      "body": [
+        "Một mô hình AI tiên phong được huấn luyện trong data center với hàng chục nghìn bộ tăng tốc nối bằng mạng chuyên dụng, và mỗi bước huấn luyện kết thúc bằng việc tất cả cùng trao đổi dữ liệu. Giữa các rack, mạng này là quang, với bốn lớp từ laser đến switch, mỗi lớp hiện chạy chính sách cố định hoặc xử lý sau khi có lỗi.",
+        "## Vấn đề",
+        "Laser dùng chung vỏ, làm mát và nguồn có thể hỏng đồng thời. Theo paper, với tỷ lệ dự phòng cố định, lỗi tương quan được chứng minh là đặt trần cho độ sẵn sàng của một nhóm dù nhóm lớn đến đâu.",
+        "## Halley",
+        "Halley là khung điều khiển dự đoán, đọc trạng thái kế tiếp của từng tài nguyên và hành động trước khi lỗi xảy ra. Gồm bốn phần: LightReserve cỡ nhóm laser để có chặn độ phủ, FoldFit xếp lịch switch trong 11/9 mức tối ưu, ThermaLead giữ vi vòng cộng hưởng bằng điều khiển dự báo trước một bước, và TriageGuard bảo vệ mô-đun rủi ro cao nhất trước. Mỗi lớp có bộ điều khiển dự đoán, nhường lại cho chính sách đang chạy khi không chắc chắn.",
+        "Trong mô phỏng, goodput hiệu dụng tăng từ 65,2% lên 76,5% nếu cửa sổ nào hết dự phòng bị coi là mất; nếu chỉ mất băng thông của các kênh tối thì đạt 67,4%. Tính theo mỗi megawatt, lượng huấn luyện làm được tăng 1,03 đến 1,17 lần; cùng một lượng huấn luyện thì cần ít hơn 3,3% đến 14,7% năng lực data center.",
+        "> Số liệu hiệu quả là kết quả mô phỏng do tác giả paper công bố."
+      ],
+      "glossary": [
+        {
+          "term": "Goodput",
+          "explain": "Phần thông lượng thực sự làm việc có ích, sau khi trừ thời gian mất do lỗi và chờ."
+        },
+        {
+          "term": "Control plane",
+          "explain": "Tầng điều khiển quyết định cách mạng hay hệ thống vận hành, tách khỏi tầng truyền dữ liệu."
+        }
+      ]
+    },
+    {
+      "id": "open-humanscale-mo-cong-thuc-tien-huan-luyen-50-nghin-gio-video-robot",
+      "group": "research",
+      "source": "Hugging Face Papers",
+      "url": "https://arxiv.org/abs/2611.06817",
+      "discussionUrl": "https://huggingface.co/papers/2611.06817",
+      "pdfUrl": "https://arxiv.org/pdf/2611.06817",
+      "points": 32,
+      "comments": 3,
+      "publishedAt": "2026-11-03T19:00:00Z",
+      "readMinutes": 3,
+      "tags": [
+        "robot",
+        "embodied AI",
+        "world action model",
+        "dữ liệu mở"
+      ],
+      "titleEn": "Open-HumanScale: An Open Recipe for Scaling Human and Robot Experience for Embodied Foundation Models",
+      "titleVi": "Open-HumanScale: công thức mở dùng 50.000 giờ video góc nhìn thứ nhất của người để tiền huấn luyện robot",
+      "summary": "Nhóm tác giả công bố bộ dữ liệu Open-HumanScale-50K và quy trình tiền huấn luyện mô hình world-action chỉ từ video người. Họ báo cáo quy luật log-tuyến tính giữa số giờ dữ liệu và tỷ lệ thành công của robot. Toàn bộ dữ liệu, mã và checkpoint được mở.",
+      "keyPoints": [
+        "Open-HumanScale-50K là kho video góc nhìn thứ nhất, có chú thích chuyển động bàn tay và ngôn ngữ tự nhiên.",
+        "Tác giả nêu quy luật log-tuyến tính giữa số giờ tiền huấn luyện và tỷ lệ thành công của robot trong mô phỏng vòng kín.",
+        "HumanWAM-Vanilla, chỉ tiền huấn luyện từ video người, đạt 92,08% trên RoboTwin 2.0 Clean2Clean và 68,88% trên Clean2Random.",
+        "HumanWAM-Goal, huấn luyện chung người và robot, đạt 92,70% và 84,60% trên hai bài đó, theo paper."
+      ],
+      "body": [
+        "Video góc nhìn thứ nhất của người là nguồn tri thức thao tác có thể mở rộng cho robot, nhưng muốn thành chính sách tổng quát cần cách chọn lọc dữ liệu và công thức huấn luyện chặt chẽ. Open-HumanScale được giới thiệu là công thức hoàn toàn mở đầu tiên để mở rộng tiền huấn luyện góc nhìn thứ nhất lên 50.000 giờ.",
+        "## Dữ liệu và quy luật",
+        "Trọng tâm là Open-HumanScale-50K, kho video được chú thích dày về chuyển động bàn tay và ngôn ngữ. Qua các đánh giá mô phỏng vòng kín, nhóm tác giả nêu một quy luật thực nghiệm log-tuyến tính nối số giờ dữ liệu tiền huấn luyện với tỷ lệ thành công của robot ở bước sau.",
+        "## Mô hình",
+        "HumanWAM-Vanilla là mô hình world-action tiền huấn luyện chỉ từ 50.000 giờ video người. Sau khi huấn luyện thêm trên robot, nó đạt 92,08% trên RoboTwin 2.0 Clean2Clean, 68,88% trên Clean2Random, và 14,17% tỷ lệ thành công trung bình cùng 19,00 điểm tiến độ trên RoboDojo. HumanWAM-Goal huấn luyện chung dữ liệu người và robot, có điều kiện hoá theo mục tiêu thị giác, nâng hai kết quả RoboTwin lên 92,70% và 84,60%. Trên robot thật, mô hình thể hiện cả học trong ngữ cảnh: thích nghi với mục tiêu thị giác mới mà không đổi tham số.",
+        "Nhóm mở bộ dữ liệu, quy trình xử lý và tiền huấn luyện, các checkpoint đã huấn luyện, mã suy luận và bộ đánh giá mô phỏng.",
+        "> Các kết quả do nhóm tác giả báo cáo, chưa được kiểm chứng độc lập."
+      ],
+      "glossary": [
+        {
+          "term": "World-action model",
+          "explain": "Mô hình dự đoán cả diễn biến của môi trường lẫn hành động cần làm, dùng cho robot."
+        },
+        {
+          "term": "Egocentric video",
+          "explain": "Video quay từ góc nhìn của người đang làm việc, thường gắn camera ở đầu."
+        }
+      ]
+    },
+    {
+      "id": "pact-mo-hinh-lon-nho-giao-tiep-gain-co-the-gia",
+      "group": "research",
+      "source": "Hugging Face Papers",
+      "url": "https://arxiv.org/abs/2611.06976",
+      "discussionUrl": "https://huggingface.co/papers/2611.06976",
+      "pdfUrl": "https://arxiv.org/pdf/2611.06976",
+      "points": 15,
+      "comments": 2,
+      "publishedAt": "2026-11-04T08:33:47Z",
+      "readMinutes": 3,
+      "tags": [
+        "latent communication",
+        "PLatour",
+        "đánh giá",
+        "mô hình lớn nhỏ"
+      ],
+      "titleEn": "On the Opportunities and Challenges of Prefill-to-Autoregressive Cross-Model Transfer",
+      "titleVi": "PLatour và PACT-Check: nhiều mức tăng của mô hình lớn truyền thông tin cho mô hình nhỏ có thể không đến từ thông tin đó",
+      "summary": "PACT ghép biểu diễn prompt của mô hình lớn với khả năng sinh của mô hình nhỏ. Paper giới thiệu PLatour, khung mã nguồn mở, và phát hiện một số mức tăng điểm có thể tái hiện bằng tín hiệu vô nghĩa. Từ đó đề xuất PACT-Check để đo phần tăng thực sự đến từ giao tiếp.",
+      "keyPoints": [
+        "PLatour nối các mô hình đóng băng bằng cầu tuyến tính nhẹ, khởi tạo bằng không, huấn luyện bằng phần thưởng của tác vụ.",
+        "PLatour vượt các baseline mã nguồn mở trên tác vụ sinh và vượt kết quả Mostik báo cáo trên toán và lập trình dùng chung, với mô hình gửi nhỏ hơn nhiều.",
+        "Thí nghiệm đối chứng: một số mức tăng tái hiện được bằng tín hiệu gửi vô nghĩa, tự giao tiếp, hoặc chỉ huấn luyện phía nhận.",
+        "PACT-Check đo mức tăng của một hệ PACT thực sự đến từ giao tiếp."
+      ],
+      "body": [
+        "Prefill-to-Autoregressive Cross-model Transfer (PACT) là dạng giao tiếp tiềm ẩn giữa các mô hình ngôn ngữ: lấy biểu diễn prompt của một mô hình lớn kết hợp với khả năng sinh hiệu quả của một mô hình nhỏ, để cân bằng năng lực và chi phí suy luận.",
+        "## PLatour",
+        "Theo nhóm tác giả, các hệ thống hiện có hỗ trợ hạn chế việc đánh giá độc lập hợp tác lớn-nhỏ, và điểm số cao hơn chưa chứng minh bên nhận được lợi từ thông tin của bên gửi. Họ giới thiệu PLatour, khung PACT mã nguồn mở, nối các mô hình đóng băng bằng những cầu tuyến tính nhẹ khởi tạo bằng không, huấn luyện trực tiếp bằng phần thưởng tác vụ, hỗ trợ kiến trúc attention lai. PLatour vượt rõ các baseline mã nguồn mở trên tác vụ sinh và vượt kết quả Mostik từng báo cáo trên các bài toán và lập trình dùng chung, với mô hình gửi nhỏ hơn đáng kể.",
+        "## Cảnh báo",
+        "Các thí nghiệm đối chứng cho thấy mức tăng ở một số tác vụ vẫn tái hiện được khi dùng tín hiệu gửi vô nghĩa, tự giao tiếp hoặc chỉ huấn luyện phía nhận. Nghĩa là cầu huấn luyện được có thể chỉ là cơ chế thích nghi tiết kiệm tham số, không khai thác thông tin hữu ích của bên gửi. Vì vậy nhóm đề xuất PACT-Check để định lượng phần tăng thực sự đến từ giao tiếp, rồi thảo luận cơ hội và thách thức của hệ PACT.",
+        "> Các kết luận do nhóm tác giả báo cáo, chưa được kiểm chứng độc lập."
+      ],
+      "glossary": [
+        {
+          "term": "Prefill",
+          "explain": "Giai đoạn mô hình đọc và mã hoá toàn bộ prompt trước khi bắt đầu sinh từng token."
+        },
+        {
+          "term": "Latent communication",
+          "explain": "Truyền thông tin giữa các mô hình bằng biểu diễn nội bộ thay vì văn bản."
+        }
+      ]
+    },
+    {
+      "id": "speculative-listening-giam-tre-mo-hinh-giong-noi-song-cong",
+      "group": "research",
+      "source": "Hugging Face Papers",
+      "url": "https://arxiv.org/abs/2611.06982",
+      "discussionUrl": "https://huggingface.co/papers/2611.06982",
+      "pdfUrl": "https://arxiv.org/pdf/2611.06982",
+      "points": 10,
+      "comments": 3,
+      "publishedAt": "2026-11-03T19:00:00Z",
+      "readMinutes": 3,
+      "tags": [
+        "mô hình giọng nói",
+        "speculative decoding",
+        "độ trễ",
+        "full-duplex"
+      ],
+      "titleEn": "Decode Before You Hear: Speculative Listening for Chunk-Interleaved Full-Duplex Speech Language Models",
+      "titleVi": "Speculative Listening: tận dụng lúc “nghe” để soạn trước câu trả lời, giảm 73% độ trễ trước khi mô hình giọng nói bắt đầu nói",
+      "summary": "Mô hình giọng nói song công xử lý âm thanh theo từng khối thời gian cố định. Nhóm tác giả thấy phần lớn khối âm thanh sau không đổi đầu ra, nên cho mô hình soạn trước đầu ra trong lúc chờ. Phương pháp không cần huấn luyện và không làm đổi kết quả.",
+      "keyPoints": [
+        "Trên bốn mô hình, khối âm thanh kế tiếp không làm đổi đầu ra ở 95,3% khối; 88% thay đổi bắt đầu ở token đầu.",
+        "Mô hình soạn nháp khối tiếp theo giả sử đầu vào là im lặng, thêm một nhánh từ token đầu xếp thứ hai, rồi kiểm tra khi âm thanh thật đến.",
+        "Trên bộ TickTock-Bench tám tác vụ, khối nói nhanh hơn 2,6-2,8 lần, khối gọi công cụ nhanh hơn tới 23,4 lần.",
+        "Độ trễ giải mã trước khi bắt đầu trả lời giảm trung bình 73%, còn 74-241 ms."
+      ],
+      "body": [
+        "Mô hình ngôn ngữ giọng nói song công theo khối vừa nghe vừa nói trong các khối thời gian cố định, và mỗi khối phải xử lý xong trước khi khối sau đến. Khối nghe để thừa tài nguyên tính toán trong lúc chờ âm thanh, còn khối nói và khối gọi công cụ phải sinh tuần tự, làm chậm phản hồi.",
+        "## Quan sát",
+        "Muốn dùng phần tài nguyên rảnh, mô hình phải giải mã khối kế tiếp trước khi âm thanh đến, với một giả định về đầu vào. Nhóm giả định đó là im lặng rồi so sánh với đầu ra khi có âm thanh thật trên bốn mô hình. Họ thấy hai điều: khối âm thanh kế tiếp không đổi đầu ra ở 95,3% khối, và 88% thay đổi bắt đầu từ token đầu tiên.",
+        "## Speculative Listening",
+        "Dựa trên đó, nhóm đề xuất Speculative Listening, khung giải mã tự suy đoán ở thời điểm nhập, không cần huấn luyện và không làm đổi kết quả. Trong lúc rảnh, mô hình soạn nháp khối tiếp theo trong điều kiện im lặng, và với các thay đổi ở token đầu thì thêm nhánh thứ hai từ token đầu xếp thứ hai. Mọi bản nháp vào một nhóm giả thuyết dùng chung giữa các khối và được kiểm tra khi âm thanh thật đến.",
+        "Trên TickTock-Bench gồm tám tác vụ, khối nói nhanh hơn 2,6-2,8 lần và khối gọi công cụ nhanh hơn tới 23,4 lần. Trung bình, độ trễ giải mã trước khi bắt đầu trả lời giảm 73% xuống 74-241 ms, gần khoảng nghỉ chừng 200 ms giữa các lượt nói của con người, và độ lệch tối đa so với thời gian thực giảm 94,4%.",
+        "> Các số liệu do nhóm tác giả báo cáo trên bộ đánh giá của chính họ."
+      ],
+      "glossary": [
+        {
+          "term": "Full-duplex",
+          "explain": "Chế độ nghe và nói cùng lúc, như cuộc trò chuyện bình thường, thay vì lần lượt từng bên."
+        },
+        {
+          "term": "Speculative decoding",
+          "explain": "Soạn nháp trước vài token bằng đường tắt rồi kiểm tra bằng mô hình chính để tăng tốc mà không đổi kết quả."
+        }
+      ]
+    },
+    {
+      "id": "swarmevolve-bay-dan-agent-nho-suy-luan-trong-khong-gian-an",
+      "group": "research",
+      "source": "Hugging Face Papers",
+      "url": "https://arxiv.org/abs/2611.08483",
+      "discussionUrl": "https://huggingface.co/papers/2611.08483",
+      "pdfUrl": "https://arxiv.org/pdf/2611.08483",
+      "points": 9,
+      "comments": 4,
+      "publishedAt": "2026-11-04T19:00:00Z",
+      "readMinutes": 3,
+      "tags": [
+        "agent",
+        "tìm kiếm tiến hoá",
+        "latent space",
+        "AlphaEvolve"
+      ],
+      "titleEn": "SwarmEvolve: Latent Agent Swarms for Evolutionary Discovery and Optimization",
+      "titleVi": "SwarmEvolve: hàng trăm agent rẻ suy luận trong không gian ẩn, trao đổi bằng KV cache, đạt điểm cao nhanh hơn nhiều lần",
+      "summary": "SwarmEvolve cải tiến tìm kiếm chương trình theo hướng tiến hoá do LLM dẫn dắt: các agent không viết chuỗi suy luận bằng chữ mà suy luận trong latent space và chuyền thông tin qua KV cache. Số liệu do tác giả công bố.",
+      "keyPoints": [
+        "Mỗi vòng có hàng trăm agent chi phí thấp, mỗi swarm nhìn bài toán từ một góc khác nhau.",
+        "Bộ lọc độ mới giữ lại các ý tưởng khác biệt nhất bằng cách đo khoảng cách giữa các vector trạng thái ẩn.",
+        "Một agent tóm tắt nhận KV cache gộp của cả swarm để lai ghép ý tưởng.",
+        "Trên 21 bài toán, đạt điểm trung bình cao nhất và cần trung vị 3-8 phút để đạt mức mà các khung khác cần 60 phút."
+      ],
+      "body": [
+        "Tìm kiếm tiến hoá do LLM dẫn dắt dùng agent để cải thiện chương trình cho các bài toán toán học và tính toán, bằng cách tinh chỉnh dần và kết hợp các lời giải điểm cao. Theo nhóm tác giả, quá trình này chậm vì mỗi vòng LLM phải sinh chuỗi suy luận dài bằng chữ và lặp lại nhiều lần để giữ đa dạng quần thể.",
+        "## Cách làm",
+        "SwarmEvolve cho hàng trăm agent chi phí thấp mỗi vòng chạy theo từng swarm, suy luận trong không gian ẩn mà không giải mã ra chữ, và chia sẻ thông tin bằng cách chuyền KV cache. Mỗi swarm nghiên cứu bài toán từ một góc khác. Bộ lọc độ mới giữ ý tưởng khác biệt nhất bằng cách đo trực tiếp khoảng cách giữa các vector trạng thái ẩn của agent. Việc lai ghép ý tưởng diễn ra tự nhiên trong không gian ẩn khi một agent tóm tắt nhận KV cache gộp của cả swarm.",
+        "## Kết quả",
+        "Trên 21 bài toán khám phá toán học và tính toán khoa học, SwarmEvolve đạt điểm trung bình cao nhất và chỉ cần trung vị 3 đến 8 phút để chạm mức điểm tốt nhất mà các khung tiên tiến khác cần 60 phút. Trên một số bài, bản dùng Qwen3 8B cải thiện lời giải mà AlphaEvolve đã tìm ra lần đầu bằng các LLM tiên phong.",
+        "> Kết quả do nhóm tác giả báo cáo, chưa được kiểm chứng độc lập."
+      ],
+      "glossary": [
+        {
+          "term": "Latent space",
+          "explain": "Không gian biểu diễn số bên trong mô hình, nơi thông tin được lưu dưới dạng vector thay vì chữ."
+        },
+        {
+          "term": "AlphaEvolve",
+          "explain": "Hệ thống của Google DeepMind dùng LLM để tiến hoá chương trình nhằm tìm lời giải cho bài toán toán học và tính toán."
+        }
+      ]
+    },
+    {
+      "id": "dump-token-lam-sach-embedding-truy-xuat",
+      "group": "research",
+      "source": "Hugging Face Papers",
+      "url": "https://arxiv.org/abs/2611.07298",
+      "discussionUrl": "https://huggingface.co/papers/2611.07298",
+      "pdfUrl": "https://arxiv.org/pdf/2611.07298",
+      "points": 6,
+      "comments": 3,
+      "publishedAt": "2026-11-04T20:30:28Z",
+      "readMinutes": 2,
+      "tags": [
+        "embedding",
+        "retrieval",
+        "RAG",
+        "attention sink"
+      ],
+      "titleEn": "Reducing Representational Interference in Retrieval Embeddings with Trainable Prefix Tokens",
+      "titleVi": "Thêm các token [DUMP] học được vào đầu văn bản để embedding truy xuất ít nhiễu hơn",
+      "summary": "Paper đề xuất chèn token tiền tố huấn luyện được vào đầu văn bản khi huấn luyện mô hình embedding, nhằm giảm nhiễu mức token như hiện tượng attention sink. Kiến trúc, pooling và hàm mất mát giữ nguyên. Kết quả do tác giả công bố.",
+      "keyPoints": [
+        "Embedding nén văn bản dài tuỳ ý thành vector cố định, và nén có thể lẫn nội dung ngữ nghĩa với thông tin dư ở mức token.",
+        "Phương pháp thêm các token [DUMP] vào đầu vào khi huấn luyện, chỉ tối ưu chúng bằng mục tiêu tương phản truy xuất thông thường.",
+        "Cải thiện đều so với baseline tinh chỉnh trên cả mô hình encoder và decoder, trên bài kiểm tra truy xuất và ngữ cảnh dài.",
+        "Phân tích cho thấy token mới làm đổi kích hoạt và attention gắn với token ít thông tin."
+      ],
+      "body": [
+        "Mô hình embedding nén văn bản độ dài tuỳ ý thành vector kích thước cố định. Theo nhóm tác giả, quá trình nén có thể làm nội dung ngữ nghĩa bị lẫn với thông tin dư ở mức token, chẳng hạn các sản phẩm phụ của hiện tượng attention sink.",
+        "## Phương pháp",
+        "Họ đề xuất thêm các token [DUMP] huấn luyện được vào đầu đầu vào khi huấn luyện embedding. Kiến trúc, chiến lược pooling và hàm mất mát không đổi, chỉ các token thêm vào được tối ưu bằng mục tiêu tương phản truy xuất chuẩn. Các vị trí tiền tố này tương tác với token thường trong lúc mã hoá, giúp giảm ảnh hưởng của các tín hiệu dư thừa lên biểu diễn truy xuất cuối cùng.",
+        "## Kết quả",
+        "Trên các bài kiểm tra truy xuất tiêu chuẩn và ngữ cảnh dài, phương pháp cải thiện đều so với baseline tinh chỉnh, ở cả embedding dạng encoder lẫn decoder. Phân tích thêm cho thấy các token này làm đổi mẫu kích hoạt và attention gắn với những token ít thông tin. Nhóm kết luận token tiền tố huấn luyện được là cách nhẹ để cải thiện biểu diễn truy xuất.",
+        "> Kết quả do nhóm tác giả báo cáo, chưa được kiểm chứng độc lập."
+      ],
+      "glossary": [
+        {
+          "term": "Embedding",
+          "explain": "Vector số biểu diễn ý nghĩa của một đoạn văn bản, dùng để tìm kiếm theo ngữ nghĩa."
+        },
+        {
+          "term": "Attention sink",
+          "explain": "Hiện tượng một vài token (thường ở đầu chuỗi) thu hút nhiều attention bất thường dù mang ít thông tin."
+        }
+      ]
+    },
+    {
+      "id": "do-do-chinh-xac-cua-monitor-khong-du-khi-quyet-dinh-khoi-dong-lai-agent",
+      "group": "research",
+      "source": "Hugging Face Papers",
+      "url": "https://arxiv.org/abs/2610.36544",
+      "discussionUrl": "https://huggingface.co/papers/2610.36544",
+      "pdfUrl": "https://arxiv.org/pdf/2610.36544",
+      "points": 4,
+      "comments": 3,
+      "publishedAt": "2026-10-26T20:00:00Z",
+      "readMinutes": 3,
+      "tags": [
+        "agent",
+        "đánh giá",
+        "giám sát",
+        "SWE-bench"
+      ],
+      "titleEn": "Monitor Accuracy Isn't the Answer: A Decision-Value Framework for Evaluating AI Agent Restart Monitors",
+      "titleVi": "Độ chính xác của bộ giám sát chưa đủ: khung đánh giá theo giá trị quyết định khi chọn có khởi động lại agent hay không",
+      "summary": "Paper chứng minh một bộ giám sát có độ chính xác cố định 90% vẫn có thể làm tỷ lệ thành công của agent giảm 5 điểm hoặc tăng 35 điểm, tuỳ vào xác suất thành công của lần chạy thay thế. Nhóm đề xuất cách đánh giá theo giá trị quyết định và áp dụng thử trên các lượt chạy SWE-bench Verified.",
+      "keyPoints": [
+        "Độ chính xác và tỷ lệ dương tính thật/giả không quyết định việc khởi động lại có giúp agent thành công hay không.",
+        "Đề xuất tiêu chí “đủ cho quyết định” và một cuộc kiểm toán mẫu hữu hạn, không cần gọi thêm mô hình, có thể trả về “bỏ qua” khi chứng cứ không đủ.",
+        "Thử trên 194 lượt chạy của 19 issue SymPy trong SWE-bench Verified, kiểm toán hồi cứu 130 lượt.",
+        "Mức tăng 2,29 điểm ban đầu hoá ra do một lần thất bại sống sót; không có lần nào trong 103 so sánh trực tiếp đạt ngưỡng chứng nhận."
+      ],
+      "body": [
+        "Khi một agent làm việc dài hơi, một bộ giám sát có thể báo “nên khởi động lại”. Paper lập luận rằng độ chính xác phân loại, tỷ lệ dương tính thật và dương tính giả không đủ để biết việc khởi động lại có thực sự giúp tăng thành công hay không.",
+        "## Lập luận",
+        "Dùng một hằng đẳng thức chính xác giữa cảnh báo và hành động cho lần khởi động lại sạch độc lập, không tốn chi phí giám sát, nhóm chứng minh một bộ giám sát có độ chính xác cố định 90% có thể dao động từ mất 5 điểm phần trăm đến lãi 35 điểm trong tỷ lệ thành công, chỉ tuỳ vào xác suất thành công của lần thử thay thế trong ngân sách còn lại.",
+        "## Hai kỹ thuật",
+        "Một là tiêu chí đủ cho quyết định, dựa trên so sánh các thí nghiệm của Blackwell cho hành động nhị phân, để xác định biểu diễn tiến độ hay cách nén ngữ cảnh nào giữ đủ thông tin để chọn tối ưu giữa hai hành động. Hai là kiểm toán quyết định theo mẫu hữu hạn, không phụ thuộc mô hình, dùng các khoảng nhị thức đồng thời trên các vết chạy có sẵn mà không cần gọi mô hình thêm, để chứng nhận ưu tiên “khởi động lại” hoặc “tiếp tục” hoặc trả về “bỏ qua” khi bằng chứng chưa đủ.",
+        "## Thử nghiệm",
+        "Trên 194 lượt chạy của 19 issue SymPy chọn từ SWE-bench Verified, kiểm toán hồi cứu 130 vết, nhóm thấy mức tăng khởi động lại 2,29 điểm chỉ do một lần thất bại còn sót lại, mức giảm 42,29 điểm ở mô hình thứ hai, không tái hiện được mức tăng ban đầu trên các nhóm tác vụ tiến cứu, và 0 trong 103 so sánh trực tiếp đạt ngưỡng chứng nhận. Kết luận của nhóm: nên đánh giá bộ giám sát qua cơ hội phục hồi, giá trị quyết định và độ vững thống kê, không chỉ qua hiệu quả phân loại.",
+        "> Kết quả dựa trên một mẫu nhỏ do nhóm tác giả chọn."
+      ],
+      "glossary": [
+        {
+          "term": "SWE-bench Verified",
+          "explain": "Bộ bài kiểm tra agent sửa lỗi phần mềm thật, đã được con người xác minh đề bài."
+        },
+        {
+          "term": "Pass/khởi động lại sạch",
+          "explain": "Chạy lại agent từ đầu mà không mang theo trạng thái của lần thất bại."
+        }
+      ]
+    }
+  ]
+}
