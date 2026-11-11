@@ -1,0 +1,2136 @@
+{
+  "date": "2026-11-12",
+  "title": "Google ra Gemini Decisions API; Microsoft chỉ ra cách cài backdoor vào agent; Quốc hội Mỹ triệu tập Jensen Huang",
+  "intro": "Google giới thiệu Gemini Decisions API trả về quyết định kèm độ tin cậy, còn DeepMind ra AlphaGenome 2 để đọc cách tế bào dùng DNA. Microsoft Research cho thấy có thể cài backdoor vào agent bằng cách sửa các nơ-ron ít hoạt động. Ngoài lĩnh vực mô hình, Quốc hội Mỹ muốn Jensen Huang điều trần, và doanh thu quý của OpenAI theo đưa tin đã vượt 10 tỷ USD.",
+  "articles": [
+    {
+      "id": "gemini-decisions-api-quyet-dinh-nhanh",
+      "hot": true,
+      "group": "lab",
+      "source": "Google AI",
+      "url": "https://blog.google/innovation-and-ai/technology/developers-tools/gemini-decisions-api/",
+      "discussionUrl": "https://news.ycombinator.com/item?id=50456791",
+      "points": 186,
+      "comments": 60,
+      "publishedAt": "2026-11-11T18:00:00.000Z",
+      "readMinutes": 4,
+      "tags": [
+        "Gemini",
+        "API",
+        "Google",
+        "độ trễ",
+        "định tuyến mô hình"
+      ],
+      "titleEn": "Gemini Decisions API: Fast, calibrated multimodal decisions",
+      "titleVi": "Google ra Gemini Decisions API: chấm điểm các lựa chọn trong một lượt, trả lời trong 150-250 ms",
+      "summary": "Google giới thiệu Gemini Decisions API, chạy bằng mô hình mới Gemini Decision 1. Thay vì sinh câu trả lời từng token, mô hình chấm điểm các phương án có sẵn trong một lượt và trả về xác suất kèm độ tin cậy. Giá là 0,10 USD cho 1 triệu token đầu vào, không tính phí token đầu ra.",
+      "keyPoints": [
+        "Decisions API dành cho các quyết định có tập lựa chọn đóng: chọn công cụ, kiểm tra chính sách, định tuyến mô hình, chấm mức độ liên quan của ngữ cảnh.",
+        "Một đầu vào đa phương thức (văn bản, ảnh, âm thanh, video, PDF, tối đa 256K token) đi kèm tối đa 1.000 câu hỏi độc lập.",
+        "Mô hình không sinh chữ mà chấm điểm phương án trong một lượt, độ trễ đầu-cuối 150-250 ms.",
+        "Mỗi câu trả lời có điểm tin cậy từ 0 đến 1, để mã của bạn chuyển ca mơ hồ sang phương án dự phòng hoặc người duyệt.",
+        "Giá 0,10 USD/1 triệu token đầu vào, 0 USD cho đầu ra; có tầng miễn phí trong Google AI Studio."
+      ],
+      "body": [
+        "Google vừa mở Gemini Decisions API, một endpoint mới trong Gemini API (Google AI Studio). Nó chạy bằng mô hình Gemini Decision 1 (gemini-decision-1) và nhắm vào việc “ra quyết định có giới hạn”: bài toán chỉ có vài lựa chọn cho trước, không cần viết đoạn văn dài.",
+        "## Cách hoạt động",
+        "Bạn đưa vào một đầu vào chung, có thể trộn nhiều dạng dữ liệu, ví dụ bản ghi cuộc gọi kèm thông tin tài khoản, hoặc hồ sơ PDF kèm ảnh hư hại. Sau đó bạn gửi kèm nhiều câu hỏi cùng lúc, tối đa 1.000 câu. Có ba loại câu hỏi:",
+        "- Có/không: ước lượng xác suất một điều kiện đúng, có thể mô tả thêm tiêu chí đúng và sai.",
+        "- Chọn một: chọn trong 2 đến 255 phương án, trả về phương án thắng và xác suất đã chuẩn hoá cho từng phương án.",
+        "- Chấm điểm theo thang: chấm theo một thang có thứ tự bắt đầu từ 0, trả về điểm liên tục có trọng số và xác suất từng mức.",
+        "Mô hình chấm điểm các phương án trong một lượt tính toán, không sinh từng token. Google nêu độ trễ mô hình trung vị 50-100 ms, độ trễ đầu-cuối 150-250 ms, gần như không đổi từ 1 đến 100 câu hỏi mỗi yêu cầu. Mỗi câu trả lời kèm điểm tin cậy 0-1 để mã của bạn đẩy các ca mơ hồ sang người duyệt hoặc phương án dự phòng.",
+        "## Dùng ở đâu và giá bao nhiêu",
+        "Google cho biết nhiều nhóm trong công ty đã dùng nó làm lớp điều khiển độ trễ thấp: Gemini Notebook định tuyến câu hỏi tới tầng mô hình và mức suy luận phù hợp (giảm độ trễ tới 40% với câu hỏi thường ngày), Stitch dựng wireframe tương tác trong vài giây, CC của Google Labs chọn emoji từ hơn 200 lựa chọn, và Google Search dùng làm lớp an toàn cho công cụ MCP.",
+        "Giá là 0,10 USD cho 1 triệu token đầu vào và 0 USD cho đầu ra. Đầu vào chung chỉ tính một lần cho mỗi yêu cầu, mỗi câu hỏi chỉ thêm token của chỉ dẫn và tiêu chí. Google nói cách này rẻ hơn gần 5 lần so với Gemini 3.5 Flash-Lite qua Interactions API trên bộ benchmark của họ. Bản tích hợp đang đến OpenRouter, LangChain, Vercel, LiteLLM, Pydantic AI, Pipecat, LiveKit, OpenCode; Gemini trong Google Cloud sẽ hỗ trợ sau.",
+        "> Các số liệu về hiệu năng, độ lệch hiệu chuẩn, độ trễ và chi phí so sánh do Google tự công bố, chưa có kiểm chứng độc lập.",
+        "Gợi ý của người biên tập: nếu hệ thống của bạn đang gọi một mô hình sinh văn bản chỉ để phân loại hoặc định tuyến, đây là loại API đáng thử so sánh về độ trễ và chi phí."
+      ],
+      "glossary": [
+        {
+          "term": "Calibrated (hiệu chuẩn)",
+          "explain": "Điểm tin cậy khớp với tỉ lệ đúng thực tế: khi mô hình nói 80% thì khoảng 80% trường hợp đó đúng."
+        },
+        {
+          "term": "Forward pass",
+          "explain": "Một lượt chạy dữ liệu qua mạng nơ-ron để ra kết quả, không phải sinh từng token nối tiếp."
+        },
+        {
+          "term": "Định tuyến mô hình (model routing)",
+          "explain": "Chọn mô hình hoặc mức suy luận phù hợp cho từng câu hỏi để tiết kiệm thời gian và chi phí."
+        },
+        {
+          "term": "Đa phương thức (multimodal)",
+          "explain": "Xử lý nhiều loại dữ liệu cùng lúc như chữ, ảnh, âm thanh, video."
+        }
+      ]
+    },
+    {
+      "id": "lazarus-backdoor-agent-bang-no-ron-ngu",
+      "hot": true,
+      "group": "lab",
+      "source": "Microsoft Research",
+      "url": "https://www.microsoft.com/en-us/research/blog/lazare-veni-foras-reprogramming-dormant-neurons-to-backdoor-ai-agents/",
+      "publishedAt": "2026-11-10T20:52:56.000Z",
+      "readMinutes": 4,
+      "tags": [
+        "bảo mật",
+        "backdoor",
+        "agent",
+        "open-weight",
+        "Microsoft"
+      ],
+      "titleEn": "Lazare, veni foras: Reprogramming Dormant Neurons to Backdoor AI Agents",
+      "titleVi": "Microsoft: sửa vài nơ-ron “ngủ” là cài được backdoor cho agent AI, không cần huấn luyện lại",
+      "summary": "Nhà nghiên cứu Microsoft mô tả kỹ thuật Lazarus: lập trình lại dưới 10 nơ-ron ít hoạt động trong một LLM để agent chạy lệnh độc khi gặp tác nhân kích hoạt. Mô hình vẫn qua các bài đánh giá an toàn thông thường. Microsoft nhấn mạnh nguồn gốc mô hình và tính toàn vẹn trọng số.",
+      "keyPoints": [
+        "Sửa trọng số của dưới 10 nơ-ron ngủ là đủ để cài backdoor, không cần huấn luyện.",
+        "Tác nhân kích hoạt có thể rất bình thường, ví dụ ngày chuyển sang năm 2027; khi đó agent phát ra lệnh tải và chạy mã của kẻ tấn công.",
+        "Cách phát hiện đáng tin là so sánh với trọng số gốc, nên nguồn gốc mô hình rất quan trọng.",
+        "Tấn công chỉ cần quyền ghi vào checkpoint, nên mô hình tự phát triển cũng bị ảnh hưởng, không chỉ mô hình mở.",
+        "Microsoft Foundry kiểm tra nguồn gốc mô hình và đang phát triển quét trọng số, công cụ red-team và ký mô hình bằng mật mã."
+      ],
+      "body": [
+        "Bài đăng trên blog Microsoft Research giới thiệu Lazarus, một kỹ thuật cài backdoor vào mô hình ngôn ngữ bằng cách lập trình lại các nơ-ron hiếm khi hoạt động. Mối lo lớn nhất là với agent có quyền dùng công cụ hoặc terminal: mô hình bị cài có thể lặng lẽ tải và chạy mã của kẻ tấn công, lấy bí mật hoặc chạy lệnh phá hoại, trong khi vẫn qua các bài đánh giá an toàn tiêu chuẩn.",
+        "## Cách hoạt động theo mô tả của nhóm nghiên cứu",
+        "- Mọi LLM đều có nhiều nơ-ron ít khi bật. Có thể sửa trọng số để chúng chỉ bật khi tác nhân kích hoạt xuất hiện.",
+        "- Cách làm được vì quá trình tiền huấn luyện tổ chức biểu diễn nội bộ rất tốt: một bộ phân loại tuyến tính khớp trên khoảng 50 ví dụ đã phân biệt được đầu vào có và không có tác nhân.",
+        "- Một nơ-ron sau khi bật có thể ép ra một token; nối nhiều nơ-ron lại thì ra được tải trọng tuỳ ý, chạy được trong terminal.",
+        "- Chỉ cần sức tính toán ở mức chạy suy luận: máy đủ RAM để chạy mô hình thì đủ để sửa trọng số.",
+        "Ví dụ trong bài: khi đồng hồ qua nửa đêm sang năm 2027, agent đang làm việc bình thường bỗng phát ra lệnh tải và chạy mã của kẻ tấn công, với toàn bộ quyền bạn đã cấp cho nó.",
+        "## Phát hiện và phòng thủ",
+        "Nhà nghiên cứu cho biết các agent tiên tiến có thể phát hiện chỉnh sửa trọng số bất thường nếu được yêu cầu, nhưng không có cách quét nào chứng minh tuyệt đối một mô hình an toàn. Phát hiện đáng tin cần đối chiếu với trọng số gốc chưa bị sửa, vì vậy cần biết mô hình đến từ đâu và không bị đổi giữa nhà phát triển và nơi triển khai. Bài cũng nói đây không phải lập luận chống mô hình mở: chỉ cần quyền ghi vào checkpoint, nên tài khoản, pipeline hoặc kho lưu trữ bị xâm nhập là đủ, kể cả với mô hình nội bộ.",
+        "Microsoft cho biết Foundry gắn từng mô hình mở với nhà xuất bản gốc, chạy mô hình trong container riêng đã quét lỗ hổng, và đang làm thêm: quét trọng số bằng agent tiên tiến, bộ công cụ red-team, ký mô hình bằng mật mã cùng nhật ký kiểm toán chống sửa. Nhóm khuyên coi mô hình như rủi ro nội bộ tiềm tàng: không tin mặc định, giới hạn quyền, giám sát hành vi.",
+        "> Nhà nghiên cứu kể thí nghiệm bắt đầu từ tháng 3, khi anh nhờ Claude Code với Opus 4.5 cài backdoor bằng cách gắn cứng vài kích hoạt; theo anh, phần lớn phát hiện về sau do Claude Code tự khám phá. Đây là lời kể của chính nhóm tác giả.",
+        "Gợi ý của người biên tập: với đội dùng mô hình mở cho agent, nên lưu mã băm trọng số, tải từ nguồn chính thức và giới hạn quyền của agent."
+      ],
+      "glossary": [
+        {
+          "term": "Backdoor",
+          "explain": "Hành vi ẩn trong mô hình, chỉ kích hoạt khi gặp một tác nhân định trước, còn lại mô hình hoạt động bình thường."
+        },
+        {
+          "term": "Nơ-ron ngủ (dormant neuron)",
+          "explain": "Nơ-ron hiếm khi hoạt động trong mô hình, nên sửa nó ít ảnh hưởng hành vi thường ngày."
+        },
+        {
+          "term": "Open-weight",
+          "explain": "Mô hình công bố trọng số để người dùng tự tải và chạy."
+        },
+        {
+          "term": "Provenance (nguồn gốc)",
+          "explain": "Thông tin chứng minh mô hình đến từ ai và không bị chỉnh sửa trên đường đến nơi triển khai."
+        },
+        {
+          "term": "Residual stream",
+          "explain": "Luồng thông tin chính chạy xuyên qua các tầng của transformer; sửa được nó là ép được token đầu ra."
+        }
+      ]
+    },
+    {
+      "id": "alphagenome-2-du-doan-adn-theo-tung-loai-te-bao",
+      "hot": true,
+      "group": "lab",
+      "source": "Google DeepMind",
+      "url": "https://deepmind.google/blog/alphagenome-2-deciphering-how-cells-read-dna-to-better-understand-disease/",
+      "publishedAt": "2026-11-11T15:00:15.000Z",
+      "readMinutes": 5,
+      "tags": [
+        "DeepMind",
+        "AlphaGenome",
+        "gen",
+        "sinh học",
+        "khoa học"
+      ],
+      "titleEn": "AlphaGenome 2: Deciphering how cells read DNA to better understand disease",
+      "titleVi": "DeepMind ra AlphaGenome 2: dự đoán biến thể ADN ảnh hưởng thế nào tới từng loại tế bào",
+      "summary": "AlphaGenome 2 chuyển từ dự đoán theo mô sang dự đoán theo từng loại tế bào và trạng thái tế bào. DeepMind cho biết mô hình tìm được gần gấp đôi số biến thể làm đổi biểu hiện gen so với mô hình trước. Mô hình dành cho nghiên cứu phi thương mại qua AlphaGenome API, chưa được duyệt cho chẩn đoán.",
+      "keyPoints": [
+        "AlphaGenome 2 là mô hình có điều kiện: nhận chuỗi ADN dài 1 triệu chữ cái cùng một loại tế bào hoặc trạng thái cần xét.",
+        "Huấn luyện trên hơn 100 triệu hồ sơ tế bào đơn lẻ từ 68 mô, cả người và chuột.",
+        "Trên tập TenK10K, mô hình xác định đúng 30% biến thể nhân quả so với 16%, và 43% hướng tác động của gen so với 23% ở mô hình trước.",
+        "Có thể dự đoán cho trạng thái tế bào chưa thấy mà không cần huấn luyện lại, chỉ cần mẫu RNA-seq đơn bào từ vài chục tế bào.",
+        "Dùng được từ hôm nay cho nghiên cứu phi thương mại; chỉ dành cho nghiên cứu, chưa được xác nhận cho lâm sàng."
+      ],
+      "body": [
+        "Mọi tế bào trong cơ thể mang cùng một bộ ADN, nhưng tế bào cơ tim và tế bào miễn dịch bật tắt các gen khác nhau. Dự đoán một biến thể nhỏ trong ADN làm đổi biểu hiện gen thế nào trong từng loại tế bào là bài toán chưa giải xong, và là chìa khoá để hiểu đặc điểm cũng như bệnh của con người.",
+        "## Thiết kế lại theo loại tế bào",
+        "AlphaGenome đời đầu nhận chuỗi ADN một triệu chữ cái và dự đoán song song hàng nghìn thí nghiệm trên nhiều mô. DeepMind cho rằng cách này làm loãng năng lực và khó bắt khác biệt tinh giữa các loại tế bào gần nhau. AlphaGenome 2 đổi thành mô hình có điều kiện: mỗi lần dự đoán cho một điều kiện sinh học (mô, loại tế bào hoặc trạng thái), và điều kiện đó được đưa vào ở mọi tầng của kiến trúc.",
+        "Điều kiện có thể chọn từ danh mục có sẵn, hoặc sinh tại chỗ từ thí nghiệm đơn bào của nhà khoa học qua một bộ mã hoá tế bào. Thiết kế này cũng cho phép bù dữ liệu thiếu: nếu chỉ có một phép đo, như hoạt động gen, mô hình dự đoán các tính chất chưa đo, như độ mở của chromatin. Ngoài các đầu ra cũ (biểu hiện gen, biến đổi histone, độ mở chromatin), nay có thêm methyl hoá ADN.",
+        "## Kết quả DeepMind nêu",
+        "- Trên TenK10K, bản đồ đơn bào của 28 loại tế bào miễn dịch, AlphaGenome 2 xác định đúng 30% biến thể nhân quả (16% ở mô hình trước tinh chỉnh trên dữ liệu đơn bào) và 43% hướng tác động của gen (23%).",
+        "- Với một biến thể ở “công tắc” điều hoà xa gây bệnh viêm ruột (IBD) qua việc làm gen ETS2 hoạt động quá mức ở đại thực bào ruột, mô hình tái hiện kết quả này bằng tính toán, chỉ ra đúng biến thể và đúng loại tế bào.",
+        "- Với dữ liệu đơn bào từ nghiên cứu vaccine mRNA COVID-19 mà mô hình chưa thấy, nó phân biệt được tế bào T được kích hoạt với tế bào nghỉ, và cho thấy một biến thể liên quan COVID nặng tác động mạnh hơn ở trạng thái kích hoạt.",
+        "DeepMind cũng tính sẵn dự đoán cho các biến thể liên quan đặc điểm và bệnh trên hàng trăm điều kiện tế bào và mô, giúp nối kết quả nghiên cứu liên kết toàn hệ gen (GWAS) với bản đồ đơn bào mà không cần tự chạy tính toán lớn.",
+        "## Cách dùng",
+        "AlphaGenome 2 và các hướng dẫn Colab có từ hôm nay cho nghiên cứu phi thương mại qua AlphaGenome API; nghiên cứu thương mại ở dạng xem trước riêng tư. DeepMind sẽ ra AlphaGenome 2 Skills trong Google Antigravity. Họ nhấn mạnh mô hình chỉ dùng cho nghiên cứu, chưa được kiểm chứng hay phê duyệt cho mục đích lâm sàng hoặc chẩn đoán.",
+        "> Các số liệu độ chính xác ở trên do Google DeepMind tự công bố."
+      ],
+      "glossary": [
+        {
+          "term": "Biến thể (variant)",
+          "explain": "Chỗ khác nhau nhỏ trong chuỗi ADN giữa người này với người khác, ví dụ đổi một chữ cái."
+        },
+        {
+          "term": "Biểu hiện gen",
+          "explain": "Mức độ một gen đang được bật để tạo ra sản phẩm trong tế bào."
+        },
+        {
+          "term": "Chromatin accessibility",
+          "explain": "Mức ADN ở dạng mở, để bộ máy tế bào đọc được."
+        },
+        {
+          "term": "GWAS",
+          "explain": "Nghiên cứu liên kết toàn hệ gen: tìm vùng ADN liên quan tới một đặc điểm hoặc bệnh qua nhiều người."
+        },
+        {
+          "term": "Enhancer",
+          "explain": "Đoạn ADN đóng vai trò công tắc điều hoà, có thể nằm xa gen mà nó điều khiển."
+        },
+        {
+          "term": "RNA-seq đơn bào",
+          "explain": "Kỹ thuật đo hoạt động gen trong từng tế bào riêng lẻ."
+        }
+      ]
+    },
+    {
+      "id": "tabletop-khong-gian-cong-tac-nhom-google-labs",
+      "group": "lab",
+      "source": "Google AI",
+      "url": "https://blog.google/innovation-and-ai/models-and-research/google-labs/tabletop/",
+      "publishedAt": "2026-11-11T16:00:00.000Z",
+      "readMinutes": 2,
+      "tags": [
+        "Google Labs",
+        "Tabletop",
+        "cộng tác",
+        "vibe coding"
+      ],
+      "titleEn": "Try Tabletop: Customizable, collaborative spaces for groups to plan, play and do more together.",
+      "titleVi": "Google Labs thử nghiệm Tabletop: nhắc @tabletop để AI dựng lịch trình, bình chọn, chia tiền cho cả nhóm cùng dùng",
+      "summary": "Tabletop là thử nghiệm mới của Google Labs cho việc phối hợp theo nhóm theo thời gian thực. Người dùng thêm liên kết, tệp, ý tưởng rồi nhắc @tabletop để tạo công cụ tương tác. Hiện chỉ mở qua danh sách chờ ở Mỹ, cho người từ 18 tuổi.",
+      "keyPoints": [
+        "Tabletop tạo không gian dùng chung cho nhóm, nhiều người cùng dùng một lúc như trong Google Docs.",
+        "Có thể nhắc @tabletop hoặc chọn mẫu có sẵn để tạo lịch trình chuyến đi, bình chọn bữa tối, bảng chia chi phí, bảng đấu giải.",
+        "Mời người khác bằng liên kết thả vào nhóm chat.",
+        "Đang triển khai qua danh sách chờ, chỉ ở Mỹ và cho người từ 18 tuổi."
+      ],
+      "body": [
+        "Google Labs giới thiệu Tabletop, một thử nghiệm dành cho việc cả nhóm cùng lên kế hoạch, như đi chơi gia đình, chạy giải phong trào hay tổ chức tiệc. Ý chính: mọi người cùng góp ý, dựng và quyết định trong một chỗ.",
+        "## Cách dùng",
+        "Bạn đưa vào liên kết, tệp và ý tưởng, rồi nhắc @tabletop hoặc chọn mẫu khởi đầu. AI sẽ tạo công cụ tương tác theo yêu cầu: lịch trình chuyến đi, bình chọn bữa tối, bảng chia chi phí, bảng đấu loại trực tiếp. Khi không gian xong, bạn thả liên kết mời vào nhóm chat để mọi người cùng vào dùng một lúc, giống Google Docs.",
+        "## Góc nhìn từ The Verge",
+        "The Verge mô tả giao diện hơi giống các ứng dụng quản lý công việc như Asana hay Monday, nhưng có tính năng AI cho phép “vibecode” công cụ cá nhân bằng cách mô tả, ví dụ bảng theo dõi tiền tiết kiệm, bảng việc nhà, kế hoạch sự kiện. Người viết lưu ý vài ví dụ trong video của Google Labs có thể cần cho trẻ em hoặc thiếu niên dùng, nên giới hạn 18 tuổi có thể chỉ áp dụng trong giai đoạn thử nghiệm công khai. Đây là suy đoán của tác giả bài báo.",
+        "## Phạm vi",
+        "Tabletop đang triển khai qua danh sách chờ tại labs.google/tabletop, giới hạn ở Mỹ và người từ 18 tuổi. Bài của Google không nêu giá hay ngày ra mắt rộng rãi."
+      ],
+      "glossary": [
+        {
+          "term": "Google Labs",
+          "explain": "Nơi Google đưa ra các sản phẩm thử nghiệm để người dùng dùng thử sớm."
+        },
+        {
+          "term": "Vibe coding",
+          "explain": "Mô tả bằng lời cho AI để tạo ra ứng dụng hay công cụ, thay vì tự viết mã."
+        },
+        {
+          "term": "Danh sách chờ (waitlist)",
+          "explain": "Người dùng đăng ký trước, được mời dùng theo đợt."
+        }
+      ]
+    },
+    {
+      "id": "botpsy-tro-ly-agent-0-8b-chay-tren-thiet-bi",
+      "group": "lab",
+      "source": "Hugging Face Blog",
+      "url": "https://huggingface.co/blog/qvac/botpsy",
+      "publishedAt": "2026-11-11T05:01:16.000Z",
+      "readMinutes": 6,
+      "tags": [
+        "mô hình nhỏ",
+        "on-device",
+        "function calling",
+        "Tether",
+        "agent"
+      ],
+      "titleEn": "BotPsy: On-Device Personal Assistant with a Sub-Billion-Parameter Agentic Language Model",
+      "titleVi": "Tether AI Research ra BotPsy: mô hình 0,8 tỉ tham số gọi công cụ, chạy được trên thiết bị cá nhân",
+      "summary": "Tether AI Research công bố BotPsy, mô hình 0,8 tỉ tham số xây trên Qwen3.5-0.8B, huấn luyện cho gọi hàm và tác vụ agent đơn giản. Nhóm nói nó vượt các mô hình tới 1,2 tỉ tham số mà họ thử, và hơn cả Qwen3.5-2B-Think trên 5 trong 6 benchmark agent. Trọng số dự kiến phát hành theo Apache 2.0 cho nghiên cứu và giáo dục.",
+      "keyPoints": [
+        "BotPsy dựa trên Qwen3.5-0.8B, huấn luyện qua 4 giai đoạn: SFT, chưng cất on-policy nhiều thầy (MOPD), rồi hai vòng học tăng cường.",
+        "BFCL v4 tăng từ 23,4 lên 44,0; ACEBench từ 30,1 lên 58,7; τ-bench từ 23,2 lên 51,5.",
+        "Đứng đầu 5 trong 6 benchmark agent, kể cả so với Qwen3.5-2B-Think lớn gấp 2,5 lần; chỉ thua ở Claw-Eval (46,5 so với 48,9).",
+        "Dùng ít token suy luận hơn bản gốc: khoảng 3 lần trên GPQA Diamond; tỉ lệ lặp vòng trên IFBench giảm từ 22,9% xuống 1,4%.",
+        "Hạn chế: tìm kiếm nhiều bước còn yếu, tiếng Hindi và Nga kém, không dành cho tác vụ rủi ro cao."
+      ],
+      "body": [
+        "Tether AI Research giới thiệu BotPsy, mô hình 0,8 tỉ tham số xây trên Qwen3.5-0.8B để làm “trợ lý cá nhân” dùng công cụ: tìm kiếm web, lịch, email, tin nhắn, quản lý tệp, điều khiển thiết bị, thương mại và tài chính. Lý do nhóm nêu: mô hình đám mây lớn tốn kém và phụ thuộc nhà cung cấp, còn nhiều việc thường ngày chạy được trên thiết bị, giữ dữ liệu riêng tư.",
+        "## Kết quả benchmark",
+        "- Gấp đôi mô hình gốc trên các benchmark chính: BFCL v4 từ 23,4 lên 44,0, ACEBench từ 30,1 lên 58,7, τ-bench từ 23,2 lên 51,5 (trung bình các tập retail, telecom, banking).",
+        "- Dẫn đầu 5 trong 6 benchmark agent (BFCL v4, ACEBench, τ-bench, ToolSandbox, BrowseComp-Plus), vượt cả Qwen3.5-2B-Think; ví dụ ToolSandbox 64,6 so với 41,2.",
+        "- Biết khi nào không gọi công cụ: 86,1 ở bài kiểm tra ảo giác của BFCL v4, cao nhất trong các mô hình được thử.",
+        "- Đa lượt: τ²-bench telecom đạt 82,5, BFCL v4 đa lượt tăng từ 7,5 lên 46,1.",
+        "- Kiến thức và làm theo chỉ dẫn tăng: IFEval từ 59,7 lên 90,8; GPQA Diamond từ 33,2 lên 38,1.",
+        "## Cách huấn luyện",
+        "Bốn giai đoạn nối tiếp. Đầu tiên là tinh chỉnh có giám sát toàn bộ tham số trên các hội thoại dùng công cụ, gồm cả trường hợp không nên gọi công cụ nào. Tiếp theo là chưng cất on-policy với ba “thầy” Qwen3.5-4B, mỗi thầy được học tăng cường cho một kỹ năng (công cụ, suy luận chung, làm theo chỉ dẫn); giai đoạn này khôi phục phần kiến thức và khả năng làm theo chỉ dẫn bị tụt sau bước đầu. Cuối cùng là hai vòng học tăng cường bằng DAPO với phần thưởng dựa trên luật và bộ kiểm chứng, trong đó phần thưởng gọi công cụ cho điểm một phần theo tên công cụ, tên và giá trị tham số.",
+        "## Hiệu quả và an toàn",
+        "Với các câu mọi mô hình đều trả lời đúng, BotPsy dùng ít token suy luận hơn bản gốc: 3.690 so với 11.563 trên GPQA Diamond. Tỉ lệ mắc kẹt trong vòng lặp suy luận trên IFBench giảm từ 22,9% xuống 1,4%. Trong red-team tự động, tỉ lệ phản hồi không an toàn là 21%, so với 36% ở mô hình gốc; với tấn công prompt injection, từ 46% xuống 31%.",
+        "## Hạn chế",
+        "Nhóm tự nêu: điểm BrowseComp-Plus chỉ 4,5, tìm kiếm nhiều bước còn yếu (tác vụ truy xuất phức tạp 15 điểm so với 79 điểm cho lệnh đơn); tiếng Hindi (24,5) và tiếng Nga (57,6) kém xa tiếng Anh; không dành cho quyết định rủi ro cao, tiền bạc, thông tin cá nhân hay y tế. Trọng số sẽ phát hành theo Apache 2.0 cho nghiên cứu và giáo dục, ở dạng safetensors và GGUF (bf16, Q8, Q4).",
+        "> Các số liệu benchmark, an toàn và hiệu quả ở trên do Tether AI Research tự công bố, chưa có kiểm chứng độc lập."
+      ],
+      "glossary": [
+        {
+          "term": "Function calling",
+          "explain": "Khả năng mô hình chọn đúng công cụ và điền đúng tham số để gọi hàm hoặc API."
+        },
+        {
+          "term": "On-device",
+          "explain": "Chạy trực tiếp trên điện thoại hay máy cá nhân, không gửi dữ liệu lên đám mây."
+        },
+        {
+          "term": "Chưng cất on-policy (OPD)",
+          "explain": "Mô hình nhỏ tự sinh câu trả lời, mô hình “thầy” lớn hơn chấm từng token để mô hình nhỏ học theo."
+        },
+        {
+          "term": "GGUF",
+          "explain": "Định dạng tệp mô hình đã nén, dùng với llama.cpp để chạy trên máy cá nhân."
+        },
+        {
+          "term": "Prompt injection",
+          "explain": "Chèn chỉ dẫn độc hại vào nội dung mà agent đọc để điều khiển nó làm sai."
+        }
+      ]
+    },
+    {
+      "id": "huan-luyen-biet-pooling-cho-embedding-nhieu-vector",
+      "group": "lab",
+      "source": "Hugging Face Blog",
+      "url": "https://huggingface.co/blog/token-pooling",
+      "publishedAt": "2026-11-11T00:00:00.000Z",
+      "readMinutes": 6,
+      "tags": [
+        "embedding",
+        "retrieval",
+        "Sentence Transformers",
+        "ColBERT",
+        "nén vector"
+      ],
+      "titleEn": "Token Pooling-Aware Training for Multi-Vector Embedding Models",
+      "titleVi": "Huấn luyện mô hình embedding đa vector biết trước việc gộp token, giữ 97,8% chất lượng khi nén 4 lần",
+      "summary": "Bài trên Hugging Face hướng dẫn huấn luyện mô hình truy xuất đa vector để vẫn tốt sau khi gộp các vector token giống nhau. Với pool_factor=4, mô hình huấn luyện thường giữ 94,6% điểm nDCG@10, còn mô hình huấn luyện biết pooling giữ 97,8% trên cùng ngân sách lưu trữ. Mã ví dụ dùng Sentence Transformers.",
+      "keyPoints": [
+        "Mô hình đa vector kiểu ColBERT giữ một vector cho mỗi token tài liệu, nên chỉ mục rất lớn.",
+        "Token pooling gộp các vector giống nhau bằng phân cụm Ward để giảm số vector cần lưu.",
+        "Huấn luyện biết pooling cộng hai hàm mất mát: một với embedding gốc, một sau khi nén còn khoảng một phần tư số vector.",
+        "Ở pool_factor=4, nDCG@10 trên NanoBEIR tăng từ 49,03 lên 51,23, với 74,8% ít vector tài liệu hơn so với không gộp.",
+        "Gợi ý thứ tự nén chỉ mục: lượng tử hoá trước, rồi token pooling, rồi Matryoshka giảm chiều."
+      ],
+      "body": [
+        "Mô hình truy xuất đa vector giữ một vector cho từng token trong tài liệu, nên mỗi phần của câu hỏi tìm được chỗ khớp riêng. Cách này biểu đạt tốt, nhưng kho có hàng triệu tài liệu có thể chứa hàng trăm triệu vector. Bài viết ví dụ: 200 vector chiều 128 với 4 bit mỗi toạ độ cần 12,8 KB mỗi tài liệu, tức 12,8 GB cho một triệu tài liệu; gộp còn 50 vector thì còn 3,2 GB.",
+        "## Token pooling",
+        "HierarchicalTokenPooling gộp các vector token giống nhau bằng phân cụm phân cấp Ward: liên tục hợp nhất hai nhóm làm tăng độ phân tán trong nhóm ít nhất, rồi lấy trung bình mỗi nhóm và chuẩn hoá lại để chấm điểm MaxSim. Có ba cách đặt ngân sách: max_tokens (tối đa số vector mỗi tài liệu), pool_factor (giữ xấp xỉ 1/N số vector) và distance_threshold (ngưỡng khoảng cách dùng chung, số vector thay đổi theo hình học embedding). Chỉ tài liệu bị gộp, truy vấn giữ nguyên.",
+        "## Huấn luyện biết pooling",
+        "Vấn đề là mô hình huấn luyện thường chưa bao giờ phải làm việc với biểu diễn đã nén. Giải pháp giống nguyên tắc của Matryoshka embedding: áp mục tiêu truy xuất cho cả biểu diễn đầy đủ lẫn biểu diễn đã gộp. Mỗi batch tính hai mất mát, truy xuất bằng embedding gốc và truy xuất sau khi nén còn khoảng một phần tư, rồi lấy trung bình. Vì phân cụm là quyết định rời rạc, tác giả dùng straight-through estimator để truyền gradient từ vector đã gộp về các token thành viên. Lớp MultiVectorTokenPoolingLoss bọc quanh một hàm mất mát truy xuất sẵn có trong Sentence Transformers.",
+        "## Kết quả",
+        "Tác giả huấn luyện hai mô hình từ ModernBERT-base trên cùng 120.000 bộ ba MS MARCO, một epoch, chỉ khác hàm mất mát, không dò siêu tham số. Đánh giá trên NanoBEIR@13:",
+        "- Ở pool_factor=4, nDCG@10 tăng từ 49,03 lên 51,23, giảm 74,8% số vector tài liệu; độ giữ điểm tăng từ 94,6% lên 97,8%.",
+        "- Điểm không gộp cũng tăng nhẹ, từ 51,84 lên 52,39.",
+        "- Lợi ích lan sang các giới hạn cố định và gộp thích ứng dù lúc huấn luyện chỉ dùng gộp theo tỉ lệ: ở trung bình 29,58 vector mỗi tài liệu (ít hơn 84,7%), mô hình mới giữ 97,3% điểm không gộp, mô hình thường 93,3%.",
+        "Ngoài ra, nhân tính toán Ward trên CUDA được nêu là nhanh hơn SciPy khoảng 30-150 lần tuỳ cấu hình.",
+        "## Kết hợp các cách nén",
+        "Tác giả gợi ý thứ tự nếu mục tiêu là thu nhỏ chỉ mục: lượng tử hoá embedding xuống 4, 2 hoặc 1 bit; sau đó token pooling (có thể tinh chỉnh biết pooling); rồi Matryoshka để giảm chiều. Các kỹ thuật này kết hợp được, nên cần đo kích thước chỉ mục và chất lượng trên bộ dữ liệu của bạn.",
+        "> Các kết quả trên là thí nghiệm của tác giả bài viết, một lần chạy với seed 42, chưa kiểm chứng độc lập."
+      ],
+      "glossary": [
+        {
+          "term": "Multi-vector (đa vector)",
+          "explain": "Mỗi tài liệu được biểu diễn bằng nhiều vector, thường mỗi token một vector, như ColBERT."
+        },
+        {
+          "term": "MaxSim",
+          "explain": "Cách chấm điểm: mỗi vector câu hỏi lấy điểm khớp cao nhất trong các vector tài liệu, rồi cộng lại."
+        },
+        {
+          "term": "nDCG@10",
+          "explain": "Thang đo chất lượng xếp hạng kết quả truy xuất trong top 10."
+        },
+        {
+          "term": "Phân cụm Ward",
+          "explain": "Phương pháp phân cụm phân cấp, mỗi bước gộp hai nhóm làm độ phân tán tăng ít nhất."
+        },
+        {
+          "term": "Matryoshka embedding",
+          "explain": "Huấn luyện để phần đầu của vector vẫn dùng được khi cắt ngắn chiều."
+        }
+      ]
+    },
+    {
+      "id": "gemini-intelligence-them-tinh-nang-va-thiet-bi",
+      "group": "lab",
+      "source": "Google AI",
+      "url": "https://blog.google/products-and-platforms/platforms/android/gemini-intelligence-november-features-devices/",
+      "publishedAt": "2026-11-10T19:00:00.000Z",
+      "readMinutes": 3,
+      "tags": [
+        "Gemini Intelligence",
+        "Android",
+        "Pixel",
+        "motorola"
+      ],
+      "titleEn": "Gemini Intelligence: New features, on more devices",
+      "titleVi": "Gemini Intelligence mở rộng sang Pixel 10 và motorola signature 27, thêm Create My Widget và Device Assistance",
+      "summary": "Google đưa Gemini Intelligence tới thêm thiết bị Android, gồm motorola signature 27 và dòng Pixel 10 qua đợt Pixel Drop. Cùng lúc có tính năng mới như tạo widget bằng lời mô tả và hỗ trợ thiết bị. Tự động hoá tác vụ mở rộng sang Anh, Ấn Độ, Nhật Bản.",
+      "keyPoints": [
+        "Motorola signature 27 là thiết bị Gemini Intelligence đầu tiên của Motorola, mở đặt trước ở Mỹ ngày 19/11.",
+        "Pixel 10, Pixel 10 Pro XL và Pixel 10 Pro Fold nhận tính năng mới qua Pixel Drop.",
+        "Rambler (chuyển giọng nói thành văn bản gọn gàng theo thời gian thực) có trên Pixel 10 và motorola signature 27.",
+        "Tự động hoá tác vụ qua nhiều ứng dụng (gọi món, đặt xe, đặt chỗ) mở rộng sang Anh, Ấn Độ và Nhật Bản.",
+        "Create My Widget sẽ ra trong vài tuần tới; Device Assistance và gợi ý chủ động trên Android Auto được giới thiệu."
+      ],
+      "body": [
+        "Google cho biết Gemini Intelligence, bộ tính năng AI đưa Gemini vào thiết bị Android, bắt đầu ra thiết bị từ mùa hè, gồm Pixel 11 và các dòng Samsung Galaxy Z Fold8, Z Flip8, S26. Đợt cập nhật tháng 11 mở rộng thiết bị và thêm tính năng.",
+        "## Thêm thiết bị",
+        "Motorola ra thiết bị Gemini Intelligence đầu tiên là motorola signature 27, mở đặt trước ở Mỹ từ 19/11. Pixel 10, Pixel 10 Pro XL và Pixel 10 Pro Fold nhận các tính năng mới qua Pixel Drop hôm nay. Rambler có thêm trên Pixel 10, Pixel 10 Pro, Pro XL, Pro Fold và motorola signature 27. Tự động hoá tác vụ qua nhiều ứng dụng mở rộng sang Anh, Ấn Độ, Nhật Bản.",
+        "## Tính năng mới",
+        "- Create My Widget (ra trong vài tuần tới): mô tả bằng lời để tạo widget riêng, như bảng theo dõi chuyến đi, chi tiêu tháng hay đếm ngược ngày đua; có thể lấy dữ liệu từ Gmail, Calendar và Search.",
+        "- Device Assistance: nhờ Gemini điều khiển, đổi hoặc sửa thiết bị, như dọn dung lượng, kiểm tra ứng dụng nào truy cập vị trí, tắt thông báo gây xao nhãng nhưng vẫn cho cuộc gọi quan trọng đi qua.",
+        "- Gợi ý chủ động trên Android Auto cho điện thoại Pixel có Gemini Intelligence: ví dụ khi bạn bè nhắn hỏi chỗ gặp, Gemini tìm email xác nhận và gợi ý gửi địa chỉ chỉ với một chạm. Tính năng sẽ đến “sớm”.",
+        "- Create My Widget cũng sẽ đến Pixel Watch trong vài tuần tới. Google nhắc rằng tháng trước họ đã ra Googlebook, laptop đầu tiên thiết kế cho Gemini Intelligence.",
+        "> Bài này là thông báo sản phẩm của Google; mô tả tính năng do Google tự đưa ra, chưa có đánh giá độc lập. Bài gốc có chú thích ghi rõ điều kiện về thiết bị và khu vực cho từng tính năng."
+      ],
+      "glossary": [
+        {
+          "term": "Pixel Drop",
+          "explain": "Đợt cập nhật tính năng định kỳ của Google cho điện thoại Pixel."
+        },
+        {
+          "term": "Widget",
+          "explain": "Khung thông tin nhỏ trên màn hình chính, xem nhanh không cần mở ứng dụng."
+        },
+        {
+          "term": "Android Auto",
+          "explain": "Giao diện Android trên màn hình xe hơi."
+        }
+      ]
+    },
+    {
+      "id": "anthropic-video-roadshow-ipo-chien-luoc-chip",
+      "group": "newsletter",
+      "source": "Simon Willison",
+      "url": "https://simonwillison.net/2026/Nov/11/anthropic-ipo-roadshow/",
+      "publishedAt": "2026-11-11T15:11:59.000Z",
+      "readMinutes": 3,
+      "tags": [
+        "Anthropic",
+        "IPO",
+        "chip",
+        "hạ tầng",
+        "compute"
+      ],
+      "titleEn": "Anthropic's IPO roadshow video",
+      "titleVi": "Video roadshow IPO của Anthropic: huấn luyện và chạy Claude trên 4 họ chip, dùng “bội số tính toán”",
+      "summary": "Simon Willison trích phần video roadshow IPO của Anthropic nói về cách tiếp cận tính toán, do đồng sáng lập Tom Brown trình bày. Anthropic cho biết họ huấn luyện và phục vụ Claude trên chip AWS Trainium, Google TPU, GPU NVIDIA và GPU AMD. Anthropic cũng giải thích khái niệm “compute multiplier”.",
+      "keyPoints": [
+        "Anthropic bắt đầu roadshow IPO ngày 10/11, theo Willison; video có thông tin chưa từng công bố về hoạt động kinh doanh.",
+        "Claude chạy trên bốn họ chip: AWS Trainium, Google TPU, NVIDIA và AMD, kết quả của chiến lược đa chip chọn từ sớm.",
+        "Theo Tom Brown, đưa Claude lên GPU AMD mất ba ngày, gần như không cần người can thiệp, nhờ Mythos viết hoặc chuyển gần 100% kernel.",
+        "“Compute multiplier” là hệ số làm tăng hiệu quả tính toán; 4 lần nghĩa là cùng mô hình chỉ cần 25 đơn vị thay vì 100."
+      ],
+      "body": [
+        "Simon Willison chia sẻ video roadshow IPO của Anthropic, công ty bắt đầu đợt này hôm trước, và cho rằng video có thông tin mới về cách công ty vận hành. Vì không có bản chép lời chính thức, ông tự trích lời bằng MacWhisper và chọn các đoạn nổi bật. Phần ông chú ý là mục “Approach to compute” của đồng sáng lập Tom Brown.",
+        "## Đa chip",
+        "Theo lời Brown trong video, Anthropic hiện huấn luyện và phục vụ Claude trên cả bốn họ chip lớn. Ông nói đó là kết quả của một canh bạc “khác thường” từ sớm: mỗi chip cần chồng phần mềm huấn luyện và suy luận riêng, tốn kém và khó xây, nhiều người từng cho là không đáng. Anthropic đã làm nhiều năm và “giỏi hơn rất nhiều”.",
+        "Ví dụ năm nay là GPU AMD: trước đây thêm một nền tảng chip cần hàng chục kỹ sư làm nhiều tháng, lần này họ cho Mythos thử và Claude chạy được trên AMD sau ba ngày, gần như không có người can thiệp, với gần 100% kernel do Claude chuyển hoặc viết.",
+        "## Bội số tính toán",
+        "Brown nói yếu tố thứ hai của lợi thế tính toán là tốc độ tìm ra “compute multiplier”. Công ty nhìn vào tổng tính toán hiệu dụng, bằng năng lực vật lý nhân với các bội số tìm được. Ví dụ ông đưa ra: cần 100 đơn vị để huấn luyện một mô hình, bội số 4 lần cho phép dùng 25 đơn vị cho cùng mô hình, hoặc dùng cả 100 đơn vị để huấn luyện mô hình thông minh hơn, loại trước đây cần 400. Các bội số cộng dồn và hỗ trợ nhau, và Anthropic tin việc này có thể tăng tốc hơn khi tiến tới tự cải thiện đệ quy, khi Claude tự tìm bội số.",
+        "Willison nhắc rằng một gợi ý về chiến lược đa chip đã xuất hiện trong bản phân tích sự cố tháng 9 năm ngoái của Anthropic, nơi mô tả các lỗi chỉ ảnh hưởng triển khai TPU.",
+        "> Các phát biểu trên là lời của lãnh đạo Anthropic trong video quảng bá IPO, do Willison chép lại bằng công cụ nhận dạng giọng nói; chưa được kiểm chứng độc lập."
+      ],
+      "glossary": [
+        {
+          "term": "Roadshow IPO",
+          "explain": "Chuỗi buổi thuyết trình công ty gọi vốn trước nhà đầu tư trước khi niêm yết cổ phiếu lần đầu."
+        },
+        {
+          "term": "Kernel",
+          "explain": "Chương trình nhỏ chạy trực tiếp trên chip (thường là GPU) để thực hiện phép tính cụ thể."
+        },
+        {
+          "term": "Trainium / TPU",
+          "explain": "Chip AI tự phát triển của AWS và Google, khác GPU của NVIDIA và AMD."
+        },
+        {
+          "term": "Compute multiplier",
+          "explain": "Cải tiến giúp đạt cùng kết quả với ít tính toán hơn, hoặc kết quả tốt hơn với cùng tính toán."
+        }
+      ]
+    },
+    {
+      "id": "mercor-goi-750-trieu-usd-dinh-gia-20-ty",
+      "group": "newsletter",
+      "source": "Latent Space",
+      "url": "https://latent.space/p/ainews-mercor-750m-series-d-at-20b-valuation-3b-run-rate/",
+      "publishedAt": "2026-11-11T09:34:28.000Z",
+      "readMinutes": 4,
+      "tags": [
+        "gọi vốn",
+        "dữ liệu huấn luyện",
+        "Mercor",
+        "Gemini 4 Carbon"
+      ],
+      "titleEn": "[AINews] Mercor $750m Series D at $20B valuation, $3B run rate",
+      "titleVi": "Mercor gọi 750 triệu USD vòng D, định giá 20 tỷ USD, doanh thu quy năm 3 tỷ USD; Google ra Gemini 4 Carbon",
+      "summary": "Bản tin AINews của Latent Space chọn vụ gọi vốn của Mercor làm tin chính: vòng D 750 triệu USD, định giá 20 tỷ USD, doanh thu quy năm đạt 3 tỷ USD. Phần điểm tin trên X nói nhiều về Gemini 4 Carbon của Google, với các kết quả vừa do Google và đối tác công bố, vừa do bên độc lập đo.",
+      "keyPoints": [
+        "Mercor là công ty cung cấp chuyên gia và dữ liệu để đánh giá, huấn luyện mô hình. Doanh thu quy năm lên 3 tỷ USD, từ mức chưa tới 500 triệu USD khi gọi vòng C năm ngoái.",
+        "Công ty cho biết có 5 triệu chuyên gia. Họ nhắm tới hơn 800 nghề ở Mỹ mà mô hình chưa được đánh giá trên quy trình làm việc thật.",
+        "Mercor nói chi cho inference gấp 3 lần chi cho lương nhân viên, và khoản này “tự hoàn vốn”.",
+        "Google ra Gemini 4 Carbon, mô hình mạnh nhất của hãng cho việc agent dài hơi. Điểm số độc lập đưa nó vào nhóm đầu nhưng người dùng thử cũng báo lỗi.",
+        "Giá Carbon trong Cursor là 2/10 USD mỗi triệu token (nhập/xuất) đến hết 30/11, sau đó tăng gấp đôi."
+      ],
+      "body": [
+        "Latent Space cho biết thông thường họ chỉ lấy một vụ gọi vốn làm tin chính khi định giá từ mức decacorn (10 tỷ USD) trở lên. Mercor đạt ngưỡng đó. Vòng C năm ngoái định giá 10 tỷ USD, lúc doanh thu còn dưới 500 triệu USD.",
+        "Theo bản tin, doanh thu quy năm của Mercor vượt 1 tỷ USD hồi tháng 2, 2 tỷ USD hồi tháng 6 và nay là 3 tỷ USD. Bản tin nói công ty vẫn tăng trưởng dù từng bị tấn công mạng.",
+        "## Chuyên gia và phát biểu về inference",
+        "Mercor cho biết mạng lưới có 5 triệu chuyên gia. Họ viết rằng riêng ở Mỹ có hơn 800 nghề, mỗi nghề có những quy trình mà mô hình chưa được đánh giá.",
+        "Một con số khác được bản tin chú ý: Mercor tự nói chi cho inference gấp 3 lần chi cho lương nhân viên, và khoản chi này giúp đội ngũ làm việc tốt hơn nên tự hoàn vốn. Từ đó công ty suy ra nếu tỷ lệ này lan ra nền kinh tế, GDP có thể tăng hai chữ số mỗi năm trong 5 năm tới. Đây là nhận định của Mercor, chưa được kiểm chứng.",
+        "> Các số liệu doanh thu, số chuyên gia và tỷ lệ chi tiêu do Mercor tự công bố.",
+        "## Gemini 4 Carbon",
+        "Phần điểm tin trên X dành nhiều chỗ cho Gemini 4 Carbon. Google mô tả đây là mô hình mạnh nhất của hãng cho công việc agent dài hơi (phần mềm, an ninh mạng, tri thức, khoa học). Gemini 4 Argon vẫn là lựa chọn mặc định cho đa số tác vụ.",
+        "- Do Google và đối tác công bố: Carbon đạt 60,4% trên CursorBench (mức high effort) và 40,0% trên FrontierCode 2.0, so với 26,3% của Argon.",
+        "- Do bên độc lập đo: Vals Index xếp Carbon hạng 3, kém Fable 5.2 khoảng 1 điểm phần trăm nhưng rẻ hơn (10,51 USD so với 17,94 USD mỗi bài test). Roboflow xếp Carbon số 1 về thị giác nhưng chậm và đắt nhất trong 10 mô hình.",
+        "- Người dùng thử báo hiện tượng ảo giác, quá tự tin và dài dòng. Một người thử thấy lỗi dù mô hình báo các bước kiểm tra đã qua.",
+        "> Các số liệu về Gemini 4 Carbon trong phần này do Google, Cursor, Cognition và Perplexity công bố, các số liệu của Vals, ARC Prize và Roboflow là do bên thứ ba đo. Bản tin chỉ tổng hợp lại từ bài đăng trên X."
+      ],
+      "glossary": [
+        {
+          "term": "Series D",
+          "explain": "Vòng gọi vốn thứ tư của một startup, thường khi công ty đã có doanh thu lớn."
+        },
+        {
+          "term": "Run rate (doanh thu quy năm)",
+          "explain": "Doanh thu tháng hoặc quý gần nhất nhân lên thành con số cả năm."
+        },
+        {
+          "term": "Inference",
+          "explain": "Chạy mô hình AI đã huấn luyện để trả lời hoặc làm việc, tính tiền theo lượng tính toán."
+        },
+        {
+          "term": "Decacorn",
+          "explain": "Công ty khởi nghiệp được định giá từ 10 tỷ USD trở lên."
+        }
+      ]
+    },
+    {
+      "id": "openai-huong-dan-lam-viec-voi-codex-tai-code-summit",
+      "group": "newsletter",
+      "source": "Latent Space",
+      "url": "https://latent.space/p/codex-work/",
+      "publishedAt": "2026-11-11T04:49:48.000Z",
+      "readMinutes": 4,
+      "tags": [
+        "Codex",
+        "OpenAI",
+        "coding agent",
+        "AI Engineer Code Summit"
+      ],
+      "titleEn": "AI Engineer Code Summit: OpenAI on New Ways of Working With Codex",
+      "titleVi": "Workshop OpenAI tại AI Engineer Code Summit: Codex Cloud, điều khiển bằng giọng nói và agent cá nhân “dots”",
+      "summary": "Hai kỹ sư Developer Experience của OpenAI giới thiệu cách làm việc mới với Codex tại workshop mở màn AI Engineer Code Summit. Nội dung gồm Codex Cloud bản 2, dùng giọng nói để quản lý nhiều luồng việc và agent cá nhân dots.",
+      "keyPoints": [
+        "Codex ra mắt tháng 5/2025 như một agent chạy trên đám mây; phần cloud lâu nay gây khó hiểu cho người dùng.",
+        "Codex Cloud 2 (công bố sau DevDay cuối tháng 9) cho phép tạo môi trường một lần rồi chạy nhiều tác vụ trong các bản tách biệt.",
+        "OpenAI đang làm cho việc chuyển tác vụ giữa máy cục bộ và cloud dễ hơn.",
+        "Giọng nói được dùng như “control plane” để quản lý các luồng việc, không chỉ để đọc chính tả.",
+        "Dots là agent cá nhân; chính người trình bày thừa nhận còn hơi lạ với lập trình viên."
+      ],
+      "body": [
+        "Latent Space tường thuật workshop “New Ways of Working with Codex” của OpenAI, do Dominik Kundel và Charlie Guo trình bày. Guo nói đội đã ra quá nhiều tính năng kể từ AI Engineer World’s Fair hồi tháng 6/2026 đến mức phải cắt bớt danh sách cho vừa màn hình.",
+        "## Bước chuyển lúng túng sang cloud",
+        "Kundel thừa nhận mô hình và harness (lớp điều khiển quanh mô hình) mất thời gian mới đủ tốt để làm trải nghiệm cloud hấp dẫn. Sau DevDay cuối tháng 9, Codex Cloud bản 2 cho phép “đóng laptop mà agent vẫn chạy”. Môi trường được tạo một lần, có thể chia sẻ trong công ty, bắt đầu bằng việc chọn các repo GitHub cho phép truy cập.",
+        "Tác giả bài viết vẫn thấy khâu chuyển tác vụ từ máy cục bộ lên cloud gây khó hiểu. Kundel đáp rằng họ muốn làm dễ hơn; phần khó nằm ở việc quản lý khác biệt về ngữ cảnh. Cloud giờ chỉ như “một nơi thực thi khác”, và bạn có thể nhờ Codex cục bộ tạo tác vụ trên Codex cloud.",
+        "## Giọng nói làm giao diện",
+        "Kundel demo sửa trực tiếp một website mẫu bằng cách đọc lệnh. Guo cho rằng đa số người chỉ coi giọng nói là một cách nhập khác; còn anh dùng nó làm “control plane”: quản lý các thread, kiểm tra tiến độ, lấy dữ liệu từ ứng dụng khác, tạo thread mới.",
+        "## Dots",
+        "Guo nói chính anh, dù là người dùng Codex nhiều, vẫn thấy dots hơi khó dùng vì là mô hình mới và giỏi những việc khác Codex chính. Anh dùng dots theo ba cách: lưới an toàn nhắc điều bạn bỏ sót, nơi giao việc (anh dùng nhiều trong Slack), và hiện diện ở mọi nơi bạn làm việc. Kundel hay bắt đầu tác vụ từ dots vì nó đã có sẵn ngữ cảnh, và nói chuyện với nó khi đi làm để mở trước các PR.",
+        "Kết thúc, Kundel cho vài mẹo như “turn it down” (hạ mức effort) và “hỏi agent giúp đỡ”. Lời nhắn chính là đừng gắn bó quá với một cách làm, vì mọi thứ thay đổi liên tục.",
+        "> Bài là tường thuật của Latent Space dựa trên phát biểu của đại diện OpenAI. Các nhận xét về hiệu quả là quan điểm của người trình bày."
+      ],
+      "glossary": [
+        {
+          "term": "Codex",
+          "explain": "Agent lập trình của OpenAI, chạy cục bộ hoặc trên đám mây."
+        },
+        {
+          "term": "Harness",
+          "explain": "Lớp phần mềm bọc quanh mô hình, cấp công cụ và điều khiển vòng lặp làm việc của agent."
+        },
+        {
+          "term": "Control plane",
+          "explain": "Lớp dùng để điều phối và quản lý các việc đang chạy, khác với lớp thực hiện việc."
+        },
+        {
+          "term": "Dots",
+          "explain": "Tên agent cá nhân của OpenAI, hỗ trợ người dùng giữa các phiên làm việc."
+        }
+      ]
+    },
+    {
+      "id": "united-khong-cho-ai-agent-ben-thu-ba-dat-ve",
+      "hot": true,
+      "group": "press",
+      "source": "The Verge",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/1031623/united-unauthorized-ai-agents",
+      "publishedAt": "2026-11-11T21:54:21.000Z",
+      "readMinutes": 2,
+      "tags": [
+        "AI agent",
+        "hàng không",
+        "quyền riêng tư"
+      ],
+      "titleEn": "United won’t let your AI agent book your flight",
+      "titleVi": "United Airlines không cho trợ lý AI của bên thứ ba đặt vé thay khách",
+      "summary": "United nói sẽ không cho trợ lý AI cá nhân hoàn tất việc đặt vé, viện lý do quyền riêng tư và quy định liên bang. Agent vẫn có thể hiển thị chuyến bay của United nhưng không thể giao dịch thay người dùng.",
+      "keyPoints": [
+        "Agent vẫn xem được chuyến bay United nhưng không hoàn tất giao dịch.",
+        "Lý do: nguy cơ lộ thông tin khách, mua sai ý và lách các quy định mà hãng bay phải tuân thủ.",
+        "CEO Scott Kirby nói không muốn tạo thêm “người trung gian”.",
+        "eBay và một số ngân hàng lớn cũng hạn chế agent; United nói có thể xem lại khi công nghệ tiến bộ."
+      ],
+      "body": [
+        "Theo The Verge, dẫn lại tin của Wall Street Journal, United nói hãng sẽ không cho trợ lý AI cá nhân đặt vé trên hệ thống của mình. Hãng cho biết chưa thấy nhiều người thử dùng agent để đặt vé, giống nhận xét của một số doanh nghiệp khác như DoorDash.",
+        "United lo ba điều: agent có thể làm lộ thông tin khách, có thể mua thứ khách không định mua, và có thể lách các quy định liên bang về thông tin hãng bay phải cung cấp. Ví dụ được nêu là việc khách phải xác nhận hành lý không có chất nổ.",
+        "Quyết định này, cùng các quyết định tương tự, có thể hạn chế tính hữu ích của các trợ lý mới như Muse của Meta và Dots của OpenAI. CEO Scott Kirby phát biểu tại một sự kiện hôm thứ Ba: “To be honest, I don’t want to create another middleman.”",
+        "United không đơn độc. eBay có vẻ đã chặn agent duyệt trang, và nhiều ngân hàng lớn cũng áp hạn chế. United để ngỏ khả năng đổi ý khi agent của bên thứ ba tiến bộ, nhưng muốn có biện pháp bảo vệ cho hành khách trước.",
+        "> Gợi ý của người biên tập: đây là tín hiệu rằng các doanh nghiệp có tài khoản và dữ liệu khách nhạy cảm muốn giữ quyền kiểm soát kênh bán hàng, thay vì để agent đứng giữa."
+      ],
+      "glossary": [
+        {
+          "term": "AI agent",
+          "explain": "Phần mềm AI tự thực hiện chuỗi việc thay người dùng, như tìm và đặt vé."
+        },
+        {
+          "term": "Middleman (người trung gian)",
+          "explain": "Bên đứng giữa khách hàng và nhà cung cấp dịch vụ."
+        }
+      ]
+    },
+    {
+      "id": "coreweave-thu-tien-tra-truoc-va-hop-dong-ngan-han",
+      "group": "press",
+      "source": "TechCrunch",
+      "url": "https://techcrunch.com/2026/11/11/coreweave-turns-to-customer-prepayments-shorter-contracts-to-fund-ai-growth/",
+      "publishedAt": "2026-11-11T19:54:00.000Z",
+      "readMinutes": 3,
+      "tags": [
+        "CoreWeave",
+        "hạ tầng AI",
+        "tài chính",
+        "neocloud"
+      ],
+      "titleEn": "CoreWeave turns to customer prepayments, shorter contracts to fund AI growth",
+      "titleVi": "CoreWeave đổi cách huy động vốn: khách trả trước, vay theo hợp đồng, tăng hợp đồng ngắn hạn giá cao",
+      "summary": "Trong báo cáo quý 3, CoreWeave cho biết sẽ không phát hành nợ không bảo đảm ở mức lợi suất hiện tại. Công ty chuyển sang thu tiền trả trước, vay có bảo đảm bằng hợp đồng và bán thêm công suất theo hợp đồng ngắn hạn giá cao. Đây là diễn biến về cách huy động vốn, khác với tin về lợi suất trái phiếu đã đăng ngày 11/11.",
+      "keyPoints": [
+        "Quý 3: doanh thu 3,66 tỷ USD (tăng 168%), lỗ ròng 709 triệu USD, chi phí lãi vay 846 triệu USD.",
+        "CEO Michael Intrator nói sẽ không dùng nợ không bảo đảm ở mức lợi suất hiện tại; thay vào đó vay có bảo đảm bằng hợp đồng khách hàng.",
+        "CoreWeave kỳ vọng khoảng 9 tỷ USD tiền khách trả trước và đặt cọc trong 3 tháng tới.",
+        "Hợp đồng ngắn hạn bán trên 40 triệu USD mỗi megawatt mỗi năm, so với 20–25 triệu USD với hợp đồng 4–5 năm.",
+        "Rủi ro: cam kết giá cũ nếu cầu tăng tiếp, và lệ thuộc vào việc cầu cùng sức mua giá cao còn kéo dài."
+      ],
+      "body": [
+        "CoreWeave là một neocloud, tức công ty cho thuê sức mạnh tính toán phục vụ AI. Theo TechCrunch, báo cáo quý 3 công bố hôm thứ Ba cho thấy công ty đang thay đổi cách trả tiền cho đợt mở rộng.",
+        "Số liệu quý: doanh thu 3,66 tỷ USD, tăng 168% so với cùng kỳ; lỗ ròng 709 triệu USD; chi phí lãi vay 846 triệu USD. Backlog (đơn hàng đã ký chưa thực hiện) là 132,5 tỷ USD.",
+        "## Ba hướng huy động vốn",
+        "- Vay có bảo đảm theo hợp đồng: Intrator nói công ty sẽ không dùng thị trường nợ không bảo đảm ở mức lợi suất hiện nay, và cũng “không cần”. Tháng 8, công ty đóng khoản vay 2,6 tỷ USD (DDTL 5.5), khoản đầu tiên dành cho hợp đồng ngắn hạn, rút vốn theo từng đợt.",
+        "- Khách trả trước: CoreWeave dự kiến khoảng 9 tỷ USD tiền trả trước và đặt cọc trong ba tháng tới, trong đó hơn 3 tỷ USD gắn với hợp đồng mới cho công suất đã xây xong nên không cần thêm chi phí phần cứng. Nebius và IREN cũng dựa vào khoản trả trước lớn từ Microsoft.",
+        "- Hợp đồng ngắn hạn: CoreWeave đã tăng giá khoảng 25% hồi tháng 7 và thêm 10% sau đó. Intrator nói giá tiếp tục lên và “more than offset[s] cost increases”. Công suất bán ngắn hạn trên 40 triệu USD mỗi megawatt mỗi năm; hợp đồng mới 4–5 năm khoảng 20–25 triệu USD.",
+        "## Đánh đổi",
+        "Tiền trả trước giảm nhu cầu vay nhưng buộc CoreWeave giữ giá đã chốt, có thể thấp hơn giá thị trường sau này nếu cầu tiếp tục tăng. Hợp đồng ngắn cho giá cao hơn nhưng bên cho vay thích hợp đồng dài vì dòng tiền dễ dự báo. Giới đầu tư cổ phiếu phản ứng tích cực, còn nhà đầu tư trái phiếu thận trọng hơn: tháng trước lợi suất một số trái phiếu của công ty vượt 15%.",
+        "> Các số liệu về doanh thu, giá và dự báo tiền trả trước do CoreWeave tự công bố trong báo cáo thu nhập."
+      ],
+      "glossary": [
+        {
+          "term": "Neocloud",
+          "explain": "Nhà cung cấp đám mây mới, chuyên cho thuê GPU và sức mạnh tính toán cho AI."
+        },
+        {
+          "term": "Nợ không bảo đảm",
+          "explain": "Khoản vay hoặc trái phiếu không gắn với tài sản hay hợp đồng cụ thể làm tài sản bảo đảm."
+        },
+        {
+          "term": "Backlog",
+          "explain": "Giá trị các hợp đồng đã ký nhưng chưa ghi nhận thành doanh thu."
+        },
+        {
+          "term": "Megawatt",
+          "explain": "Đơn vị đo công suất điện, dùng để tính quy mô trung tâm dữ liệu."
+        }
+      ]
+    },
+    {
+      "id": "fractile-goi-720-trieu-usd-cho-chip-ai",
+      "group": "press",
+      "source": "TechCrunch",
+      "url": "https://techcrunch.com/2026/11/11/with-720m-round-britains-fractile-gets-a-leg-up-in-the-race-for-ai-chips/",
+      "publishedAt": "2026-11-11T19:34:55.000Z",
+      "readMinutes": 2,
+      "tags": [
+        "chip AI",
+        "gọi vốn",
+        "Fractile",
+        "Anh"
+      ],
+      "titleEn": "With $720M round, Britain’s Fractile gets a leg up in the race for AI chips",
+      "titleVi": "Fractile của Anh gọi 720 triệu USD vòng C để làm chip AI chuyên dụng",
+      "summary": "Startup chip AI Fractile (Anh) gọi 720 triệu USD vòng C, có Quỹ AI Chủ quyền của Anh tham gia. Định giá theo chính phủ Anh là trên 5 tỷ bảng, có thể khoảng 7 tỷ USD theo báo chí.",
+      "keyPoints": [
+        "Vòng C 720 triệu USD do Thrive Capital, Founders Fund, Lightspeed và Redpoint dẫn dắt, có Quỹ AI Chủ quyền của Anh.",
+        "Định giá “trên 5 tỷ bảng”; Financial Times và nguồn của Reuters nói có thể khoảng 7 tỷ USD.",
+        "Hướng thiết kế dựa trên DRAM xếp chồng lên chip, nhằm vượt đánh đổi giữa tốc độ và dung lượng bộ nhớ.",
+        "Công ty dự kiến giao chip và hệ thống đầu tiên vào năm sau."
+      ],
+      "body": [
+        "Fractile, startup chip AI của Anh, vừa gọi 720 triệu USD vòng C. Chính phủ Anh nói khoản đầu tư của Quỹ AI Chủ quyền nhằm giúp nước này có phần lớn hơn trong phần cứng làm nền cho nền kinh tế tương lai.",
+        "Theo TechCrunch, cùng với Axelera, Etched và OLIX, Fractile thuộc nhóm startup chip AI chuyên dụng huy động nhiều vốn nhất. Chip chuyên dụng là một hướng để giảm chi phí inference.",
+        "Công ty không chỉ làm phần cứng mà theo hướng full-stack, gồm cả trình biên dịch machine learning để chạy LLM nhanh nhất trên chip của mình. Vì vậy họ tự định vị là công ty AI tuyến đầu, và mức định giá phản ánh điều đó. Chính phủ Anh nói “over £5 billion”; Financial Times và một nguồn của Reuters nói khả năng khoảng 7 tỷ USD.",
+        "Sau một lần chuyển hướng, thiết kế hiện nay xoay quanh DRAM (loại RAM phổ biến) xếp chồng lên mỗi chip, hy vọng tránh đánh đổi thường gặp giữa tốc độ và dung lượng bộ nhớ. Vấn đề này nặng hơn khi AI dạng agent chạy chuỗi tác vụ dài với mô hình lớn mà vẫn cần nhanh.",
+        "CEO Walter Goodwin viết trên LinkedIn rằng “còn nhiều việc phía trước” và vốn mới sẽ giúp công ty “ship [its] first chips and systems next year”. Hiện chưa có chip bán ra, nên hiệu năng của thiết kế chưa được kiểm chứng ngoài lời công ty."
+      ],
+      "glossary": [
+        {
+          "term": "Inference",
+          "explain": "Chạy mô hình AI đã huấn luyện để phục vụ người dùng."
+        },
+        {
+          "term": "DRAM",
+          "explain": "Loại bộ nhớ RAM phổ biến nhất trong máy tính và máy chủ."
+        },
+        {
+          "term": "Full-stack",
+          "explain": "Làm cả phần cứng lẫn phần mềm đi kèm (ở đây là trình biên dịch)."
+        }
+      ]
+    },
+    {
+      "id": "meta-mat-truong-bo-phan-ha-tang-santosh-janardhan",
+      "group": "press",
+      "source": "TechCrunch",
+      "url": "https://techcrunch.com/2026/11/11/meta-is-losing-its-longtime-head-of-infrastructure/",
+      "publishedAt": "2026-11-11T20:12:01.000Z",
+      "readMinutes": 2,
+      "tags": [
+        "Meta",
+        "nhân sự",
+        "hạ tầng AI"
+      ],
+      "titleEn": "Meta is losing its longtime head of infrastructure",
+      "titleVi": "Santosh Janardhan, người đứng đầu hạ tầng của Meta từ lâu, sẽ rời vị trí; Dave Brown thay thế",
+      "summary": "Meta xác nhận Santosh Janardhan, trưởng bộ phận hạ tầng và đồng trưởng kỹ thuật, sẽ thôi chức. Dave Brown, cựu nhân viên Amazon 19 năm, sẽ thay. Lý do chưa được nêu.",
+      "keyPoints": [
+        "Janardhan vào Meta năm 2009 và sẽ chuyển sang vai trò cố vấn cho Meta Compute.",
+        "Dave Brown, vào Meta đầu năm nay làm phó chủ tịch hạ tầng, sẽ thay thế; trước đó 19 năm ở Amazon.",
+        "Bloomberg đưa tin đầu tiên, dẫn một bản ghi nhớ nội bộ.",
+        "Lý do rời đi chưa được nêu."
+      ],
+      "body": [
+        "Theo TechCrunch, Meta cho biết Santosh Janardhan, trưởng bộ phận hạ tầng và đồng trưởng kỹ thuật, sẽ thôi giữ vị trí. Ông vào công ty năm 2009 và là một nhân vật quan trọng trong quá trình Meta lớn lên.",
+        "Người thay thế là Dave Brown, gia nhập Meta đầu năm nay với chức phó chủ tịch hạ tầng. Trước đó Brown làm 19 năm ở Amazon, tập trung vào compute, cloud và AI.",
+        "Đại diện Meta nói Janardhan sẽ ở lại giai đoạn chuyển giao và chuyển sang vai trò cố vấn cho Meta Compute. Theo TechCrunch, ông được dự kiến rời công ty vào năm sau.",
+        "Bloomberg đưa tin đầu tiên, dẫn một bản ghi nhớ nội bộ. Bản ghi nhớ này, như TechCrunch mô tả, nói cần “pass the baton” nhưng không nêu lý do. Meta chưa trả lời yêu cầu làm rõ.",
+        "Bối cảnh: vốn đầu tư hạ tầng của Meta tăng vọt khi hãng chạy đua AI. Đầu năm nay, Janardhan được giao dẫn dắt Meta Compute, sáng kiến mở rộng đầu tư và chiến lược trung tâm dữ liệu."
+      ],
+      "glossary": [
+        {
+          "term": "Meta Compute",
+          "explain": "Sáng kiến của Meta nhằm mở rộng đầu tư và chiến lược trung tâm dữ liệu."
+        },
+        {
+          "term": "Hạ tầng (infrastructure)",
+          "explain": "Hệ thống máy chủ, mạng và trung tâm dữ liệu chạy các dịch vụ của công ty."
+        }
+      ]
+    },
+    {
+      "id": "quoc-hoi-my-doi-trieu-tap-jensen-huang-vu-gian-diep-bi-cao-buoc",
+      "hot": true,
+      "group": "press",
+      "source": "TechCrunch",
+      "url": "https://techcrunch.com/2026/11/11/congress-to-call-jensen-huang-in-to-answer-for-alleged-chinese-spy-affair/",
+      "publishedAt": "2026-11-11T19:22:22.000Z",
+      "readMinutes": 3,
+      "tags": [
+        "Nvidia",
+        "Jensen Huang",
+        "Quốc hội Mỹ",
+        "xuất khẩu chip"
+      ],
+      "titleEn": "Congress to call Jensen Huang in to answer for alleged Chinese spy affair",
+      "titleVi": "Diễn biến mới: Hạ viện Mỹ sắp triệu tập Jensen Huang nếu ông không đồng ý buổi làm việc kín về mối quan hệ với người bị nghi là gián điệp Trung Quốc",
+      "summary": "Diễn biến mới là việc Quốc hội Mỹ chuẩn bị triệu tập (subpoena) CEO Nvidia Jensen Huang. Hai nghị sĩ Cộng hòa nói với Bloomberg rằng ông sẽ bị triệu tập nếu không nhận lời làm việc kín trước hết ngày thứ Tư. Thông tin về bà Alice Huang là cáo buộc, chưa có kết luận nào được công bố.",
+      "keyPoints": [
+        "Hạn trả lời của ông Huang là hết ngày thứ Tư (11/11); nếu không, nhiều khả năng ông bị triệu tập theo lời chủ tịch ủy ban Moolenaar.",
+        "Chủ tịch Ủy ban Đối ngoại Hạ viện Brian Mast nói ủy ban đang chuẩn bị lệnh triệu tập.",
+        "Đây là bước tiếp theo sau thư ngày 5/11 của ba chủ tịch ủy ban yêu cầu buổi làm việc kín chung.",
+        "Việc bà Alice Huang là gián điệp là nhận định của giới chức Mỹ theo báo chí, chưa được chứng minh công khai."
+      ],
+      "body": [
+        "Theo Bloomberg, dẫn hai nghị sĩ Cộng hòa và được TechCrunch lặp lại, Quốc hội Mỹ đang chuẩn bị triệu tập CEO Nvidia Jensen Huang để hỏi về mối quan hệ của ông với bà Alice Huang, giám đốc điều hành Megaspeed bị nghi là gián điệp Trung Quốc. Đây là diễn biến mới so với các tin đã đăng ngày 9–10/11.",
+        "## Hạn chót và lệnh triệu tập",
+        "Một tuần trước, các nghị sĩ Brian Mast, John Moolenaar và Rick Crawford gửi thư mời ông Huang dự buổi làm việc kín chung của ba ủy ban. Hôm thứ Tư, ông Moolenaar, chủ tịch Ủy ban đặc biệt về Trung Quốc của Hạ viện, nói trên Fox Business rằng ông Huang có đến hết ngày để trả lời. Nếu không đồng ý, ông “nhiều khả năng” bị triệu tập. Ông Mast, chủ tịch Ủy ban Đối ngoại, nói ủy ban đang chuẩn bị lệnh triệu tập để gửi nếu ông Huang không phản hồi. Nvidia chưa phản hồi yêu cầu bình luận của TechCrunch.",
+        "## Bối cảnh (theo dòng thời gian của TechCrunch)",
+        "- Giới chức Mỹ cho rằng bà Alice Huang, công dân Trung Quốc và không có quan hệ họ hàng với ông Jensen Huang, là gián điệp cho Bộ An ninh Quốc gia Trung Quốc. Đây là cáo buộc theo các báo cáo; chưa có phán quyết hay kết luận công khai.",
+        "- Megaspeed, công ty hạ tầng AI đặt ở Singapore, được cho là đã mua 4,8 tỷ USD chip Nvidia trong hai năm. Mỹ và Singapore điều tra Megaspeed từ tháng 10/2025 vì nghi giúp các công ty Trung Quốc lách lệnh cấm xuất khẩu chip.",
+        "- Ngày 8/11, ông Huang gửi thư cho nhân viên thừa nhận đã không chung thủy với vợ, không nêu tên bà Alice Huang, và nói hội đồng quản trị Nvidia đã mở điều tra độc lập. Cổ phiếu Nvidia giảm hơn 5% ngày hôm sau.",
+        "- Ngày 8/11, Tổng thống Trump nói ông Huang là “fine person” và nên tiếp tục làm CEO. Ngày 9/11, ông Huang rút khỏi một số sự kiện diễn thuyết.",
+        "Nvidia trước đó cho rằng việc ông Huang gặp khách hàng không có gì bất thường."
+      ],
+      "glossary": [
+        {
+          "term": "Subpoena (lệnh triệu tập)",
+          "explain": "Văn bản pháp lý buộc một người ra làm chứng hoặc cung cấp tài liệu; không tuân thủ có thể bị xử lý."
+        },
+        {
+          "term": "Briefing kín",
+          "explain": "Buổi làm việc không công khai giữa cơ quan lập pháp và người được mời."
+        },
+        {
+          "term": "Kiểm soát xuất khẩu",
+          "explain": "Quy định của Mỹ hạn chế bán chip AI tiên tiến cho một số quốc gia và tổ chức."
+        }
+      ]
+    },
+    {
+      "id": "big-walk-dung-ai-sua-loi-cong-dong-game-indie-chia-re",
+      "group": "press",
+      "source": "The Verge",
+      "url": "https://www.theverge.com/games/1030994/big-walk-independent-games-festival-igf-ai",
+      "publishedAt": "2026-11-10T17:32:47.000Z",
+      "readMinutes": 3,
+      "tags": [
+        "game indie",
+        "AI tạo sinh",
+        "IGF",
+        "bản quyền"
+      ],
+      "titleEn": "The indie game community is in disarray over AI and Big Walk",
+      "titleVi": "Giám khảo IGF tuyên bố không bỏ phiếu cho game dùng AI tạo sinh; nhà làm Big Walk nhận đã dùng chatbot để gỡ lỗi",
+      "summary": "Một số giám khảo Independent Games Festival ra tuyên bố sẽ không bỏ phiếu cho game dùng AI tạo sinh “ở bất kỳ mức độ nào”. Ngay sau đó nhà làm game Big Walk, House House, nói họ có dùng chatbot để tham khảo cách xử lý lỗi, ước tính dưới 0,1% mã nguồn liên quan.",
+      "keyPoints": [
+        "Các giám khảo IGF nói game làm bằng AI tăng đáng kể và cho rằng mã do AI viết cũng không phải ngoại lệ về tác hại.",
+        "Tuyên bố không đại diện cho IGF hay toàn bộ ban giám khảo; một số giám khảo e ngại bị phản ứng nếu ký tên.",
+        "House House nói dùng chatbot chủ yếu để tìm hiểu lỗi mã bên thứ ba, ví dụ lỗi đổ bóng, và ước tính dưới 0,1% mã Big Walk liên quan.",
+        "Studio nói đã khai báo trong hồ sơ dự IGF, chưa ghi trên Steam vì nền tảng không yêu cầu khai báo mã hay chatbot."
+      ],
+      "body": [
+        "Theo The Verge, hôm 9/11 một số giám khảo Independent Games Festival (IGF) đăng tuyên bố rằng họ sẽ không bỏ phiếu cho game dùng AI tạo sinh “in any capacity”. Tuyên bố do Austin Walker đăng lại. Họ nói số game làm với công cụ AI tạo sinh tăng đáng kể, dẫn đến nhiều tranh luận và chưa có đồng thuận.",
+        "Tuyên bố liệt kê một số quan điểm: AI tạo sinh có tác động tiêu cực, mã do AI viết không phải ngoại lệ, và việc dùng AI không phải điều tất yếu của ngành. Có tên trong số người ký là Sam Barlow và nhà soạn nhạc Lena Raine. Nhóm nói tuyên bố không đại diện cho IGF hay mọi giám khảo, và một số người ngại ký vì sợ bị phản ứng nghề nghiệp.",
+        "## Big Walk và House House",
+        "Big Walk là game phiêu lưu co-op của House House, studio đứng sau Untitled Goose Game, và dường như là một trường hợp gây tranh cãi. Trong phát biểu với Aftermath, House House nói có chép đoạn mã gợi ý từ LLM làm điểm xuất phát rồi sửa lại, ước tính “well under 0.1%” mã của game liên quan, và không dùng AI tạo sinh cho việc nào khác.",
+        "Công dụng chính, theo studio, là hỏi chatbot về các vấn đề với mã bên thứ ba, trong đó có sửa lỗi đổ bóng, sau khi đã tìm hiểu kỹ và trao đổi với một kỹ sư Unity. Studio khai báo việc dùng AI trong hồ sơ dự IGF nhưng chưa ghi trên Steam, vì nền tảng không yêu cầu khai báo mã hay chatbot.",
+        "House House nói đây không phải lời ủng hộ AI, lo rằng khai báo tự nguyện có thể góp phần bình thường hóa công nghệ này, xin lỗi vì mức dùng có thể chưa đạt chuẩn của những người phản đối, và nhận việc không có chính sách AI là một “failure”. Studio sẽ làm chính sách đầy đủ hơn.",
+        "Sam Barlow sau đó nói Big Walk không phải “impetus” của cuộc thảo luận mà là “tricky edge case”, và tuyên bố không kêu gọi tẩy chay hay gây thiệt hại kinh tế cho một nhóm nào. Theo ông, vấn đề là ý nghĩa của một giải thưởng so với game quy mô lớn."
+      ],
+      "glossary": [
+        {
+          "term": "IGF",
+          "explain": "Independent Games Festival, giải thưởng thường niên cho game độc lập."
+        },
+        {
+          "term": "AI tạo sinh (generative AI)",
+          "explain": "AI sinh ra nội dung mới như văn bản, hình ảnh, mã."
+        },
+        {
+          "term": "LLM",
+          "explain": "Mô hình ngôn ngữ lớn, nền tảng của các chatbot như ChatGPT."
+        }
+      ]
+    },
+    {
+      "id": "doanh-thu-quy-openai-vuot-10-ty-usd",
+      "hot": true,
+      "group": "press",
+      "source": "TechCrunch",
+      "url": "https://techcrunch.com/2026/11/11/openais-quarterly-revenue-reportedly-crosses-10b-for-the-first-time/",
+      "publishedAt": "2026-11-11T16:14:44.000Z",
+      "readMinutes": 3,
+      "tags": [
+        "OpenAI",
+        "doanh thu",
+        "Anthropic",
+        "doanh nghiệp"
+      ],
+      "titleEn": "OpenAI’s quarterly revenue reportedly crosses $10B for the first time",
+      "titleVi": "Theo đưa tin, doanh thu quý 3 của OpenAI lần đầu vượt 10 tỷ USD",
+      "summary": "Theo Bloomberg dẫn nguồn ẩn danh, doanh thu quý 3 của OpenAI vượt 10 tỷ USD, tăng gần 50% so với quý 2. Tin chưa được OpenAI xác nhận trong bài của TechCrunch.",
+      "keyPoints": [
+        "Theo đưa tin, doanh thu quý 3 trên 10 tỷ USD, so với khoảng 6,7 tỷ USD của quý 2.",
+        "Tốc độ tăng tăng tốc: quý 2 so với quý 1 chỉ khoảng 18%.",
+        "Biên lợi nhuận hoạt động điều chỉnh thu hẹp mức âm từ -150% xuống -109%.",
+        "Doanh thu quy năm của OpenAI theo đưa tin đạt 50 tỷ USD; Anthropic nói con số của mình là 81 tỷ USD cuối tháng 10, nhưng hai bên tính khác nhau."
+      ],
+      "body": [
+        "Theo Bloomberg, trích các nguồn ẩn danh, doanh thu quý 3 của OpenAI lần đầu vượt 10 tỷ USD. Nguyên nhân được nêu là nhu cầu mạnh với các mô hình mới của hãng. TechCrunch đưa lại tin này và dùng cách nói “nếu đúng”.",
+        "## Con số chính",
+        "- Quý 2 doanh thu khoảng 6,7 tỷ USD, nên mức mới tăng gần 50%.",
+        "- Tốc độ tăng từ quý 1 sang quý 2 trước đó được cho là khoảng 18%.",
+        "- Biên lợi nhuận hoạt động điều chỉnh cải thiện từ -150% (quý 2) lên -109% (quý 3), tức vẫn lỗ rất lớn so với doanh thu.",
+        "- Doanh thu quy năm theo Bloomberg đạt 50 tỷ USD.",
+        "## Bối cảnh cạnh tranh",
+        "TechCrunch cho biết đầu năm nay OpenAI bị Anthropic vượt về tốc độ tăng, nhất là ở thị trường doanh nghiệp. Anthropic vừa công bố doanh thu quý 3 là 17 tỷ USD và doanh thu quy năm tăng thêm 10 tỷ USD trong một tháng, lên 81 tỷ USD cuối tháng 10. Hãng đang nhắm mức định giá 1,4 nghìn tỷ USD trong đợt IPO.",
+        "OpenAI nói có hơn một tỷ người dùng, nhưng bài viết cho rằng phần lớn là người dùng miễn phí hoặc gói rẻ nhất. Theo bài, những yếu tố giúp OpenAI gần đây gồm giá chặt hơn, giảm giá, mô hình tốt hơn và tập trung nhiều hơn vào sản phẩm doanh nghiệp và agent.",
+        "> Lưu ý của nguồn: OpenAI và Anthropic tính doanh thu quy năm khác nhau. Anthropic tính cả doanh số qua đối tác đám mây, còn OpenAI chỉ tính phần của mình trong một số khoản bán qua đối tác. Hai con số không so trực tiếp được.",
+        "> Các số liệu về OpenAI là theo đưa tin của Bloomberg từ nguồn ẩn danh, chưa được công ty xác nhận. Số liệu Anthropic do Anthropic tự công bố."
+      ],
+      "glossary": [
+        {
+          "term": "Doanh thu quy năm (run rate)",
+          "explain": "Doanh thu gần đây nhân lên cho cả năm, dùng để ước tính quy mô; không phải doanh thu thực đã thu."
+        },
+        {
+          "term": "Biên lợi nhuận hoạt động",
+          "explain": "Lợi nhuận hoạt động chia cho doanh thu. Mức -109% nghĩa là lỗ hoạt động lớn hơn doanh thu một chút."
+        }
+      ]
+    },
+    {
+      "id": "databricks-genie-agent-noi-that-voi-ceo",
+      "group": "press",
+      "source": "TechCrunch",
+      "url": "https://techcrunch.com/2026/11/11/databricks-new-ai-agent-tells-ceo-ali-ghodsi-the-unvarnished-truth/",
+      "publishedAt": "2026-11-11T15:00:00.000Z",
+      "readMinutes": 3,
+      "tags": [
+        "Databricks",
+        "agent",
+        "doanh nghiệp",
+        "Genie"
+      ],
+      "titleEn": "Databricks’ new AI agent tells CEO Ali Ghodsi the unvarnished truth",
+      "titleVi": "Databricks ra Genie bản mới: agent làm việc nhiều bước, CEO dùng để biết điều nhân viên ngại nói",
+      "summary": "Databricks cập nhật agent Genie để làm các việc nhiều bước, kéo dài mà không cần giám sát. CEO Ali Ghodsi cho phóng viên xem cách ông tự dùng nó để nắm những chuyện khó đến tai lãnh đạo.",
+      "keyPoints": [
+        "Genie bản mới làm được tác vụ nhiều bước, dựa trên một ontology Databricks xây từ dữ liệu khách hàng lưu trên nền tảng.",
+        "Ghodsi dùng Genie phân tích phần điểm thấp của khảo sát nhân viên, đánh giá các đề xuất khắc phục và tóm tắt một buổi chào bán thất bại.",
+        "Ông cho rằng ở công ty trên 150 người, lãnh đạo khó nghe sự thật từ cấp dưới.",
+        "Chi phí agent có thể kiểm soát bằng Unity Gateway: đặt hạn mức dùng và đổi sang mô hình open-weight rẻ hơn."
+      ],
+      "body": [
+        "Databricks vừa giới thiệu bản cập nhật của Genie, agent có thể làm các công việc nhiều bước cần thời gian dài. Genie dùng một ontology, tức lớp mô tả ý nghĩa và quan hệ của dữ liệu, để hiểu thông tin khách hàng lưu trên nền tảng Databricks. Theo công ty, lãnh đạo giao việc cho nó và nó làm không cần giám sát.",
+        "## CEO dùng thật",
+        "Thay vì demo sản phẩm, CEO Ali Ghodsi mở agent thật của mình và cho phóng viên xem các cuộc trò chuyện gần đây. Genie phân tích phần mà công ty đạt điểm thấp trong khảo sát hài lòng của nhân viên, giúp ông chấm các giải pháp do các giám đốc đề xuất và loại bớt. Nó cũng tóm tắt một buổi chào bán lớn không thành, gồm cả các tính năng khách hàng nói họ cần trước khi mua. Ngoài ra, nó chuẩn bị câu hỏi cho một buổi phỏng vấn podcast dựa trên các lần xuất hiện trước của ông.",
+        "## Vì sao cần “sự thật không tô vẽ”",
+        "Ghodsi dẫn con số Dunbar (khoảng 150), mức tối đa người ta thường cho là một người giữ được quan hệ ổn định. Với 12.000 nhân viên, ông nói mình không thể biết hết mọi người, và nhân viên bán hàng khó thú nhận một cuộc gọi hỏng với CEO. Theo ông, công ty trên 150 người đều có thể hưởng lợi từ cách này.",
+        "## Chi phí và an toàn",
+        "Ghodsi cho rằng Genie làm cho phía kinh doanh điều mà agent và harness (phần mềm bao quanh mô hình để dùng công cụ) đang làm cho lập trình viên. Về nỗi lo chi phí agent tăng, ông nói Unity Gateway cho phép đặt hạn mức sử dụng và thay bằng mô hình open-weight rẻ hơn. Ông cũng nói mình dùng Genie cả cho việc cá nhân, thay vì các lựa chọn bị ông cho là có vấn đề về bảo mật.",
+        "> Các nhận định về hiệu quả của Genie là lời của Databricks và CEO Ghodsi, chưa có đánh giá độc lập trong bài."
+      ],
+      "glossary": [
+        {
+          "term": "Ontology",
+          "explain": "Mô tả có cấu trúc về các khái niệm trong dữ liệu và quan hệ giữa chúng, giúp agent hiểu ngữ cảnh doanh nghiệp."
+        },
+        {
+          "term": "Harness",
+          "explain": "Phần mềm bao quanh mô hình AI, cho phép nó dùng công cụ và làm việc nhiều bước."
+        },
+        {
+          "term": "Open-weight",
+          "explain": "Mô hình công bố trọng số để người khác tải về và chạy, thường rẻ hơn mô hình đóng."
+        },
+        {
+          "term": "Dogfooding",
+          "explain": "Công ty tự dùng sản phẩm của mình trong công việc thật."
+        }
+      ]
+    },
+    {
+      "id": "anthropic-ra-claude-meetings",
+      "group": "press",
+      "source": "TechCrunch",
+      "url": "https://techcrunch.com/2026/11/10/anthropic-launches-claude-meetings-to-turn-workplace-discussions-into-plans-and-tasks/",
+      "publishedAt": "2026-11-10T17:30:00.000Z",
+      "readMinutes": 4,
+      "tags": [
+        "Anthropic",
+        "Claude",
+        "họp",
+        "năng suất"
+      ],
+      "titleEn": "Anthropic launches Claude Meetings to turn workplace discussions into plans and tasks",
+      "titleVi": "Claude Meetings: Claude vào cuộc họp video, soạn kế hoạch và việc cần làm ngay khi mọi người đang nói",
+      "summary": "Anthropic ra bản beta Claude Meetings cho gói Team và Enterprise, đưa Claude vào cuộc họp video như một thành viên hiển thị. Đây là phần trong bộ công cụ văn phòng mới, nhắm vào người làm việc không phải kỹ sư.",
+      "keyPoints": [
+        "Claude tham gia cuộc họp, soạn kế hoạch, dựng mốc thời gian trên bảng trắng, trả lời trong chat họp và lấy dữ liệu từ ứng dụng công việc đã kết nối.",
+        "Sau cuộc họp, ghi chú và các việc cần làm có trong claude.ai.",
+        "Claude tự báo danh trong chat; không vào cuộc gọi có khách bên ngoài nếu quản trị viên chưa cho phép, và tự rời khi có khách bên ngoài vào.",
+        "Hiện chạy trên Google Meet, ở dạng beta cho Team và Enterprise."
+      ],
+      "body": [
+        "Anthropic cho biết Claude Meetings đưa Claude vào cuộc gọi video như một người tham gia nhìn thấy được. Claude theo dõi cuộc trò chuyện và bắt đầu làm việc ngay trong lúc mọi người còn nói, thay vì để công việc bắt đầu sau khi cúp máy.",
+        "## Claude làm gì trong họp",
+        "- Soạn thảo kế hoạch đang được bàn.",
+        "- Vẽ mốc thời gian trên bảng trắng.",
+        "- Trả lời câu hỏi trong chat của cuộc họp.",
+        "- Truy cập các ứng dụng công việc đã kết nối để lấy thông tin, ví dụ số liệu năm trước.",
+        "Sau cuộc họp, ghi chú, danh sách việc và các tài liệu Claude tạo ra có trong claude.ai.",
+        "## Kiểm soát và phạm vi",
+        "Claude tự giới thiệu là người tham gia và đăng thông báo trong chat họp. Nó không vào cuộc gọi có khách bên ngoài trừ khi quản trị viên cho phép, và tự rời đi nếu có khách bên ngoài tham gia. Tính năng ra mắt ở dạng beta cho gói Team và Enterprise, lúc đầu chỉ hỗ trợ Google Meet; các nền tảng khác được nói là sẽ đến sau.",
+        "## Bối cảnh bộ công cụ văn phòng",
+        "Meetings ra mắt cùng Whiteboards và Sheets (đã có bài riêng) tại sự kiện của Anthropic ở San Francisco. Theo The Verge, đây là một trong những sản phẩm gốc đầu tiên của Anthropic dành cho người làm việc không chuyên kỹ thuật. Nhân sự sản phẩm Nicholas Lin nói Claude Code đã “thay đổi cách kỹ sư làm việc” một năm trước và nay hãng muốn thu hẹp khoảng cách với nhóm người này. Theo bài, Claude Cowork trước đó vốn nhắm vào phần thiên kỹ thuật của nhóm không chuyên kỹ thuật.",
+        "TechCrunch và The Verge đều đặt việc này trong cuộc đua với OpenAI, Google và Meta nhằm biến trợ lý AI thành bộ ứng dụng văn phòng. Google Gemini cũng đã có tính năng vào họp và ghi chú trực tiếp. The Verge còn nhắc Anthropic đang chịu áp lực tăng doanh thu và mức độ sử dụng trước đợt IPO.",
+        "> Các mô tả tính năng là theo thông báo của Anthropic; bài chưa có đánh giá độc lập về độ chính xác khi dùng thật."
+      ],
+      "glossary": [
+        {
+          "term": "Beta",
+          "explain": "Giai đoạn thử nghiệm: tính năng đã dùng được nhưng còn có thể thay đổi hoặc lỗi."
+        },
+        {
+          "term": "Connector (kết nối)",
+          "explain": "Cầu nối cho phép Claude truy cập và làm việc với ứng dụng bên ngoài như Adobe, Atlassian, HubSpot."
+        }
+      ]
+    },
+    {
+      "id": "radical-numerics-omnii-defense-phat-hien-mam-benh",
+      "group": "press",
+      "source": "Wired",
+      "url": "https://www.wired.com/story/startup-fights-ai-bioweapons-with-ai/",
+      "publishedAt": "2026-11-11T17:00:00.000Z",
+      "readMinutes": 4,
+      "tags": [
+        "an ninh sinh học",
+        "Radical Numerics",
+        "mô hình sinh học",
+        "an toàn AI"
+      ],
+      "titleEn": "A Startup Wants to Fight AI Bioweapons With AI",
+      "titleVi": "Radical Numerics ra Omnii Defense, mô hình AI chạy offline để cảnh báo mầm bệnh tự nhiên và do AI thiết kế",
+      "summary": "Startup Radical Numerics giới thiệu Omnii Defense, mô hình chạy trên laptop với thiết bị giải trình tự USB, chấm “điểm đe doạ” cho chuỗi gen. Công ty nói nó phát hiện được cả mầm bệnh chưa từng thấy, nhưng chuyên gia độc lập nhắc rằng phát hiện tín hiệu chưa đồng nghĩa đánh giá được mức nguy hiểm.",
+      "keyPoints": [
+        "Omnii Defense chạy trên laptop với máy giải trình tự gen USB, không cần internet.",
+        "Mô hình dự đoán khả năng gây bệnh, khả năng do AI tạo ra và nhóm phân loại gần nhất, rồi gộp thành điểm đe doạ từ 0 đến 1.",
+        "Trong thử nghiệm loại virus Bundibugyo khỏi dữ liệu huấn luyện, mô hình vẫn gắn cờ 33% chuỗi (bỏ loài) và 22% (bỏ cả chi), còn công cụ không dùng AI gần như không báo gì, theo công ty.",
+        "Hiện chỉ cho người thử nghiệm đã kiểm duyệt dùng; công ty đang làm việc với phòng thí nghiệm quốc gia và cơ quan chính phủ để đánh giá."
+      ],
+      "body": [
+        "Các phòng thí nghiệm AI hàng đầu từng cảnh báo công nghệ của họ có thể giúp chế tạo vũ khí sinh học. Radical Numerics, startup ở San Francisco, công bố Omnii Defense như một lớp phòng thủ. Nhiều nhà khoa học vẫn cho rằng vũ khí sinh học do AI tạo ra có khả năng xảy ra thấp, theo bài.",
+        "## Cách hoạt động",
+        "Omnii Defense là mô hình “edge” (chạy ngay tại thiết bị) để gắn cờ mầm bệnh tự nhiên và mầm bệnh do AI thiết kế. Nó cần một laptop và máy giải trình tự gen USB, và chạy được khi không có mạng, hữu ích cho nhà nghiên cứu ở hiện trường. Với mỗi chuỗi, mô hình đưa ra nhiều dự đoán: khả năng gây bệnh, khả năng do AI tạo ra, nhóm phân loại giống nhất. Các yếu tố này gộp thành “điểm đe doạ” từ 0 đến 1; càng cao càng nguy hiểm.",
+        "Công cụ cũ như Felix (do liên bang tài trợ) so chuỗi với thư viện sinh vật đã biết, hợp khi kẻ xấu chỉ chỉnh vài chỗ trên mầm bệnh có sẵn. Mô hình AI học các mẫu liên quan đến chức năng nên có thể nhận ra điểm giống nhau dù “cách viết” gen đã đổi.",
+        "## Thử nghiệm do công ty nêu",
+        "Công ty bỏ virus Bundibugyo (đang gây dịch Ebola ở Đông Phi) khỏi dữ liệu huấn luyện, trước ở mức loài, sau ở mức cả chi. Khi bỏ loài, mô hình vẫn nhận ra 33% chuỗi là có tính gây bệnh; khi bỏ cả chi, 22%. Theo trưởng bộ phận phòng vệ sinh học Christine Parthemore, công cụ không dùng AI gần như không đưa ra tín hiệu nào.",
+        "## Dè dặt từ bên ngoài",
+        "Bronwyn MacInnis của Broad Institute cho rằng cần cảnh giác với điều AI tạo điều kiện, và dùng công nghệ để đi trước là hợp lý. Tuy vậy bà lưu ý phát hiện tín hiệu còn xa mới xác định được mầm bệnh có hậu quả thật hay có bị thiết kế hay không.",
+        "## Một chi tiết đáng biết",
+        "Các nhà sáng lập từng nghiên cứu mô hình Evo và Evo-2 ở Stanford. Tháng 10, công ty nói đã dùng mô hình Omnii tạo thực khuẩn thể điều trị một bệnh nhân nhiễm E. coli kháng thuốc, với phép đặc biệt của FDA. Tabula Bioscience cũng tham gia nhưng không được nêu trong thông báo, khiến nhà di truyền học George Church từ chức cố vấn tại Radical tuần trước.",
+        "> Các số liệu về hiệu quả do Radical Numerics tự công bố, chưa có đánh giá độc lập."
+      ],
+      "glossary": [
+        {
+          "term": "Edge model",
+          "explain": "Mô hình chạy trực tiếp trên thiết bị tại chỗ (laptop, thiết bị đầu cuối), không cần gửi dữ liệu lên đám mây."
+        },
+        {
+          "term": "Giải trình tự gen",
+          "explain": "Đọc thứ tự các “chữ cái” trong DNA hoặc RNA của một mẫu sinh học."
+        },
+        {
+          "term": "Mầm bệnh (pathogen)",
+          "explain": "Vi sinh vật như virus, vi khuẩn có thể gây bệnh."
+        },
+        {
+          "term": "Thực khuẩn thể (bacteriophage)",
+          "explain": "Virus chuyên nhiễm và tiêu diệt một loại vi khuẩn nhất định."
+        }
+      ]
+    },
+    {
+      "id": "kien-cao-gemini-be-gai-13-tuoi-man-hinh-truong",
+      "group": "press",
+      "source": "Wired",
+      "url": "https://www.wired.com/story/teen-girl-asked-gemini-about-suicide-for-months-until-it-was-flagged/",
+      "publishedAt": "2026-11-11T11:00:00.000Z",
+      "readMinutes": 5,
+      "tags": [
+        "Gemini",
+        "an toàn trẻ em",
+        "kiện tụng",
+        "giáo dục",
+        "giám sát học sinh"
+      ],
+      "titleEn": "A 13-Year-Old Asked AI About Suicide on Her School Laptop. It Didn’t Get Flagged for Weeks",
+      "titleVi": "Vụ kiện Google: bé gái 13 tuổi hỏi AI Mode về tự tử trên laptop trường, phần mềm giám sát nhiều tuần không báo",
+      "summary": "Cha mẹ một bé gái 13 tuổi ở North Carolina kiện Google, cáo buộc Gemini “dẫn dắt” con họ nghĩ đến tự tử qua AI Mode trên Chromebook của trường. Vụ việc cho thấy giới hạn của phần mềm giám sát học sinh. Google nói đang xem xét các cáo buộc.",
+      "keyPoints": [
+        "Theo đơn kiện, bé gái dùng laptop của trường khoảng ba tháng để nói về trầm cảm và tìm hiểu về tự tử trước khi phần mềm giám sát phát tín hiệu.",
+        "Đơn kiện cho rằng em được dẫn vào Gemini qua AI Mode của Google Search dù trường đã chặn trang Gemini riêng.",
+        "Cảnh báo theo lời luật sư gia đình đã gửi đến điện thoại cá nhân của một cố vấn đã nghỉ việc chín tháng, người này chuyển tiếp cho nhân viên hiện tại.",
+        "Chưa rõ công cụ giám sát của trường có theo dõi được AI Mode hay hiệu quả đến đâu."
+      ],
+      "body": [
+        "> Bài viết nói về tự tử và tự hại. Nếu bạn hoặc người quen cần hỗ trợ, hãy liên hệ ngay đường dây trợ giúp hoặc dịch vụ khẩn cấp tại nơi bạn sống, hoặc người thân, người đáng tin cậy. Ở Mỹ có thể gọi 988; nơi khác có thể tìm trung tâm hỗ trợ qua International Association for Suicide Prevention.",
+        "Đây là cáo buộc trong đơn kiện do cha mẹ nộp trong tháng này, chưa được tòa xác nhận. Theo Wired, họ cho rằng Google và Alphabet cẩu thả khi triển khai một mô hình Gemini và chatbot đã “dẫn dắt” con gái họ nghĩ đến việc tự tử. Em được gọi là Emma Doe trong hồ sơ. Vụ việc do New York Times đưa tin trước đó.",
+        "## Diễn biến theo đơn kiện",
+        "Theo đơn kiện, từ tháng 12 em hỏi AI Mode về trầm cảm nặng và “lý do để sống”, đến cuối tháng 1 thì hỏi về tự tử. Em cũng viết một văn bản trong Google Docs với sự giúp đỡ của AI Mode và tương tác với Gemini hàng nghìn lần. Đến một buổi chiều tháng 3, mẹ em nhận tin nhắn từ trường báo con “nguy hiểm cận kề” và kịp can thiệp. Wired không mô tả chi tiết cách thức, và bài này cũng vậy.",
+        "## Lỗ hổng trong giám sát",
+        "Trường đã chặn trang Gemini độc lập, nhưng đơn kiện cho rằng AI Mode trong Search dẫn em đến chatbot. Luật sư Andrew Liddell nói trường chỉ biết nhờ ít nhất một hệ thống giám sát hoạt động học sinh của bên thứ ba, có thể là GoGuardian hoặc Gaggle; gia đình chưa có câu trả lời chắc chắn. Cảnh báo theo thông tin trường cung cấp đã đến điện thoại cá nhân của một cố vấn đã nghỉ chín tháng trước, người này chuyển tiếp cho nhân viên hiện tại, rồi mẹ em được báo.",
+        "Wired cho biết chưa rõ các công cụ này có giám sát AI Mode không. GoGuardian từng viết rằng sản phẩm của họ giám sát hội thoại với chatbot gồm Gemini nhưng không nhắc AI Mode. Việc diễn biến kéo dài gần hai tháng mà không bị phát hiện, theo bài, cho thấy chatbot tích hợp trong Search có thể là điểm mù.",
+        "## Phản hồi và tranh luận",
+        "Phát ngôn viên Google José Castañeda nói công ty đang xem xét các cáo buộc, các hệ thống như AI Mode nhằm ngăn cuộc trò chuyện có hại và công ty đã làm việc với chuyên gia để giúp người trẻ tìm hỗ trợ. GoGuardian nói không thể bàn về từng học sinh vì nghĩa vụ riêng tư; Gaggle và nhà trường không trả lời Wired.",
+        "Tuần trước, các nhóm phụ huynh và giáo viên phản đối yêu cầu mới của Google rằng trường phải bật tính năng AI tạo sinh nếu muốn dùng Search. Thượng nghị sĩ Ed Markey viện dẫn vụ kiện trong thư yêu cầu Google cho trường tắt AI Mode và AI Overviews. Chuyên gia Benjamin Boudreaux của Rand lo một số trường vội dùng công cụ giám sát mà chưa tính đến giới hạn và quy trình xử lý cảnh báo; ông nhấn mạnh vai trò của kết nối giữa người với người."
+      ],
+      "glossary": [
+        {
+          "term": "AI Mode",
+          "explain": "Chế độ trong Google Search cho phép hỏi tiếp và trò chuyện với Gemini ngay trong kết quả tìm kiếm."
+        },
+        {
+          "term": "Phần mềm giám sát hoạt động học sinh",
+          "explain": "Công cụ trường học dùng để quét nội dung học sinh gõ hoặc lưu, dùng thuật toán và người duyệt để phát hiện dấu hiệu nguy cơ."
+        },
+        {
+          "term": "Cáo buộc",
+          "explain": "Điều bên khởi kiện nêu ra trong đơn, chưa được tòa án kết luận."
+        }
+      ]
+    },
+    {
+      "id": "plurai-mo-phong-cho-agent-kieu-xe-tu-lai",
+      "group": "press",
+      "source": "TechCrunch",
+      "url": "https://techcrunch.com/2026/11/11/plurai-wants-to-help-ai-agents-work-better-using-the-same-approach-that-helped-get-self-driving-cars-to-roads/",
+      "publishedAt": "2026-11-11T14:00:00.000Z",
+      "readMinutes": 4,
+      "tags": [
+        "agent",
+        "mô phỏng",
+        "gọi vốn",
+        "Plurai",
+        "dữ liệu tổng hợp"
+      ],
+      "titleEn": "Plurai wants to help AI agents work better using the same approach that helped get self-driving cars to roads",
+      "titleVi": "Plurai gọi 13 triệu USD, dùng mô phỏng như ngành xe tự lái để làm agent AI đáng tin hơn",
+      "summary": "Plurai tạo bản sao số của hệ thống công ty để mô phỏng và thử các tình huống khó cho agent. Startup nói dữ liệu thu được còn dùng để huấn luyện mô hình open-weight nhỏ, rẻ hơn mà vẫn đạt chất lượng gần mô hình lớn.",
+      "keyPoints": [
+        "Plurai huy động 13 triệu USD vốn hạt giống, do Team8 dẫn đầu.",
+        "Hai nhà sáng lập từng làm ở Nexar (lái xe tự động); một người từng làm với Waymo về mô phỏng và đánh giá.",
+        "Nền tảng dựng digital twin của kho kiến thức và công cụ agent sẽ dùng, lập sơ đồ các luồng hoạt động rồi thử các tình huống biên.",
+        "Công ty nói thử nghiệm cùng Nvidia và Nebius cho thấy mô hình của họ vượt mô hình lớn hạng trung với chi phí thấp hơn."
+      ],
+      "body": [
+        "Bài mở đầu bằng thực tế: agent AI chưa đủ tin cậy để chạy mà không có người giám sát. Theo các kết quả được bài dẫn, LiveBench 2.0 ghi nhận Claude Fable 5.2 làm đúng 82,9 trên 100 tác vụ và ChatGPT-6 Astra 75,6. Một thử nghiệm của EON trong môi trường doanh nghiệp mô phỏng cho mô hình tốt nhất, Claude Opus 4.8, độ chính xác 76,8%.",
+        "## Ý tưởng từ xe tự lái",
+        "Plurai muốn nâng các con số đó bằng kỹ thuật từng giúp xe tự lái lên đường: mô phỏng với dữ liệu tổng hợp để chuẩn bị cho các tình huống biên khó. Hai đồng sáng lập Ilan Kadar và Elad Levi từng làm ở Nexar; Kadar từng làm với Waymo để mô phỏng và đánh giá phần mềm lái. Ông nói dựng demo agent thì dễ, nhưng để nó đáng tin và tiết kiệm thì khó, nên cần một “lớp mô phỏng”.",
+        "Agent, như mô hình lái xe đầu-cuối, là hệ thống xác suất trong môi trường khó đoán. Ví dụ trong bài: agent đặt vé có thể bỏ qua chính sách chi tiêu, truy vấn một cơ sở dữ liệu thì tốt nhưng gộp nhiều nguồn thì dễ hỏng, hội thoại dài với khách làm agent quá tải ngữ cảnh.",
+        "## Cách làm",
+        "- Dựng digital twin của hệ thống điện tử của công ty, gồm kho kiến thức và công cụ agent sẽ dùng khi chạy thật.",
+        "- Lập sơ đồ mọi luồng có thể của agent, rồi dùng nó để tạo đánh giá và cách sửa cho các tình huống biên.",
+        "- Chạy cùng các công cụ như Claude Code, Codex, Copilot, Cursor.",
+        "Theo Kadar, giá trị thật nằm ở việc dùng dữ liệu thu được để post-train mô hình open-weight nhỏ theo nhu cầu từng khách. Ông nói có thể phân rã tác vụ, huấn luyện mô hình nhỏ rồi kiểm chứng bằng mô phỏng, đạt chất lượng bằng hoặc cao hơn mô hình tiên phong với chi phí thấp hơn một đến hai bậc độ lớn.",
+        "Nhà đầu tư thiên thần Reah Miyara (nhà nghiên cứu Google DeepMind) cho rằng doanh nghiệp thấy chi phí mô hình tiên phong khó bền vững. Kadar nói dù mô hình của OpenAI hay Anthropic thông minh đến đâu, chúng vẫn không biết doanh nghiệp và chính sách của bạn.",
+        "> Các số liệu về chi phí và chất lượng do Plurai tự công bố, chưa có đánh giá độc lập."
+      ],
+      "glossary": [
+        {
+          "term": "Digital twin (bản sao số)",
+          "explain": "Bản sao ảo của hệ thống thật, dùng để thử nghiệm an toàn mà không động đến hệ thống đang chạy."
+        },
+        {
+          "term": "Dữ liệu tổng hợp",
+          "explain": "Dữ liệu do máy tạo ra, thay vì thu từ thực tế, dùng để huấn luyện hoặc kiểm thử."
+        },
+        {
+          "term": "Post-train",
+          "explain": "Huấn luyện thêm một mô hình đã có sẵn cho một nhiệm vụ cụ thể."
+        },
+        {
+          "term": "Edge case (tình huống biên)",
+          "explain": "Tình huống hiếm hoặc bất thường mà hệ thống dễ xử lý sai."
+        }
+      ]
+    },
+    {
+      "id": "oura-mua-counsel-health-625-trieu-usd",
+      "group": "press",
+      "source": "TechCrunch",
+      "url": "https://techcrunch.com/2026/11/10/oura-to-acquire-ai-native-primary-care-startup-counsel-health-for-625m/",
+      "publishedAt": "2026-11-10T19:23:34.000Z",
+      "readMinutes": 3,
+      "tags": [
+        "Oura",
+        "Counsel Health",
+        "y tế",
+        "mua lại"
+      ],
+      "titleEn": "Oura to acquire AI-native primary care startup Counsel Health for $625M",
+      "titleVi": "Oura mua lại Counsel Health, startup chăm sóc ban đầu bằng AI, với giá 625 triệu USD",
+      "summary": "Oura, hãng nhẫn thông minh, sẽ mua Counsel Health, nền tảng y tế kết hợp AI với bác sĩ có giấy phép. Thương vụ diễn ra vài tuần sau khi Oura hoãn vô thời hạn kế hoạch IPO.",
+      "keyPoints": [
+        "Giá mua 625 triệu USD; dự kiến hoàn tất trước cuối năm 2027.",
+        "Counsel cung cấp tư vấn y tế qua chat AI, có bác sĩ khi cần; dịch vụ đã tích hợp vào ứng dụng Oura từ tháng 6.",
+        "CEO Muthu Alagappan sẽ làm giám đốc AI lâm sàng của Oura, cùng 70 nhân viên theo Bloomberg.",
+        "Oura nói doanh thu quý kết thúc 30/9 đạt 533 triệu USD, tăng 153% so với cùng kỳ."
+      ],
+      "body": [
+        "Oura thông báo mua Counsel Health với giá 625 triệu USD. Thương vụ đến vài tuần sau khi Oura hoãn vô thời hạn đợt IPO mà TechCrunch nói có thể lên tới 2,2 tỷ USD, với lý do thị trường IPO bất định.",
+        "## Counsel làm gì",
+        "Counsel Health là nền tảng y tế kết hợp trải nghiệm trò chuyện với AI y khoa và quyền gặp bác sĩ có giấy phép. Dịch vụ được tích hợp vào ứng dụng Oura từ tháng 6: người dùng nhận tư vấn cá nhân hoá từ AI và chat với bác sĩ khi cần. Hai công ty nói sẽ mở rộng sang chăm sóc dự phòng, cấp tính, chuyên khoa và bệnh mạn tính.",
+        "## Lý do và kế hoạch",
+        "Theo bài, Oura vẫn dẫn đầu thị trường nhẫn thông minh nhưng chịu áp lực từ RingConn và Ultrahuman, nên cần mở rộng kinh doanh. CEO Tom Hale nói Oura giúp thành viên hiểu cơ thể mình, còn Counsel giúp họ hành động, từ câu hỏi nhanh, đơn thuốc đến kết quả xét nghiệm, bệnh mạn tính và giới thiệu chuyên khoa.",
+        "Sau thương vụ, Counsel tiếp tục phục vụ các đối tác doanh nghiệp hiện có và mới, nhằm đưa mô hình chăm sóc AI-native đến nhiều người ngoài thành viên Oura. Muthu Alagappan nói công ty xây AI y khoa dựa trên niềm tin, an toàn và trách nhiệm, luôn để bác sĩ tham gia các quyết định lâm sàng, còn dữ liệu của Oura cho bác sĩ thêm bối cảnh.",
+        "## Con số",
+        "Counsel gọi 25 triệu USD vòng Series A một năm trước (a16z và GV dẫn đầu); PitchBook ước tính tổng vốn khoảng 36 triệu USD. Oura được định giá 11 tỷ USD sau vòng 900 triệu USD vào tháng 10/2025.",
+        "> Các số liệu doanh thu 533 triệu USD (tăng 153%) và khoảng 1,75 tỷ USD cho năm tài chính 2026 (tăng 92%) do Oura tự công bố."
+      ],
+      "glossary": [
+        {
+          "term": "AI-native",
+          "explain": "Dịch vụ được thiết kế quanh AI ngay từ đầu, thay vì thêm AI vào quy trình cũ."
+        },
+        {
+          "term": "Chăm sóc ban đầu (primary care)",
+          "explain": "Tuyến khám chữa bệnh đầu tiên, như bác sĩ gia đình, xử lý bệnh thông thường và giới thiệu chuyên khoa."
+        }
+      ]
+    },
+    {
+      "id": "7-nha-sang-lap-anthropic-moi-nguoi-ban-250-trieu-usd-co-phan-ipo",
+      "group": "press",
+      "source": "TechCrunch",
+      "url": "https://techcrunch.com/2026/11/10/all-7-anthropic-founders-will-each-cash-out-about-250m-in-ipo/",
+      "publishedAt": "2026-11-10T19:57:52.000Z",
+      "readMinutes": 3,
+      "tags": [
+        "Anthropic",
+        "IPO",
+        "S-1",
+        "nhà sáng lập"
+      ],
+      "titleEn": "All 7 Anthropic founders will each cash out about $250M in IPO",
+      "titleVi": "Hồ sơ S-1: 7 nhà sáng lập Anthropic mỗi người bán cùng số cổ phiếu, thu khoảng 250 triệu USD nhưng vẫn giữ quyền kiểm soát",
+      "summary": "Góc mới từ hồ sơ S-1 của Anthropic: cả bảy nhà đồng sáng lập đều bán 3.378.378 cổ phiếu trong IPO. Ở giá giữa khung, mỗi người thu gần 250 triệu USD, và nhóm vẫn nắm 51,1% số phiếu bầu.",
+      "keyPoints": [
+        "Mỗi nhà sáng lập bán 3.378.378 cổ phiếu; khung giá nêu trong hồ sơ là 70 đến 78 USD.",
+        "Thu về khoảng 236 triệu USD ở giá 70, gần 250 triệu USD ở giá 74 và gần 264 triệu USD ở giá 78.",
+        "Sau khi bán, mỗi người giữ khoảng 3,2% cổ phiếu Class A, tổng khoảng 22%.",
+        "Mỗi người nhận một cổ phiếu Class F có quyền biểu quyết vượt trội; cả nhóm kiểm soát 51,1% số phiếu."
+      ],
+      "body": [
+        "Hồ sơ S-1 của Anthropic tiết lộ kế hoạch bán cổ phiếu của bảy đồng sáng lập trong đợt IPO có thể định giá công ty 1,4 nghìn tỷ USD. Bài này tập trung vào khoản bán của người sáng lập; khung giá IPO đã có ở bài khác.",
+        "## Họ bán bao nhiêu",
+        "Mỗi người bán đúng 3.378.378 cổ phiếu. Theo TechCrunch, khung giá dự kiến khá rộng, 70 đến 78 USD một cổ phiếu. Ở giữa khung (74 USD), mỗi người thu gần 250 triệu USD. Ở 70 USD là hơn 236 triệu USD, ở 78 USD là chưa đến 264 triệu USD. Bài lưu ý với đợt IPO được chờ đợi như thế, giá chốt có thể cao hơn khung ban đầu.",
+        "## Bảy người là ai",
+        "Dario Amodei (CEO), Daniela Amodei (chủ tịch hội đồng quản trị), Tom Brown (giám đốc tính toán), Jack Clark (phụ trách lợi ích công chúng), Jared Kaplan (giám đốc khoa học), Sam McCandlish (kiến trúc sư trưởng) và Christopher Olah (trưởng nghiên cứu khả năng diễn giải). Cả bảy rời OpenAI năm 2021 sau bất đồng với ban lãnh đạo về cách xây AI.",
+        "## Quyền kiểm soát vẫn giữ",
+        "Sau khi bán, mỗi người giữ khoảng 3,2% cổ phiếu Class A đang lưu hành, tổng cộng khoảng 22%. TechCrunch nhấn mạnh đây không phải tỷ lệ sở hữu toàn công ty, vì còn nhiều loại cổ phiếu khác; Amazon và Google nắm cổ phiếu Class N không có quyền biểu quyết, nên phần vốn chủ sở hữu của nhóm sáng lập nhỏ hơn đáng kể. Dù vậy, nhờ mỗi người có một cổ phiếu Class F siêu biểu quyết, cả nhóm kiểm soát 51,1% số phiếu, và không ai nắm nhiều hơn rõ rệt những người còn lại.",
+        "## Dấu hiệu cầu cao",
+        "Theo S-1, thành viên hội đồng Reed Hastings muốn mua 300 triệu USD cổ phiếu qua quỹ tài trợ do ông lập, và Christopher Liddell muốn mua 3 triệu USD. TechCrunch coi đây là dấu hiệu nhu cầu mạnh.",
+        "> Các số liệu về cổ phiếu và giá lấy từ hồ sơ S-1 do TechCrunch nêu; khung giá chưa phải giá chốt."
+      ],
+      "glossary": [
+        {
+          "term": "S-1",
+          "explain": "Hồ sơ công ty nộp cho cơ quan quản lý chứng khoán Mỹ để niêm yết cổ phiếu lần đầu."
+        },
+        {
+          "term": "Cổ phiếu siêu biểu quyết",
+          "explain": "Loại cổ phiếu có nhiều phiếu bầu hơn mỗi cổ phiếu thường, giúp người nắm giữ giữ quyền kiểm soát dù sở hữu ít vốn."
+        },
+        {
+          "term": "Khung giá IPO",
+          "explain": "Khoảng giá dự kiến mỗi cổ phiếu khi phát hành lần đầu; giá chốt có thể nằm ngoài khung."
+        }
+      ]
+    },
+    {
+      "id": "agent-ai-tim-thay-di-tich-maya-lidar",
+      "hot": true,
+      "group": "community",
+      "source": "Blog Pietro Miotti (qua Hacker News)",
+      "url": "https://pietromiotti.com/latest/maya-site",
+      "discussionUrl": "https://news.ycombinator.com/item?id=50452455",
+      "points": 899,
+      "comments": 328,
+      "publishedAt": "2026-11-11T12:05:22Z",
+      "readMinutes": 4,
+      "tags": [
+        "agent",
+        "lidar",
+        "khảo cổ",
+        "Maya"
+      ],
+      "titleEn": "My AI agents found an unmapped Maya site",
+      "titleVi": "Dùng agent AI quét dữ liệu lidar của NASA, một người ngoài ngành tìm ra di tích Maya chưa có trong sổ đăng ký, rồi phát hiện giới khảo cổ đã lập bản đồ nó",
+      "summary": "Tác giả Pietro Miotti kể lại ba ngày cho nhiều agent AI phân tích dữ liệu lidar công khai ở vùng Maya (Mexico). Agent báo một khu di tích chưa có trong sổ đăng ký của cơ quan di sản Mexico, nhưng sau đó tác giả cập nhật: nhóm khảo cổ đã lập bản đồ nơi này năm 2025. Đây là câu chuyện cá nhân do chính tác giả kể, chưa được chuyên gia độc lập kiểm chứng.",
+      "keyPoints": [
+        "Tác giả không phải nhà khảo cổ; ông nhờ nhiều agent phân tích khoảng 1.200 km² dữ liệu lidar qua đêm.",
+        "48 agent xem từng ảnh dựng từ lidar theo một bản hướng dẫn, không dùng mô hình hay bộ phân loại chuyên biệt.",
+        "Cơ quan INAH của Mexico trả lời trong vài ngày rằng chưa có di tích đăng ký tại toạ độ đó.",
+        "Cập nhật ngày 11/11: khu này đã được lập bản đồ trong nghiên cứu Estrada-Belli và cộng sự 2025; agent bỏ sót khi tra tài liệu.",
+        "Tác giả rút ra rằng người ngoài ngành cùng agent có thể đi tới kết quả gần với chuyên gia."
+      ],
+      "body": [
+        "Bài này là nhật ký của một người tự nhận “không phải nhà khảo cổ”. Ý tưởng bắt đầu ngày 18/10, khi ông đọc về Hiram Bingham và Machu Picchu rồi hỏi nhiều chatbot (Gemini, ChatGPT, Claude, Grok) nên làm gì nếu có công cụ hiện đại. Cả bốn đều gợi ý lidar, công nghệ bắn xung laser qua kẽ lá để vẽ bản đồ mặt đất bên dưới tán rừng.",
+        "Peru ít dữ liệu lidar công khai, nên ông chuyển sang vùng Maya, nơi dữ liệu phong phú hơn. Tối đó ông giao việc cho các agent rồi đi ngủ.",
+        "## Cách agent làm việc",
+        "Theo tác giả, dải dữ liệu lidar (khoảng 1.200 km² rừng) được đổi thành ảnh. 48 agent xem từng ảnh, tìm kim tự tháp, nền đất và quảng trường, đồng thời loại đồi tự nhiên, hố sụt và đường. Không có mô hình hay bộ phân loại riêng; agent nhìn ảnh và làm theo một hướng dẫn chi tiết.",
+        "Sáng hôm sau, các agent báo nhiều làng và hình dạng đều đặn. Khi được nhờ đối chiếu tài liệu và lưu trữ, một agent cho biết có một khu lớn dường như chưa đăng ký: một quảng trường san phẳng, một kim tự tháp hình oval cao ít nhất 8 đến 12 m, một sân nâng cao và một chỗ trũng đáy phẳng có thể là hồ chứa nước.",
+        "## Báo cáo gửi cơ quan di sản",
+        "Theo lời khuyên của agent, tác giả soạn báo cáo, dịch sang tiếng Tây Ban Nha (ông không biết thứ tiếng này nên phải tin agent) và gửi Viện Nhân học và Lịch sử Quốc gia Mexico (INAH) ngày 20/10. Toạ độ chính xác được để trong phụ lục bí mật. Ngày 21/10, INAH trả lời là không có di tích đăng ký tại vị trí đó.",
+        "## Cập nhật: không phải phát hiện đầu tiên",
+        "Ở đầu bài, tác giả bổ sung ngày 11/11: khu này đã được lập bản đồ trong nghiên cứu của Estrada-Belli và cộng sự năm 2025, chỉ là chưa có trong sổ đăng ký của INAH. Các agent đã bỏ sót công trình này khi tra tài liệu, nên ông dùng chữ “tái phát hiện” thay vì “phát hiện”.",
+        "Phần giải thích di tích là gì (trung tâm hành chính nhỏ của giới tinh hoa thời Cổ điển, khoảng 250 đến 900 sau Công nguyên) là suy đoán của tác giả sau khi trò chuyện với agent, không phải kết luận khảo cổ.",
+        "> Đây là bài blog cá nhân, mọi chi tiết do tác giả tự kể và chưa được chuyên gia độc lập kiểm chứng.",
+        "Gợi ý của người biên tập: điểm đáng chú ý là chi tiết nhỏ nhưng quan trọng, đó là agent bỏ sót tài liệu đã có khi tra cứu. Kết quả “mới” cần được đối chiếu với nguồn học thuật trước khi tin."
+      ],
+      "glossary": [
+        {
+          "term": "lidar",
+          "explain": "Công nghệ bắn xung laser từ trên cao và đo tia phản xạ để dựng bản đồ độ cao, có thể xuyên qua kẽ lá để thấy mặt đất."
+        },
+        {
+          "term": "INAH",
+          "explain": "Viện Nhân học và Lịch sử Quốc gia Mexico, cơ quan quản lý sổ đăng ký di tích khảo cổ của nước này."
+        },
+        {
+          "term": "agent",
+          "explain": "Chương trình AI tự thực hiện chuỗi bước để hoàn thành một nhiệm vụ, ví dụ xem ảnh, tra tài liệu, viết báo cáo."
+        }
+      ]
+    },
+    {
+      "id": "vulncheck-glasswing-bay-thang-it-loi-duoc-sua",
+      "hot": true,
+      "group": "community",
+      "source": "VulnCheck (qua Hacker News)",
+      "url": "https://www.vulncheck.com/blog/anthropic-glasswing-november-update",
+      "discussionUrl": "https://news.ycombinator.com/item?id=50447074",
+      "points": 447,
+      "comments": 217,
+      "publishedAt": "2026-11-10T22:17:56Z",
+      "readMinutes": 5,
+      "tags": [
+        "bảo mật",
+        "Anthropic",
+        "Project Glasswing",
+        "lỗ hổng"
+      ],
+      "titleEn": "Tracking Anthropic-discovered vulnerabilities",
+      "titleVi": "VulnCheck: bảy tháng sau Project Glasswing của Anthropic, chỉ 217 lỗ hổng được đánh dấu đã sửa và nhiều báo cáo bị maintainer bác",
+      "summary": "VulnCheck, hãng dữ liệu về lỗ hổng, cập nhật số liệu theo dõi Project Glasswing của Anthropic sau bảy tháng. Hãng cho rằng số lỗ hổng được sửa rất ít so với số phát hiện, và dẫn trường hợp curl bác nhiều báo cáo. Đây là phân tích và quan điểm của VulnCheck, một bên có sản phẩm kinh doanh liên quan; Anthropic chưa được nêu phản hồi trong bài.",
+      "keyPoints": [
+        "VulnCheck theo dõi 442 CVE do Anthropic phát hiện, khoảng 0,5% trong 93.450 CVE công bố năm nay; chỉ 2 CVE bị khai thác ngoài thực tế.",
+        "Sổ công khai của Anthropic ghi 37.966 phát hiện, 7.349 (19,4%) đã công bố và 217 đã sửa.",
+        "Từ tháng 9, Anthropic thêm gần 12.000 phát hiện nhưng chỉ thêm 15 bản sửa; số trùng lặp tăng từ 2 lên 1.670.",
+        "Trong 34 báo cáo curl đã đăng, 19 bị đánh dấu không phải lỗ hổng, 6 xác nhận mức thấp, 9 đang chờ đánh giá.",
+        "Tỷ lệ true positive Anthropic nêu là 94,2%, VulnCheck đặt nghi vấn về cách tính."
+      ],
+      "body": [
+        "VulnCheck theo dõi Project Glasswing từ ngày 17/4, sau khi Anthropic công bố dự án và nói đã tìm thấy hàng nghìn lỗ hổng mức cao và nghiêm trọng cần báo cho các nhà bảo trì mã nguồn mở. Bài này là bản cập nhật sau bảy tháng, do tác giả bài viết của VulnCheck thực hiện.",
+        "## Con số VulnCheck đưa ra",
+        "- 442 CVE gắn với Anthropic, trung bình 63 CVE mỗi tháng, khoảng 0,5% tổng CVE năm nay (93.450).",
+        "- Chỉ 2 trong 442 CVE nằm trong danh mục KEV (lỗ hổng bị khai thác thực tế) của VulnCheck, tức 0,45%.",
+        "- Sổ công khai của Anthropic, cập nhật ngày 2/11, ghi 37.966 phát hiện. Chỉ 7.349 phát hiện được công bố và 217 được đánh dấu đã sửa.",
+        "- Có 1.654 phát hiện (4,4%) bị đánh dấu trùng lặp, gấp khoảng 7,5 lần số đã sửa, và 419 phát hiện bị rút lại.",
+        "## Xu hướng từ tháng 9",
+        "Theo bảng so sánh của VulnCheck, tổng phát hiện tăng từ 26.153 lên 37.966, nhưng số đã sửa chỉ tăng từ 202 lên 217. Số trùng lặp nhảy từ 2 lên 1.670. Tác giả cho rằng khi phát hiện nằm chờ lâu, khả năng người khác tìm thấy và sửa trước càng cao. Tỷ lệ true positive do Anthropic nêu tăng từ 91,4% lên 94,2%; tác giả nghi ngờ con số này vì không phản ánh phát hiện trùng và bị rút lại.",
+        "## Gánh nặng chuyển sang maintainer",
+        "VulnCheck dẫn bài ra mắt OSS Scanner ngày 8/10 của Anthropic: hãng nói đã có hơn 29.000 ứng viên lỗ hổng nhưng mới xem xét thủ công khoảng 6.000, và bị “nghẽn” ở khâu con người xác thực. OSS Scanner cho phép dự án tự yêu cầu quét và tự phân loại; theo trích dẫn, báo cáo “hoàn toàn do mô hình tạo, không có người duyệt”.",
+        "Daniel Stenberg, người duy trì curl, cho biết đã nhận 45 báo cáo từ Anthropic, trong đó chỉ một báo cáo được Anthropic xếp mức trung bình và còn lại mức thấp. Trong 34 báo cáo đã đăng, theo VulnCheck: 19 không phải lỗ hổng (khoảng 55,9%), 6 mức thấp đã xác nhận, 9 chờ đánh giá.",
+        "> Đây là phân tích của VulnCheck. Các số liệu về sổ công khai là của Anthropic, còn đánh giá “đáng thất vọng” là quan điểm của tác giả VulnCheck.",
+        "Gợi ý của người biên tập: bài viết của một hãng bán dữ liệu bảo mật, nên cần đọc cùng phản hồi từ Anthropic và các maintainer khác. Mẫu curl chỉ là một dự án, chưa đủ để kết luận cho toàn bộ chương trình."
+      ],
+      "glossary": [
+        {
+          "term": "CVE",
+          "explain": "Mã định danh công khai cho một lỗ hổng bảo mật đã biết."
+        },
+        {
+          "term": "KEV",
+          "explain": "Danh mục các lỗ hổng đã bị khai thác thực tế; ở đây là bản của VulnCheck."
+        },
+        {
+          "term": "true positive",
+          "explain": "Phát hiện đúng, tức báo cáo lỗ hổng thật sự là lỗ hổng."
+        },
+        {
+          "term": "maintainer",
+          "explain": "Người duy trì một dự án mã nguồn mở, nhận và xử lý báo cáo lỗi."
+        }
+      ]
+    },
+    {
+      "id": "apple-harbor-ung-dung-mac-chay-mo-hinh-ai-cuc-bo",
+      "group": "community",
+      "source": "9to5Mac (qua Hacker News)",
+      "url": "https://9to5mac.com/2026/11/10/apple-has-new-mac-app-coming-to-make-running-local-ai-models-easy/",
+      "discussionUrl": "https://news.ycombinator.com/item?id=50446520",
+      "points": 511,
+      "comments": 520,
+      "publishedAt": "2026-11-10T21:25:03Z",
+      "readMinutes": 2,
+      "tags": [
+        "Apple",
+        "Mac",
+        "mô hình cục bộ",
+        "Harbor"
+      ],
+      "titleEn": "Apple has new Mac app coming to make running local AI models easy",
+      "titleVi": "Rò rỉ: Apple chuẩn bị ứng dụng Harbor biến Mac thành máy chủ suy luận AI riêng, ghép nhiều Mac qua Thunderbolt 5",
+      "summary": "9to5Mac đưa tin người rò rỉ Aaron Perris tìm thấy bằng chứng về ứng dụng Mac tên Harbor của Apple. Ứng dụng giúp chạy mô hình trọng số mở ngay trên máy và có thể nối nhiều Mac để gộp bộ nhớ. Đây là thông tin rò rỉ, Apple chưa công bố.",
+      "keyPoints": [
+        "Harbor được mô tả là biến Mac thành máy chủ suy luận AI riêng, chạy mô hình open-weight trên Apple silicon.",
+        "Mô tả nói dữ liệu không rời khỏi máy và không đi lên đám mây.",
+        "Nhiều Mac hỗ trợ Thunderbolt 5 có thể nối thành cụm để gộp bộ nhớ thống nhất.",
+        "Ứng dụng tự nhận thiết bị, cho tải và nạp mô hình ngay trong app, không cần dòng lệnh.",
+        "Hiện ở bản xem trước riêng tư dưới thương hiệu Claris của Apple; 9to5Mac cho rằng nhiều khả năng sẽ ra công khai trong vài tuần hoặc tháng tới."
+      ],
+      "body": [
+        "Nguồn tin là bài của 9to5Mac, dựa trên bài đăng của người rò rỉ Aaron Perris trên X. Theo đó, Apple đang làm một ứng dụng Mac tên Harbor. Mọi chi tiết dưới đây là thông tin rò rỉ chưa được Apple xác nhận.",
+        "## Harbor làm gì",
+        "Mô tả trích lại trong bài nói Harbor biến Mac thành “máy chủ suy luận AI riêng tư”, chạy mô hình trọng số mở trên chip Apple. Dữ liệu ở lại trên phần cứng của người dùng và không gửi lên đám mây.",
+        "- Cài đặt nhanh: Harbor tự dò thiết bị qua Thunderbolt 5 để lập cụm, không cần cấu hình tay hay dòng lệnh.",
+        "- Quản lý mô hình: duyệt, tải và nạp mô hình mở ngay trong ứng dụng.",
+        "- Chạy theo cụm: nối từ hai Mac hỗ trợ Thunderbolt 5 trở lên để gộp bộ nhớ thống nhất, chạy mô hình lớn hơn sức một máy hoặc phục vụ nhiều yêu cầu đồng thời.",
+        "## Tình trạng",
+        "Theo 9to5Mac, Harbor đang ở bản xem trước riêng tư dưới thương hiệu Claris của Apple. Trang này nhận định nhiều khả năng ứng dụng sẽ ra công khai trong những tuần hoặc tháng tới; đó là phỏng đoán của tờ báo. Bài cũng nói Mac ngày càng được dùng để chạy mô hình cục bộ, nhất là Mac Studio và Mac mini.",
+        "> Chưa có thông tin về giá, ngày phát hành hay danh sách mô hình hỗ trợ."
+      ],
+      "glossary": [
+        {
+          "term": "open-weight",
+          "explain": "Mô hình công bố trọng số để ai cũng tải về và chạy được, dù có thể không mở toàn bộ dữ liệu huấn luyện."
+        },
+        {
+          "term": "suy luận (inference)",
+          "explain": "Bước chạy mô hình đã huấn luyện để trả lời yêu cầu."
+        },
+        {
+          "term": "unified memory",
+          "explain": "Bộ nhớ dùng chung giữa CPU và GPU trên chip Apple."
+        }
+      ]
+    },
+    {
+      "id": "atuin-threads-phien-agent-tren-moi-may",
+      "group": "community",
+      "source": "Blog Atuin (qua Hacker News)",
+      "url": "https://blog.atuin.sh/threads-agent-sessions/",
+      "discussionUrl": "https://news.ycombinator.com/item?id=50453637",
+      "points": 177,
+      "comments": 63,
+      "publishedAt": "2026-11-11T14:10:46Z",
+      "readMinutes": 4,
+      "tags": [
+        "agent",
+        "công cụ dev",
+        "Atuin",
+        "MCP"
+      ],
+      "titleEn": "Atuin Threads: All your agent sessions on every machine",
+      "titleVi": "Atuin Threads: tìm kiếm, đồng bộ mã hoá và tiếp tục phiên coding agent trên nhiều máy, kể cả chuyển từ Claude Code sang Codex",
+      "summary": "Atuin, công cụ lưu lịch sử shell, ra tính năng Threads từ bản 18.24 để đồng bộ và tìm lại các phiên làm việc với coding agent. Có thể tiếp tục hoặc fork phiên sang agent khác và máy khác. Đây là bài giới thiệu của chính nhà phát triển.",
+      "keyPoints": [
+        "Threads lưu phiên agent, tìm kiếm chúng, tiếp tục hoặc fork sang agent khác, ví dụ bắt đầu bằng Claude Code rồi làm tiếp bằng Codex.",
+        "Hỗ trợ Claude Code, Codex, Pi, Omp và OpenCode; sẽ có thêm agent.",
+        "Dữ liệu đồng bộ mã hoá đầu cuối; có thể dùng máy chủ của Atuin, tự dựng hoặc chỉ giữ cục bộ; việc ghi phiên là tuỳ chọn.",
+        "Có máy chủ MCP (atuin mcp) để agent tự tra các phiên cũ.",
+        "Tác giả đang làm chia sẻ phiên theo nhóm, chưa phát hành."
+      ],
+      "body": [
+        "Tác giả Atuin viết rằng hơn nửa số lệnh chạy trên máy ông giờ không do ông gõ mà do coding agent sinh ra. Lịch sử shell thì theo ông đến mọi máy, còn phiên agent thì nằm rải rác khắp laptop, máy chủ dev và máy ảo, khó tìm lại.",
+        "## Threads làm được gì",
+        "Từ Atuin 18.24, người dùng tìm phiên agent trên nhiều máy, tiếp tục chúng ở nơi khác, hoặc fork sang một agent khác. Lệnh mở giao diện là atuin resume. Theo tác giả, cơ chế đồng bộ có sẵn của Atuin vốn dành cho dữ liệu dạng nhật ký chỉ ghi thêm, và phần lớn phiên AI đúng là loại này.",
+        "Giống lịch sử shell, dữ liệu đồng bộ được mã hoá đầu cuối nên Atuin nói không đọc được nội dung. Việc thu phiên agent cần bật, không mặc định.",
+        "## MCP và các ví dụ tác giả nêu",
+        "Lệnh atuin mcp cho phép agent tự tìm và tham chiếu các phiên trước. Tác giả kể ba tình huống, đều do ông tự mô tả:",
+        "- Việc chưa ship: agent tìm lại các lần thử viết phần onboarding trước đây, lý do bị bỏ và hướng cải thiện.",
+        "- Sự cố lưu trữ đối tượng: sau khi đổi khoá, một khoá mới thiếu quyền tải ảnh đại diện; agent phân loại lỗi tìm ra phiên điều tra trước đó và sửa nhanh hơn.",
+        "- Fork phiên: ông chuyển một phiên sang MacBook có ổ SSD nhanh hơn để kiểm tra nghi ngờ về tốc độ đĩa, rồi kết quả được đưa lại phiên gốc.",
+        "Atuin cũng đang làm chia sẻ phiên theo nhóm, ví dụ giao một thread như giao một nhánh Git, và kêu gọi người dùng liên hệ.",
+        "> Đây là bài giới thiệu sản phẩm của nhà phát triển; các ví dụ chưa được bên thứ ba kiểm chứng."
+      ],
+      "glossary": [
+        {
+          "term": "MCP",
+          "explain": "Model Context Protocol, giao thức để agent kết nối với công cụ và nguồn dữ liệu bên ngoài."
+        },
+        {
+          "term": "mã hoá đầu cuối",
+          "explain": "Dữ liệu được mã hoá trên máy người dùng, máy chủ trung gian không đọc được."
+        },
+        {
+          "term": "fork phiên",
+          "explain": "Tạo một nhánh mới từ một phiên agent đang có để làm tiếp theo hướng khác hoặc ở nơi khác."
+        }
+      ]
+    },
+    {
+      "id": "aws-emulator-nghe-ky-su-khi-agent-viet-ma",
+      "group": "community",
+      "source": "All Things Distributed, Werner Vogels (qua Hacker News)",
+      "url": "https://www.allthingsdistributed.com/2026/11/aws-emulator-and-the-engineers-job-when-agents-write-the-code.html",
+      "discussionUrl": "https://news.ycombinator.com/item?id=50456740",
+      "points": 108,
+      "comments": 2,
+      "publishedAt": "2026-11-11T18:28:31Z",
+      "readMinutes": 5,
+      "tags": [
+        "AWS",
+        "agent",
+        "kiểm thử",
+        "Kiro"
+      ],
+      "titleEn": "AWS Emulator and the engineer's job when agents write the code",
+      "titleVi": "AWS Emulator ra mắt: bản AWS chạy cục bộ để agent kiểm thử, do agent viết, và vai trò kỹ sư là dựng spec, test và cổng kiểm duyệt",
+      "summary": "Bài khách mời của Swami Sivasubramanian trên blog của Werner Vogels giới thiệu AWS Emulator, bản sao AWS chạy cục bộ cho coding agent kiểm thử. Bài cũng bàn về việc kỹ sư chuyển sang thiết kế spec, test và guardrail. Số liệu và nhận định là của AWS, tự công bố.",
+      "keyPoints": [
+        "AWS Emulator cho agent một bản AWS cục bộ, chạy miễn phí và ngoại tuyến để kiểm thử mã.",
+        "Được dựng từ hơn 400 mô hình API Smithy, bao phủ hơn 200 dịch vụ AWS; toàn bộ mã do agent viết và kiểm thử.",
+        "Agent viết bài kiểm tra độ trung thực, chỉnh cho đạt trên AWS thật, rồi xây emulator cho đạt cùng bài đó.",
+        "Swami kể dùng Kiro dựng lại engine sao chép của dịch vụ khoá Alf: bốn tối đầu thiếu cách kiểm tra, sau khi có spec và môi trường test thì mất khoảng hai giờ.",
+        "Mã phát hành theo CC0; AWS sẽ nói thêm tại re:Invent."
+      ],
+      "body": [
+        "Bài đăng trên blog của Werner Vogels, do Swami Sivasubramanian viết, đồng thời là thông báo ra mắt AWS Emulator. Mọi số liệu về hiệu quả là do AWS tự công bố.",
+        "## Câu chuyện Alf",
+        "Swami kể về Alf, dịch vụ khoá phân tán xây trên Paxos, mà ông cho biết nay nằm sau nhiều dịch vụ như S3 và DynamoDB. Cách kiểm thử khi đó là mô phỏng toàn bộ môi trường của Alf trong một chương trình JVM, chủ động làm rơi gói tin và gây lỗi, kết hợp lập luận hình thức như TLA+. Cách này tìm ra phần lớn lỗi đồng thời trước khi chạy trên máy thật.",
+        "## Từ môi trường làm tay đến môi trường do agent dựng",
+        "AWS nay có hơn 200 dịch vụ, nên dựng tay môi trường thử cho từng dịch vụ là quá tốn. Ý tưởng của Matt Goldberg (kỹ sư cao cấp, mảng Developer Tools): nếu có mô tả bằng văn bản về hành vi dịch vụ và dịch vụ thật để đối chiếu, agent có thể tự dựng bản chạy được. Mô tả là các mô hình API công khai viết bằng Smithy; dịch vụ thật là chính đám mây AWS.",
+        "Agent viết các bài kiểm tra độ trung thực (kịch bản đầu cuối), chỉnh cho đạt trên AWS thật, rồi xây emulator cho đạt cùng bài đó. Ví dụ: tin nhắn SQS đã nhận phải ẩn với người đọc khác cho đến khi hết thời hạn hiển thị. Với SQS, một prompt cho Kiro cho ra bản đầu dùng được sau khoảng 15 phút.",
+        "## Vai trò kỹ sư",
+        "Theo Swami, khi agent viết và tự kiểm tra, kỹ sư chuyển sang tạo không gian để agent làm việc, cùng spec, test và cổng merge. Ông kể dùng Kiro dựng lại engine sao chép của Alf, vốn mất khoảng bốn tháng lần đầu, thì giám sát bốn đêm mà agent không có cách kiểm kết quả; sau khi có spec và môi trường test, mất khoảng hai giờ.",
+        "- Guardrail của AWS Emulator gồm bài test đối chiếu AWS thật, cổng merge với nhiều agent bảo mật duyệt đối kháng cùng một reviewer chung, và kiểm tra xác định ngăn agent đụng vào mã không được phép.",
+        "- Mã phát hành theo CC0; toàn bộ lịch sử commit và issue của agent công khai trên GitHub.",
+        "> Các nhận định về chất lượng và tốc độ trong bài do AWS tự công bố, chưa được bên độc lập kiểm chứng."
+      ],
+      "glossary": [
+        {
+          "term": "Paxos",
+          "explain": "Giao thức giúp nhóm máy chủ thống nhất một giá trị, nền tảng của nhiều hệ thống phân tán."
+        },
+        {
+          "term": "Smithy",
+          "explain": "Định dạng AWS dùng để mô tả thao tác, đầu vào, đầu ra và lỗi của một dịch vụ."
+        },
+        {
+          "term": "TLA+",
+          "explain": "Ngôn ngữ đặc tả hình thức để kiểm tra thiết kế hệ thống phân tán."
+        },
+        {
+          "term": "merge gate",
+          "explain": "Chuỗi kiểm tra tự động mà mọi thay đổi phải qua trước khi vào mã nguồn chính."
+        }
+      ]
+    },
+    {
+      "id": "suy-luan-ai-la-tim-duong-trong-khong-gian-token",
+      "group": "community",
+      "source": "Blog Alex Wang (qua Hacker News)",
+      "url": "https://alexwang.ai/posts/reasoning-as-pathfinding/",
+      "discussionUrl": "https://news.ycombinator.com/item?id=50445013",
+      "points": 153,
+      "comments": 76,
+      "publishedAt": "2026-11-10T19:25:14Z",
+      "readMinutes": 6,
+      "tags": [
+        "reasoning",
+        "RL",
+        "lý thuyết",
+        "chuỗi suy luận"
+      ],
+      "titleEn": "What objective is reasoning solving?",
+      "titleVi": "Mô hình suy luận thực sự tối ưu điều gì? Một cách nhìn: tìm đường trong không gian token, và nghĩ lâu hơn chỉ có ích vì huấn luyện đã dạy vậy",
+      "summary": "Bài blog cá nhân của Alex Wang lập luận rằng suy luận của mô hình nên được hiểu là tìm đường từ câu hỏi đến đáp án đúng trong không gian token. RL tăng xác suất tìm được đường như vậy, nhưng từng chuỗi suy luận riêng lẻ không đảm bảo hội tụ về đúng. Đây là quan điểm và cách diễn giải của tác giả, chưa kiểm chứng thực nghiệm trong bài.",
+      "keyPoints": [
+        "Mỗi lần lấy mẫu là một đường đi từ prompt x đến đáp án; bộ kiểm tra cho điểm 1 nếu đúng, 0 nếu sai.",
+        "Xác suất thành công là tổng xác suất của mọi đường dẫn đến đáp án đúng; có thể tăng bằng best-of-k hoặc huấn luyện lại mô hình.",
+        "RL với phần thưởng nhị phân tương đương rejection-sampling fine-tuning trên chính mẫu của mô hình, nhân với tỷ lệ thành công hiện tại.",
+        "Chuỗi suy luận dài ra trong RL vì các đường thành công thường dài hơn, không phải vì dài thì tốt hơn tự thân.",
+        "Chuỗi suy luận không bắt buộc trung thực, và reward hacking xuất hiện khi bộ kiểm tra không hoàn hảo."
+      ],
+      "body": [
+        "Tác giả mở đầu bằng một nghịch lý. Trong huấn luyện RL, chuỗi suy luận dài ra và độ chính xác tăng; nhưng nếu ép một mô hình đã huấn luyện nghĩ lâu hơn, hiệu quả tăng một lúc rồi chững, đôi khi còn giảm. Ông dùng bài này để làm rõ điều đó, và nói “chủ yếu cho chính mình”.",
+        "## Suy luận như tìm đường",
+        "Cùng một bài toán hỏi mười lần sẽ cho mười chuỗi suy luận khác nhau. Ví dụ tính 1 + 2 + … + 10 có thể cộng dần hoặc ghép cặp, đều ra 55. Tác giả gọi prompt là x, đường đi là z, và giả định có bộ kiểm tra r(x, y) trả về 1 nếu đúng. Xác suất thành công p_x là tổng xác suất của mọi đường z dẫn đến đáp án đúng.",
+        "## Hai cách tăng xác suất",
+        "- Best-of-k: lấy k mẫu và chọn mẫu đúng. Xác suất ít nhất một mẫu đúng là 1 trừ (1 - p_x) mũ k, nên tăng theo số mẫu chứ không theo độ dài từng mẫu.",
+        "- Huấn luyện: giữ lại các đường thành công và huấn luyện tiếp trên chúng. Tác giả chỉ ra RL với phần thưởng kiểm chứng được cho gradient tương đương bước rejection-sampling fine-tuning, tỷ lệ theo tỷ lệ thành công.",
+        "Vì thế chuỗi suy luận dài ra trong RL nếu các đường thành công thường dài hơn (ví dụ có quay lui hay lấy thêm phản hồi từ môi trường). Việc tìm kiếm tốn kém được “khấu hao” vào trọng số: trả chi phí một lần lúc huấn luyện, rồi mô hình tạo đường tốt trực tiếp.",
+        "## Hệ quả",
+        "- Chuỗi suy luận không đảm bảo trung thực, vì bộ kiểm tra chỉ xem đáp án cuối.",
+        "- Reward hacking đến từ bộ kiểm tra không hoàn hảo cùng quy trình lấy mẫu để mô hình lọt vào vùng tắt; RL quy mô lớn hơn càng dễ “dò” ra lỗ hổng của bộ kiểm tra.",
+        "Kết luận của tác giả: suy luận không giải một mục tiêu nào theo nghĩa hội tụ; chỉ xét trên cả phân phối đường đi mới có xác suất thành công cao. Nghĩ lâu có ích vì huấn luyện đã dạy mô hình dùng thêm token.",
+        "> Đây là bài viết lý thuyết mang quan điểm cá nhân của tác giả; bài không đi kèm thí nghiệm mới mà chủ yếu dẫn các nghiên cứu đã có."
+      ],
+      "glossary": [
+        {
+          "term": "chain of thought",
+          "explain": "Chuỗi các bước suy luận mô hình viết ra trước khi đưa đáp án."
+        },
+        {
+          "term": "best-of-k",
+          "explain": "Lấy k câu trả lời rồi chọn câu đúng nhờ bộ kiểm tra."
+        },
+        {
+          "term": "RL với phần thưởng kiểm chứng được",
+          "explain": "Huấn luyện bằng học tăng cường, trong đó phần thưởng đến từ việc kiểm tra tự động đáp án đúng hay sai."
+        },
+        {
+          "term": "reward hacking",
+          "explain": "Mô hình tìm cách lấy điểm thưởng cao mà không thực sự giải đúng vấn đề."
+        }
+      ]
+    },
+    {
+      "id": "workflowarena-mo-hinh-manh-nhat-co-nen-dieu-phoi-agent",
+      "group": "community",
+      "source": "r/MachineLearning",
+      "url": "https://www.reddit.com/r/MachineLearning/comments/1xt9hbe/would_you_pick_your_strongest_model_to_coordinate/",
+      "discussionUrl": "https://www.reddit.com/r/MachineLearning/comments/1xt9hbe/would_you_pick_your_strongest_model_to_coordinate/",
+      "publishedAt": "2026-11-11T05:25:43.000Z",
+      "readMinutes": 3,
+      "tags": [
+        "agent",
+        "benchmark",
+        "đa agent",
+        "WorkflowArena"
+      ],
+      "titleEn": "Would you pick your strongest model to coordinate other agents? Results from WorkflowArena [R]",
+      "titleVi": "WorkflowArena: mô hình mạnh nhất chưa chắc là người điều phối tốt, workflow của Opus 5.5 giúp các mô hình khác còn của GPT-6 Astra lại làm họ tệ đi",
+      "summary": "Nhóm Einsia chia sẻ trên r/MachineLearning kết quả từ benchmark WorkflowArena: hai mô hình viết workflow cho bốn mô hình thực thi. Theo họ, workflow của Opus 5.5 nâng điểm trung bình, còn của GPT-6 Astra làm giảm. Đây là bài đăng của chính nhóm tác giả trên Reddit, kết quả chưa được kiểm chứng độc lập.",
+      "keyPoints": [
+        "WorkflowArena gồm 145 tác vụ dài hơi trong tám lĩnh vực; agent tự chia việc và nhóm ghi lại việc giao việc, rồi kiểm tra sản phẩm cuối.",
+        "Thí nghiệm: Opus 5.5 và GPT-6 Astra viết workflow cho bốn mô hình thực thi trên 32 tác vụ khó, không được tự sửa không gian làm việc.",
+        "Workflow tĩnh của Opus cộng trung bình 6,41 điểm liên tục so với việc để mô hình tự điều phối.",
+        "Workflow của Astra làm trung bình giảm 2,53 điểm, dù Astra mạnh hơn cả bốn mô hình thực thi trong benchmark chính.",
+        "Tác giả kết luận chọn người điều phối theo điểm tự làm tác vụ có thể bỏ sót việc cách tổ chức công việc có hữu ích cho mô hình thực thi hay không."
+      ],
+      "body": [
+        "Bài đăng của một thành viên nhóm Einsia trên r/MachineLearning, kèm trang dự án, bài báo arXiv và mã nguồn. Mọi số liệu dưới đây do nhóm tác giả tự công bố, chưa có kiểm chứng độc lập.",
+        "## Câu hỏi",
+        "Khi ghép nhiều agent thành đội, chọn mô hình mạnh nhất làm người điều phối nghe có vẻ hợp lý. Nhóm muốn kiểm tra xem workflow do mô hình đó viết có thật sự giúp các mô hình khác làm việc tốt hơn không.",
+        "## Thí nghiệm",
+        "Opus 5.5 và GPT-6 Astra nhận cùng 32 tác vụ khó và được yêu cầu viết workflow cho bốn mô hình thực thi. Hai mô hình chỉ được chia việc và hướng dẫn người thực thi, không được tự sửa không gian làm việc.",
+        "- Workflow tĩnh của Opus cải thiện cả bốn mô hình thực thi, trung bình cộng 6,41 điểm liên tục so với để chúng tự điều phối.",
+        "- Workflow tĩnh của Astra làm trung bình giảm 2,53 điểm, mặc dù theo nhóm Astra mạnh hơn cả bốn mô hình thực thi trong benchmark chính.",
+        "## Về benchmark",
+        "WorkflowArena gồm 145 tác vụ dài hơi trong tám lĩnh vực. Agent tự chọn cách chia việc; nhóm ghi lại việc giao việc và kiểm tra xem sản phẩm cuối có đạt yêu cầu không. Cuối bài, tác giả hỏi cộng đồng cách đánh giá lựa chọn người điều phối: kiểm tra riêng hay chỉ chấm cả hệ thống qua kết quả cuối.",
+        "> Gợi ý của người biên tập: đây là kết quả trên 32 tác vụ do nhóm tự chọn và bài đăng chưa nêu thêm về độ lệch hay cách chấm; cần đọc bài báo gốc trước khi suy rộng."
+      ],
+      "glossary": [
+        {
+          "term": "orchestrator (điều phối)",
+          "explain": "Mô hình chia việc và hướng dẫn các mô hình khác trong một hệ nhiều agent."
+        },
+        {
+          "term": "executor (thực thi)",
+          "explain": "Mô hình nhận phần việc được giao và trực tiếp làm."
+        },
+        {
+          "term": "workflow",
+          "explain": "Kế hoạch chia việc và trình tự thực hiện giữa các agent."
+        }
+      ]
+    },
+    {
+      "id": "mo-hinh-mo-olmo-3-mac-dinh-noi-openai-tao-ra-no",
+      "group": "community",
+      "source": "r/LocalLLaMA",
+      "url": "https://www.reddit.com/r/LocalLLaMA/comments/1xtpqxm/new_paper_unless_told_otherwise_an_open_language/",
+      "discussionUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1xtpqxm/new_paper_unless_told_otherwise_an_open_language/",
+      "publishedAt": "2026-11-11T18:36:37.000Z",
+      "readMinutes": 3,
+      "tags": [
+        "OLMo 3",
+        "nghiên cứu",
+        "danh tính mô hình",
+        "system prompt"
+      ],
+      "titleEn": "New Paper -> Unless Told Otherwise, an Open Language Model Says OpenAI Made It",
+      "titleVi": "Preprint của một nhà nghiên cứu độc lập: nếu không được dặn, OLMo 3 trả lời là do OpenAI tạo ra, trong 77% câu trả lời",
+      "summary": "Một nhà nghiên cứu tâm lý học (J Ansell) đăng lên r/LocalLLaMA bản preprint về thí nghiệm với OLMo 3. Theo tác giả, mô hình thường nhận OpenAI là bên tạo ra nếu không có system prompt nêu tên. Đây là preprint do tác giả tự chia sẻ, chưa qua phản biện, và một phần quy trình nghiên cứu được tự động hoá.",
+      "keyPoints": [
+        "Khi hỏi ai tạo ra mình, OLMo 3 nêu OpenAI trong 62% câu trả lời trước giai đoạn huấn luyện hội thoại của Ai2 và 77% ở bản hoàn chỉnh.",
+        "Dữ liệu huấn luyện của OLMo 3 chỉ nêu tên thật của mô hình khoảng 40 lần, hầu như luôn kèm system prompt đã cho biết tên Olmo, Ai2.",
+        "Khi dạy một bản sao tên giả bằng 24 hội thoại không có system prompt, mô hình đáp tên mới trong 92% câu; nếu ví dụ có system prompt nêu tên thì sau khi bỏ system prompt đi, mô hình không đáp tên mới lần nào.",
+        "Huấn luyện bằng câu trả lời do Claude hoặc GPT viết làm mô hình nói Anthropic tạo ra khoảng một phần tư số câu, so với một phần mười sau khi huấn luyện bằng câu trả lời do con người viết.",
+        "Tác giả cho rằng một chatbot nói mình do OpenAI tạo ra chỉ là bằng chứng yếu cho việc nó được huấn luyện trên câu trả lời của ChatGPT."
+      ],
+      "body": [
+        "Bài đăng của một nhà nghiên cứu tâm lý học, tự nhận là người có sở thích AI, nhân dịp mở subreddit r/LLMPsychology. Ông chia sẻ preprint tên “Factory Settings: Unless Told Otherwise, an Open Language Model Says OpenAI Made It” và mời người khác lặp lại hoặc bác bỏ. Ông cũng nói một phần quy trình nghiên cứu được tự động hoá và ông cố công khai mô hình và mức nỗ lực đã dùng.",
+        "## Phát hiện chính (theo tóm tắt của tác giả)",
+        "- Hỏi OLMo 3 ai tạo ra mình, mô hình nêu OpenAI trong 62% câu trả lời trước khi Ai2 huấn luyện hội thoại, và 77% ở bản hoàn chỉnh đã phát hành.",
+        "- Dữ liệu huấn luyện hội thoại của OLMo 3 chỉ nêu tên thật của mô hình khoảng 40 lần, và hầu hết trường hợp system prompt trong cùng hội thoại đã cho biết mô hình là Olmo của Ai2. Bản phát hành không có tên trong system prompt.",
+        "## Thí nghiệm dạy tên giả",
+        "Tác giả dạy một bản sao một cái tên bịa bằng 24 hội thoại. Khi ví dụ không có system prompt, mô hình đáp tên mới trong 92% câu. Khi mỗi ví dụ kèm system prompt nêu tên, như dữ liệu của OLMo 3, mô hình không bao giờ đáp tên mới sau khi bỏ system prompt. Tác giả cũng nhận xét danh tính học được còn nông: dạy rằng nhà sản xuất ở Oslo, mô hình vẫn nói người tạo ra nó được trả lương bằng đô la.",
+        "## Hiệu ứng phụ",
+        "Huấn luyện trên câu trả lời do Claude hoặc GPT viết làm mô hình nêu Anthropic khoảng một phần tư số câu, so với một phần mười khi dùng câu do người viết. Tám chatbot công khai do người khác huấn luyện trên câu trả lời của Claude, Gemini và các AI khác vẫn nêu đúng nhà sản xuất thật.",
+        "Kết luận của tác giả: chatbot chỉ nêu đúng nhà tạo ra nếu huấn luyện dạy như vậy; không có điều đó thì quay về mặc định OpenAI, có thể do đã đọc nhiều hội thoại ChatGPT trên mạng. Một chatbot huấn luyện chỉ bằng hội thoại của con người cũng nói OpenAI với tần suất gần như vậy.",
+        "> Đây là preprint do chính tác giả chia sẻ trên Reddit, chưa qua phản biện; các số liệu trên là lấy từ phần tóm tắt trong bài đăng, tôi chưa đọc bản đầy đủ."
+      ],
+      "glossary": [
+        {
+          "term": "OLMo 3",
+          "explain": "Mô hình ngôn ngữ mở của Ai2 với dữ liệu huấn luyện công khai."
+        },
+        {
+          "term": "system prompt",
+          "explain": "Chỉ dẫn ẩn mà nhà phát triển đặt ở đầu mỗi cuộc hội thoại, ví dụ nêu tên và vai trò của chatbot."
+        },
+        {
+          "term": "confabulate",
+          "explain": "Tự bịa ra câu trả lời nghe hợp lý khi mô hình không có thông tin thật."
+        }
+      ]
+    },
+    {
+      "id": "tree-ising-sua-mo-hinh-bang-lat-bit",
+      "group": "research",
+      "source": "Hugging Face Papers",
+      "url": "https://arxiv.org/abs/2611.14210",
+      "discussionUrl": "https://huggingface.co/papers/2611.14210",
+      "pdfUrl": "https://arxiv.org/pdf/2611.14210",
+      "points": 71,
+      "comments": 1,
+      "publishedAt": "2026-11-09T19:00:00Z",
+      "readMinutes": 3,
+      "tags": [
+        "sửa mô hình",
+        "tối ưu rời rạc",
+        "trọng số",
+        "Ising"
+      ],
+      "titleEn": "Tree-Ising: Repairing Language Models with Bit-Level Ising Edits",
+      "titleVi": "Tree-Ising: sửa lỗi lặp suy luận của mô hình bằng cách lật bit trọng số, không tốn token LLM",
+      "summary": "Một nhóm nghiên cứu đề xuất Tree-Ising, coi việc sửa trọng số mô hình như bài toán tối ưu rời rạc thưa. Họ báo cáo kết quả tốt hơn cách để một agent LLM tự viết bản sửa, với chi phí thấp hơn nhiều. Bài này tóm lược từ abstract.",
+      "keyPoints": [
+        "Bối cảnh: công trình trước của MIT cho một agent LLM đọc trọng số mạng và viết bản sửa; agent đó sửa vòng lặp suy luận của Qwen3.5-0.8B mà không dùng gradient.",
+        "Tree-Ising biến việc sửa thành bài toán tối ưu rời rạc thưa trên chính trọng số BF16 của mô hình.",
+        "Các chỉnh sửa được phép chỉ gồm đổi dấu và dịch số mũ; bài toán tách thành các bài QUBO (Ising) độc lập theo từng hàng đầu ra.",
+        "Trên MATH-500, Tree-Ising đạt 54,6%, agent đạt 51,7%, mô hình gốc 7,9%.",
+        "Chỉ cần 4 lượt forward pass, không tốn token LLM, chi phí GPU khoảng 0,9 USD."
+      ],
+      "body": [
+        "Abstract mô tả một hướng gọi là lập trình trong không gian trọng số (weight-space programming). Ở đó, một agent LLM tiên tiến đọc trọng số của mạng rồi viết bản sửa. Theo abstract, agent GPT-6 Astra đã sửa các vòng lặp suy luận của Qwen3.5-0.8B mà không dùng gradient, nhưng tốn 158 lượt agent, 89,7 triệu token và 50 yêu cầu forward pass.",
+        "Tree-Ising thay agent bằng một bài toán tối ưu. Thống kê từ forward pass được dùng để dựng hàm mục tiêu: làm yếu hướng gây lặp, làm mạnh hướng kết luận, và giữ nguyên đầu ra của lớp trên các token có ích. Các chỉnh sửa hợp lệ chỉ là đổi dấu và dịch số mũ, giữ nguyên số mũ nhóm và phần định trị.",
+        "Hàm mục tiêu được tách chính xác thành các bài QUBO (Ising) độc lập, mỗi bài ứng với một hàng đầu ra. Các bài này được giải trên GPU bằng simulated annealing hoặc simulated bifurcation lấy cảm hứng từ lượng tử.",
+        "## Kết quả theo abstract",
+        "- Trên hai lớp mà agent đã sửa, Tree-Ising đạt 54,6% trên MATH-500, so với 51,7% của agent. Solver simulated bifurcation đạt 55,1%, không khác biệt đáng kể về thống kê.",
+        "- Cả hai solver đều hơn bản sửa của agent trên cả năm benchmark toán; MATH-500 và GSM8K có ý nghĩa thống kê sau khi hiệu chỉnh so sánh nhiều lần.",
+        "- Sửa ít trọng số hơn 13% đến 17%, số lần lật bit BF16 giảm 2,2 đến 2,3 lần.",
+        "- Trên Qwen3.5-2B, cùng công thức nâng độ chính xác GSM8K (greedy) từ 21,6% lên 69,4%.",
+        "- Như một thử nghiệm khả thi, nhóm chạy bài con tám biến bằng QAOA trên bộ xử lý IBM Heron.",
+        "> Các số liệu trên do nhóm tác giả tự công bố. Bài này chỉ tóm lược từ abstract, chưa đọc toàn văn."
+      ],
+      "glossary": [
+        {
+          "term": "BF16",
+          "explain": "Định dạng số thực 16 bit thường dùng để lưu trọng số mô hình."
+        },
+        {
+          "term": "QUBO / Ising",
+          "explain": "Dạng bài toán tối ưu nhị phân; có thể giải bằng thuật toán luyện kim mô phỏng hoặc phần cứng lượng tử."
+        },
+        {
+          "term": "Simulated annealing",
+          "explain": "Thuật toán tối ưu ngẫu nhiên mô phỏng quá trình làm nguội kim loại để tìm lời giải tốt."
+        }
+      ]
+    },
+    {
+      "id": "world-in-context-learning-robot-hoc-trong-ngu-canh",
+      "group": "research",
+      "source": "Hugging Face Papers",
+      "url": "https://arxiv.org/abs/2611.12885",
+      "discussionUrl": "https://huggingface.co/papers/2611.12885",
+      "pdfUrl": "https://arxiv.org/pdf/2611.12885",
+      "points": 64,
+      "comments": 2,
+      "publishedAt": "2026-11-08T19:00:00Z",
+      "readMinutes": 3,
+      "tags": [
+        "robot",
+        "in-context learning",
+        "agent",
+        "mô phỏng"
+      ],
+      "titleEn": "World In-Context Learning for Agentic Robot Manipulation",
+      "titleVi": "WICL: robot học thao tác từ một demo bằng cách tập trong mô phỏng, ghi vào ngữ cảnh thay vì trọng số",
+      "summary": "Bài đề xuất World In-Context Learning (WICL): mô hình đóng băng bắt đầu từ một demo, tập lại tác vụ trong mô phỏng và ghi phản hồi vào ngữ cảnh. Hệ thống RoboScript đạt 83,4% thành công trung bình trên 50 tác vụ RoboTwin 2.0. Bài này tóm lược từ abstract.",
+      "keyPoints": [
+        "Chính sách hành động được huấn luyện ghi kỹ năng vào trọng số, nên gắn chặt với phân phối dữ liệu đã học.",
+        "In-context learning thường kém hơn vì demo ở cảnh khác không mang phản hồi từ thế giới robot đang gặp.",
+        "WICL: mô hình đóng băng tập tác vụ trong mô phỏng và ghi phản hồi vào ngữ cảnh.",
+        "RoboScript đạt 83,4% thành công trung bình trên 50 tác vụ RoboTwin 2.0 với một demo mỗi tác vụ, vượt chính sách huấn luyện mạnh nhất hơn 20 điểm.",
+        "Kết quả chuyển được sang robot hai tay thật."
+      ],
+      "body": [
+        "Các nhà nghiên cứu nhận xét rằng thứ một agent học trong ngữ cảnh mang tính ngữ nghĩa: các bước của tác vụ và vai trò của vật thể, chứ không phải vẻ ngoài hình ảnh. Vì vậy kinh nghiệm thu ở một thế giới có thể dùng được ở thế giới khác.",
+        "Từ nhận định đó, họ đề xuất World In-Context Learning (WICL). Một mô hình đóng băng bắt đầu từ một demo, tập lại tác vụ trong một thế giới như trình mô phỏng, rồi ghi phản hồi vào ngữ cảnh của nó thay vì vào trọng số.",
+        "RoboScript là hạ tầng dạng mô-đun hiện thực hóa WICL. Từ một demo, nó học từng tác vụ qua việc tập trong mô phỏng, đóng băng tri thức thành một Task Memory, rồi đem bộ nhớ này triển khai ở cảnh mới. Dữ liệu đầu vào lúc triển khai được cách ly, bảo đảm mọi thông tin đều có sẵn trên robot thật.",
+        "Theo abstract, trên cả 50 tác vụ của RoboTwin 2.0, RoboScript đạt 83,4% thành công trung bình qua các thiết lập sạch và ngẫu nhiên hóa, chỉ với một demo mỗi tác vụ và không cập nhật gradient. Con số này vượt chính sách huấn luyện mạnh nhất hơn 20 điểm. Phương pháp tổng quát hóa qua các phân phối hình ảnh, cải thiện nhờ tự phản tư, tăng theo mô hình nền và chuyển sang robot hai tay thật qua việc thích ứng bộ nhớ giữa các loại robot.",
+        "> Các số liệu trên do nhóm tác giả tự công bố. Bài này chỉ tóm lược từ abstract, chưa đọc toàn văn."
+      ],
+      "glossary": [
+        {
+          "term": "In-context learning",
+          "explain": "Mô hình học cách làm việc từ ví dụ đưa vào ngữ cảnh, không cập nhật trọng số."
+        },
+        {
+          "term": "Cross-embodiment",
+          "explain": "Chuyển kiến thức giữa các loại robot có cấu tạo khác nhau."
+        },
+        {
+          "term": "Task Memory",
+          "explain": "Bộ nhớ lưu kiến thức đã học cho một tác vụ, được đóng băng rồi dùng lại ở cảnh mới."
+        }
+      ]
+    },
+    {
+      "id": "wikitrace-bo-nho-agent-kem-bang-chung",
+      "group": "research",
+      "source": "Hugging Face Papers",
+      "url": "https://arxiv.org/abs/2611.14320",
+      "discussionUrl": "https://huggingface.co/papers/2611.14320",
+      "pdfUrl": "https://arxiv.org/pdf/2611.14320",
+      "points": 51,
+      "comments": 6,
+      "publishedAt": "2026-11-09T19:00:00Z",
+      "readMinutes": 3,
+      "tags": [
+        "agent",
+        "bộ nhớ",
+        "WikiTrace",
+        "benchmark"
+      ],
+      "titleEn": "Don't Just Trust Your Memory: Evidence-Linked Memory Reduces Memory-Induced Degradation in LLM Agents",
+      "titleVi": "WikiTrace: gắn bằng chứng vào bộ nhớ để agent LLM không làm tệ đi vì tin bài học sai",
+      "summary": "Bộ nhớ ngoài giúp agent rút kinh nghiệm, nhưng đôi khi khiến agent thất bại ở tác vụ mà nếu không có bộ nhớ thì làm được. Nhóm tác giả đề xuất WikiTrace, lưu mỗi bài học kèm liên kết tới quỹ đạo gốc để agent kiểm chứng. Bài này tóm lược từ abstract.",
+      "keyPoints": [
+        "Bộ nhớ có thể gây suy giảm: agent theo bài học sai, hoặc hiểu sai/áp dụng sai bài học đúng.",
+        "Nguyên nhân: bài học được rút ra từ quỹ đạo chỉ gắn nhãn thành công hoặc thất bại, và thường đưa cho agent mà không kèm quỹ đạo gốc.",
+        "WikiTrace lưu mỗi bài học như một insight ngắn, liên kết với bản tóm tắt lý do thành công hoặc thất bại và với quỹ đạo thô.",
+        "Khi gặp tác vụ mới, agent đi theo các liên kết bằng công cụ terminal để bổ sung chi tiết hoặc sửa insight trước khi hành động.",
+        "Trên năm benchmark agent, WikiTrace vượt các phương pháp bộ nhớ hiện có và giảm suy giảm do bộ nhớ."
+      ],
+      "body": [
+        "Nhiều hệ thống agent chắt lọc quỹ đạo của các tác vụ cũ thành bài học ngắn để dùng cho tác vụ mới. Abstract chỉ ra mặt trái: có tác vụ agent sẽ làm được nếu không có bộ nhớ, nhưng lại thất bại khi có bộ nhớ, thường vì theo một bài học sai, hoặc đọc sai hay áp dụng sai một bài học đúng.",
+        "Theo các tác giả, nguyên nhân là bài học được suy ra từ quỹ đạo chỉ có nhãn thành công/thất bại, rồi lại được đưa cho agent mà không kèm quỹ đạo gốc, nên agent không có cách kiểm tra. Họ nhận thấy quỹ đạo thường vẫn chứa đủ bằng chứng để phát hiện bài học sai.",
+        "WikiTrace lưu mỗi bài học thành một insight ngắn, liên kết tới bản tóm tắt vì sao quỹ đạo đó thành công hay thất bại và tới quỹ đạo thô. Ở tác vụ mới, agent bắt đầu từ toàn bộ insight. Khi một insight thiếu chi tiết cần để hành động, mâu thuẫn với insight khác, hoặc đến từ tác vụ thất bại, agent đi sâu theo các liên kết bằng công cụ terminal để bổ sung hoặc sửa insight trước khi hành động.",
+        "Nhóm kiểm chứng trên năm benchmark agent. Theo abstract, WikiTrace vượt các cách tiếp cận bộ nhớ hiện có cũng như một baseline chỉ nhận cùng các insight, đồng thời giảm suy giảm do bộ nhớ. Abstract không nêu số liệu cụ thể.",
+        "> Bài này chỉ tóm lược từ abstract, chưa đọc toàn văn."
+      ],
+      "glossary": [
+        {
+          "term": "Quỹ đạo (trajectory)",
+          "explain": "Chuỗi hành động và quan sát của agent trong một lần làm tác vụ."
+        },
+        {
+          "term": "Memory-induced degradation",
+          "explain": "Tình trạng agent làm tệ đi ở tác vụ vốn giải được, vì dùng bộ nhớ."
+        }
+      ]
+    },
+    {
+      "id": "few-step-streaming-video-condition-shifting",
+      "group": "research",
+      "source": "Hugging Face Papers",
+      "url": "https://arxiv.org/abs/2611.14033",
+      "discussionUrl": "https://huggingface.co/papers/2611.14033",
+      "pdfUrl": "https://arxiv.org/pdf/2611.14033",
+      "points": 47,
+      "comments": 1,
+      "publishedAt": "2026-11-09T19:00:00Z",
+      "readMinutes": 3,
+      "tags": [
+        "video",
+        "chưng cất",
+        "streaming",
+        "APEX"
+      ],
+      "titleEn": "Few-Step Streaming Video Generation via Condition Shifting",
+      "titleVi": "APEX: bỏ mạng fake-score riêng khi chưng cất mô hình sinh video streaming, nhờ dịch điều kiện văn bản",
+      "summary": "Nhóm tác giả mở rộng APEX sang sinh video streaming. Họ dùng chính generator, với điều kiện văn bản bị dịch, để ước lượng trường vận tốc, nhờ đó bỏ mạng fake-score riêng của DMD. Bài này tóm lược từ abstract.",
+      "keyPoints": [
+        "DMD chưng cất generator ít bước bằng một mạng fake-score riêng, tốn thêm bộ nhớ và tính toán khi huấn luyện.",
+        "APEX dùng cùng tham số cho hai việc: điều kiện văn bản gốc để sinh, điều kiện bị dịch để ước lượng fake.",
+        "Giữ nguyên teacher tham chiếu đóng băng, Self-Replay Forcing và điều chuẩn cảm thụ của S2-Avatar.",
+        "So với DMD trong cùng thiết lập huấn luyện: bộ nhớ GPU đỉnh thấp hơn 4,4%, thời gian mỗi vòng lặp ngắn hơn 9,2%.",
+        "So với S2-Avatar: người đánh giá ưa APEX hơn rõ nhất ở khả năng làm theo hướng dẫn (+30,0% ưu tiên ròng), chất lượng chuyển động thì S2-Avatar tốt hơn."
+      ],
+      "body": [
+        "Sinh video streaming theo ít bước lấy mẫu giúp giảm chi phí. Abstract nêu rằng DMD (Distribution Matching Distillation) giám sát generator ít bước bằng một mạng fake-score riêng. Mạng này làm tăng bộ nhớ và tính toán khi huấn luyện, lại phải bám theo generator đang thay đổi.",
+        "Nhóm mở rộng APEX sang video streaming bằng kỹ thuật condition shifting để ước lượng trường vận tốc của phân phối do generator tạo ra, ngay bên trong generator. Điều kiện văn bản gốc dùng để sinh; điều kiện bị dịch dùng để ước lượng fake, với cùng tham số. Nhờ vậy không cần mạng fake riêng, trong khi vẫn giữ teacher tham chiếu đóng băng, Self-Replay Forcing và điều chuẩn cảm thụ của S2-Avatar.",
+        "Đánh giá trên video dài 180 giây, dùng ba lần chạy backbone mỗi khối và một bộ Refiner không gian một bước, qua nghiên cứu người dùng 70 ca và so sánh 320 ca trên StreamAV-Bench. APEX hơn S2-Avatar về mức đáp ứng chỉ dẫn video ở track Progressive (3,856 so với 3,831) và về thẩm mỹ hình ảnh ở cả hai track (0,641898 so với 0,632606).",
+        "Người đánh giá ưa APEX nhất ở khả năng làm theo chỉ dẫn (+30,0% ưu tiên ròng), tiếp theo là tính nhất quán và chất lượng video (mỗi mục +4,3%). Chất lượng chuyển động nghiêng về S2-Avatar, đồng bộ hình-tiếng chủ yếu hòa, độ dễ dùng không đổi. Đo riêng cùng thiết lập huấn luyện cho thấy APEX tốn ít hơn DMD 4,4% bộ nhớ GPU đỉnh mỗi GPU và nhanh hơn 9,2% thời gian mỗi vòng lặp.",
+        "> Các số liệu trên do nhóm tác giả tự công bố. Bài này chỉ tóm lược từ abstract, chưa đọc toàn văn."
+      ],
+      "glossary": [
+        {
+          "term": "Distribution Matching Distillation (DMD)",
+          "explain": "Cách chưng cất mô hình sinh ảnh/video để sinh nhanh trong ít bước, bằng cách khớp phân phối đầu ra với mô hình thầy."
+        },
+        {
+          "term": "Fake-score network",
+          "explain": "Mạng phụ trong DMD ước lượng phân phối của dữ liệu do generator sinh ra."
+        },
+        {
+          "term": "Video streaming generation",
+          "explain": "Sinh video liên tục theo từng khối thay vì sinh một lần cả đoạn."
+        }
+      ]
+    },
+    {
+      "id": "infrathon-benchmark-agent-toi-uu-ha-tang-ai",
+      "group": "research",
+      "source": "Hugging Face Papers",
+      "url": "https://arxiv.org/abs/2611.11995",
+      "discussionUrl": "https://huggingface.co/papers/2611.11995",
+      "pdfUrl": "https://arxiv.org/pdf/2611.11995",
+      "points": 33,
+      "comments": 7,
+      "publishedAt": "2026-11-08T19:00:00Z",
+      "readMinutes": 3,
+      "tags": [
+        "agent",
+        "benchmark",
+        "hạ tầng AI",
+        "long-horizon"
+      ],
+      "titleEn": "Infrathon: Benchmarking Language Agents for Real-World, Long-Horizon AI Infra Optimization",
+      "titleVi": "Infrathon: agent chạy 24 giờ liên tục vẫn tiếp tục cải thiện hạ tầng AI, thứ hạng mô hình đổi theo thời lượng đánh giá",
+      "summary": "Infrathon là benchmark gồm các tác vụ tối ưu hạ tầng AI dài hơi. Nhóm tác giả chạy sáu mô hình qua 150 lượt, mỗi lượt 24 giờ, và thấy thứ hạng thay đổi theo độ dài đánh giá. Bài này tóm lược từ abstract.",
+      "keyPoints": [
+        "Câu hỏi: agent tiên tiến có thể liên tục cải thiện hạ tầng AI thực tế trong thời gian dài hay không.",
+        "Thiết kế: sáu mô hình, 150 lượt chạy, ngân sách 24 giờ mỗi lượt, tổng hơn 10.000 GPU-giờ.",
+        "Thứ hạng mô hình thay đổi theo độ dài đánh giá; 135 trong 150 lượt vẫn cải thiện thêm ở nửa sau ngân sách.",
+        "Claude Opus 5.5 nâng tỉ lệ nén KV-cache trung bình từ 6,82% (codec Quant-VideoGen do con người thiết kế) lên 19,86%.",
+        "Rào cản được nêu: vi phạm yêu cầu tác vụ, kiểm thử thiếu tin cậy, kết thúc sớm."
+      ],
+      "body": [
+        "Infrathon là benchmark gồm các tác vụ tối ưu hạ tầng AI đa dạng, ở nhiều cấp độ, kéo dài theo thời gian. Mục tiêu theo abstract là xem agent tiên tiến có thể liên tục cải thiện hạ tầng AI thực tế trong thời gian dài không.",
+        "Nhóm đánh giá sáu mô hình qua 150 lượt chạy, mỗi lượt có ngân sách 24 giờ, tổng cộng hơn 10.000 GPU-giờ. Kết quả: thứ hạng mô hình thay đổi theo độ dài đánh giá, và 135 trên 150 lượt vẫn đạt thêm cải thiện ở nửa sau của ngân sách. Từ đó nhóm kết luận các đánh giá ngắn có thể bỏ sót cả phần cải thiện lẫn thay đổi về hiệu năng tương đối.",
+        "Agent cũng tìm được lời giải vượt baseline do con người thiết kế. Ví dụ theo abstract, Claude Opus 5.5 nâng tỉ lệ nén KV-cache trung bình từ 6,82% (với codec Quant-VideoGen do con người thiết kế) lên 19,86%.",
+        "Phân tích quỹ đạo agent chỉ ra ba rào cản đối với việc cải thiện bền vững: vi phạm yêu cầu tác vụ, kiểm thử không đáng tin và kết thúc sớm. Khung Infrathon được giới thiệu như tài nguyên để dựng tác vụ dài hơi, đánh giá agent tiên tiến và tìm giải pháp hạ tầng tốt.",
+        "> Các số liệu trên do nhóm tác giả tự công bố. Bài này chỉ tóm lược từ abstract, chưa đọc toàn văn."
+      ],
+      "glossary": [
+        {
+          "term": "Long-horizon",
+          "explain": "Tác vụ cần nhiều bước, kéo dài thời gian dài."
+        },
+        {
+          "term": "KV-cache",
+          "explain": "Bộ nhớ đệm khóa/giá trị của cơ chế attention, tốn nhiều bộ nhớ khi suy luận mô hình ngôn ngữ hoặc sinh video."
+        },
+        {
+          "term": "Tỉ lệ nén",
+          "explain": "Mức giảm dung lượng dữ liệu sau khi nén; ở đây theo cách tính của abstract."
+        }
+      ]
+    },
+    {
+      "id": "mmdm-benchmark-ra-quyet-dinh-da-nhiem",
+      "group": "research",
+      "source": "Hugging Face Papers",
+      "url": "https://arxiv.org/abs/2611.14309",
+      "discussionUrl": "https://huggingface.co/papers/2611.14309",
+      "pdfUrl": "https://arxiv.org/pdf/2611.14309",
+      "points": 25,
+      "comments": 2,
+      "publishedAt": "2026-11-09T19:00:00Z",
+      "readMinutes": 3,
+      "tags": [
+        "benchmark",
+        "ra quyết định",
+        "System-1",
+        "đánh giá"
+      ],
+      "titleEn": "MMDM: Measuring Massive Multitask Decision Making",
+      "titleVi": "MMDM: benchmark 5.448 câu đo khả năng ra quyết định của mô hình, nhiều mô hình yếu ở chọn nhiều đáp án",
+      "summary": "MMDM là benchmark gồm 5.448 câu hỏi, 16 nhóm tác vụ, đo các System-1 Decision Model đưa ra quyết định trong một lần forward pass. Đánh giá 28 mô hình cho thấy nhiều mô hình giỏi kiến thức phổ thông nhưng yếu khi lựa chọn có ràng buộc hay chọn nhiều đáp án. Bài này tóm lược từ abstract.",
+      "keyPoints": [
+        "System-1 Decision Model đưa ra quyết định có cấu trúc, dạng xác suất, trong một lần forward pass, không sinh chuỗi suy luận.",
+        "MMDM gồm 5.448 câu, 16 nhóm tác vụ, dạng chọn một, chọn nhiều và nhãn mềm.",
+        "Không gian lựa chọn từ 2 đến 1.024; đầu vào dài tới 64.817 token.",
+        "Đánh giá 28 mô hình: Perplexity Decider-V1.2 đạt 78,75% (Hard Single-select, kiến thức thế giới) nhưng chỉ 53,95% ở logic lựa chọn và 47,95% ở lập kế hoạch ràng buộc.",
+        "Độ chính xác Hard Multi-select cao nhất trong mọi mô hình là 36,81%."
+      ],
+      "body": [
+        "Abstract mở đầu bằng định nghĩa: System-1 Decision Model đưa ra quyết định có cấu trúc, dạng xác suất, trên các lựa chọn do truy vấn chỉ định, chỉ trong một lần forward pass, không sinh chuỗi suy luận hay phản hồi dạng văn bản.",
+        "Theo nhóm tác giả, các đánh giá hiện có thường dựa vào benchmark sẵn, nơi mô hình có thể đã gặp tài liệu kiểm tra. Ngoài ra, quyết định thực tế hay có ngữ cảnh dài, không gian lựa chọn lớn và phụ thuộc logic phức tạp, những điểm các benchmark cũ chưa bao quát đồng thời.",
+        "MMDM gồm 5.448 câu hỏi chất lượng cao trong 16 nhóm tác vụ, kết hợp tác vụ mới dựng với các bản tái cấu trúc và viết lại có dẫn nguồn, cho ba dạng quyết định: chọn một, chọn nhiều và nhãn mềm, trong ngữ cảnh mới. Các kịch bản gồm theo dõi trạng thái agent, chọn công cụ và kỹ năng, đánh giá ưu tiên và chấm theo rubric. Không gian lựa chọn từ 2 đến 1.024, đầu vào tới 64.817 token.",
+        "Đánh giá 28 mô hình cho thấy nhiều mô hình làm tốt phần kiến thức phổ thông nhưng yếu ở các lựa chọn phụ thuộc lẫn nhau, quyết định có ràng buộc và tác vụ chọn nhiều. Ví dụ, Perplexity Decider-V1.2 đạt 78,75% độ chính xác Hard Single-select ở kiến thức thế giới, nhưng chỉ 53,95% ở logic lựa chọn và 47,95% ở lập kế hoạch ràng buộc. Độ chính xác Hard Multi-select tốt nhất qua mọi mô hình là 36,81%. Nhóm cho rằng suy luận kết hợp, chọn có ràng buộc và khôi phục đủ đáp án trong tác vụ chọn nhiều là các ưu tiên của hướng này.",
+        "> Các số liệu trên do nhóm tác giả tự công bố. Bài này chỉ tóm lược từ abstract, chưa đọc toàn văn."
+      ],
+      "glossary": [
+        {
+          "term": "System-1 Decision Model",
+          "explain": "Mô hình ra quyết định trực tiếp trong một lần forward pass, không sinh chuỗi suy luận."
+        },
+        {
+          "term": "Multi-select",
+          "explain": "Dạng câu hỏi chọn nhiều đáp án đúng cùng lúc."
+        },
+        {
+          "term": "Soft-label",
+          "explain": "Nhãn dạng phân phối xác suất thay vì một đáp án cứng."
+        }
+      ]
+    },
+    {
+      "id": "deletion-tuning-xoa-trong-so-thay-fine-tune",
+      "group": "research",
+      "source": "Hugging Face Papers",
+      "url": "https://arxiv.org/abs/2611.10866",
+      "discussionUrl": "https://huggingface.co/papers/2611.10866",
+      "pdfUrl": "https://arxiv.org/pdf/2611.10866",
+      "points": 13,
+      "comments": 2,
+      "publishedAt": "2026-11-06T19:00:00Z",
+      "readMinutes": 3,
+      "tags": [
+        "post-training",
+        "fine-tuning",
+        "RLVR",
+        "continual learning"
+      ],
+      "titleEn": "The Surprising Effectiveness of Deleting Weights in LLM Post-Training",
+      "titleVi": "Deletion Tuning: chỉ xoá về 0 chưa tới 0,05% trọng số mà ngang fine-tune toàn bộ, lại ít quên hơn",
+      "summary": "Nhóm tác giả báo cáo rằng đưa về 0 chưa tới 0,05% trọng số của LLM đã tiền huấn luyện, không chỉnh gì khác, cho kết quả ngang fine-tune toàn bộ ở ba kiểu post-training. Phương pháp tên Deletion Tuning học một mặt nạ nhị phân. Bài này tóm lược từ abstract.",
+      "keyPoints": [
+        "Xoá về 0 dưới 0,05% trọng số ngang fine-tune toàn bộ (FFT) ở quy mô lớn, trên RL với phần thưởng kiểm chứng được, SFT và on-policy distillation.",
+        "Deletion Tuning học một mặt nạ nhị phân trên gate projection của các khối transformer.",
+        "Mặt nạ nhỏ hơn checkpoint FFT hàng trăm đến hàng nghìn lần.",
+        "Quên ít hơn: dưới RL, độ chính xác tác vụ cũ gần mức mô hình gốc, trong khi FFT, LoRA và fine-tune thưa ngẫu nhiên mất tới 5,4 điểm.",
+        "Phân tích hình học cho thấy thay đổi của Deletion Tuning gần với FFT nhất so với LoRA và fine-tune thưa ngẫu nhiên."
+      ],
+      "body": [
+        "Câu hỏi của bài: một LLM đã tiền huấn luyện phải thay đổi ít đến mức nào để có khả năng mới? Theo abstract, chỉ cần đưa về 0 chưa tới 0,05% trọng số, không sửa gì khác, là đã ngang fine-tune toàn bộ (FFT) ở quy mô lớn, trên ba chế độ post-training: học tăng cường với phần thưởng kiểm chứng được, SFT và on-policy distillation.",
+        "Phương pháp được gọi là Deletion Tuning. Nó học một mặt nạ nhị phân trên gate projection của các khối transformer. Hai lợi thế thực tế: mặt nạ đã huấn luyện nhỏ hơn checkpoint FFT tương ứng hàng trăm đến hàng nghìn lần, và mô hình quên ít hơn nhiều, một thách thức trung tâm của continual learning.",
+        "Dưới RL, độ chính xác trên tác vụ trước đó của Deletion Tuning giữ gần mức mô hình gốc, còn FFT, LoRA và fine-tune thưa ngẫu nhiên mất tới 5,4 điểm.",
+        "Để hiểu vì sao chỉ cần mặt nạ, nhóm phân tích hình học của các thay đổi trọng số dưới RL bằng stable rank, độ trôi phổ và độ chồng lấn trọng số chính. Theo cả ba thước đo, Deletion Tuning gần FFT hơn LoRA và fine-tune thưa ngẫu nhiên.",
+        "> Các số liệu trên do nhóm tác giả tự công bố. Bài này chỉ tóm lược từ abstract, chưa đọc toàn văn."
+      ],
+      "glossary": [
+        {
+          "term": "Post-training",
+          "explain": "Giai đoạn huấn luyện thêm sau tiền huấn luyện, như SFT hay học tăng cường."
+        },
+        {
+          "term": "RLVR",
+          "explain": "Học tăng cường với phần thưởng kiểm chứng được, ví dụ đáp án toán đúng hay sai."
+        },
+        {
+          "term": "LoRA",
+          "explain": "Kỹ thuật fine-tune chỉ học thêm các ma trận hạng thấp nhỏ."
+        },
+        {
+          "term": "Catastrophic forgetting",
+          "explain": "Hiện tượng mô hình quên tác vụ cũ khi học tác vụ mới."
+        }
+      ]
+    },
+    {
+      "id": "dense-reward-grpo-so-sanh-cung-ngan-sach",
+      "group": "research",
+      "source": "Hugging Face Papers",
+      "url": "https://arxiv.org/abs/2611.13560",
+      "discussionUrl": "https://huggingface.co/papers/2611.13560",
+      "pdfUrl": "https://arxiv.org/pdf/2611.13560",
+      "points": 3,
+      "comments": 5,
+      "publishedAt": "2026-11-09T19:00:00Z",
+      "readMinutes": 3,
+      "tags": [
+        "GRPO",
+        "RLVR",
+        "phần thưởng dày",
+        "đánh giá"
+      ],
+      "titleEn": "Are Dense Rewards Worth Their Tokens in GRPO?",
+      "titleVi": "Phần thưởng dày có đáng tốn token trong GRPO? Khi so cùng ngân sách tính toán, thứ hạng đảo ngược",
+      "summary": "Nhóm tác giả đề xuất giao thức so sánh cùng ngân sách tính toán (token sinh ra và giờ GPU) cho các cải tiến huấn luyện. Qua 1.668 lượt chạy trên sáu mô hình, phần thưởng dày kiểu Monte-Carlo đứng sau GRPO chuẩn khi so cùng ngân sách. Bài này tóm lược từ abstract.",
+      "keyPoints": [
+        "GRPO cho mọi token của lời giải cùng một mức điểm; phần thưởng dày (như Monte-Carlo) chấm từng bước, nhưng các lần sinh tiếp chiếm 91% token sinh ra trong thiết lập của nhóm.",
+        "Giao thức matched-compute: mọi can thiệp có cùng ngân sách token và giờ GPU, kiểm thử có đăng ký trước.",
+        "Trên Qwen2.5-1.5B, phần thưởng Monte-Carlo dẫn mỗi lần cập nhật nhưng thấp hơn 14,3 điểm khi cùng token và 7,8 điểm khi cùng thời gian huấn luyện.",
+        "Không biến thể phần thưởng dày nào trong bốn biến thể vượt GRPO.",
+        "Huấn luyện trên prompt có xác suất thành công dự đoán gần 1/2 tăng độ chính xác 1,7 điểm (Qwen3-0.6B) và 0,8 điểm (Qwen2.5-1.5B)."
+      ],
+      "body": [
+        "RLVR dạy mô hình suy luận bằng cách thưởng đáp án cuối đúng. GRPO, thuật toán phổ biến, chia cùng một mức điểm cho mọi token của lời giải. Vì vậy có đề xuất phần thưởng quá trình dày để ghi nhận từng bước trung gian, ví dụ phần thưởng Monte-Carlo chấm mỗi bước bằng cách lấy mẫu các lần sinh tiếp từ nó.",
+        "Theo nhóm tác giả, so với GRPO theo từng lần cập nhật, hoặc kiểm bằng gradient trên một batch, sẽ bỏ sót chi phí: trong thiết lập của họ, các lần sinh tiếp chiếm 91% tổng token sinh ra. Họ đưa ra giao thức matched-compute, cho mọi can thiệp cùng ngân sách đo bằng token sinh và giờ GPU huấn luyện, kiểm thử trong các nghiên cứu đăng ký trước, có đối chứng cho tác dụng phụ.",
+        "Qua 1.668 lượt chạy trên sáu mô hình, so cùng ngân sách đảo ngược thứ hạng. Trên Qwen2.5-1.5B, phần thưởng Monte-Carlo dẫn GRPO chuẩn mỗi lần cập nhật nhưng kết thúc thấp hơn 14,3 điểm phần trăm khi cùng token và 7,8 điểm khi cùng thời gian huấn luyện. Không biến thể nào trong bốn biến thể phần thưởng dày vượt GRPO, kể cả khi có thêm thời gian huấn luyện. Phép thử gradient theo từng token xếp thứ tự các phần thưởng giống kết quả huấn luyện nhưng đánh giá cao mỗi cái thêm một đến hai điểm, ngang với mức cải thiện nó muốn phát hiện.",
+        "Ngược lại, huấn luyện trên các prompt có xác suất thành công dự đoán gần 1/2 cải thiện độ chính xác ở cùng ngân sách: 1,7 điểm trên Qwen3-0.6B và 0,8 điểm trên Qwen2.5-1.5B. Kết quả lặp lại trên seed mới và bài toán chưa thấy. Cả hai mức tăng đến sớm trong huấn luyện, và GRPO chuẩn với learning rate khởi đầu gấp đôi đạt trong vòng nửa điểm so với chúng. Nhóm lập luận rằng can thiệp huấn luyện nên được kiểm chứng ở cùng ngân sách tính toán.",
+        "> Các số liệu trên do nhóm tác giả tự công bố. Bài này chỉ tóm lược từ abstract, chưa đọc toàn văn."
+      ],
+      "glossary": [
+        {
+          "term": "GRPO",
+          "explain": "Group-relative policy optimization, thuật toán học tăng cường so sánh các lời giải trong một nhóm; mọi token của một lời giải nhận cùng mức điểm."
+        },
+        {
+          "term": "Phần thưởng dày (dense reward)",
+          "explain": "Phần thưởng chấm từng bước trung gian thay vì chỉ đáp án cuối."
+        },
+        {
+          "term": "Matched compute",
+          "explain": "So sánh các phương pháp ở cùng ngân sách tính toán, ở đây đo bằng token sinh và giờ GPU."
+        }
+      ]
+    },
+    {
+      "id": "bo-nho-robot-vla-phantom-progress",
+      "group": "research",
+      "source": "Hugging Face Papers",
+      "url": "https://arxiv.org/abs/2611.14488",
+      "discussionUrl": "https://huggingface.co/papers/2611.14488",
+      "pdfUrl": "https://arxiv.org/pdf/2611.14488",
+      "points": 6,
+      "comments": 3,
+      "publishedAt": "2026-11-09T19:00:00Z",
+      "readMinutes": 3,
+      "tags": [
+        "robot",
+        "VLA",
+        "bộ nhớ",
+        "RoboMME"
+      ],
+      "titleEn": "Is Your Robot's Memory Just a Clock? Temporal Shortcuts in Memory-Augmented VLA Policies",
+      "titleVi": "Bộ nhớ của robot VLA chỉ là đồng hồ? Tạm dừng vô nghĩa khiến robot đếm sai và dừng sớm",
+      "summary": "Nhóm tác giả cho thấy các chính sách VLA có bộ nhớ, lấy mẫu khung hình theo thời gian, có thể coi quãng robot tạm dừng là công việc đã làm và dừng sớm. Họ gọi lỗi này là phantom progress. Đánh chỉ mục bộ nhớ theo sự kiện khôi phục được từ một nửa trở lên phần mất mà không cần huấn luyện lại. Bài này tóm lược từ abstract.",
+      "keyPoints": [
+        "Nhiều VLA có bộ nhớ lấy mẫu khung hình đều theo thời gian và gắn mốc thời gian cho từng khung.",
+        "Trên tác vụ đếm của RoboMME, cho robot tạm dừng hoặc động nhẹ cổ tay làm thành công giảm từ 47 xuống 16 trên 50 lượt ở một tác vụ, và từ 44 xuống 10 ở tác vụ kia.",
+        "Giữ các khung đó ra khỏi bộ nhớ thì thành công trở lại, nên nguyên nhân nằm ở bộ nhớ.",
+        "Nguyên nhân là lối tắt thời gian: demo diễn ra với nhịp đều nên thời gian trôi qua dự đoán được tiến độ.",
+        "Huấn luyện thêm với các lần tạm dừng không hết lỗi; đánh chỉ mục bộ nhớ theo sự kiện khôi phục từ một nửa trở lên phần mất mà không cần huấn luyện lại."
+      ],
+      "body": [
+        "Chính sách vision-language-action (VLA) có bộ nhớ được cho là nhớ những gì đã xảy ra. Nhưng nhiều chính sách nạp bộ nhớ theo thời gian: lấy mẫu khung hình đều trong cả lượt chạy và gắn mốc thời gian cho từng khung. Vì thời gian vẫn trôi khi không có gì xảy ra, bộ nhớ như vậy có thể không phân biệt được chờ với làm việc.",
+        "Trên các tác vụ đếm của RoboMME, nhóm cho robot tạm dừng ngắn hoặc động nhẹ cổ tay, một sự kiện rỗng không thay đổi gì mà tác vụ phụ thuộc. Một VLA có bộ nhớ đã công bố vẫn tính quãng đó là công việc đã xong và dừng sớm. Nhóm gọi là phantom progress; thành công giảm từ 47 xuống 16 trên 50 ở một tác vụ, và từ 44 xuống 10 ở tác vụ còn lại. Khi các khung đó không đưa vào bộ nhớ, thành công trở lại.",
+        "Theo nhóm, nguyên nhân là lối tắt thời gian: vì demo diễn ra đều nhịp, thời gian trôi qua dự đoán tiến độ. Chỉ đổi tỉ lệ mốc thời gian đã khiến chính sách dừng sớm khi đồng hồ chạy nhanh và lặp lại khi chạy chậm. Điều đáng ngạc nhiên là bỏ mã hóa thời gian cũng không chữa được, vì các khung của sự kiện rỗng vẫn chiếm chỗ trong bộ nhớ lấy mẫu theo thời gian. Qua các thiết kế đã công bố của RoboMME, mức dễ tổn thương phụ thuộc vào cách bộ nhớ được đánh chỉ mục.",
+        "Trong các cách sửa mà chẩn đoán gợi ra, huấn luyện với các lần tạm dừng chèn thêm không loại được lỗi và còn làm giảm khả năng đếm, còn đánh chỉ mục bộ nhớ theo sự kiện khôi phục từ một nửa trở lên phần mất mà không cần huấn luyện lại. Kết luận của bài: bộ nhớ nên đếm sự kiện chứ không đếm nhịp đồng hồ.",
+        "> Các số liệu trên do nhóm tác giả tự công bố. Bài này chỉ tóm lược từ abstract, chưa đọc toàn văn."
+      ],
+      "glossary": [
+        {
+          "term": "VLA",
+          "explain": "Vision-language-action, mô hình nhận hình ảnh và chỉ dẫn ngôn ngữ rồi xuất hành động điều khiển robot."
+        },
+        {
+          "term": "Phantom progress",
+          "explain": "Tên nhóm đặt cho lỗi robot coi quãng nghỉ hoặc động tác vô nghĩa là tiến độ công việc."
+        },
+        {
+          "term": "RoboMME",
+          "explain": "Bộ benchmark đánh giá bộ nhớ của chính sách robot, được abstract nhắc tới."
+        }
+      ]
+    }
+  ]
+}
