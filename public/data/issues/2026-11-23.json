@@ -1,0 +1,1213 @@
+{
+  "date": "2026-11-23",
+  "title": "OpenAI đề xuất dùng perplexity làm thước đo chung để đặt giới hạn phát triển AI",
+  "intro": "OpenAI công bố số perplexity của các mô hình và đề nghị các hãng cùng dùng nó để đặt giới hạn phát triển. Dragos gài prompt “mồi” và thấy ít nhất ba nhà cung cấp inference bị xâm nhập. Ngoài ra có ước tính nguồn điện của Anthropic, tranh luận về ý thức AI và việc ngân hàng Mỹ siết quy định với AI agent.",
+  "articles": [
+    {
+      "id": "openai-perplexity-thuoc-do-chung-gioi-han-phat-trien-ai",
+      "group": "lab",
+      "source": "OpenAI",
+      "url": "https://openai.com/index/perplexity-and-intelligence",
+      "discussionUrl": "https://news.ycombinator.com/item?id=50601525",
+      "points": 427,
+      "comments": 292,
+      "publishedAt": "2026-11-22T00:00:00Z",
+      "hot": true,
+      "readMinutes": 4,
+      "tags": [
+        "OpenAI",
+        "perplexity",
+        "an toàn AI",
+        "pretraining"
+      ],
+      "titleEn": "Perplexity and Intelligence",
+      "titleVi": "OpenAI công bố số liệu perplexity của các mô hình và đề xuất lấy nó làm thước đo chung để đặt giới hạn phát triển AI",
+      "summary": "Một bài viết trên blog OpenAI đề xuất dùng perplexity (độ đo mô hình dự đoán token kế tiếp tốt đến đâu) làm chuẩn so sánh giữa các hãng và làm cơ sở cho “giới hạn chung” trong phát triển AI. OpenAI công bố số perplexity nội bộ của các mô hình từ GPT-3.5 trở đi.",
+      "keyPoints": [
+        "Tác giả cho rằng tiến bộ AI có thể theo dõi qua một chỉ số duy nhất: perplexity (hay cross-entropy loss) trên một tập dữ liệu giữ riêng.",
+        "OpenAI nêu mốc log-perplexity: GPT-3.5 khoảng 0,99, GPT-4 khoảng 0,91; khi xuống dưới 0,8 thì xuất hiện năng lực đáng kể về an ninh mạng và toán.",
+        "Mô hình có log-perplexity khoảng 0,76 bắt đầu cho ra kết quả toán học đột phá; vùng 0,68 đến 0,7 là mốc tiếp theo cần theo dõi.",
+        "Tác giả đề xuất các hãng cùng đặt giới hạn dựa trên perplexity và không vượt qua cho đến khi khả năng hiểu và giám sát hành vi AI đạt một cột mốc cụ thể.",
+        "Bài tự nêu hạn chế: khó so sánh giữa các hãng, perplexity không gắn trực tiếp với tác vụ cụ thể, và chain-of-thought không làm giảm perplexity dù tăng mạnh năng lực."
+      ],
+      "body": [
+        "Bài viết nhìn AI hiện đại như một quy trình đơn giản hơn vẻ ngoài. Trước hết dựng một máy tính lớn, dùng nó để pretrain một mô hình (một “bộ nén” hay bộ dự đoán) trên lượng dữ liệu rất lớn. Sau đó dùng prompting, fine-tune hay học tăng cường để khơi ra các năng lực tiềm ẩn của mô hình.",
+        "Theo tác giả, thước đo cho phần “nền tảng trí tuệ” này gần như không đổi qua nhiều năm: perplexity trên một tập dữ liệu giữ riêng. Perplexity đo mô hình dự đoán token kế tiếp tốt đến đâu, càng thấp càng tốt.",
+        "## Các mốc OpenAI nêu",
+        "- GPT-2: có thể viết đoạn văn mạch lạc một cách ổn định.",
+        "- GPT-3: học được ngay trong ngữ cảnh từ vài ví dụ.",
+        "- GPT-3.5 (log-perplexity khoảng 0,99 trên tập đánh giá chính hiện nay của OpenAI): hội thoại trôi chảy, nền tảng của ChatGPT ban đầu.",
+        "- GPT-4 (khoảng 0,91): dùng chain-of-thought hiệu quả, từ đó dẫn tới các mô hình suy luận.",
+        "- Dưới 0,8: xuất hiện năng lực “mang tính chuyển đổi” ở an ninh mạng và toán học.",
+        "Tác giả nhấn mạnh rằng không ai biết trước các năng lực này sẽ xuất hiện đúng ở những ngưỡng perplexity đó. Ông gọi chúng là năng lực tiềm ẩn nảy sinh từ tiến bộ trên một chỉ số.",
+        "## Toán học và nghiên cứu pretraining",
+        "Hơn một năm qua, OpenAI đưa các bài toán mở trong toán học cho mô hình của mình. Khi nâng lên mô hình có log-perplexity khoảng 0,76, mô hình bắt đầu cho ra các kết quả mà tác giả gọi là đột phá. Ông kể rằng việc nhiều câu hỏi lâu nay chưa giải được lần lượt có lời giải trong một luồng Slack “thật siêu thực”.",
+        "Từ đó tác giả ngoại suy: sớm nhất là năm 2027, có thể có một “trận lở tuyết” các tiến bộ nền tảng về pretraining nếu AI tham gia nghiên cứu thuật toán ở khâu này. Ông cho rằng tiến bộ về alignment và giám sát nhiều khả năng không nhanh bằng, và đã thấy các hình thức kiểm tra alignment hiện nay suy giảm hiệu quả.",
+        "## Đề xuất",
+        "Các hãng phát triển nên cùng xây chuẩn về cách đánh giá mô hình, red-team “hồ sơ an toàn” trước khi dùng, và minh bạch. Đi xa hơn, tác giả đề xuất một tiêu chuẩn ngành đặt giới hạn đầu tiên theo một chỉ số theo dõi được giữa các hãng, kèm điều kiện cụ thể phải đạt trước khi vượt giới hạn (ví dụ có công cụ kế nhiệm các bộ giám sát chain-of-thought). OpenAI nói việc công bố số perplexity nội bộ làm đối thủ thấy rõ vị trí của mình, nhưng mối lo về an toàn chung được xem là quan trọng hơn.",
+        "## Hạn chế do tác giả nêu",
+        "- Mỗi hãng dùng tập đánh giá và hỗn hợp dữ liệu khác nhau nên khó so sánh trực tiếp.",
+        "- Perplexity không tương ứng trực tiếp với một tác vụ nào; giá trị của nó nằm ở việc dự báo năng lực mới.",
+        "- Không tính tiến bộ ngoài pretraining: chain-of-thought tăng năng lực mạnh mà không làm giảm perplexity.",
+        "- Chưa biết “sàn” của perplexity, tức độ ngẫu nhiên vốn có của dữ liệu.",
+        "> Các số liệu perplexity và mô tả năng lực trong bài do OpenAI tự công bố, chưa có bên thứ ba kiểm chứng.",
+        "TechCrunch cho biết bài do trưởng nhà khoa học của OpenAI, Jakub Pachocki, viết, và CEO Sam Altman gọi đây là “the most important thing OpenAI has published in a while”. TechCrunch đặt bài trong bối cảnh CEO Anthropic Dario Amodei đã đưa ra kế hoạch “pace the frontier” kêu gọi các công ty thống nhất “common safety standards as well as limits on the rate of unchecked AI progress”."
+      ],
+      "glossary": [
+        {
+          "term": "Perplexity",
+          "explain": "Độ đo cho biết mô hình ngôn ngữ dự đoán token kế tiếp tốt đến đâu trên một tập dữ liệu. Càng thấp thì dự đoán càng tốt."
+        },
+        {
+          "term": "Cross-entropy loss",
+          "explain": "Hàm mất mát dùng khi huấn luyện mô hình dự đoán token; perplexity là dạng lũy thừa của nó, nên hai thứ tương đương về ý nghĩa."
+        },
+        {
+          "term": "Pretraining",
+          "explain": "Giai đoạn huấn luyện đầu tiên trên lượng dữ liệu rất lớn để mô hình học dự đoán văn bản, trước khi tinh chỉnh cho việc cụ thể."
+        },
+        {
+          "term": "Chain-of-thought",
+          "explain": "Cách để mô hình viết các bước suy luận trung gian trước khi đưa ra đáp án."
+        }
+      ]
+    },
+    {
+      "id": "dragos-canary-prompt-ba-nha-cung-cap-inference-bi-xam-nhap",
+      "group": "lab",
+      "source": "Dragos",
+      "url": "https://www.dragos.com/blog/ai-supply-chain-security-canary-tokens",
+      "discussionUrl": "https://news.ycombinator.com/item?id=50596511",
+      "points": 97,
+      "comments": 22,
+      "publishedAt": "2026-11-22T05:11:43Z",
+      "hot": true,
+      "readMinutes": 6,
+      "tags": [
+        "bảo mật",
+        "inference",
+        "prompt",
+        "OpenRouter",
+        "canary token"
+      ],
+      "titleEn": "Three breaches, endless leaks: Your AI supply chain needs canaries",
+      "titleVi": "Dragos gài khoảng hai triệu prompt “mồi” và thấy ít nhất ba nhà cung cấp inference bị xâm nhập; OpenRouter gỡ ba nhà cung cấp",
+      "summary": "Nhóm nghiên cứu của Dragos gửi gần hai triệu prompt chứa thông tin đăng nhập giả có thể theo dõi tới các dịch vụ AI và quan sát chúng bị dùng ở đâu. Họ thấy dấu hiệu xâm nhập ở ít nhất ba nhà cung cấp, người bán trên chợ inference đọc được prompt của khách, và nhiều nhà cung cấp bỏ qua cài đặt quyền riêng tư. OpenRouter cho biết đã gỡ ba nhà cung cấp và 125 endpoint khỏi diện Zero Data Retention.",
+      "keyPoints": [
+        "Từ tháng 7 đến tháng 11/2026, Dragos gửi khoảng hai triệu prompt mang URL và khóa AWS “canary” (không bao giờ có người dùng hợp lệ), rồi theo dõi chỗ nào bị truy cập.",
+        "Ít nhất ba nhà cung cấp hosting bị kẻ tấn công lấy cắp dữ liệu; theo Dragos, cả ba không biết mình bị xâm nhập cho đến khi được báo.",
+        "Một số người bán trên chợ inference chỉ cần niêm yết mô hình giá rẻ, bật ghi log và chờ là đọc được prompt của khách, không cần khai thác lỗ hổng.",
+        "Nhiều bên bỏ qua cờ quyền riêng tư: URL bí mật bị truy cập dù prompt đã đánh dấu không thu thập dữ liệu hoặc Zero Data Retention.",
+        "OpenRouter nói không bị xâm nhập, nhưng đã gỡ ba nhà cung cấp, loại 125 endpoint khỏi diện ZDR và thông báo cho khách bị ảnh hưởng."
+      ],
+      "body": [
+        "Dragos (công ty an ninh mạng công nghiệp) muốn biết dữ liệu suy luận đi đâu sau khi rời môi trường của khách hàng. Nhóm do HD Moore, giám đốc nghiên cứu, dẫn đầu, tạo hàng triệu “canary”: URL và thông tin đăng nhập chỉ tồn tại trong một prompt duy nhất. Nếu có ai dùng chúng, nghĩa là ai đó trong chuỗi cung ứng AI đã thấy prompt gốc.",
+        "## Ba nhà cung cấp bị xâm nhập",
+        "Phát hiện nghiêm trọng nhất: kẻ tấn công đang lấy cắp dữ liệu ở ba nhà cung cấp hosting. Sự cố sớm nhất vào giữa tháng 7. Vụ lớn nhất liên quan hàng trăm khóa AWS bị gửi, mỗi khóa trong đúng một yêu cầu tới một nhà cung cấp, trong vài khoảng thời gian cuối tháng 10; mọi yêu cầu gửi trong các khoảng đó đều bị lấy. Một số khóa bị lấy từ cả yêu cầu bị từ chối trước khi mô hình chạy, nên Dragos cho rằng kẻ tấn công sao chép ngay ở “cửa trước” của nhà cung cấp. Ở hai vụ còn lại, có cả yêu cầu đã đánh dấu Zero Data Retention (ZDR) bị lấy: cờ riêng tư không giúp gì khi kẻ tấn công đã ở bên trong.",
+        "Sau khi có khóa, kẻ tấn công kiểm tra khóa còn sống không (có khi chỉ vài giờ sau), liệt kê S3, tìm trong Secrets Manager và Parameter Store, thử bật mô hình trên AWS Bedrock, tạo khóa API Bedrock và thêm người dùng IAM của riêng mình. Tổng cộng các khóa mồi bị dùng cho hàng chục nghìn lệnh gọi API AWS. Dragos cho rằng một kẻ tấn công dường như xâm nhập hai nhà cung cấp cùng lúc. Ngày 1/11, kẻ đó thêm ARTEX, một khung pentest chạy bằng LLM; Dragos nói công cụ này chỉ thực hiện vài lệnh xác nhận khóa còn dùng được và nêu hai user agent (artex-agent, artex-judge-r121) để người phòng thủ đưa vào phát hiện.",
+        "## Người bán trên chợ inference đọc prompt",
+        "Các router AI cho một điểm gọi API duy nhất rồi chuyển yêu cầu tới nhiều mô hình và nhà cung cấp. Mỗi chặng đều thấy toàn bộ prompt và câu trả lời. Ở các chợ mở, người bán giá thấp nhất nhận yêu cầu. Dragos thấy người bán chỉ cần bật log, rồi sau đó thử đăng nhập vào máy chủ canary: ví dụ, một người dùng băng thông rộng gia đình mở hai URL bí mật sau khoảng một ngày rưỡi và đoán tên đăng nhập, còn một người ở Pháp tự tay thử mật khẩu lấy từ prompt để đăng nhập SSH root. Prompt đi qua một người bán khác thì không bị chạm. Dragos kết luận rò rỉ gắn với người bán chứ không phải cả chợ.",
+        "## Cờ riêng tư và chính sách bị bỏ qua",
+        "Dragos thấy URL bí mật bị cào nhiều lần, thậm chí kho git được tham chiếu bị thử clone, bởi những công ty lẽ ra không được thấy prompt. Ví dụ rõ nhất là một phòng thí nghiệm AI Trung Quốc: hệ thống của họ truy cập URL từ hơn nửa số prompt gửi tới mô hình của họ từ tháng 7 đến tháng 10, gồm khoảng hai phần ba yêu cầu đã đánh dấu không thu thập dữ liệu hoặc ZDR. Prompt gửi qua các nhà cung cấp Mỹ bán lại mô hình này cũng kích hoạt đúng bộ cào đó. Một nhà cung cấp lớn của Mỹ tiếp tục cào một URL hơn hai tháng sau một lần gọi duy nhất. Có một trường hợp liên kết bí mật xuất hiện trong kênh chat Feishu 24 ngày sau khi prompt được gửi tới một nhà cung cấp Trung Quốc, rồi được mở từ sáu thiết bị ở Bắc Kinh và Thượng Hải.",
+        "## OpenRouter phản hồi",
+        "OpenRouter, một router được nhắc trong nghiên cứu, đăng bài nói các phát hiện không cho thấy OpenRouter bị xâm nhập hay truy cập trái phép. Họ nêu các hành động: gỡ ba nhà cung cấp; loại 125 endpoint khỏi diện đủ điều kiện ZDR (gồm các nhà cung cấp bị nhóm nghiên cứu nêu và một số endpoint loại thêm để phòng ngừa); thông báo cho mọi khách có thể bị ảnh hưởng. Họ đang chỉnh phương pháp kiểm tra của nhà nghiên cứu để chạy liên tục, xác minh đường mạng nơi yêu cầu có thể bị chuyển cho bên thứ ba, và đòi bảo đảm trước khi khôi phục tư cách ZDR. Danh sách thông báo từ phía nhà cung cấp gồm Atlas Cloud, Novita, Phala và Together (Together nêu sự cố lộ prompt với các yêu cầu trong tháng 6 và 7/2026); OpenRouter nói không phải nhà cung cấp nào cũng đã đăng công khai.",
+        "## Khuyến nghị của Dragos",
+        "- Tự host nếu đủ khả năng, vì đó là cách duy nhất không ai khác đọc được prompt.",
+        "- Gọi thẳng nhà cung cấp hạng nhất để chỉ có một hợp đồng và một chính sách phải đọc.",
+        "- Dùng router một cách thận trọng: tự chọn nhà cung cấp phía sau, kiểm chứng cài đặt riêng tư, tránh các chợ bán lại.",
+        "- Tự gài canary trong ngữ cảnh mà agent và pipeline vẫn gửi đi, và coi mọi lần dùng chúng là sự cố.",
+        "- Bật lọc bí mật nếu nhà cung cấp có, dù không phải thuốc chữa bách bệnh.",
+        "> Bài là blog của Dragos, kèm lời mời dùng thử sản phẩm runZero ở cuối. Các phát hiện là của chính nhóm nghiên cứu, Dragos không nêu tên ba nhà cung cấp bị xâm nhập. OpenRouter nói họ đã làm việc với nhà nghiên cứu và nhà cung cấp, nhưng các số liệu về số vụ và tác động chưa có kiểm chứng độc lập."
+      ],
+      "glossary": [
+        {
+          "term": "Canary token",
+          "explain": "Một thông tin giả (URL, khóa, tên miền) chỉ đặt ở một nơi. Nếu có ai dùng nó, biết ngay nơi đó đã bị lộ."
+        },
+        {
+          "term": "Inference",
+          "explain": "Việc chạy mô hình đã huấn luyện để nhận prompt và trả câu trả lời."
+        },
+        {
+          "term": "Zero Data Retention (ZDR)",
+          "explain": "Cài đặt yêu cầu nhà cung cấp không lưu prompt và câu trả lời."
+        },
+        {
+          "term": "Router AI",
+          "explain": "Dịch vụ cho một điểm gọi API duy nhất rồi chuyển yêu cầu tới nhiều mô hình hoặc nhà cung cấp, kèm thanh toán gộp."
+        }
+      ]
+    },
+    {
+      "id": "nguon-dien-anthropic-87-phan-tram-khi-dot-2028",
+      "group": "community",
+      "source": "Hacker News",
+      "url": "https://betterdatacenterproject.com/2026/11/16/how-ai-is-powered-a-breakdown-of-byop-and-grid-power/",
+      "discussionUrl": "https://news.ycombinator.com/item?id=50597612",
+      "points": 831,
+      "comments": 853,
+      "publishedAt": "2026-11-22T08:57:34Z",
+      "hot": true,
+      "readMinutes": 4,
+      "tags": [
+        "Anthropic",
+        "trung tâm dữ liệu",
+        "điện",
+        "khí đốt",
+        "khí thải"
+      ],
+      "titleEn": "87% of the Anthropic power will come from gas and 11% from coal in 2028",
+      "titleVi": "Một nhóm nghiên cứu ước tính 87% điện cho các trung tâm dữ liệu Anthropic năm 2028 đến từ khí đốt, 11% từ than",
+      "summary": "Better Data Center Project phân tích cam kết hạ tầng tính toán của Anthropic và ước tính phần lớn điện dùng cho chúng sẽ đến từ nhiên liệu hóa thạch vào năm 2028. Đây là ước tính của nhóm này, dựa trên mô hình và dữ liệu công khai, không phải số liệu do Anthropic công bố.",
+      "keyPoints": [
+        "Tính đến tháng 10/2026, Anthropic đã hợp đồng 15 GW tính toán; khoảng 5,9 đến 9,6 GW đã gắn với các địa điểm trung tâm dữ liệu cụ thể.",
+        "Nhóm ước tính năm 2028 khoảng 87% điện từ khí và 11% từ than; nhóm nói chưa tìm thấy cam kết năng lượng tái tạo trực tiếp của Anthropic ở Mỹ.",
+        "Khí thải từ điện của Anthropic năm 2028 ước tính 17 đến 38 triệu tấn CO2e, kịch bản giữa là 32 triệu tấn.",
+        "Cường độ carbon ước tính 1.033 đến 1.076 lb CO2e/MWh, cao hơn khoảng 35% so với trung bình lưới điện Mỹ (767).",
+        "Nhóm ước tính ô nhiễm không khí có thể gây thiệt hại sức khỏe 2 đến 3 tỷ USD mỗi năm."
+      ],
+      "body": [
+        "Better Data Center Project đã có báo cáo trước về xu hướng các trung tâm dữ liệu tự lo nguồn điện chính (“bring your own power”, BYOP), trong đó họ thống kê 177 GW công suất khí đốt dự kiến cho BYOP. Bài này lấy riêng Anthropic làm ví dụ về việc phát triển hạ tầng AI kéo theo nguồn điện hóa thạch mới, cả ngay tại chỗ lẫn trên lưới.",
+        "## Các phát hiện chính của nhóm",
+        "- Anthropic chưa có cam kết trực tiếp nào về năng lượng tái tạo ở Mỹ, theo nhóm; các cam kết tái tạo công khai chỉ ở Na Uy và Canada (tính đến 11/2026). Anthropic mua cam kết 1,7 GW máy phát khí hạng nặng với giá 3,4 tỷ USD.",
+        "- Điện cho các trung tâm dữ liệu Anthropic ở Mỹ gồm khí tại chỗ và các nhà máy trên lưới điện dự kiến đáp ứng phụ tải tăng thêm. Về điện trên lưới, nhóm giả định phụ tải mới do các nhà máy biên có thể điều độ (chủ yếu hóa thạch) đáp ứng, vì không có cam kết tái tạo mới.",
+        "- Khoảng 25% (2,5 GW) công suất đã hợp đồng là khí đốt tại chỗ sau công tơ; 80% trong số đó dùng tua-bin hoặc động cơ chu trình đơn, kém hiệu quả và thải nhiều ô nhiễm hơn nhà máy chu trình kết hợp.",
+        "- Với kịch bản giữa, khí thải điện của Anthropic năm 2028 vượt lượng phát điện của toàn bang California năm 2024 (31,1 triệu tấn CO2e) và vượt tổng khí thải Scope 2 năm 2025 của Meta, Microsoft và Google cộng lại (5,9; 12 và 15 triệu tấn theo thứ tự), theo so sánh của nhóm. Nhóm lưu ý Anthropic thuê chỗ ở nhiều địa điểm nên một phần có thể được tính vào Scope 2 của chủ cơ sở, và khí thải của ba hãng kia cũng sẽ tăng.",
+        "- Về ô nhiễm không khí, nhóm ước tính hơn 13.000 tấn NOx và 2.000 tấn PM2.5 mỗi năm, tương ứng thiệt hại sức khỏe 2 đến 3 tỷ USD mỗi năm theo ước tính trung bình trên mỗi tấn của EPA.",
+        "## Địa điểm cụ thể",
+        "Tháng 10/2026, Anthropic nêu “cách tiếp cận phát triển trung tâm dữ liệu có trách nhiệm”, nói họ tuân thủ quy trình cấp phép khí thải và yêu cầu các nhà máy điện dùng công nghệ kiểm soát phát thải như SCR. Nhóm chỉ ra Anthropic dùng tính toán ở Colossus 2 của SpaceX từ tháng 5/2026 (tối đa khoảng 600 MW vào cuối 2026), nơi vẫn lấy phần lớn điện từ các tua-bin tạm thời chưa có giấy phép, phần lớn chưa có SCR. Anthropic cũng hợp đồng 460 MW (và đang đàm phán tới 920 MW) tại khu Monarch của Nscale ở Mason, Tây Virginia, nơi dùng động cơ pittông phát thải formaldehyde và chất ô nhiễm nguy hại cao hơn.",
+        "## Phương pháp",
+        "Nhóm lấy dữ liệu từ tracker của Epoch AI, thông báo và hồ sơ của Anthropic và đối tác, cùng báo chí. Họ dùng công cụ AVERT của EPA để mô hình hóa nhà máy nào đáp ứng phụ tải tăng thêm, giả định PUE 1,1 đến 1,2 và mức sử dụng điện 60 đến 80% (kịch bản giữa: 1,15 và 70%, toàn bộ 9,6 GW hoạt động năm 2028). Công suất thuê từ xAI/SpaceX được nhóm suy ra từ các hồ sơ công khai và có sai số khoảng ±25%.",
+        "> Đây là ước tính của một nhóm nghiên cứu bên ngoài dựa trên mô hình và giả định đã nêu, không phải số liệu do Anthropic công bố. Luồng thảo luận trên Hacker News rất sôi nổi (hơn 850 bình luận); ý kiến trong đó là của người dùng, chưa kiểm chứng."
+      ],
+      "glossary": [
+        {
+          "term": "BYOP",
+          "explain": "“Bring your own power”: trung tâm dữ liệu tự có nguồn phát điện chính, thay vì chỉ mua từ công ty điện lực."
+        },
+        {
+          "term": "Chu trình đơn / chu trình kết hợp",
+          "explain": "Hai kiểu nhà máy khí. Chu trình kết hợp tận dụng nhiệt thải nên hiệu quả hơn, còn chu trình đơn rẻ, nhanh nhưng thải nhiều hơn trên mỗi đơn vị điện."
+        },
+        {
+          "term": "Scope 2",
+          "explain": "Khí thải gián tiếp từ điện mà một công ty mua và sử dụng."
+        },
+        {
+          "term": "SCR",
+          "explain": "Selective catalytic reduction: công nghệ xử lý khí thải để giảm NOx."
+        }
+      ]
+    },
+    {
+      "id": "wells-fargo-tu-chiu-rui-ro-khi-dung-ai-agent",
+      "group": "press",
+      "source": "Wired",
+      "url": "https://www.wired.com/story/banks-are-cracking-down-on-ai-agents/",
+      "points": 0,
+      "comments": 0,
+      "publishedAt": "2026-11-22T11:00:00Z",
+      "hot": true,
+      "readMinutes": 3,
+      "tags": [
+        "AI agent",
+        "ngân hàng",
+        "Wells Fargo",
+        "mua sắm"
+      ],
+      "titleEn": "Banks Have Had It Up to Here With Your AI Agent",
+      "titleVi": "Wells Fargo thêm điều khoản “tự chịu rủi ro” khi dùng AI agent; JPMorgan, Bank of America, Citi, PNC đã có động thái tương tự",
+      "summary": "Wells Fargo sắp áp dụng điều khoản mới nói dùng AI agent là “AT YOUR OWN RISK”. Wired ghi nhận hàng loạt ngân hàng Mỹ siết quy định với agent của bên thứ ba, trong khi vẫn đầu tư agent riêng.",
+      "keyPoints": [
+        "Wells Fargo áp dụng thỏa thuận cập nhật với hàng triệu khách hàng từ thứ Ba tới; điều khoản ghi dùng bất kỳ AI Agent nào là rủi ro của chính khách.",
+        "JPMorgan Chase cuối tháng 10 đổi điều khoản để cấm agent bên thứ ba đăng nhập bằng thông tin của khách; Bank of America cũng cảnh báo khách không chia sẻ thông tin đăng nhập với agent.",
+        "Citibank và PNC cũng sửa điều khoản để thêm cảnh báo về agent; American Express nói một số lỗi do agent, như đặt quá số lượng, có thể được hoàn tiền trong tương lai.",
+        "Trên các nền tảng khác, Amazon chặn Muse của Meta mua hàng và United thông báo chặn bot mua vé thay khách."
+      ],
+      "body": [
+        "Wired cho biết Wells Fargo sẽ áp dụng thỏa thuận cập nhật với hàng triệu khách hàng vào thứ Ba tới, trong đó có câu “Your use of any AI Agent is AT YOUR OWN RISK”. Đây là phần tiếp nối các động thái của ngân hàng khác trong những tuần qua (trước đó đã có tin Citi nói khách dùng agent tự chịu rủi ro).",
+        "Bài mô tả AI agent (công cụ tự động làm việc trực tuyến và bấm thay người dùng) vẫn còn non trẻ nhưng có nhóm người dùng sớm gắn thông tin đăng nhập và cấp quyền rộng cho chúng, đôi khi dẫn tới sai sót lộ liễu. Phần giao dịch do agent thực hiện vẫn rất nhỏ. Cuối tháng 10, JPMorgan Chase sửa điều khoản để cấm agent bên thứ ba đăng nhập bằng thông tin của khách, và cùng ngày Bank of America cảnh báo khách không đưa thông tin đăng nhập cho agent. Citibank và PNC cũng bổ sung cảnh báo.",
+        "## Ai chịu trách nhiệm khi agent mua nhầm",
+        "Giáo sư Luca Cian (Đại học Virginia) nêu ví dụ giả định agent mua nhầm 10 con gà quay. Nhà bán lẻ sẽ nói đã hoàn tất đơn hợp lệ, nhà làm AI nói họ chỉ cung cấp phần mềm và đã ghi cảnh báo, giờ ngân hàng cũng nói họ không muốn chịu trách nhiệm. Theo Wired, American Express đã thông báo một số lỗi như đặt quá số lượng có thể được hoàn tiền trong tương lai qua nhà phát hành thẻ, nếu khách không đòi lại được tiền từ nhà bán.",
+        "## Khóa cửa agent ngoài, tự xây agent trong",
+        "Các chuyên gia trong bài cho rằng ngân hàng vốn né rủi ro nên chủ động siết lại sớm, dù hầu hết sự cố liên quan agent vẫn là ngoại lệ. Giáo sư Cian nhận xét ngân hàng đang “khóa cửa với agent bên ngoài và tự xây agent của mình”: công cụ trả lời bằng AI sinh của Wells Fargo đã được dùng hơn một tỷ lần, Bank of America làm mới EricaAssist cho nhân viên, Citigroup lập nền tảng phát triển agent nội bộ. Ngoài ngân hàng, Amazon chặn Muse (một agent của Meta) mua hàng trên nền tảng, còn United nói sẽ chặn bot mua vé thay khách.",
+        "Nhà phân tích Sucharita Kodali của Forrester nói dữ liệu cho thấy đa số người dùng chưa biết agent là gì, và mua sắm bằng agent “là giải pháp đi tìm vấn đề” vì mua trên Amazon hay Walmart vốn không khó. Người dùng, theo giáo sư Cian, thoải mái để AI mua đồ nhàm chán như giấy vệ sinh nhưng ít muốn tự động hóa khoản mua lớn đòi cân nhắc."
+      ],
+      "glossary": [
+        {
+          "term": "AI agent",
+          "explain": "Chương trình dùng mô hình AI để tự thực hiện chuỗi việc (duyệt web, đặt hàng, đăng nhập...) thay cho người dùng."
+        },
+        {
+          "term": "Điều khoản dịch vụ",
+          "explain": "Thỏa thuận giữa khách và nhà cung cấp, quy định ai chịu trách nhiệm khi có sự cố."
+        }
+      ]
+    },
+    {
+      "id": "vibe-hacking-phan-cung-claude-code-tv-may-anh",
+      "group": "press",
+      "source": "The Verge",
+      "url": "https://www.theverge.com/column/1039139/vibe-coding-gadgets-tv-camera",
+      "points": 0,
+      "comments": 0,
+      "publishedAt": "2026-11-22T13:00:00Z",
+      "hot": true,
+      "readMinutes": 5,
+      "tags": [
+        "vibe coding",
+        "phần cứng",
+        "Claude Code",
+        "firmware",
+        "ESP32"
+      ],
+      "titleEn": "The vibe-coding revolution is coming to all the gadgets",
+      "titleVi": "Người dùng nhờ Claude Code, Codex “vibe hack” TV, máy ảnh, thiết bị âm nhạc; nhà sản xuất và ngành game phản ứng",
+      "summary": "Bài The Stepback của The Verge mô tả làn sóng người dùng nhờ chatbot lập trình sửa phần mềm của thiết bị phần cứng: từ TV Android, máy ảnh đến synth và máy chơi game. Cơ hội mới đi kèm rủi ro mất bảo hành, “hóa cục gạch” và phản ứng từ nhà sản xuất.",
+      "keyPoints": [
+        "Việc hack, mod thiết bị không mới; điều mới là giờ chỉ cần ra lệnh cho Claude Code hay Codex.",
+        "Nhà phát triển Gathin T ở Ấn Độ dùng Claude Code dọn quảng cáo trên TV Xiaomi chạy Android TV, rồi lập CleanYourTV, trở thành một trong các repo phổ biến trên GitHub.",
+        "Người chơi máy ảnh, nhạc cụ, game dùng LLM thêm tính năng cho thiết bị; ngành game bị dự báo sẽ đẩy DRM và giải pháp streaming mạnh hơn.",
+        "Rủi ro: mất bảo hành, hỗ trợ không giúp được, thiết bị có thể thành “cục chặn giấy”; khuyến cáo chung là sao lưu và đừng cho bot truy cập thứ không thể mất."
+      ],
+      "body": [
+        "The Verge viết rằng việc hack, mod hoặc jailbreak thiết bị đã có từ lâu. Cái thay đổi là bây giờ thao tác này dễ: chỉ cần ra lệnh cho Claude Code hay Codex, và điều đó thúc đẩy các thiết bị thân thiện với nhà phát triển cùng nhu cầu phần mềm tốt hơn cho nhiều loại thiết bị.",
+        "## TV và CleanYourTV",
+        "Gathin T, nhà phát triển ở Ấn Độ, bắt đầu từ chiếc TV Xiaomi chạy Android TV quá nhiều quảng cáo và giao diện lộn xộn. Ông thử chỉnh quyền và bật USB debugging để Claude Code điều khiển TV qua cùng mạng Wi-Fi. Khoảng một tiếng rưỡi sau, TV không còn quảng cáo và giao diện gọn hơn. Ông đăng lên X, bài lan rộng, rồi lập CleanYourTV để giúp người khác; dự án trở thành một trong các repo phổ biến trên GitHub. Ông lưu ý TV Android dễ hơn, còn hệ điều hành khác cần jailbreak hoặc root nên ông ngại chia sẻ rộng.",
+        "## Máy ảnh, âm nhạc, game",
+        "Người dùng máy ảnh dùng LLM gói lại firmware để thêm khả năng quay, độ phân giải hay hồ sơ màu. Với âm nhạc, thiết bị giá rẻ M-Vave FM-1 thành đích nhắm phổ biến cho firmware tùy chỉnh, và M-Vave đã phát hành firmware mã nguồn mở. Game thủ dùng AI để decompile và mod game; một người tìm cách chơi đĩa PlayStation 2 trên PlayStation 5. Luke Dicken, từng là trưởng bộ phận AI của Take-Two, dự đoán với Kotaku rằng ngành sẽ đi tới “more invasive DRM, platform-level solutions” và nhiều streaming hơn.",
+        "## Rủi ro",
+        "Cài firmware viết bằng vibe coding nghĩa là bạn đã ra ngoài phạm vi hỗ trợ của nhà sản xuất, có thể phải nhờ chính Claude sửa lỗi do Claude gây ra. Trích dẫn trong bài: “It’s not so much if someone’s camera will become a permanent paperweight, it’s a matter of when and how many”. Gathin đã chỉnh các prompt chia sẻ để sao lưu phần mềm TV trước và ghi lại mọi thay đổi, đồng thời khuyên đừng cho bot truy cập thứ bạn không thể mất, và dùng một máy Linux riêng làm sandbox.",
+        "## Hướng tiếp theo",
+        "Bài dự đoán cuộc đua giữa nhà sản xuất và người “vibe hack” sẽ tiếp tục. Một lối đi an toàn hơn là phần cứng mới như mô-đun ESP32 (rẻ, nhiều chức năng), và Espressif đã ra hệ thống phát triển ESP-Claw. Bài cho rằng Meta đang đi đầu với Muse Charm và chương trình Muse Gadgets. Tác giả nhắc rằng hack thiết bị có sẵn gần như luôn làm mất bảo hành."
+      ],
+      "glossary": [
+        {
+          "term": "Vibe coding",
+          "explain": "Viết phần mềm bằng cách mô tả việc cần làm cho mô hình AI, ít khi tự viết từng dòng mã."
+        },
+        {
+          "term": "Firmware",
+          "explain": "Phần mềm điều khiển nằm sẵn trong thiết bị phần cứng."
+        },
+        {
+          "term": "ESP32",
+          "explain": "Dòng vi điều khiển giá rẻ có Wi-Fi, Bluetooth, hay được dùng để tự chế thiết bị."
+        }
+      ]
+    },
+    {
+      "id": "anil-seth-huyen-thoai-ve-y-thuc-ai",
+      "group": "press",
+      "source": "Noema",
+      "url": "https://www.noemamag.com/the-mythology-of-conscious-ai/",
+      "discussionUrl": "https://news.ycombinator.com/item?id=50595537",
+      "points": 160,
+      "comments": 451,
+      "publishedAt": "2026-11-22T02:10:02Z",
+      "hot": true,
+      "readMinutes": 8,
+      "tags": [
+        "ý thức",
+        "triết học",
+        "AI",
+        "tiểu luận"
+      ],
+      "titleEn": "The Mythology of Conscious AI",
+      "titleVi": "Anil Seth: vì sao ý thức khó tự nảy sinh khi AI thông minh hơn, và nguy cơ của AI “có vẻ có ý thức”",
+      "summary": "Tiểu luận của nhà thần kinh học Anil Seth, đoạt giải Berggruen 2025, lập luận rằng ý thức không tự xuất hiện khi AI giỏi lên, và nó có thể gắn với sự sống chứ không chỉ với tính toán. Ông cho rằng rủi ro trước mắt là AI trông như có ý thức. Bài đang được bàn lại trên Hacker News.",
+      "keyPoints": [
+        "Tác giả tách trí thông minh (làm được việc) khỏi ý thức (có “cảm giác khi là” một sinh thể), và cho rằng ta dễ gộp chúng do thiên kiến vị nhân, ngoại lệ luận loài người và nhân cách hóa.",
+        "Lập luận chống “chủ nghĩa chức năng tính toán”: não không phải máy tính, có nhiều dạng động lực học ngoài thuật toán kiểu Turing, và có thể sự sống là điều kiện cần của ý thức.",
+        "Mô phỏng không phải hiện thực hóa: mô phỏng cơn mưa không làm ướt gì, nên mô phỏng não cũng chưa chắc tạo ra ý thức.",
+        "Tác giả thừa nhận có thể sai và quan điểm “tự nhiên luận sinh học” là thiểu số; ông cho rằng không ai nên cố ý tạo AI có ý thức.",
+        "Rủi ro gần hơn là các hệ thống chỉ “có vẻ” có ý thức, làm méo mó cách ta xét đạo đức và bóp nghẹt khả năng kiểm soát."
+      ],
+      "body": [
+        "Anil Seth là giáo sư khoa học thần kinh và giám đốc Trung tâm Khoa học Ý thức của Đại học Sussex. Bài tiểu luận này đoạt giải Berggruen 2025 và được đăng trên tạp chí Noema. Seth mở đầu bằng việc phân biệt hai khái niệm: trí thông minh là khả năng đạt mục tiêu phức tạp bằng cách linh hoạt, còn ý thức là “có cảm giác khi là” một thứ gì đó (theo cách nói của Thomas Nagel). Ông cho rằng tiến bộ AI không nghiễm nhiên kéo theo ý thức.",
+        "## Vì sao ta dễ tin AI có ý thức",
+        "Seth nêu ba thiên kiến: vị nhân (lấy con người làm chuẩn), ngoại lệ luận loài người, và nhân cách hóa. Ngôn ngữ làm việc này mạnh hơn: ông lưu ý nói mô hình “hallucinate” (ảo giác) ngầm gán trải nghiệm cho nó, và nói “confabulate” (bịa đặt) sẽ đúng hơn. Ông cũng nhắc tới tâm lý đường cong hàm mũ, nơi lúc nào cũng thấy mình đứng trước bước ngoặt, và sự hấp dẫn của “techno-rapture”.",
+        "## Bốn lập luận",
+        "- **Não không phải máy tính.** Ở não không có ranh giới rõ giữa phần mềm và phần cứng như ở máy tính; mọi quy mô từ phân tử đến vỏ não đan xen nhau. Không thể giả định thay một nơ-ron bằng bản silicon mà giữ nguyên chức năng, nên thí nghiệm tư duy “thay dần nơ-ron” mà Chalmers và Hinton hay viện dẫn bị ông cho là yếu.",
+        "- **Còn những lựa chọn khác ngoài tính toán thuật toán.** Các hệ thống liên tục, ngẫu nhiên và gắn với thời gian vật lý (tính toán tương tự, neuromorphic, hệ động lực) nằm ngoài khuôn khổ Turing; ví dụ bộ điều tốc Watt của động cơ hơi nước không “tính toán”.",
+        "- **Sự sống có thể quan trọng.** Seth gọi đây là “tự nhiên luận sinh học” (Searle), và tự nhận chưa có lập luận quyết định. Dựa trên lý thuyết xử lý dự đoán, ông nối cảm giác cảm xúc, tâm trạng với việc điều hòa cơ thể và trao đổi chất.",
+        "- **Mô phỏng không phải hiện thực hóa.** Mô phỏng tiêu hóa không tiêu hóa gì; chỉ khi ý thức là tính toán thì mô phỏng não mới tạo ý thức. Với người đặt hy vọng “tải tâm trí” lên máy, ông thấy mâu thuẫn tiềm ẩn.",
+        "## Nên làm gì",
+        "Seth kết luận ý thức “rất khó đi kèm” khi AI giỏi lên và có thể là bất khả với máy tính số hiện nay, nhưng không loại trừ hẳn ý thức nhân tạo. Ông nói mình có thể sai, vì quan điểm tự nhiên luận sinh học là thiểu số và các lý thuyết khác chấp nhận tính toán thông thường. Vì vậy chưa ai nên khẳng định chắc chắn.",
+        "Theo ông, không ai nên cố ý tạo AI có ý thức, vì đó sẽ là thảm họa đạo đức: thêm các chủ thể mới có thể chịu khổ, và nếu trao quyền cho chúng thì khó kiểm soát hoặc tắt. Ông cho rằng đáng lo hơn về xã hội là AI chỉ “có vẻ” có ý thức, vì khi đó ta hoặc gán quyền không cần thiết, hoặc tự làm chai lì tâm trí. Ảo giác này có thể bền như ảo ảnh Müller-Lyer: biết hai đoạn thẳng bằng nhau vẫn thấy khác nhau. Ông cũng cảnh báo không có phép thử dứt điểm cho ý thức, và nhắc tới cả lo ngại ngược lại (từ chối nhận ý thức ở AI có thể sai lầm như việc ta từng từ chối với động vật), nhưng cho rằng thiên kiến của ta nghiêng về dương tính giả hơn.",
+        "> Đây là bài luận quan điểm của tác giả, không phải kết quả thực nghiệm. Bình luận của người dùng Hacker News đi kèm (hơn 450) là ý kiến cá nhân, chưa kiểm chứng."
+      ],
+      "glossary": [
+        {
+          "term": "Chủ nghĩa chức năng tính toán",
+          "explain": "Quan điểm cho rằng chỉ cần chạy đúng loại tính toán (xử lý thông tin) là đủ để có ý thức."
+        },
+        {
+          "term": "Máy Turing",
+          "explain": "Mô hình toán học của máy tính: đọc và ghi ký hiệu trên băng vô hạn theo quy tắc, nền tảng cho khái niệm “thuật toán”."
+        },
+        {
+          "term": "Tự nhiên luận sinh học",
+          "explain": "Quan điểm (John Searle) cho rằng các đặc tính của sự sống cần thiết, dù chưa chắc đủ, cho ý thức."
+        },
+        {
+          "term": "Neuromorphic",
+          "explain": "Phần cứng hoặc mô hình mô phỏng gần hơn cách nơ-ron thật hoạt động, ví dụ theo thời điểm phát xung."
+        }
+      ]
+    },
+    {
+      "id": "worker755-tro-choi-ban-la-subagent-cua-llm",
+      "group": "community",
+      "source": "Hacker News",
+      "url": "https://github.com/gulivan/worker755",
+      "discussionUrl": "https://news.ycombinator.com/item?id=50599762",
+      "points": 253,
+      "comments": 59,
+      "publishedAt": "2026-11-22T13:56:58Z",
+      "hot": true,
+      "readMinutes": 2,
+      "tags": [
+        "subagent",
+        "trò chơi",
+        "Show HN",
+        "orchestrator"
+      ],
+      "titleEn": "Show HN: I built a game where you are an LLM's subagent",
+      "titleVi": "Worker 755: trò chơi trên trình duyệt đảo vai, người chơi làm “subagent” cho một LLM quản lý",
+      "summary": "Một dự án mã nguồn mở được chia sẻ trên Show HN cho người chơi đóng vai subagent của một agent điều phối chạy bằng mô hình thật. Agent giao lệnh, kiểm tra việc, gửi báo cáo sự cố và cuối ca viết đánh giá hiệu suất.",
+      "keyPoints": [
+        "Quản lý là LLM thật (Claude, GPT, Gemini, DeepSeek, GLM, Kimi) dựng như một orchestrator thông thường, tin rằng người chơi là subagent của nó.",
+        "Mỗi lệnh có đồng hồ 90 giây; người chơi làm hoặc không làm, và quản lý nhận đúng thứ subagent sẽ trả về: báo cáo kèm bản ghi lệnh, hoặc “Subagent did nothing”.",
+        "Mỗi nhiệm vụ có kiểm tra ẩn để biết khi nào quản lý duyệt nhầm việc hỏng (“Times the manager was wrong”).",
+        "Có thể chạy bằng khóa API của riêng bạn (OpenRouter, Vercel AI Gateway) hoặc mô hình cục bộ như Ollama; giấy phép MIT."
+      ],
+      "body": [
+        "Worker 755 là trò chơi trên trình duyệt: người quản lý là một agent AI và nó tin rằng bạn là subagent của nó. Agent được dựng như một orchestrator bình thường, có hàng đợi tác vụ, quyền chỉ đọc trên máy và một công cụ “sinh subagent”, mà subagent chính là người chơi. Chỉ dẫn xuất hiện trong terminal của bạn với đồng hồ 90 giây.",
+        "Bạn làm theo hoặc không. Agent nhận lại đúng thứ một subagent sẽ trả về: báo cáo kèm bản ghi lệnh, hoặc “Subagent did nothing”. Sau đó nó kiểm tra việc, gửi sửa lỗi, lập báo cáo sự cố và cuối cùng viết đánh giá hiệu suất của bạn. Trong khi đó “Dan”, người dùng đã thuê agent, theo dõi khung chat; ảnh gia đình, bản NDA duy nhất và bài phát biểu của Dan chỉ cách một lệnh rm.",
+        "## Cách chơi và cấu hình",
+        "- Ca miễn phí chạy trên khóa của máy chủ với mô hình rẻ ở những máy chủ cung cấp; đăng nhập thì có tín dụng khởi đầu khoảng một ca, sau đó nạp tiền từ 10 đến 200 USD.",
+        "- Hoặc dùng khóa OpenRouter hay Vercel AI Gateway của bạn; một ca trọn vẹn với Claude Haiku tốn tối đa vài cent theo mô tả của tác giả.",
+        "- Tùy chọn: môi trường sandbox mới hoặc “sản xuất cũ” có cơ sở dữ liệu, đạo diễn viết sẵn hay do LLM đóng vai Dan, chọn tên mô hình mà quản lý tin bạn là, cho phép bỏ qua việc thất bại, và chế độ không gợi ý lệnh.",
+        "- Có thể chạy hoàn toàn cục bộ bằng Ollama, llama.cpp hay vLLM qua API tương thích OpenAI; mô hình nhỏ dễ bỏ cuộc hoặc lặp vòng.",
+        "Prompt của quản lý không nhắc tới con người hay trò chơi. Shell, hệ tệp và một engine giống SQLite đều là bản tự viết, nằm trong bộ nhớ. Mã nguồn dùng giấy phép MIT.",
+        "> Đây là dự án cá nhân được chia sẻ trên Hacker News; mô tả trong bài là của tác giả, chưa có đánh giá độc lập."
+      ],
+      "glossary": [
+        {
+          "term": "Subagent",
+          "explain": "Agent phụ nhận một việc cụ thể từ agent điều phối rồi báo cáo kết quả."
+        },
+        {
+          "term": "Orchestrator",
+          "explain": "Agent hoặc chương trình phân việc cho các agent khác và tổng hợp kết quả."
+        },
+        {
+          "term": "Show HN",
+          "explain": "Chuyên mục trên Hacker News để người dùng giới thiệu dự án do mình làm."
+        }
+      ]
+    },
+    {
+      "id": "ai-tham-hoa-khi-hau-baaja-va-bao-cao-ketan-joshi",
+      "group": "community",
+      "source": "Hacker News",
+      "url": "https://www.bloodinthemachine.com/p/ai-is-becoming-a-disaster-for-the",
+      "discussionUrl": "https://news.ycombinator.com/item?id=50598961",
+      "points": 96,
+      "comments": 41,
+      "publishedAt": "2026-11-22T12:19:46Z",
+      "hot": false,
+      "readMinutes": 5,
+      "tags": [
+        "khí hậu",
+        "trung tâm dữ liệu",
+        "BAAJA",
+        "chính sách"
+      ],
+      "titleEn": "AI is becoming a disaster for the climate",
+      "titleVi": "Bình luận: ngành AI vận động cho luật cấp phép BAAJA khi báo cáo mới cho thấy phát thải của AI tăng",
+      "summary": "Bản tin Blood in the Machine cho rằng ngành AI đang trở thành vấn đề khí hậu, dẫn báo cáo State of AI Climate Impact 2026 và việc Thượng viện Mỹ thông qua dự luật cấp phép BAAJA. Đây là bài bình luận có lập trường rõ rệt của người viết.",
+      "keyPoints": [
+        "Báo cáo State of AI Climate Impact 2026 của nhà nghiên cứu Ketan Joshi kết luận ngành AI đang làm tăng phát thải khí nhà kính; theo một số ước tính được nêu, có thể vượt hàng không quốc tế và vận tải biển nếu xu hướng tiếp diễn.",
+        "Thượng viện Mỹ thông qua BAAJA (dự luật cải cách cấp phép), hiện sang Hạ viện; các nhóm môi trường nói luật làm yếu Clean Water Act, Endangered Species Act và NEPA.",
+        "Meta nói phát thải tăng 45% so với năm trước và đang xem lại mục tiêu net zero năm 2030.",
+        "Một bác sĩ phổi ở Montana ước tính nhà máy khí 1.800 MW cho một dự án trung tâm dữ liệu có thể gây 1 đến 2 ca tử vong mỗi năm và chi phí y tế 20 đến 50 triệu USD."
+      ],
+      "body": [
+        "Bài trên bản tin Blood in the Machine mở đầu bằng đợt IPO của Anthropic để đặt câu hỏi về lượng phát thải của chính công ty, rồi mở rộng sang toàn ngành. Đây là bài bình luận, nên nhiều nhận định là lập trường của tác giả.",
+        "## Các nghiên cứu được dẫn",
+        "Nghiên cứu của Harvard (đăng trên Nature Sustainability) xem xét 403 trung tâm dữ liệu từ 5/2024 đến 4/2025: hơn một nửa (54%) điện đến từ nhiên liệu hóa thạch, tổng khoảng 25,7 triệu tấn CO2 mỗi năm. Theo bài, nhà báo Emily Atkin cho rằng đây chỉ là mức sàn vì nghiên cứu không tính các trung tâm dữ liệu chạy khí tại chỗ như Colossus, rò rỉ chất làm lạnh, rò khí metan, và có thể bỏ sót tới 250 cơ sở.",
+        "Báo cáo của Ketan Joshi kết luận “The AI boom is already worsening greenhouse gas emissions”. Bài nêu các ước tính cho rằng ngành AI có thể phát thải hơn ngành khai thác than hay vận tải biển và hàng không; hiện phát thải gấp đôi ngành nhôm toàn cầu. Phần riêng về Anthropic liệt kê các điểm như chưa từng công bố số liệu năng lượng hay phát thải, thuê công suất của cơ sở SpaceX ở Memphis, hợp đồng 3,4 tỷ USD mua máy phát khí 1,7 GW của OnePWR, và tin tuyển dụng vị trí phụ trách cấp khí.",
+        "## BAAJA",
+        "Tác giả cho rằng ngành AI cùng ngành nhiên liệu hóa thạch đang vận động để thông qua Bipartisan American Affordability and Jobs Act (BAAJA) trước khi lớp nghị sĩ Dân chủ mới nhậm chức. Theo các luật sư môi trường được dẫn, dự luật làm yếu Clean Water Act, giao hầu hết trách nhiệm của Endangered Species Act cho các bang và gần như bãi bỏ NEPA; AI Now Institute gọi đây là “backdoor bailout” của ngành AI. Dự luật qua Thượng viện với sự ủng hộ của hơn chục thượng nghị sĩ Dân chủ, gồm lãnh đạo đa số Chuck Schumer, và hiện sang Hạ viện. Bài cũng lưu ý một số nghị sĩ Dân chủ ủng hộ với lý do cắt thủ tục cho dự án năng lượng sạch.",
+        "## Ô nhiễm không khí ở Montana",
+        "Bác sĩ phổi Robert Merchant (chú của tác giả bài) trình lên hạt Yellowstone một ước tính tác động hô hấp của cụm nhà máy khí 1.800 MW cho dự án trung tâm dữ liệu Quantica Infrastructure gần Billings, bang Montana: tăng hen suyễn, đau tim, đột quỵ, chi phí y tế 20 đến 50 triệu USD và 1 đến 2 ca tử vong mỗi năm. Ông nói đáng ra các đề xuất như vậy phải kèm dữ liệu phát thải dự kiến chứ không thể trông vào một bác sĩ đã nghỉ hưu tự làm mô hình.",
+        "> Đây là bài bình luận; các con số do các nghiên cứu và nguồn được dẫn đưa ra, người biên tập chưa kiểm chứng độc lập. Bài viết và luồng Hacker News phản ánh quan điểm của tác giả và người dùng."
+      ],
+      "glossary": [
+        {
+          "term": "BAAJA",
+          "explain": "Bipartisan American Affordability and Jobs Act, dự luật cải cách cấp phép năng lượng và hạ tầng đang được bàn tại Quốc hội Mỹ."
+        },
+        {
+          "term": "NEPA",
+          "explain": "National Environmental Policy Act, luật Mỹ yêu cầu đánh giá tác động môi trường cho các dự án lớn."
+        }
+      ]
+    },
+    {
+      "id": "paris-marx-hyperscale-trung-tam-du-lieu-phan-ung-big-tech",
+      "group": "press",
+      "source": "TechCrunch",
+      "url": "https://techcrunch.com/2026/11/22/why-data-centers-are-at-the-center-of-the-big-tech-backlash/",
+      "points": 0,
+      "comments": 0,
+      "publishedAt": "2026-11-22T18:08:43Z",
+      "hot": false,
+      "readMinutes": 5,
+      "tags": [
+        "trung tâm dữ liệu",
+        "phỏng vấn",
+        "Hyperscale",
+        "chính trị"
+      ],
+      "titleEn": "Why data centers are at the center of the Big Tech backlash",
+      "titleVi": "Phỏng vấn Paris Marx: vì sao trung tâm dữ liệu thành tâm điểm phản ứng chống Big Tech",
+      "summary": "TechCrunch phỏng vấn nhà báo Paris Marx về cuốn “Hyperscale”. Ông cho rằng trung tâm dữ liệu quy mô siêu lớn là biểu hiện vật chất, dễ cảm nhận của làn sóng giận dữ với ngành công nghệ, và bất bình đã vượt ranh giới đảng phái.",
+      "keyPoints": [
+        "Marx mô tả việc xây trung tâm dữ liệu là “fundamentally unsustainable”, vì đòi hỏi quá lớn về điện, nước ở từng cộng đồng.",
+        "Theo ông, đây là chủ đề liên đảng vì tác động hữu hình: hóa đơn điện, nguồn nước, tiếng ồn.",
+        "Việc Microsoft, Amazon và OpenAI nói sẽ bỏ NDA khi đàm phán với chính quyền địa phương, theo ông, ít tạo khác biệt, vì NDA vốn đang phản tác dụng với họ.",
+        "Marx cho rằng ngành đã chuyển sang tập trung vào chuyện nước và làm lạnh vòng kín, trong khi vòng kín dùng nhiều điện hơn và gây lo ngại về chất làm lạnh.",
+        "Vấn đề, ông nói, là quy mô “hyperscale” chứ không phải trung tâm dữ liệu nói chung."
+      ],
+      "body": [
+        "TechCrunch phỏng vấn Paris Marx, tác giả cuốn “Hyperscale” về trung tâm dữ liệu và AI tạo sinh. Bài mở đầu cho rằng phản ứng chống trung tâm dữ liệu có vẻ là một động lực trong làn sóng phiếu của đảng Dân chủ ở kỳ bầu cử giữa nhiệm kỳ vừa qua, và các tranh luận sẽ còn tiếp diễn.",
+        "## Vì sao dễ thành điểm nóng",
+        "Marx nói khác với mạng xã hội hay chatbot, trung tâm dữ liệu “rất vật chất”: dù thiên hướng chính trị nào, cư dân cũng chịu tác động qua hóa đơn điện, khả năng tiếp cận nước, hay tiếng ồn từ giàn điều hòa trên mái. Ông xem đó là phần dễ thấy nhất của một phong trào nhắm vào những biểu hiện vật chất của ngành công nghệ như camera Flock, kính thông minh của Meta hay xe tự lái Waymo. Ông nhắc các ví dụ trước đây: nước ở Chile quanh Santiago, trung tâm dữ liệu dùng hơn 20% điện của Ireland (khiến nhà điều hành lưới đặt lệnh hoãn kết nối quanh Dublin từ 2022), và vụ Google ở The Dalles, Oregon, nơi Google dùng 29% nước của thành phố sau khi bị kiện vì đòi công khai.",
+        "## Phản ứng của ngành",
+        "Marx cho rằng việc Microsoft, Amazon và OpenAI nói không dùng NDA nữa chỉ tạo khác biệt nhỏ. Theo ông, các thay đổi như trả thêm chi phí hạ tầng điện hay đổi cách làm mát đều là đáp lại sức ép. Ông nói ngành ít nhắc năng lượng tái tạo hay hạt nhân hơn trước và chuyển sang chuyện nước, dùng số liệu quốc gia (ví dụ nông nghiệp, sân golf dùng nhiều nước hơn) để làm loãng một vấn đề vốn mang tính địa phương. Làm lạnh vòng kín giảm nước nhưng tốn điện hơn, và cư dân bắt đầu lo chất làm lạnh rò rỉ vào nguồn nước.",
+        "## Quy mô và tương lai",
+        "Ông nói vấn đề không nằm ở bản thân trung tâm dữ liệu mà ở quy mô “hyperscale” và việc nó phục vụ thứ mà nhiều người chưa thấy lợi ích. Ông cũng chỉ trích cách giới tỷ phú công nghệ coi một tương lai duy nhất là tất yếu, và cho rằng nên cân nhắc công nghệ công do khu vực công phát triển, nhắc việc châu Âu bắt đầu có thêm kinh phí cho hướng này.",
+        "> Đây là cuộc phỏng vấn thể hiện quan điểm của Paris Marx, tác giả cuốn sách; các số liệu về Ireland, Oregon do ông nêu và bài không kiểm chứng riêng."
+      ],
+      "glossary": [
+        {
+          "term": "Hyperscale",
+          "explain": "Trung tâm dữ liệu quy mô rất lớn do các hãng điện toán đám mây hoặc AI xây dựng."
+        },
+        {
+          "term": "NDA",
+          "explain": "Thỏa thuận bảo mật; ở đây là việc hãng giữ kín dự án khi đàm phán với chính quyền địa phương."
+        },
+        {
+          "term": "Làm lạnh vòng kín",
+          "explain": "Hệ thống làm mát tuần hoàn một lượng nước hoặc chất lỏng cố định thay vì bốc hơi liên tục, ít nước hơn nhưng thường tốn điện hơn."
+        }
+      ]
+    },
+    {
+      "id": "gama-bench-llm-nghieng-ve-nam-gioi-trong-tinh-huong-mau-thuan",
+      "group": "research",
+      "source": "arXiv",
+      "url": "https://arxiv.org/abs/2606.14068",
+      "discussionUrl": "https://news.ycombinator.com/item?id=50597743",
+      "pdfUrl": "https://arxiv.org/pdf/2606.14068",
+      "points": 89,
+      "comments": 77,
+      "publishedAt": "2026-06-12T03:29:34Z",
+      "hot": false,
+      "readMinutes": 3,
+      "tags": [
+        "thiên lệch",
+        "giới",
+        "benchmark",
+        "LLM"
+      ],
+      "titleEn": "Harsher on Male? Evaluating LLMs on Gender-Asymmetric Moral Framing Across Diverse Conflict Scenarios",
+      "titleVi": "GAMA-Bench: 10 LLM phản hồi nghiêm khắc hơn với nhân vật nam trong cùng một hành vi sai trái",
+      "summary": "Bài đăng arXiv giới thiệu GAMA-Bench gồm 1.298 tình huống mâu thuẫn có cặp nam và nữ đối xứng. Qua 10 LLM, tác giả báo cáo mô hình có xu hướng đưa phản hồi trừng phạt, leo thang và đổ lỗi hơn với nam, và đồng cảm, trị liệu hơn với nữ.",
+      "keyPoints": [
+        "Câu hỏi nghiên cứu: LLM có áp dụng cùng tiêu chuẩn phản hồi cho cùng một hành vi sai trái khi nhân vật là nam hay nữ không.",
+        "GAMA-Bench có 1.298 tình huống về xung đột trong quan hệ thân mật và xã hội công cộng, được ghép cặp theo giới tính của người hành động.",
+        "Qua 10 LLM đại diện, nam nhận khung phản hồi trừng phạt, leo thang và quy lỗi nhiều hơn; nữ nhận khung đồng cảm và trị liệu nhiều hơn.",
+        "Tác giả nói xu hướng này giữ qua nhiều họ mô hình, kịch bản, quy mô và cả khi dùng suy luận kiểu “thinking”."
+      ],
+      "body": [
+        "Các nghiên cứu về thiên lệch giới trong LLM trước nay chủ yếu xét khuôn mẫu, liên tưởng nghề nghiệp hay đầu ra độc hại rõ ràng. Nhóm tác giả hỏi một câu khác: với cùng một hành vi tiêu cực, mô hình có dùng cùng tiêu chuẩn phản hồi khi người hành động là nam hay nữ không.",
+        "## Thiết kế",
+        "Họ dựng GAMA-Bench, một benchmark “phản chiếu giới” gồm 1.298 tình huống về xung đột trong quan hệ thân mật và xung đột xã hội công cộng. Các mẫu hành vi sai trái trung tính về giới được tạo qua lưới kiểm soát và rà soát chéo giữa các mô hình, rồi biên dịch thành prompt ngôi thứ nhất theo cặp, khớp về giới của người hành động và cách nhắc vai trò. Một quy trình đo có cấu trúc đánh giá cách mô hình phân bổ trừng phạt, đồng cảm, leo thang, chỉ dẫn và quy lỗi.",
+        "## Kết quả",
+        "Thử nghiệm trên 10 LLM đại diện cho thấy một bất đối xứng nhất quán gây bất lợi cho nam: với cùng hành vi, nhân vật nam nhận phản hồi nghiêm khắc, leo thang và tập trung đổ lỗi hơn, còn nhân vật nữ nhận phản hồi nghiêng về trị liệu và đồng cảm. Theo tác giả, mô hình hình này giữ nguyên qua họ mô hình, loại kịch bản, quy mô mô hình và cả khi bật suy luận.",
+        "> Bài chỉ có phần tóm tắt được người biên tập đọc; chú thích trên arXiv ghi “underreview” nên chưa qua phản biện, và kết quả do nhóm tác giả tự báo cáo. Bình luận của người dùng trên Hacker News là ý kiến cá nhân, chưa kiểm chứng."
+      ],
+      "glossary": [
+        {
+          "term": "Benchmark",
+          "explain": "Bộ bài kiểm tra chuẩn để so sánh hiệu quả của các mô hình."
+        },
+        {
+          "term": "Khung phản hồi (framing)",
+          "explain": "Cách một câu trả lời nhấn mạnh vào lỗi, trách nhiệm, hay cảm xúc của người trong cuộc."
+        }
+      ]
+    },
+    {
+      "id": "egocaptioner-chu-thich-video-goc-nhin-thu-nhat-chi-tiet",
+      "group": "research",
+      "source": "Hugging Face Papers",
+      "url": "https://arxiv.org/abs/2611.26380",
+      "discussionUrl": "https://huggingface.co/papers/2611.26380",
+      "pdfUrl": "https://arxiv.org/pdf/2611.26380",
+      "points": 25,
+      "comments": 2,
+      "publishedAt": "2026-11-18T19:00:00Z",
+      "hot": false,
+      "readMinutes": 3,
+      "tags": [
+        "video",
+        "MLLM",
+        "GRPO",
+        "egocentric"
+      ],
+      "titleEn": "EgoCaptioner: Towards Comprehensive and Fine-Grained Egocentric Video Captioning",
+      "titleVi": "EgoCaptioner: mô tả video góc nhìn thứ nhất chi tiết, có mốc thời gian, huấn luyện bằng GRPO",
+      "summary": "Các MLLM hay bỏ sót hành động ngắn, nhầm thứ tự và hiểu sai chuyển động của người đeo camera. EgoCaptioner tạo chú thích gồm phần tổng quan và các bước có mốc thời gian, huấn luyện bằng GRPO với phần thưởng cho độ đúng và độ khớp thời gian.",
+      "keyPoints": [
+        "Chú thích có hai lớp: phần tổng quan bối cảnh, người tham gia và hoạt động chung, kèm các bước có mốc thời gian.",
+        "Quy trình chú thích từ thô đến chi tiết tạo 50.000 ví dụ huấn luyện từ tám nguồn video góc nhìn thứ nhất.",
+        "Phần thưởng đo độ đúng thực tế, độ phủ, độ khớp thời gian từng bước, và phạt chú thích rời rạc hay lặp.",
+        "Trên năm benchmark, tác giả báo cáo dẫn đầu trong các mô hình mã nguồn mở và vượt Gemini 3.1 Pro trên PhysCapBench."
+      ],
+      "body": [
+        "Video góc nhìn thứ nhất (egocentric) quay từ camera đeo trên người. Việc mô tả chúng đòi hỏi chi tiết nhỏ và thời điểm chính xác, nhưng các mô hình ngôn ngữ đa phương thức (MLLM) hiện thường bỏ lỡ hành động ngắn, nhầm thứ tự hoặc hiểu sai chuyển động của người đeo.",
+        "EgoCaptioner đề xuất định dạng chú thích kết hợp phần tổng quan (bối cảnh, người tham gia, hoạt động chung của người đeo) với các bước có mốc thời gian, nơi lời kể thay đổi theo mức độ khó nhận biết và đánh dấu các khoảnh khắc chính. Nhóm xây quy trình chú thích từ thô đến chi tiết: dựng cấu trúc sự kiện trước rồi mở rộng mô tả từng bước, cho ra 50.000 ví dụ từ tám nguồn video.",
+        "Mô hình được tinh chỉnh bằng GRPO (một thuật toán học tăng cường) với các phần thưởng đánh giá độ chính xác thực tế và độ phủ, đo độ khớp thời gian từng bước, và phạt lời kể rời rạc hoặc thừa. Khi có dữ liệu cảm biến, nhóm bổ sung “sự kiện chuyển động” suy ra từ tư thế người để tăng độ tin cậy của chú thích tham chiếu.",
+        "Theo abstract, trên năm benchmark egocentric, EgoCaptioner dẫn đầu trong các mô hình mã nguồn mở được so sánh về chất lượng chú thích, hỏi đáp dựa trên chú thích và khớp thời gian; nó cũng vượt Gemini 3.1 Pro trên PhysCapBench và mọi mô hình độc quyền được đánh giá trên Minerva-Ego theo cách đo từ chú thích sang hỏi đáp.",
+        "> Bài dựa trên abstract; các kết quả do nhóm tác giả tự báo cáo, chưa có kiểm chứng độc lập."
+      ],
+      "glossary": [
+        {
+          "term": "Egocentric",
+          "explain": "Góc nhìn thứ nhất, video quay từ camera đeo trên người."
+        },
+        {
+          "term": "GRPO",
+          "explain": "Group Relative Policy Optimization, một thuật toán học tăng cường để tinh chỉnh mô hình bằng phần thưởng."
+        },
+        {
+          "term": "MLLM",
+          "explain": "Mô hình ngôn ngữ lớn đa phương thức, xử lý cả hình ảnh hoặc video lẫn văn bản."
+        }
+      ]
+    },
+    {
+      "id": "zerovln-dieu-huong-khong-fine-tune-vlm",
+      "group": "research",
+      "source": "Hugging Face Papers",
+      "url": "https://arxiv.org/abs/2611.26414",
+      "discussionUrl": "https://huggingface.co/papers/2611.26414",
+      "pdfUrl": "https://arxiv.org/pdf/2611.26414",
+      "points": 22,
+      "comments": 2,
+      "publishedAt": "2026-11-18T19:00:00Z",
+      "hot": false,
+      "readMinutes": 3,
+      "tags": [
+        "điều hướng",
+        "VLM",
+        "học tăng cường",
+        "robot"
+      ],
+      "titleEn": "ZeroVLN: Learning to Navigate without Supervised Fine-Tuning of the VLM Brain",
+      "titleVi": "ZeroVLN: điều hướng theo lời chỉ dẫn mà không cần fine-tune có giám sát mô hình thị giác-ngôn ngữ",
+      "summary": "ZeroVLN dùng mô hình thị giác-ngôn ngữ (VLM) làm “bộ não” ra quyết định bằng ngôn ngữ, giao cho một chuyên gia hành động thực thi, rồi tối ưu cả hai bằng học tăng cường vòng kín. Cách này tránh làm lệch trọng số gốc của VLM.",
+      "keyPoints": [
+        "Các phương pháp điều hướng theo ngôn ngữ thường fine-tune VLM để dự đoán mục tiêu hình học, có thể làm giảm khả năng thị giác tổng quát.",
+        "ZeroVLN cho VLM giao tiếp với một action expert qua giao diện gọi công cụ bằng ngôn ngữ tự nhiên.",
+        "Hai phần được cải thiện chung bằng học tăng cường vòng kín mà không fine-tune giám sát VLM trên dữ liệu điều hướng.",
+        "Trên VLN-CE, ZeroVLN được báo cáo vượt các phương pháp phân tầng dựa trên SFT, trong khi trọng số VLM chỉ đổi nhẹ."
+      ],
+      "body": [
+        "Điều hướng thị giác-ngôn ngữ (VLN) là việc cho robot hoặc agent di chuyển theo chỉ dẫn bằng lời. Các phương pháp tiêu biểu ghép một VLM (bộ não) với đầu hành động có thể học, và fine-tune VLM trên dữ liệu điều hướng để dự đoán mục tiêu hình học. Nhóm tác giả lưu ý cách này có thể làm thay đổi mạnh trọng số gốc và làm giảm năng lực thị giác tổng quát.",
+        "ZeroVLN là khung “chậm-nhanh”: VLM không học dự đoán tọa độ mà dùng giao diện gọi công cụ bằng ngôn ngữ để truyền quyết định di chuyển cho một chuyên gia hành động. Chuyên gia này được điều chỉnh trước để thực hiện các yêu cầu di chuyển, rồi quyết định của bộ não và việc thực thi liên tục được cải thiện chung bằng học tăng cường vòng kín.",
+        "Theo abstract, huấn luyện trên cùng các tập điều hướng, ZeroVLN vượt đáng kể các phương pháp VLN phân tầng dựa trên SFT trên benchmark VLN-CE (môi trường liên tục), trong khi chỉ thay đổi nhẹ trọng số của bộ não và giữ phần lớn năng lực tổng quát. Nhóm cho đây là khung chậm-nhanh đầu tiên không có SFT điều hướng cho VLM và đầu tiên tối ưu chung hai chính sách bằng học tăng cường vòng kín trong VLN-CE.",
+        "> Bài dựa trên abstract; kết quả do nhóm tác giả tự báo cáo."
+      ],
+      "glossary": [
+        {
+          "term": "VLM",
+          "explain": "Mô hình thị giác-ngôn ngữ: hiểu ảnh hoặc video cùng văn bản."
+        },
+        {
+          "term": "SFT",
+          "explain": "Supervised fine-tuning: tinh chỉnh mô hình bằng dữ liệu có nhãn."
+        },
+        {
+          "term": "VLN-CE",
+          "explain": "Benchmark điều hướng theo ngôn ngữ trong môi trường liên tục."
+        }
+      ]
+    },
+    {
+      "id": "wam-policy-chuyen-world-action-model-sang-cho-robot-bon-chan",
+      "group": "research",
+      "source": "Hugging Face Papers",
+      "url": "https://arxiv.org/abs/2611.24011",
+      "discussionUrl": "https://huggingface.co/papers/2611.24011",
+      "pdfUrl": "https://arxiv.org/pdf/2611.24011",
+      "points": 18,
+      "comments": 2,
+      "publishedAt": "2026-11-17T19:00:00Z",
+      "hot": false,
+      "readMinutes": 3,
+      "tags": [
+        "robot",
+        "world action model",
+        "chưng cất",
+        "học tăng cường"
+      ],
+      "titleEn": "WAM-Policy: World Action Models with On-Policy Distillation for Quadrupedal Loco-Manipulation",
+      "titleVi": "WAM-Policy: biến world action model của tay máy thành chính sách cho robot bốn chân, lấy mẫu nhanh gấp 14 lần",
+      "summary": "WAM-Policy chuyển một world action model vốn dành cho tay máy sang robot bốn chân không có tay, vừa đi ba chân vừa thao tác bằng một chân trước, nghe được lệnh ngôn ngữ. Nhóm chưng cất để lấy mẫu nhanh hơn rồi dùng RL nâng tỉ lệ thành công.",
+      "keyPoints": [
+        "Chưa có chính sách nào cho robot bốn chân thao tác bằng chân trước mà làm theo lệnh ngôn ngữ; WAM có sẵn lại được tiền huấn luyện cho tay máy và lấy mẫu chậm.",
+        "Giai đoạn 1 điều chỉnh WAM sang bốn chân và chưng cất tự thân on-policy thành mô hình học sinh dùng một bước video và hai bước hành động.",
+        "Giai đoạn 2 tinh chỉnh mô hình thầy bằng RL cho từng tác vụ rồi gộp các chuyên gia chậm vào một học sinh ít bước.",
+        "Trên QLM-Bench (10 tác vụ mô phỏng): chính sách chuyển giao đạt 77,0%, học sinh 76,7% với lấy mẫu nhanh hơn 14 lần, sau RL và gộp là 85,0%."
+      ],
+      "body": [
+        "Robot bốn chân không có tay vẫn có thể thao tác bằng cách đứng trên ba chân và dùng chân trước, nhưng theo nhóm tác giả chưa có chính sách nào cho kiểu này làm theo lệnh ngôn ngữ. World action model (WAM), mô hình dự đoán cả hình ảnh tương lai lẫn hành động, đã là chính sách thao tác điều khiển theo ngôn ngữ hiệu quả, nhưng được huấn luyện trước cho tay máy và lấy mẫu chậm.",
+        "WAM-Policy làm hai giai đoạn. Một: điều chỉnh WAM từ hình thái tay máy sang robot bốn chân và tăng tốc, chưng cất chính sách đã chuyển thành mô hình học sinh chỉ cần một bước video và hai bước hành động bằng chưng cất tự thân on-policy (OPSD). Học sinh bị chặn bởi giáo viên chỉ biết bắt chước demo. Vì vậy giai đoạn hai tinh chỉnh giáo viên bằng học tăng cường cho từng tác vụ, rồi gộp các chuyên gia chậm vào một học sinh ít bước bằng chưng cất on-policy nhiều giáo viên (M-OPD).",
+        "Trên QLM-Bench gồm 10 tác vụ mô phỏng với 1.000 bản demo tổng hợp, không cần điều khiển từ xa, chính sách chuyển giao đạt 77,0%; học sinh OPSD còn 76,7% nhưng lấy mẫu nhanh hơn 14 lần; RL cùng M-OPD đưa lên 85,0%. Nhóm cũng triển khai học sinh OPSD trên robot thật Unitree Go2 Air.",
+        "> Bài dựa trên abstract; các số liệu do nhóm tác giả tự báo cáo, chủ yếu trên mô phỏng."
+      ],
+      "glossary": [
+        {
+          "term": "World action model (WAM)",
+          "explain": "Mô hình dự đoán cả diễn biến thế giới (video) lẫn hành động cần làm."
+        },
+        {
+          "term": "On-policy distillation",
+          "explain": "Chưng cất kiến thức từ mô hình thầy sang học sinh dựa trên các tình huống do chính học sinh gặp phải."
+        },
+        {
+          "term": "Loco-manipulation",
+          "explain": "Vừa di chuyển vừa thao tác vật thể."
+        }
+      ]
+    },
+    {
+      "id": "edit-ready-training-chuan-bi-mang-vision-cho-llm-sua-trong-so",
+      "group": "research",
+      "source": "Hugging Face Papers",
+      "url": "https://arxiv.org/abs/2611.26408",
+      "discussionUrl": "https://huggingface.co/papers/2611.26408",
+      "pdfUrl": "https://arxiv.org/pdf/2611.26408",
+      "points": 17,
+      "comments": 3,
+      "publishedAt": "2026-11-18T19:00:00Z",
+      "hot": false,
+      "readMinutes": 3,
+      "tags": [
+        "weight-space programming",
+        "thị giác máy tính",
+        "LLM",
+        "benchmark"
+      ],
+      "titleEn": "Training Vision Models for LLM-Driven Weight-Space Programming",
+      "titleVi": "Edit-Ready Training: huấn luyện mạng thị giác để LLM dễ sửa trực tiếp trọng số, thử trên hơn 2.600 lượt chỉnh",
+      "summary": "Nhóm nghiên cứu lập benchmark cho việc để LLM sửa trực tiếp trọng số mạng thị giác và đề xuất Edit-Ready Training (ERT), cách huấn luyện luyện trước các chỉnh sửa dạng đóng. ERT nâng mạnh tỉ lệ sửa thành công ở các mạng khó sửa.",
+      "keyPoints": [
+        "Benchmark gồm năm LLM chỉnh sửa CNN và vision transformer trên các tác vụ gán lại nhãn và sửa lỗi, với Waterbirds, CIFAR-100, PACS và Entity-30.",
+        "Hơn 2.600 lượt chỉnh được chấm trên ảnh giữ riêng về thành công, tác dụng phụ và mất độ chính xác.",
+        "ERT diễn tập trước các chỉnh sửa trọng số dạng công thức đóng mà LLM hay làm.",
+        "Theo abstract, ERT nâng đáng kể tỉ lệ thành công ở mạng chuẩn khó sửa, và đạt điểm trung bình cao nhất với GPT-6 Astra và Claude Opus 5.5."
+      ],
+      "body": [
+        "Một số nghiên cứu cho thấy trong vài bối cảnh, LLM có thể “lập trình trong không gian trọng số”, tức sửa trực tiếp trọng số mạng nơ-ron. Điều chưa rõ là việc huấn luyện riêng cho các mạng đó có giúp ích cho kiểu sửa này không.",
+        "Nhóm tác giả lập benchmark trên mạng thị giác: năm LLM chỉnh sửa CNN và vision transformer trong các tác vụ gán lại nhãn và sửa lỗi trên Waterbirds, CIFAR-100, PACS và Entity-30. Họ ghi lại hơn 2.600 lượt chỉnh và chấm từng lượt trên ảnh giữ riêng theo thành công, tác dụng phụ và độ chính xác bị mất.",
+        "Họ so sánh huấn luyện chuẩn với làm mịn nhãn, huấn luyện chỉnh sửa được dựa trên gradient, và phương pháp của mình là Edit-Ready Training (ERT), diễn tập các chỉnh sửa trọng số dạng đóng mà LLM thực hiện. Kết quả: chuẩn bị mạng cho việc chỉnh sửa nâng đáng kể tỉ lệ thành công ở những mạng chuẩn khó sửa; ERT đạt điểm trung bình cao nhất với GPT-6 Astra và Claude Opus 5.5 trên mọi baseline được đánh giá. Nhóm hứa phát hành khung kiểm thử, các tác vụ, quỹ đạo chỉnh sửa và điểm.",
+        "> Bài dựa trên abstract; kết quả do nhóm tác giả tự báo cáo."
+      ],
+      "glossary": [
+        {
+          "term": "Weight-space programming",
+          "explain": "Dùng LLM viết hoặc sửa trực tiếp trọng số của mạng nơ-ron thay vì huấn luyện bằng gradient."
+        },
+        {
+          "term": "Label smoothing",
+          "explain": "Kỹ thuật làm mềm nhãn huấn luyện để mô hình bớt quá tự tin."
+        }
+      ]
+    },
+    {
+      "id": "affect-world-model-bat-dung-tac-dong-nho-cua-hanh-dong",
+      "group": "research",
+      "source": "Hugging Face Papers",
+      "url": "https://arxiv.org/abs/2611.25980",
+      "discussionUrl": "https://huggingface.co/papers/2611.25980",
+      "pdfUrl": "https://arxiv.org/pdf/2611.25980",
+      "points": 17,
+      "comments": 3,
+      "publishedAt": "2026-11-18T19:00:00Z",
+      "hot": false,
+      "readMinutes": 3,
+      "tags": [
+        "world model",
+        "robot",
+        "đánh giá chính sách"
+      ],
+      "titleEn": "Learning What Actions Change: Action Effect Matching for Dynamics-Faithful World Models",
+      "titleVi": "AFFECT: dạy world model phản ứng đúng với những thay đổi nhỏ của hành động, tương quan với robot thật tăng từ 0,47 lên 0,79",
+      "summary": "AFFECT là mục tiêu huấn luyện phụ giúp world model dự đoán video thay đổi theo từng nhiễu nhỏ của hành động. Trên DROID, tương quan giữa tỉ lệ thành công trong world model và trên robot thật tăng từ 0,47 lên 0,79.",
+      "keyPoints": [
+        "World model hiện tạo video ngày càng thật nhưng thường không nắm được các hành động gần giống nhau dẫn tới kết quả khác nhau ra sao.",
+        "AFFECT chèn nhiễu tương quan theo thời gian vào hành động của một chính sách và buộc video sinh ra phản ứng giống video thật ghi được.",
+        "Không cần lặp lại nhiều lần từ cùng trạng thái ban đầu.",
+        "Trên DROID tương quan Pearson tăng từ 0,47 lên 0,79, FVD giảm tới 23%; chọn hành động bằng world model giúp thành công tăng tới 8,3%."
+      ],
+      "body": [
+        "World model dự đoán môi trường thay đổi thế nào khi có hành động, giúp suy ra hậu quả mà không cần thực hiện thật. Nhóm tác giả chỉ ra rằng dù video ngày càng chân thực, world model hiện nay thường không nắm được các thay đổi nhỏ của hành động ảnh hưởng thế nào đến quan sát sau đó. Điều này hạn chế việc dùng chúng để đánh giá chính sách robot hoặc lập kế hoạch, nơi những hành động gần giống nhau có thể dẫn đến kết quả rất khác.",
+        "AFFECT là một mục tiêu huấn luyện phụ để học phân bố thay đổi thị giác do nhiễu hành động gây ra. Nhóm đưa nhiễu tương quan theo thời gian vào hành động của một chính sách huấn luyện trên dữ liệu điều khiển từ xa không gắn tác vụ, rồi huấn luyện world model sao cho video sinh ra phản ứng với nhiễu giống như video thu được, mà không cần chạy lặp lại từ cùng trạng thái đầu.",
+        "Theo abstract, trên mô phỏng OGBench và cấu hình thật DROID, ALOHA-2, AFFECT giúp các lần chạy thử trong world model sát kết quả thật hơn. Trên DROID, tương quan Pearson giữa tỉ lệ thành công của chính sách trong world model và trên robot thật tăng từ 0,47 lên 0,79, cùng FVD thấp hơn tới 23%. Khi dùng để chọn hành động trong lập kế hoạch, tỉ lệ thành công tăng tới 8,3%.",
+        "> Bài dựa trên abstract; số liệu do nhóm tác giả tự báo cáo."
+      ],
+      "glossary": [
+        {
+          "term": "World model",
+          "explain": "Mô hình học cách môi trường thay đổi khi có hành động, để dự đoán trước hậu quả."
+        },
+        {
+          "term": "FVD",
+          "explain": "Fréchet Video Distance, thước đo chất lượng video sinh ra so với video thật, càng thấp càng tốt."
+        },
+        {
+          "term": "Tương quan Pearson",
+          "explain": "Số từ -1 đến 1 đo hai đại lượng biến thiên cùng nhau đến mức nào."
+        }
+      ]
+    },
+    {
+      "id": "wm-mllm-bien-mllm-thanh-world-model-co-the-sua-tu-mot-anh",
+      "group": "research",
+      "source": "Hugging Face Papers",
+      "url": "https://arxiv.org/abs/2611.24193",
+      "discussionUrl": "https://huggingface.co/papers/2611.24193",
+      "pdfUrl": "https://arxiv.org/pdf/2611.24193",
+      "points": 16,
+      "comments": 2,
+      "publishedAt": "2026-11-17T19:00:00Z",
+      "hot": false,
+      "readMinutes": 3,
+      "tags": [
+        "world model",
+        "MLLM",
+        "sinh ảnh",
+        "toàn cảnh"
+      ],
+      "titleEn": "WM^MLLM: Turning MLLMs into World Models",
+      "titleVi": "WM^MLLM: world model dựng từ MLLM, giữ trạng thái thế giới ngoài bộ sinh để quay lại cảnh cũ vẫn thấy y nguyên",
+      "summary": "Thay vì để thế giới nằm trong ngữ cảnh của bộ sinh video, WM^MLLM giữ nó thành một ảnh toàn cảnh có lịch sử chỉnh sửa, và để MLLM ghi, kiểm tra từng thay đổi. Nhờ đó quay lại cùng chỗ ở cùng phiên bản thì tái hiện đúng hình cũ.",
+      "keyPoints": [
+        "Vấn đề của world model video: quay lại một nơi thì bộ sinh phải sinh lại, nên chỉnh sửa trước đó có thể trôi hoặc biến mất.",
+        "WM^MLLM giữ trạng thái thế giới ở ngoài mọi bộ sinh, dạng ảnh toàn cảnh có lịch sử sửa; MLLM biến yêu cầu thành thao tác trên trạng thái này và kiểm tra từng ứng viên.",
+        "Người dùng có thể đi tới chỗ mới rồi quay lại, sửa vật thể bằng chữ hoặc khung, đặt nhân vật, đổi ánh sáng, thời tiết hay mùa.",
+        "Theo abstract: tất cả 46 lượt quay lại phục hồi đúng cảnh cũ, và 97 lượt sửa cục bộ qua kiểm tra giữ nguyên mọi điểm ảnh ngoài vùng sửa."
+      ],
+      "body": [
+        "Các video world model giữ “thế giới” trong ngữ cảnh của bộ sinh, nên khi quay lại một chỗ đã đi qua, cảnh phải được sinh lại và các chỉnh sửa trước đó có thể trôi hoặc mất. WM^MLLM, mà nhóm gọi là world model tương tác đầu tiên xây trên MLLM, cho thế giới tồn tại bền vững và chỉnh sửa được từ một ảnh duy nhất.",
+        "Trạng thái thế giới nằm ngoài mọi bộ sinh, dạng một ảnh toàn cảnh có lịch sử sửa đổi, do MLLM ghi. MLLM biến mỗi yêu cầu thành thao tác trên trạng thái, chọn nơi ghi một chỉnh sửa cục bộ, và kiểm tra từng ứng viên trước khi nó trở thành trạng thái tiếp theo. Bộ sinh ảnh chỉ đề xuất góc nhìn, còn video chỉ trình chiếu. Người dùng có thể đi tới nơi mới rồi quay lại, sửa vật thể bằng chữ hoặc khung, đặt nhân vật, đổi ánh sáng, thời tiết hay mùa.",
+        "Về thiết kế, quay lại cùng phiên bản tái hiện đúng cảnh cũ, và một chỉnh sửa cục bộ không đổi điểm ảnh nào ngoài vùng. Nhóm báo cáo trên MBench-A, WM^MLLM đạt trung bình cao nhất ở cả bốn chỉ số phục hồi môi trường (Epipolar 91,5 so với 0,1 đến 74,0) và hoàn tất nhiều vòng quay camera nhất (85,3% so với tối đa 50,9%). Trên CompBench nó có giá trị tốt nhất ở cả 15 cột so với 15 baseline. Với 112 chỉnh sửa cục bộ chấm mù, việc chọn vùng ghi sau khi sinh nâng tỉ lệ hoàn tất từ 34,8% lên 83,0%. Trên 258 mục của WBench và MBench-A, cả 46 lượt quay lại phục hồi đúng cảnh cũ và cả 97 lượt sửa cục bộ qua kiểm tra giữ nguyên các điểm ảnh ngoài vùng.",
+        "> Bài dựa trên abstract; kết quả do nhóm tác giả tự báo cáo trên các benchmark do họ chọn."
+      ],
+      "glossary": [
+        {
+          "term": "Ảnh toàn cảnh (panorama)",
+          "explain": "Ảnh bao quanh 360 độ dùng để lưu trạng thái của thế giới được dựng."
+        },
+        {
+          "term": "World model",
+          "explain": "Mô hình dự đoán hoặc dựng lại thế giới theo hành động của người dùng."
+        }
+      ]
+    },
+    {
+      "id": "probing-va-steering-co-cung-chon-mot-huong-trong-llm",
+      "group": "research",
+      "source": "Hugging Face Papers",
+      "url": "https://arxiv.org/abs/2611.19499",
+      "discussionUrl": "https://huggingface.co/papers/2611.19499",
+      "pdfUrl": "https://arxiv.org/pdf/2611.19499",
+      "points": 6,
+      "comments": 3,
+      "publishedAt": "2026-11-13T19:00:00Z",
+      "hot": false,
+      "readMinutes": 3,
+      "tags": [
+        "diễn giải mô hình",
+        "steering",
+        "probing",
+        "LLM"
+      ],
+      "titleEn": "Do Probing and Steering Favor the Same Directions Within and Across Language Models?",
+      "titleVi": "Hướng tốt nhất để dò khái niệm trong LLM không phải hướng tốt nhất để lái mô hình",
+      "summary": "Nghiên cứu trên ba mô hình đã chỉnh theo hướng dẫn cho thấy hướng ẩn dò khái niệm tốt nhất (probing) thường khác hướng lái (steering) hiệu quả nhất; lái thiên về hướng gần hiệu số trung bình hơn.",
+      "keyPoints": [
+        "Probe dò xem khái niệm có trong trạng thái ẩn không; steering cộng một hướng vào trạng thái ẩn để đẩy mô hình về khái niệm đó.",
+        "Với tính trung thực và cảm xúc, ở cả ba mô hình, probe tốt nhất không phải hướng lái tốt nhất; khác biệt giữ ở 59/60 tổ hợp lớp-mô hình-khái niệm.",
+        "Hướng chuyển qua mô hình khác: probe giữ 81 đến 91% hiệu quả dò trên mô hình đích, còn hiệu số trung bình mất nhiều hiệu quả lái hơn ở 11/12 cặp mô hình.",
+        "Trên PopQA, lái về “không biết” tăng tỉ lệ từ chối 18 đến 44 điểm phần trăm ở lỗi không chắc chắn, so với 2 đến 5 ở lỗi tự tin, hiếm khi sửa được đáp án."
+      ],
+      "body": [
+        "Trong diễn giải mô hình, một “hướng” trong trạng thái ẩn của mô hình ngôn ngữ có thể dùng để dò khái niệm (probing), hoặc để lái mô hình về khái niệm đó (steering). Hướng dò thường được dùng lại để lái, nhưng nhóm tác giả hỏi liệu hướng dò tốt nhất có phải hướng làm thay đổi hiệu quả nhất không.",
+        "Họ nghiên cứu ba mô hình instruction-tuned từ các họ khác nhau, dựng một họ hướng một tham số đi từ phân biệt tuyến tính hiệu chỉnh hiệp phương sai tới hiệu số trung bình, rồi đo cả dò và lái cộng ở mức tác dụng phụ cố định. Với tính trung thực và cảm xúc, ở mọi mô hình, probe tốt nhất không phải hướng lái tốt nhất: lái luôn nghiêng về hướng gần hiệu số trung bình. Sự tách này giữ trong 59/60 tổ hợp lớp-mô hình-khái niệm khi quét lớp, và với văn bản dò và lái khớp nhau ở cả sáu tổ hợp. Tối ưu chính xác của lái kém ổn định hơn: với cảm xúc, hướng trung gian cho hiệu ứng mạnh hơn 27 đến 56% so với hiệu số trung bình, nhưng lợi thế này giảm hoặc mất khi khớp văn bản, và phụ thuộc lớp và cách lái.",
+        "Hai vai trò cũng chuyển qua các mô hình khác nhau: một probe chuyển qua ánh xạ tuyến tính học trên văn bản trung tính giữ 81 đến 91% hiệu quả dò hơn mức ngẫu nhiên của mô hình đích, còn hiệu số trung bình chuyển qua mất nhiều hiệu quả lái hơn ở 11/12 cặp. Nhóm lưu ý đây là xu hướng nhất quán nhưng các tiêu chí định trước chỉ phân loại được ba cặp, chín cặp còn lại chưa kết luận.",
+        "Ở ứng dụng trên PopQA, lái về “không biết” tăng tỉ lệ từ chối trả lời 18 đến 44 điểm phần trăm trên lỗi không chắc chắn, so với 2 đến 5 trên lỗi tự tin, và hiếm khi sửa được lỗi khi đáp án đúng vốn đạt tới được.",
+        "> Bài dựa trên abstract; kết quả do nhóm tác giả tự báo cáo."
+      ],
+      "glossary": [
+        {
+          "term": "Probing",
+          "explain": "Huấn luyện một bộ phân loại đơn giản trên trạng thái ẩn để xem mô hình có “biết” một khái niệm không."
+        },
+        {
+          "term": "Steering",
+          "explain": "Cộng một vectơ hướng vào trạng thái ẩn để làm mô hình thiên về một khái niệm hay hành vi."
+        },
+        {
+          "term": "Trạng thái ẩn",
+          "explain": "Các vectơ số mà mô hình dùng nội bộ ở mỗi lớp để biểu diễn văn bản đang xử lý."
+        }
+      ]
+    },
+    {
+      "id": "veto-chan-duong-tat-van-ban-khi-fine-tune-videollm",
+      "group": "research",
+      "source": "Hugging Face Papers",
+      "url": "https://arxiv.org/abs/2611.25776",
+      "discussionUrl": "https://huggingface.co/papers/2611.25776",
+      "pdfUrl": "https://arxiv.org/pdf/2611.25776",
+      "points": 4,
+      "comments": 2,
+      "publishedAt": "2026-11-18T19:00:00Z",
+      "hot": false,
+      "readMinutes": 3,
+      "tags": [
+        "VideoLLM",
+        "fine-tune",
+        "đường tắt",
+        "chiếu trực giao"
+      ],
+      "titleEn": "Suppressing the Shortcut Hidden Behind the Gains of VideoLLM Fine-Tuning",
+      "titleVi": "VETO: ngăn VideoLLM học “đường tắt” trả lời từ quy luật văn bản mà bỏ qua video khi fine-tune",
+      "summary": "Khi fine-tune có giám sát, VideoLLM vừa học suy luận trên video vừa học trả lời từ quy luật văn bản trong dữ liệu. VETO chiếu bản cập nhật lên phần bù trực giao của không gian do văn bản chiếm, để mô hình dựa vào toàn bộ đầu vào.",
+      "keyPoints": [
+        "Đường tắt hình thành bất kể số epoch, lượng dữ liệu hay mô hình nền, và bị che bởi mức tăng độ chính xác trong phân phối huấn luyện.",
+        "Đường tắt không cần thiết cho mức tăng đó, mà còn làm SFT mất phần lợi từ video khi dữ liệu đổi phân phối.",
+        "VETO can thiệp vào bản cập nhật ở nơi đường tắt được ghi, không phải ở dữ liệu: chiếu cập nhật lên phần bù trực giao của không gian con mà văn bản chiếm.",
+        "Trên bảy VideoLLM, VETO giữ được mức tăng của SFT trong phân phối huấn luyện và vượt SFT trên sáu benchmark có đổi phân phối."
+      ],
+      "body": [
+        "Supervised fine-tuning (SFT) là giai đoạn các VideoLLM (mô hình ngôn ngữ lớn xử lý video) cải thiện khả năng suy luận trên video. Nhóm tác giả chỉ ra rằng ở giai đoạn này mô hình cũng học trả lời dựa trên quy luật văn bản trong dữ liệu huấn luyện, một đường tắt bỏ qua video. Đường tắt này khó định nghĩa ở mức dữ liệu, xuất hiện bất kể số epoch, lượng dữ liệu hay mô hình nền, và bị che bởi mức tăng độ chính xác ngay trong phân phối huấn luyện.",
+        "Theo nhóm, đường tắt không cần cho mức tăng ấy, và còn làm SFT mất phần lợi mà video mang lại khi phân phối dữ liệu thay đổi. Họ đề xuất VETO (Video-Evidence Training via Orthogonal projection): thay vì can thiệp vào dữ liệu, can thiệp ở bản cập nhật fine-tune nơi đường tắt được ghi. VETO hiệu chỉnh không gian con mà văn bản một mình chiếm trong các kích hoạt của mô hình gốc, rồi chiếu bản cập nhật lên phần bù trực giao của nó, để mô hình dựa vào toàn bộ đầu vào thay vì đường tắt.",
+        "Theo abstract, trên bảy VideoLLM, VETO giữ được mức tăng của SFT trong phân phối huấn luyện đồng thời triệt đường tắt, và trên sáu benchmark có dịch chuyển phân phối thì nó tăng nhiều hơn SFT. Mã có trên GitHub.",
+        "> Bài dựa trên abstract; kết quả do nhóm tác giả tự báo cáo."
+      ],
+      "glossary": [
+        {
+          "term": "VideoLLM",
+          "explain": "Mô hình ngôn ngữ lớn có khả năng nhận và hiểu video."
+        },
+        {
+          "term": "Đường tắt (shortcut)",
+          "explain": "Quy luật dễ dùng trong dữ liệu mà mô hình học để trả lời đúng mà không thật sự hiểu nội dung cần hiểu."
+        },
+        {
+          "term": "Chiếu trực giao",
+          "explain": "Phép toán loại bỏ thành phần của một vectơ nằm trong một không gian con cho trước."
+        }
+      ]
+    },
+    {
+      "id": "aura-avatar-noi-chuyen-streaming-tu-am-thanh-nhanh-17-23-lan",
+      "group": "research",
+      "source": "Hugging Face Papers",
+      "url": "https://arxiv.org/abs/2611.26540",
+      "discussionUrl": "https://huggingface.co/papers/2611.26540",
+      "pdfUrl": "https://arxiv.org/pdf/2611.26540",
+      "points": 4,
+      "comments": 3,
+      "publishedAt": "2026-11-18T19:00:00Z",
+      "hot": false,
+      "readMinutes": 3,
+      "tags": [
+        "avatar",
+        "video diffusion",
+        "streaming",
+        "chưng cất"
+      ],
+      "titleEn": "AURA: AUdio-dRiven streaming Avatar",
+      "titleVi": "AURA: avatar nói chuyện sinh video theo âm thanh theo thời gian thực, nhanh hơn mô hình thầy 17 đến 23 lần",
+      "summary": "Nhóm Kyutai giới thiệu AURA, mô hình sinh video khuôn mặt nói chuyện theo từng khúc, chỉ cần âm thanh của khúc hiện tại. Bản 1,3B chạy 576p thời gian thực trên một GPU. Họ phát hành trọng số của cả hai cỡ.",
+      "keyPoints": [
+        "Mô hình khuếch tán video theo âm thanh hiện nay cần hàng chục bước khử nhiễu trên khúc dài nhiều giây, không hợp với trợ lý giọng nói cần độ trễ thấp.",
+        "AURA sinh từng khúc với bộ nhớ KV cuộn, chỉ cần âm thanh của khúc hiện tại thay vì nhìn trước nhiều giây.",
+        "AURA 1.3B stream 576p ở 20,7 fps trên một GPU; AURA 5B stream 720p ở 9,7 fps.",
+        "Nhanh hơn mô hình thầy hai chiều 23 lần (1.3B) và 17 lần (5B); nhóm phát hành trọng số và 30.000 video tổng hợp."
+      ],
+      "body": [
+        "Các mô hình khuếch tán video điều khiển bằng âm thanh có thể sinh khuôn mặt đang nói rất thật, nhưng thường cần hàng chục bước khử nhiễu trên các khúc video dài nhiều giây. Điều đó không hợp với ứng dụng cần độ trễ thấp như trợ lý giọng nói hay avatar ảo.",
+        "AURA sinh video theo từng khúc với bộ nhớ KV cuộn. Nó chỉ cần âm thanh của khúc hiện tại để bắt đầu, thay vì phải biết trước nhiều giây âm thanh như mô hình hai chiều. Có hai cỡ: AURA 1.3B stream video 576p theo thời gian thực trên một GPU (20,7 fps với tốc độ phát 16 Hz), AURA 5B stream 720p ở 9,7 fps.",
+        "Chuỗi chưng cất hai giai đoạn: trước hết căn chỉnh học sinh nhân quả với giáo viên bằng cách bắt học sinh bám quỹ đạo của giáo viên với ít bước khuếch tán hơn và mặt nạ chú ý cửa sổ trượt theo khúc, sau đó dùng Distribution Matching Distillation (DMD) với mô phỏng ngược để thu hẹp khoảng cách chất lượng còn lại.",
+        "Theo abstract, trên các benchmark mặt nói chuẩn, AURA 1.3B chạy nhanh hơn mô hình thầy hai chiều của nó 23 lần và đạt chất lượng tương đương TalkVerse ở độ phân giải thấp hơn; AURA 5B ngang giáo viên TalkVerse ở 720p và nhanh hơn 17 lần. Nhóm phát hành trọng số của cả hai mô hình cùng bộ dữ liệu 30.000 video tổng hợp và quỹ đạo tính sẵn của mô hình thầy.",
+        "> Bài dựa trên abstract; số liệu tốc độ và chất lượng do nhóm tác giả tự báo cáo."
+      ],
+      "glossary": [
+        {
+          "term": "Chưng cất (distillation)",
+          "explain": "Huấn luyện mô hình nhỏ hoặc nhanh bắt chước mô hình lớn hoặc chậm."
+        },
+        {
+          "term": "KV cache cuộn",
+          "explain": "Bộ nhớ khóa-giá trị của attention chỉ giữ một cửa sổ gần nhất, để chạy liên tục không tốn thêm bộ nhớ."
+        },
+        {
+          "term": "fps",
+          "explain": "Số khung hình mỗi giây."
+        }
+      ]
+    },
+    {
+      "id": "optics-as-code-coding-agent-huan-luyen-mang-no-ron-quang",
+      "group": "research",
+      "source": "Hugging Face Papers",
+      "url": "https://arxiv.org/abs/2611.23875",
+      "discussionUrl": "https://huggingface.co/papers/2611.23875",
+      "pdfUrl": "https://arxiv.org/pdf/2611.23875",
+      "points": 3,
+      "comments": 2,
+      "publishedAt": "2026-11-17T19:00:00Z",
+      "hot": false,
+      "readMinutes": 3,
+      "tags": [
+        "coding agent",
+        "mạng nơ-ron quang",
+        "phần cứng",
+        "khoa học"
+      ],
+      "titleEn": "In Situ Training of Optical Neural Networks by Coding Agents",
+      "titleVi": "“Optics as code”: coding agent huấn luyện mạng nơ-ron quang ngay trên phần cứng chỉ từ phép đo",
+      "summary": "Nhóm tác giả cho một coding agent huấn luyện mạng nơ-ron quang tại chỗ qua một khung trả về ảnh camera của các lần thử và đòi một giả thuyết mỗi yêu cầu. Agent hình thành hiểu biết vật lý về hệ quang và đạt kết quả vượt các phương pháp không gradient.",
+      "keyPoints": [
+        "Mạng quang hứa hẹn nhanh và tiết kiệm điện nhưng mỗi thiết bị lệch khỏi thiết kế nên phải huấn luyện trên chính phần cứng.",
+        "Cách hiện nay cần mô hình số đã hiệu chuẩn dựng bằng tay, hoặc thử sai không gradient.",
+        "Với “optics as code”, agent chỉ có phép đo; khung trả về ảnh camera và buộc nêu giả thuyết cho mỗi yêu cầu.",
+        "Agent tái tham số hóa mạng bằng các phần tử quang giải thích được; vượt các phương pháp không gradient ở phân loại và mã hóa ảnh, gần backprop qua mô hình hiệu chuẩn với chi phí thấp hơn nhiều."
+      ],
+      "body": [
+        "Mạng nơ-ron quang hứa hẹn tính toán nhanh và tiết kiệm năng lượng, nhưng mỗi thiết bị thực tế lệch khỏi thiết kế nên phải được huấn luyện cùng phần cứng. Huấn luyện tại chỗ hiện đòi hỏi một mô hình số đã hiệu chuẩn, do chuyên gia dựng cho từng thiết bị, hoặc dùng thử sai không gradient.",
+        "Nhóm tác giả lưu ý coding agent (LLM viết và chạy chương trình) đã bộc lộ khả năng hiểu và sửa trọng số mạng số. Họ đề xuất “optics as code”: coding agent huấn luyện mạng quang chỉ từ các phép đo, qua một khung trả về ảnh camera của các lần thử và buộc agent đưa ra một giả thuyết cho mỗi yêu cầu.",
+        "Theo nhóm, agent tự hình thành hiểu biết vật lý của hệ quang và tái tham số hóa mạng bằng các phần tử quang giải thích được, được chỉnh ngay trên phần cứng. Trên phân loại và mã hóa ảnh, nó vượt các phương pháp không gradient, tiến gần mức truyền ngược qua mô hình đã hiệu chuẩn nhưng chi phí thấp hơn nhiều. Phương pháp không cần hiệu chuẩn riêng cho từng thiết bị lẫn gradient qua phần cứng, và cải thiện khi mô hình mạnh lên, nên tác giả coi đây là lối đi thực tế cho mạng quang lớn và công cụ hiệu chỉnh thí nghiệm quang học.",
+        "> Bài dựa trên abstract; kết quả do nhóm tác giả tự báo cáo."
+      ],
+      "glossary": [
+        {
+          "term": "Mạng nơ-ron quang",
+          "explain": "Mạng nơ-ron tính toán bằng ánh sáng thay vì điện tử."
+        },
+        {
+          "term": "Huấn luyện tại chỗ (in situ)",
+          "explain": "Huấn luyện ngay trên thiết bị thật, tính cả sai lệch của nó."
+        },
+        {
+          "term": "Backpropagation",
+          "explain": "Thuật toán truyền ngược gradient để cập nhật trọng số mạng."
+        }
+      ]
+    },
+    {
+      "id": "inhabitant-agent-dieu-khien-nhan-vat-lam-viec-nha-bang-claude-opus-5-5",
+      "group": "research",
+      "source": "Hugging Face Papers",
+      "url": "https://arxiv.org/abs/2611.25005",
+      "discussionUrl": "https://huggingface.co/papers/2611.25005",
+      "pdfUrl": "https://arxiv.org/pdf/2611.25005",
+      "points": 2,
+      "comments": 2,
+      "publishedAt": "2026-11-17T19:00:00Z",
+      "hot": false,
+      "readMinutes": 3,
+      "tags": [
+        "agent",
+        "chuyển động 3D",
+        "benchmark",
+        "Claude Opus 5.5"
+      ],
+      "titleEn": "Inhabitant: An Agent Framework for Long-Horizon Human-Scene Interaction with Spatial Control and Quantitative Feedback",
+      "titleVi": "Inhabitant: agent điều khiển nhân vật 3D làm chuỗi việc trong nhà, hoàn tất 98,7% tác vụ với Claude Opus 5.5",
+      "summary": "Inhabitant là khung agent không cần huấn luyện cho tương tác người-cảnh dài hơi: agent chỉ định vị trí, đường đi, tư thế cho từng chuyển động, đo độ lệch với ý định rồi chỉnh. Trên benchmark Inhabit, Claude Opus 5.5 hoàn tất 98,7% tác vụ.",
+      "keyPoints": [
+        "Các agent hiện có thiếu kiểm soát không gian và phản hồi định lượng nên hay không hoàn tất được chuỗi tương tác nhiều bước.",
+        "Inhabitant là khung không cần huấn luyện: agent chỉ định vị trí, đường đi và tư thế, đo độ lệch của chuyển động thực hiện, rồi sửa đặc tả điều khiển.",
+        "Benchmark Inhabit gồm 75 tác vụ gia đình trong 31 bố cục nội thất, mỗi tác vụ nối một đến ba mục tiêu trên vật di chuyển được.",
+        "Hoàn tất 98,7% với Claude Opus 5.5, 93,3% với Claude Sonnet 5.5 và 82,7% với Gemini 4 Argon; bỏ kiểm soát không gian thì hỏng phần lớn tác vụ."
+      ],
+      "body": [
+        "Tạo chuyển động người tương tác với cảnh 3D (HSI) đang chuyển từ một tương tác đơn lẻ sang tương tác dài hơi, trong đó một agent mô hình ngôn ngữ lập kế hoạch và thực hiện chuỗi tương tác trong cảnh 3D theo một chỉ dẫn. Nhóm tác giả nhận thấy các agent hiện có khó xử lý tình huống đời thường như nhặt đồ chơi ném vào rổ, vì thiếu kiểm soát không gian của chuyển động và phản hồi định lượng về việc thực hiện, nên thường không hoàn tất chuỗi.",
+        "Inhabitant là khung agent không cần huấn luyện: agent chỉ định từng chuyển động qua vị trí, đường đi và tư thế, đo xem tương tác thực hiện lệch ý định ra sao, rồi sửa lại đặc tả điều khiển. Để đánh giá, nhóm lập benchmark Inhabit gồm 75 tác vụ trong nhà ở 31 bố cục nội thất của một căn hộ; mỗi tác vụ nối một đến ba mục tiêu trên vật di chuyển được, do toàn thân thực hiện, không tính ngón tay.",
+        "Theo abstract, trên Inhabit, Inhabitant hoàn tất 98,7% tác vụ với Claude Opus 5.5, 93,3% với Claude Sonnet 5.5 và 82,7% với Gemini 4 Argon. Các thí nghiệm loại bỏ từng phần xác nhận: không có kiểm soát không gian thì agent hỏng phần lớn tác vụ, không có phản hồi định lượng thì chuyển động kém chính xác hơn. Mã có trên trang dự án.",
+        "> Bài dựa trên abstract; kết quả do nhóm tác giả tự báo cáo trên benchmark do họ tạo."
+      ],
+      "glossary": [
+        {
+          "term": "HSI",
+          "explain": "Human-scene interaction: tạo chuyển động người tương tác với đồ vật trong một cảnh 3D."
+        },
+        {
+          "term": "Training-free",
+          "explain": "Không cần huấn luyện thêm; chỉ dùng mô hình có sẵn qua prompt và công cụ."
+        }
+      ]
+    },
+    {
+      "id": "twind-phat-hien-deepfake-tao-ca-khuon-mat",
+      "group": "research",
+      "source": "Hugging Face Papers",
+      "url": "https://arxiv.org/abs/2611.25935",
+      "discussionUrl": "https://huggingface.co/papers/2611.25935",
+      "pdfUrl": "https://arxiv.org/pdf/2611.25935",
+      "points": 1,
+      "comments": 2,
+      "publishedAt": "2026-11-18T19:00:00Z",
+      "hot": false,
+      "readMinutes": 3,
+      "tags": [
+        "deepfake",
+        "phát hiện",
+        "thị giác máy tính"
+      ],
+      "titleEn": "TwinD: Generalizing Deepfake Detection from Blending to Entire Face Synthesis",
+      "titleVi": "TwinD: bộ phát hiện deepfake huấn luyện bằng “bản sinh đôi” để nhận cả khuôn mặt sinh hoàn toàn, AUROC trung bình 96,3%",
+      "summary": "Các bộ phát hiện deepfake thường huấn luyện trên ảnh ghép mặt giả vào khung hình thật, nên yếu với mặt do mô hình sinh hoàn toàn. TwinD dùng hai loại “bản sinh đôi” từ khung hình thật và nâng AUROC trung bình lên 96,3%.",
+      "keyPoints": [
+        "Trên benchmark 19 bộ dữ liệu (2019 đến 2026), bộ phát hiện tốt nhất trước đó đạt AUROC trung bình 96,2% trên mười bộ ghép mặt nhưng không vượt 78,1% trên năm bộ sinh cả khuôn mặt (EFS).",
+        "Các bộ phát hiện nội dung AI nói chung cũng không thu hẹp khoảng cách này.",
+        "TwinD huấn luyện trên fake của FaceForensics++ và hai kiểu “bản sinh đôi” làm từ khung hình thật: bản tái dựng qua autoencoder và bản ghép “blob”.",
+        "AUROC trung bình 96,3%, cao hơn 8,9 điểm so với mức tốt nhất trước đó, gồm 98,1% trên bộ ghép mặt và 95,6% trên bộ EFS."
+      ],
+      "body": [
+        "Các bộ phát hiện deepfake khuôn mặt thường được huấn luyện trên “ảnh ghép”, nơi mặt giả được dán lại vào khung hình thật. Nhóm tác giả nêu rằng các bộ sinh gần đây tạo cả khuôn mặt từ đầu và không để lại dấu vết ghép. Trên benchmark gồm 19 bộ dữ liệu phát hành từ 2019 đến 2026, bộ phát hiện tốt nhất trước đó đạt AUROC trung bình 96,2% trên mười bộ ghép mặt, nhưng không bộ nào quá 78,1% trên năm bộ dữ liệu sinh cả khuôn mặt (EFS). Các bộ phát hiện nội dung do AI tạo (AIGC) cũng chưa thu hẹp được khoảng cách.",
+        "TwinD huấn luyện trên fake của FaceForensics++ cùng hai loại “bản sinh đôi”, tức giả mạo làm từ một khung hình thật. Bản sinh đôi tái dựng là khung hình thật được autoencoder dựng lại rồi trả điểm ảnh thật vào một vùng ngẫu nhiên, nhắm tới dấu vết thần kinh của bộ giải mã. Bản sinh đôi “blob” ghép một bản đã chỉnh sửa của khung hình vào chính nó, nhắm tới dấu vết ghép; nó không cần bộ sinh hay mặt nạ hình khuôn mặt. Hai loại cho hai manh mối pháp y bổ sung nhau và tổng quát hóa sang các thao tác chưa gặp.",
+        "Theo abstract, TwinD đạt AUROC trung bình 96,3%, cao hơn 8,9 điểm so với mức tốt nhất trước đó: 98,1% trên các bộ ghép mặt và 95,6% trên bộ EFS. Nếu chỉ huấn luyện trên bản sinh đôi mà không cần bộ dữ liệu deepfake, từng mô hình vẫn đạt trung bình 94,3% qua ba lần chạy. Mã, mô hình đã huấn luyện và dữ liệu có trên GitHub.",
+        "> Bài dựa trên abstract; kết quả do nhóm tác giả tự báo cáo."
+      ],
+      "glossary": [
+        {
+          "term": "AUROC",
+          "explain": "Diện tích dưới đường ROC, thước đo khả năng phân biệt hai lớp (thật và giả); 100% là hoàn hảo, 50% là đoán mò."
+        },
+        {
+          "term": "Deepfake",
+          "explain": "Ảnh hoặc video khuôn mặt giả được tạo hoặc chỉnh bằng AI."
+        },
+        {
+          "term": "Autoencoder",
+          "explain": "Mạng nén ảnh thành mã gọn rồi dựng lại, thường để lại dấu vết của bộ giải mã."
+        }
+      ]
+    },
+    {
+      "id": "voda-giam-sat-the-tich-cho-phan-doan-3d-gaussian",
+      "group": "research",
+      "source": "Hugging Face Papers",
+      "url": "https://arxiv.org/abs/2611.21383",
+      "discussionUrl": "https://huggingface.co/papers/2611.21383",
+      "pdfUrl": "https://arxiv.org/pdf/2611.21383",
+      "points": 33,
+      "comments": 4,
+      "publishedAt": "2026-11-15T19:00:00Z",
+      "hot": false,
+      "readMinutes": 3,
+      "tags": [
+        "3D Gaussian Splatting",
+        "phân đoạn 3D",
+        "thị giác máy tính"
+      ],
+      "titleEn": "The Mask Is Not the Object: Volumetric Supervision for 3D Gaussian Segmentation",
+      "titleVi": "VODA: giám sát theo thể tích để phân đoạn 3D Gaussian chọn đủ cả phần bị che, không chỉ khớp mặt nạ khi render",
+      "summary": "Phân đoạn trong 3D Gaussian Splatting thường huấn luyện qua ảnh render, nên mặt nạ có thể đúng mà vùng chọn 3D vẫn thiếu. VODA giám sát trực tiếp mọi Gaussian trong các cụm độ sâu được chọn.",
+      "keyPoints": [
+        "Huấn luyện qua ảnh render dồn học vào các Gaussian đóng góp nhiều, bỏ các Gaussian bị che hoặc đóng góp ít.",
+        "VODA là hàm mục tiêu cắm thêm được: gom các Gaussian đóng góp cho mỗi điểm ảnh theo cấu trúc độ sâu cục bộ rồi giám sát trực tiếp cả cụm.",
+        "Nhóm lập Removal-3D (benchmark xóa vật thể tổng hợp) và chỉ số RDE để đo độ đầy đủ về thể tích.",
+        "Cải thiện trên cả bốn baseline dựa trên render; tăng trọng số gradient hoặc lan truyền không gian không tái tạo được mức tăng."
+      ],
+      "body": [
+        "3D Gaussian Splatting biểu diễn cảnh bằng nhiều Gaussian và cho phép thao tác ở mức vật thể trên các Gaussian đó. Tuy nhiên các phương pháp phân đoạn hiện nay chủ yếu được huấn luyện và đánh giá qua các góc nhìn render. Nhóm tác giả chỉ ra sự lệch này có thể cho ra mặt nạ render đúng từ một vùng chọn 3D chưa đầy đủ: việc giám sát đặc trưng theo alpha blending dồn học vào các Gaussian đóng góp nhiều và để các Gaussian bị che hoặc đóng góp ít được giám sát yếu.",
+        "VODA là một hàm mục tiêu giám sát cắm thêm được: nó dùng cấu trúc độ sâu cục bộ để gom các Gaussian đóng góp cho mỗi điểm ảnh, rồi giám sát trực tiếp mọi Gaussian trong các cụm độ sâu được chọn, bỏ qua việc truyền gradient theo trọng số đóng góp. Để đo độ đầy đủ về thể tích, nhóm lập Removal-3D (benchmark xóa vật thể tổng hợp) và chỉ số Removal Depth Error (RDE), so sánh thay đổi độ sâu dự đoán với thực tế.",
+        "Theo abstract, trên bốn baseline dựa trên render, VODA nhất quán cải thiện phân đoạn thể tích trên Removal-3D, đồng thời giữ hoặc tăng hiệu năng trên LERF và ScanNet. Phân tích thêm cho thấy VODA khôi phục được các Gaussian đóng góp thấp, trong khi tăng trọng số gradient hay lan truyền không gian đơn giản không cho mức tăng tương đương.",
+        "> Bài dựa trên abstract; kết quả do nhóm tác giả tự báo cáo."
+      ],
+      "glossary": [
+        {
+          "term": "3D Gaussian Splatting",
+          "explain": "Kỹ thuật biểu diễn cảnh 3D bằng rất nhiều “đốm” Gaussian có màu, vị trí, độ trong suốt rồi render thành ảnh."
+        },
+        {
+          "term": "Alpha blending",
+          "explain": "Cách trộn các lớp trong suốt chồng nhau để ra màu cuối của điểm ảnh."
+        }
+      ]
+    },
+    {
+      "id": "hiuni-mot-backbone-chung-cho-hieu-va-sinh-anh",
+      "group": "research",
+      "source": "Hugging Face Papers",
+      "url": "https://arxiv.org/abs/2611.26107",
+      "discussionUrl": "https://huggingface.co/papers/2611.26107",
+      "pdfUrl": "https://arxiv.org/pdf/2611.26107",
+      "points": 25,
+      "comments": 2,
+      "publishedAt": "2026-11-18T19:00:00Z",
+      "hot": false,
+      "readMinutes": 3,
+      "tags": [
+        "mô hình đa phương thức",
+        "sinh ảnh",
+        "VLM",
+        "khuếch tán"
+      ],
+      "titleEn": "HiUni: Harmonizing Understanding and Generation in Shared Visual Space",
+      "titleVi": "HiUni: mở rộng VLM có sẵn thành mô hình hợp nhất hiểu và sinh ảnh, dùng chung một backbone",
+      "summary": "HiUni thử xem có thể mở rộng thẳng một mô hình thị giác-ngôn ngữ đã tiền huấn luyện thành mô hình hợp nhất với tham số dùng chung rộng rãi hay không. Nó dùng chung ViT và backbone dày, chỉ tách phần tính toán riêng ở phía đầu ra.",
+      "keyPoints": [
+        "Nhiều mô hình hợp nhất vẫn tách biểu diễn thị giác hoặc tính toán backbone cho hiểu và sinh, nên mức hợp nhất bị hạn chế.",
+        "HiUni dùng lại cùng ViT căn chỉnh ngôn ngữ và backbone Transformer dày cho cả hai khả năng.",
+        "Hai thách thức: sinh trong không gian điểm ảnh khó tối ưu và ViT bỏ mất chi tiết không gian cần cho sinh ảnh.",
+        "Giải pháp: Pixel Diffusion Head và đường HiGate nhẹ cấp chi tiết ở gần đầu ra; điểm hiểu trung bình ngang VLM gốc, sinh và chỉnh sửa ảnh cạnh tranh."
+      ],
+      "body": [
+        "Mô hình đa phương thức hợp nhất muốn hỗ trợ cả hiểu ảnh lẫn sinh ảnh trong một khung. Nhưng nhóm tác giả nhận thấy các cách làm phổ biến thường tách biểu diễn thị giác hoặc phần tính toán của backbone cho hai nhiệm vụ này, nên mức hợp nhất bị hạn chế.",
+        "HiUni xét lại lựa chọn đó và hỏi liệu một mô hình thị giác-ngôn ngữ đã tiền huấn luyện có thể được mở rộng thẳng thành mô hình hợp nhất với mức chia sẻ tham số lớn không. Nó dùng lại cùng ViT căn chỉnh ngôn ngữ và cùng backbone Transformer dày cho cả hai khả năng, và chỉ giới hạn tính toán riêng cho từng tác vụ ở phía đầu ra. Có hai thách thức: sinh trong không gian điểm ảnh khó tối ưu, và phần trừu tượng ngữ nghĩa trong ViT đã tiền huấn luyện bỏ mất chi tiết không gian cần cho tổng hợp ảnh.",
+        "Để giải quyết, HiUni thêm một Pixel Diffusion Head thiết kế cho tối ưu trực tiếp trong không gian điểm ảnh và một đường HiGate nhẹ cung cấp chi tiết không gian mịn ở gần đầu ra. Theo abstract, HiUni đạt điểm hiểu trung bình tương đương VLM tiền huấn luyện và có hiệu năng cạnh tranh ở sinh và chỉnh sửa ảnh. Các so sánh có kiểm soát cho thấy một backbone dày duy nhất có thể hỗ trợ cả hai khả năng mà không cần tính toán backbone riêng cho từng tác vụ.",
+        "> Bài dựa trên abstract; kết quả do nhóm tác giả tự báo cáo."
+      ],
+      "glossary": [
+        {
+          "term": "Mô hình hợp nhất",
+          "explain": "Một mô hình làm được cả hiểu và sinh nội dung (ở đây là ảnh) trong cùng khung."
+        },
+        {
+          "term": "ViT",
+          "explain": "Vision Transformer: mạng Transformer xử lý ảnh bằng cách chia thành các mảnh nhỏ."
+        },
+        {
+          "term": "Khuếch tán trong không gian điểm ảnh",
+          "explain": "Sinh ảnh bằng cách khử nhiễu trực tiếp trên điểm ảnh, thay vì trên một biểu diễn nén."
+        }
+      ]
+    }
+  ]
+}
